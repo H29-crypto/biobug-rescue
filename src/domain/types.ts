@@ -6,11 +6,12 @@ export interface Survivor { id: string; position: Vec2; status: 'undetected' | '
 export interface Hazard { id: string; position: Vec2; radius: number; kind: 'gas' | 'heat' | 'unstable'; severity: number; discovered: boolean }
 export interface ExplorationGrid { columns: number; rows: number; cellSize: number; explored: boolean[] }
 export interface Environment { id: string; name: string; width: number; height: number; obstacles: Obstacle[]; exploration: ExplorationGrid; survivors: Survivor[]; hazards: Hazard[]; entry: Vec2 }
-/** Future milestones only: normalized sensory values in [0, 1]. */
-export interface Sensors { obstacleLeft: number; obstacleFront: number; obstacleRight: number; hazard: number; survivorCue: number; unexploredDirection: number }
+/** Obstacle activations are normalized [0,1]; distance readings use world units from the body edge. */
+export interface Sensors { frontDistance: number; leftDistance: number; rightDistance: number; obstacleLeft: number; obstacleFront: number; obstacleRight: number; hazard: number; survivorCue: number; unexploredDirection: number }
 export interface Neuron { id: string; kind: 'sensory' | 'interneuron' | 'motor'; activation: number; bias: number }
 export interface Synapse { source: string; target: string; weight: number }
 export interface NeuralController { neurons: Neuron[]; synapses: Synapse[]; motorOutput: { left: number; right: number } }
-export interface BioBug { id: string; position: Vec2; heading: number; radius: number; speed: number; state: 'exploring' | 'avoiding' | 'idle'; sensors: Sensors; controller: NeuralController }
+export interface BioBug { id: string; position: Vec2; heading: number; radius: number; speed: number; state: 'exploring' | 'blocked' | 'investigating' | 'stopped'; sensors: Sensors; controller?: NeuralController }
 export interface Discovery { kind: 'survivor' | 'hazard'; entityId: string; bugId: string; time: number }
 export interface Swarm { bugs: BioBug[]; sharedExploration: ExplorationGrid; discoveries: Discovery[]; elapsedTime: number }
+

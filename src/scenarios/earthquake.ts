@@ -20,11 +20,9 @@ export function createEarthquakeEnvironment(): Environment {
       debris('d5', 577, 119, 67, 43), debris('d6', 643, 178, 39, 25),
       debris('d7', 615, 398, 51, 40), debris('d8', 155, 371, 42, 36),
     ],
-    exploration: { columns, rows, cellSize, explored: Array.from({ length: columns * rows }, (_, index) => {
-      const x = (index % columns + 0.5) * cellSize, y = (Math.floor(index / columns) + 0.5) * cellSize;
-      return (x < 250 && y > 250) || (x > 90 && x < 490 && y > 340) || (x > 270 && x < 450 && y > 270);
-    }) },
-    survivors: [{ id: 'S-01', position: { x: 207, y: 305 }, status: 'possible' }],
-    hazards: [{ id: 'H-01', position: { x: 440, y: 462 }, radius: 33, kind: 'gas', severity: 0.7, discovered: true }],
+    exploration: { columns, rows, cellSize, explored: Array<boolean>(columns * rows).fill(false) },
+    survivors: [{ id: 'S-01', position: { x: 207, y: 305 }, status: 'undetected' }],
+    hazards: [{ id: 'H-01', position: { x: 440, y: 462 }, radius: 33, kind: 'gas', severity: 0.7, discovered: false }],
   };
 }
+

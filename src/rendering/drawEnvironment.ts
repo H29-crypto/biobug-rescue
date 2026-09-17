@@ -27,7 +27,7 @@ export function drawEnvironment(ctx: CanvasRenderingContext2D, env: Environment,
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
   for (const hazard of env.hazards) {
     const { x, y } = hazard.position;
-    if ((!hazard.discovered && !reveal) || !visible(x, y)) continue;
+    if (!visible(x, y)) continue;
     ctx.fillStyle = '#f1b95916'; ctx.strokeStyle = '#efb85c'; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.arc(x, y, hazard.radius, 0, Math.PI * 2); ctx.fill(); ctx.setLineDash([4, 5]); ctx.stroke(); ctx.setLineDash([]);
     ctx.fillStyle = '#edb75e'; ctx.beginPath(); ctx.moveTo(x, y - 12); ctx.lineTo(x + 12, y + 10); ctx.lineTo(x - 12, y + 10); ctx.closePath(); ctx.fill();
@@ -36,7 +36,7 @@ export function drawEnvironment(ctx: CanvasRenderingContext2D, env: Environment,
   }
   for (const survivor of env.survivors) {
     const { x, y } = survivor.position;
-    if ((survivor.status === 'undetected' && !reveal) || !visible(x, y)) continue;
+    if (!visible(x, y)) continue;
     ctx.strokeStyle = '#70e2bb'; ctx.fillStyle = '#70e2bb18'; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.arc(x, y, 21, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     ctx.fillStyle = '#90f5cf'; ctx.fillRect(x - 2, y - 9, 4, 18); ctx.fillRect(x - 9, y - 2, 18, 4);
@@ -44,6 +44,7 @@ export function drawEnvironment(ctx: CanvasRenderingContext2D, env: Environment,
   }
   ctx.strokeStyle = '#79c8e8'; ctx.lineWidth = 2; ctx.strokeRect(env.entry.x - 12, env.entry.y - 12, 24, 24);
   ctx.fillStyle = '#96d9f1'; ctx.font = '10px monospace'; ctx.fillText('ENTRY', env.entry.x, env.entry.y + 29);
-  if (!reveal) { ctx.fillStyle = '#596875'; ctx.font = '12px monospace'; ctx.fillText('UNEXPLORED', 588, 220); }
+  if (!reveal && !visible(588, 220)) { ctx.fillStyle = '#596875'; ctx.font = '12px monospace'; ctx.fillText('UNEXPLORED', 588, 220); }
 }
+
 
