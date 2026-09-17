@@ -1,0 +1,94 @@
+{
+  "bucket": "flyem-male-cns",
+  "version": "v1.0",
+  "flat_files": [
+    {
+      "name": "v1.0/connectome-data/flat-connectome/body-annotations-male-cns-v1.0-minconf-0.5.feather",
+      "size": "14483314",
+      "generation": "1780494878811468",
+      "md5Hash": "UKdxh3DFciDxYLpPQxq4ng==",
+      "crc32c": "vjz9cg==",
+      "updated": "2026-06-03T13:54:38.876Z"
+    },
+    {
+      "name": "v1.0/connectome-data/flat-connectome/body-neurotransmitters-male-cns-v1.0.feather",
+      "size": "43282834",
+      "generation": "1780894899156750",
+      "md5Hash": "PYQrEv5cSe763lKNfdJKHw==",
+      "crc32c": "jcpNFg==",
+      "updated": "2026-06-08T05:01:39.227Z"
+    },
+    {
+      "name": "v1.0/connectome-data/flat-connectome/body-stats-male-cns-v1.0-minconf-0.5.feather",
+      "size": "778062826",
+      "generation": "1780494888472305",
+      "md5Hash": "QEwzScKFgBSOFoFeuZ84Kg==",
+      "crc32c": "MGOCPQ==",
+      "updated": "2026-06-03T13:54:48.544Z"
+    },
+    {
+      "name": "v1.0/connectome-data/flat-connectome/connectome-weights-male-cns-v1.0-minconf-0.5-significant-only.feather",
+      "size": "502169298",
+      "generation": "1780494884449936",
+      "md5Hash": "CfL4M/cWGkatM81vnJBy9g==",
+      "crc32c": "RNohUA==",
+      "updated": "2026-06-03T13:54:44.523Z"
+    },
+    {
+      "name": "v1.0/connectome-data/flat-connectome/connectome-weights-male-cns-v1.0-minconf-0.5-traced-only.feather",
+      "size": "508025642",
+      "generation": "1780494884279095",
+      "md5Hash": "ZgHUrQr6mf0D6wh5Ze8kIw==",
+      "crc32c": "iakIVA==",
+      "updated": "2026-06-03T13:54:44.346Z"
+    },
+    {
+      "name": "v1.0/connectome-data/flat-connectome/connectome-weights-male-cns-v1.0-minconf-0.5.feather",
+      "size": "1051241946",
+      "generation": "1780494887545976",
+      "md5Hash": "8w6dzKJc/QIb8eez2XVZng==",
+      "crc32c": "dKRPVQ==",
+      "updated": "2026-06-03T13:54:47.629Z"
+    },
+    {
+      "name": "v1.0/connectome-data/flat-connectome/syn-partners-male-cns-v1.0-minconf-0.5-significant-only.feather",
+      "size": "2965702122",
+      "generation": "1780494917774871",
+      "md5Hash": "pbz0bYqLglq4yjJzxHeV4w==",
+      "crc32c": "49jLBw==",
+      "updated": "2026-06-03T13:55:17.873Z"
+    },
+    {
+      "name": "v1.0/connectome-data/flat-connectome/syn-partners-male-cns-v1.0-minconf-0.5-traced-only.feather",
+      "size": "2965367002",
+      "generation": "1780494912394119",
+      "md5Hash": "9bwcXONKAbaJVkFLUw7dqA==",
+      "crc32c": "29gh0g==",
+      "updated": "2026-06-03T13:55:12.477Z"
+    },
+    {
+      "name": "v1.0/connectome-data/flat-connectome/syn-partners-male-cns-v1.0-minconf-0.5.feather",
+      "size": "6777179098",
+      "generation": "1780494942562468",
+      "md5Hash": "WO/PcS+MTU3l8q1R6X3vdg==",
+      "crc32c": "jTlNIA==",
+      "updated": "2026-06-03T13:55:42.664Z"
+    },
+    {
+      "name": "v1.0/connectome-data/flat-connectome/syn-points-male-cns-v1.0-minconf-0.5.feather",
+      "size": "13061489098",
+      "generation": "1780494991007477",
+      "md5Hash": "xp0IdY3gdYIDXMiENXRJOg==",
+      "crc32c": "1E7gRw==",
+      "updated": "2026-06-03T13:56:31.123Z"
+    },
+    {
+      "name": "v1.0/connectome-data/flat-connectome/tbar-neurotransmitters-male-cns-v1.0.feather",
+      "size": "2651680218",
+      "generation": "1780894927871192",
+      "md5Hash": "UbAsEWkGYq7e8o+G05T/DQ==",
+      "crc32c": "RrR5/g==",
+      "updated": "2026-06-08T05:02:07.977Z"
+    }
+  ]
+}

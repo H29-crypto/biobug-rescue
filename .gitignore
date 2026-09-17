@@ -4,3 +4,8 @@ dist/
 .DS_Store
 .npm-cache/
 work/
+backend/.venv/
+backend/data/
+__pycache__/
+.pytest_cache/
+*.pyc

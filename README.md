@@ -79,3 +79,7 @@ The 20-unit grid approximates accessible area and fog; thin walls and corners ca
 Production build and browser rendering were verified. The Codex Windows sandbox blocks esbuild ancestor-directory access during development dependency optimization. If this affects your dev session, run npm run build followed by npm run preview to view the verified production app locally.
 
 
+
+## MaleCNS investigation (independent backend)
+
+The next milestone now investigates the actual published MaleCNS v1.0 structural connectome. `backend/` contains a standalone Python/FastAPI loader and sparse graph query API; `docs/MALECNS.md` records sources, license, files, measured results, validation and reproduction commands. The frontend's Milestone 2 rule-based controller is unchanged. No neural dynamics or sensor-to-neuron mapping is implemented. Future work must be described as a MaleCNS-connectome-based computational controller, not a biologically accurate fly-brain simulation. The earlier milestone list is historical; the data-investigation milestone supersedes its former Milestone 3 priority.
