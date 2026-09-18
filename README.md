@@ -45,9 +45,9 @@ All definitions are in `src/domain/types.ts`. Positions and dimensions use world
 | Hazard | ID, position, influence radius, gas/heat/unstable category, normalized severity, discovery flag. |
 | Swarm | Agent array, shared exploration grid, timestamped discovery records, elapsed simulation time. |
 
-The neural controller is connectome-inspired. It does not reproduce an identified biological connectome. Future integration should make sharedExploration the canonical mission knowledge grid rather than maintain two independently mutable copies.
+The unused NeuralController type is a legacy design contract. Current research uses the real MaleCNS structural connectome; no neural controller executes in the application. Future integration should make sharedExploration the canonical mission knowledge grid rather than maintain two independently mutable copies.
 
-## Small milestones
+## Original roadmap (Milestone 3 superseded by MaleCNS investigation below)
 
 1. **Environment scene — implemented.** React + TypeScript + Vite; responsive Canvas; walls, debris, seeded unexplored areas, one possible survivor, one gas hazard; legend and static scenario statistics. Inspection toggle reveals geometry without changing coverage. No agents or simulation loop.
 2. **Single-agent exploration — implemented.** One BioBug with fixed-step movement, rule-based obstacle avoidance, three ray sensors, collision safety, actual occluded exploration, live inspector, Start/Pause/Reset and debug rays.
@@ -69,7 +69,7 @@ Click Start to run, Pause to freeze, or Reset to rebuild the initial world witho
 
 ## Limitations
 
-The 20-unit grid approximates accessible area and fog; thin walls and corners can produce coarse visual edges, and narrow passages may be undercounted. Simple local steering can revisit rooms or stall in a small region and does not guarantee complete coverage. At very low frame rates, dropping excess catch-up time deliberately slows simulated time. Only one bug is supported in the current UI. The retained NeuralController and Swarm types are future contracts, with no neural execution, coordination, entity detection, backend or AI services.
+The 20-unit grid approximates accessible area and fog; thin walls and corners can produce coarse visual edges, and narrow passages may be undercounted. Simple local steering can revisit rooms or stall in a small region and does not guarantee complete coverage. At very low frame rates, dropping excess catch-up time deliberately slows simulated time. Only one bug is supported in the current UI. The retained NeuralController and Swarm types are future contracts, with no neural execution, coordination, entity detection or AI services. The independent MaleCNS backend serves structural inspection only.
 
 ## Validation
 
@@ -83,3 +83,19 @@ Production build and browser rendering were verified. The Codex Windows sandbox 
 ## MaleCNS investigation (independent backend)
 
 The next milestone now investigates the actual published MaleCNS v1.0 structural connectome. `backend/` contains a standalone Python/FastAPI loader and sparse graph query API; `docs/MALECNS.md` records sources, license, files, measured results, validation and reproduction commands. The frontend's Milestone 2 rule-based controller is unchanged. No neural dynamics or sensor-to-neuron mapping is implemented. Future work must be described as a MaleCNS-connectome-based computational controller, not a biologically accurate fly-brain simulation. The earlier milestone list is historical; the data-investigation milestone supersedes its former Milestone 3 priority.
+
+## Milestone 3B: static pathway investigation
+
+The development panel **MaleCNS pathway explorer** inspects annotation-selected populations and a bounded real subgraph. Start the backend in a second terminal, expand the panel below the simulation, then select populations and click **Load subgraph**. The BioBug still uses its existing rule-based controller, independently of this panel.
+
+```powershell
+cd backend
+.\.venv\Scripts\python -m connectome.pathways --report ../docs/MALECNS_PATHWAYS_ANALYSIS.json --export ../docs/MALECNS_PATHWAY_SUBGRAPH.json
+.\.venv\Scripts\python -m uvicorn connectome.api:app --host 127.0.0.1 --port 8000
+```
+
+For a faster focused analysis, use `python -m connectome.pathways --source front_leg_tactile --target DNa02 --report data/front-leg-DNa02.json`. All commands load and checksum-verify the real dataset first. Initial load can take several minutes depending on disk and memory; allow startup to finish.
+
+`docs/MALECNS_PATHWAYS.md` documents actual annotations, exact population predicates and IDs, measured 1/2/3-hop structural routes, explicit side fields, evidence levels and limitations. The JSON analysis includes all candidate IDs and results for 48 population pairs. `backend/connectome/annotations.py` provides reusable exact annotation queries; `pathway_analysis.py` uses sparse reachability and vectorized contact aggregation; `pathways.py` is the CLI. The API adds `/connectome/populations` and `/connectome/pathway-subgraph`. Graph exports retain measured contact counts and contain at most 80 nodes/160 edges (viewer defaults: 32/64). No graph weights, sensors or movement behavior are changed.
+
+DOCUMENTED refers to explicit annotations or published type-level function; INFERRED refers to functional interpretations of structural routes; ENGINEERING MAPPING refers to any future simulation input/output interface. The panel has no activity animation, neural dynamics or motor decoder.

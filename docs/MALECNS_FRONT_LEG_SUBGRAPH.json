@@ -1,0 +1,636 @@
+{
+  "dataset": "MaleCNS",
+  "version": "v1.0",
+  "source_population": {
+    "id": "front_leg_tactile",
+    "label": "ProLN tactile afferents",
+    "role": "sensory",
+    "criteria": {
+      "class": [
+        "mechanosensory_tactile"
+      ],
+      "entryNerve": [
+        "ProLN"
+      ]
+    },
+    "side_field": "rootSide",
+    "evidence": "DOCUMENTED",
+    "evidence_note": "Tactile afferents entering the prothoracic leg nerve. This is an anatomical front-leg selection, not a frontal range sensor.",
+    "sources": [
+      "https://elifesciences.org/reviewed-preprints/97766",
+      "https://male-cns.janelia.org/download/"
+    ],
+    "count": 266,
+    "laterality": {
+      "L": 151,
+      "R": 115
+    },
+    "regions": {
+      "somaNeuromere": {
+        "(missing)": 266
+      },
+      "entryNerve": {
+        "ProLN": 266
+      },
+      "exitNerve": {
+        "(missing)": 266
+      }
+    },
+    "types": {
+      "SNta29": 64,
+      "SNta28": 2,
+      "SNta30": 17,
+      "SNta21": 31,
+      "(missing)": 31,
+      "SNta42": 4,
+      "SNta40": 26,
+      "SNta20": 20,
+      "SNta41": 33,
+      "SNta19": 7,
+      "SNta44": 4,
+      "SNta31": 4,
+      "SNxxxx": 7,
+      "SNta37": 3,
+      "SNta24": 1,
+      "SNta45": 1,
+      "SNta43": 1,
+      "SNta39": 4,
+      "SNta32": 5,
+      "SNta38": 1
+    }
+  },
+  "target_population": {
+    "id": "DNa02",
+    "label": "DNa02 steering candidate",
+    "role": "descending",
+    "criteria": {
+      "type": [
+        "DNa02"
+      ],
+      "superclass": [
+        "descending_neuron"
+      ]
+    },
+    "side_field": "somaSide",
+    "evidence": "DOCUMENTED",
+    "evidence_note": "Named-type steering evidence is documented in primary studies; soma side is not a validated turn command.",
+    "sources": [
+      "https://elifesciences.org/articles/102230",
+      "https://doi.org/10.1016/j.cell.2024.08.033",
+      "https://male-cns.janelia.org/download/"
+    ],
+    "count": 2,
+    "laterality": {
+      "R": 1,
+      "L": 1
+    },
+    "regions": {
+      "somaNeuromere": {
+        "(missing)": 2
+      },
+      "entryNerve": {
+        "(missing)": 2
+      },
+      "exitNerve": {
+        "(missing)": 2
+      }
+    },
+    "types": {
+      "DNa02": 2
+    }
+  },
+  "nodes": [
+    {
+      "id": "808535",
+      "type": "SNta29",
+      "class": "mechanosensory_tactile",
+      "superclass": "vnc_sensory",
+      "side": "R",
+      "side_field": "rootSide",
+      "region": "entryNerve=ProLN",
+      "neurotransmitter": "acetylcholine",
+      "role": "sensory",
+      "layer": 0,
+      "evidence": "DOCUMENTED"
+    },
+    {
+      "id": "812061",
+      "type": null,
+      "class": "mechanosensory_tactile",
+      "superclass": "vnc_sensory",
+      "side": "L",
+      "side_field": "rootSide",
+      "region": "entryNerve=ProLN",
+      "neurotransmitter": "acetylcholine",
+      "role": "sensory",
+      "layer": 0,
+      "evidence": "DOCUMENTED"
+    },
+    {
+      "id": "814154",
+      "type": "SNta29",
+      "class": "mechanosensory_tactile",
+      "superclass": "vnc_sensory",
+      "side": "L",
+      "side_field": "rootSide",
+      "region": "entryNerve=ProLN",
+      "neurotransmitter": "acetylcholine",
+      "role": "sensory",
+      "layer": 0,
+      "evidence": "DOCUMENTED"
+    },
+    {
+      "id": "814303",
+      "type": "SNta41",
+      "class": "mechanosensory_tactile",
+      "superclass": "vnc_sensory",
+      "side": "L",
+      "side_field": "rootSide",
+      "region": "entryNerve=ProLN",
+      "neurotransmitter": "acetylcholine",
+      "role": "sensory",
+      "layer": 0,
+      "evidence": "DOCUMENTED"
+    },
+    {
+      "id": "816127",
+      "type": null,
+      "class": "mechanosensory_tactile",
+      "superclass": "vnc_sensory",
+      "side": "L",
+      "side_field": "rootSide",
+      "region": "entryNerve=ProLN",
+      "neurotransmitter": "acetylcholine",
+      "role": "sensory",
+      "layer": 0,
+      "evidence": "DOCUMENTED"
+    },
+    {
+      "id": "816645",
+      "type": "SNta29",
+      "class": "mechanosensory_tactile",
+      "superclass": "vnc_sensory",
+      "side": "L",
+      "side_field": "rootSide",
+      "region": "entryNerve=ProLN",
+      "neurotransmitter": "acetylcholine",
+      "role": "sensory",
+      "layer": 0,
+      "evidence": "DOCUMENTED"
+    },
+    {
+      "id": "818488",
+      "type": "SNta41",
+      "class": "mechanosensory_tactile",
+      "superclass": "vnc_sensory",
+      "side": "L",
+      "side_field": "rootSide",
+      "region": "entryNerve=ProLN",
+      "neurotransmitter": "acetylcholine",
+      "role": "sensory",
+      "layer": 0,
+      "evidence": "DOCUMENTED"
+    },
+    {
+      "id": "820562",
+      "type": "SNxxxx",
+      "class": "mechanosensory_tactile",
+      "superclass": "vnc_sensory",
+      "side": "L",
+      "side_field": "rootSide",
+      "region": "entryNerve=ProLN",
+      "neurotransmitter": "acetylcholine",
+      "role": "sensory",
+      "layer": 0,
+      "evidence": "DOCUMENTED"
+    },
+    {
+      "id": "822195",
+      "type": "SNxxxx",
+      "class": "mechanosensory_tactile",
+      "superclass": "vnc_sensory",
+      "side": "L",
+      "side_field": "rootSide",
+      "region": "entryNerve=ProLN",
+      "neurotransmitter": "acetylcholine",
+      "role": "sensory",
+      "layer": 0,
+      "evidence": "DOCUMENTED"
+    },
+    {
+      "id": "845210",
+      "type": "SNta40",
+      "class": "mechanosensory_tactile",
+      "superclass": "vnc_sensory",
+      "side": "L",
+      "side_field": "rootSide",
+      "region": "entryNerve=ProLN",
+      "neurotransmitter": "acetylcholine",
+      "role": "sensory",
+      "layer": 0,
+      "evidence": "DOCUMENTED"
+    },
+    {
+      "id": "13137",
+      "type": "AN03A008",
+      "class": null,
+      "superclass": "ascending_neuron",
+      "side": "R",
+      "side_field": "somaSide",
+      "region": "somaNeuromere=T1",
+      "neurotransmitter": "acetylcholine",
+      "role": "intermediate",
+      "layer": 1,
+      "evidence": "INFERRED"
+    },
+    {
+      "id": "13538",
+      "type": "AN03A008",
+      "class": null,
+      "superclass": "ascending_neuron",
+      "side": "L",
+      "side_field": "somaSide",
+      "region": "somaNeuromere=T1",
+      "neurotransmitter": "acetylcholine",
+      "role": "intermediate",
+      "layer": 1,
+      "evidence": "INFERRED"
+    },
+    {
+      "id": "15751",
+      "type": "AN17A003",
+      "class": null,
+      "superclass": "ascending_neuron",
+      "side": "L",
+      "side_field": "somaSide",
+      "region": "somaNeuromere=T1",
+      "neurotransmitter": "acetylcholine",
+      "role": "intermediate",
+      "layer": 1,
+      "evidence": "INFERRED"
+    },
+    {
+      "id": "21763",
+      "type": "AN13B002",
+      "class": null,
+      "superclass": "ascending_neuron",
+      "side": "R",
+      "side_field": "somaSide",
+      "region": "somaNeuromere=A1",
+      "neurotransmitter": "gaba",
+      "role": "intermediate",
+      "layer": 1,
+      "evidence": "INFERRED"
+    },
+    {
+      "id": "24966",
+      "type": "ANXXX026",
+      "class": null,
+      "superclass": "ascending_neuron",
+      "side": "L",
+      "side_field": "somaSide",
+      "region": "somaNeuromere=T1",
+      "neurotransmitter": "gaba",
+      "role": "intermediate",
+      "layer": 1,
+      "evidence": "INFERRED"
+    },
+    {
+      "id": "524245",
+      "type": "AN09B014",
+      "class": null,
+      "superclass": "ascending_neuron",
+      "side": "R",
+      "side_field": "somaSide",
+      "region": "somaNeuromere=T2",
+      "neurotransmitter": "acetylcholine",
+      "role": "intermediate",
+      "layer": 1,
+      "evidence": "INFERRED"
+    },
+    {
+      "id": "558778",
+      "type": "AN08B012",
+      "class": null,
+      "superclass": "ascending_neuron",
+      "side": "R",
+      "side_field": "somaSide",
+      "region": "somaNeuromere=T3",
+      "neurotransmitter": "acetylcholine",
+      "role": "intermediate",
+      "layer": 1,
+      "evidence": "INFERRED"
+    },
+    {
+      "id": "801785",
+      "type": "IN21A005",
+      "class": null,
+      "superclass": "vnc_intrinsic",
+      "side": "L",
+      "side_field": "somaSide",
+      "region": "somaNeuromere=T1",
+      "neurotransmitter": "acetylcholine",
+      "role": "intermediate",
+      "layer": 1,
+      "evidence": "INFERRED"
+    },
+    {
+      "id": "10360",
+      "type": "DNa02",
+      "class": null,
+      "superclass": "descending_neuron",
+      "side": "R",
+      "side_field": "somaSide",
+      "region": null,
+      "neurotransmitter": "acetylcholine",
+      "role": "downstream",
+      "layer": 2,
+      "evidence": "DOCUMENTED"
+    },
+    {
+      "id": "10501",
+      "type": "GNG284",
+      "class": null,
+      "superclass": "cb_intrinsic",
+      "side": "L",
+      "side_field": "somaSide",
+      "region": "somaNeuromere=LB",
+      "neurotransmitter": "gaba",
+      "role": "intermediate",
+      "layer": 2,
+      "evidence": "INFERRED"
+    },
+    {
+      "id": "12594",
+      "type": "WED069",
+      "class": null,
+      "superclass": "cb_intrinsic",
+      "side": "L",
+      "side_field": "somaSide",
+      "region": null,
+      "neurotransmitter": "acetylcholine",
+      "role": "intermediate",
+      "layer": 2,
+      "evidence": "INFERRED"
+    },
+    {
+      "id": "15602",
+      "type": "GNG515",
+      "class": null,
+      "superclass": "cb_intrinsic",
+      "side": "L",
+      "side_field": "somaSide",
+      "region": "somaNeuromere=GNG",
+      "neurotransmitter": "gaba",
+      "role": "intermediate",
+      "layer": 2,
+      "evidence": "INFERRED"
+    },
+    {
+      "id": "523769",
+      "type": "DNa02",
+      "class": null,
+      "superclass": "descending_neuron",
+      "side": "L",
+      "side_field": "somaSide",
+      "region": null,
+      "neurotransmitter": "acetylcholine",
+      "role": "downstream",
+      "layer": 2,
+      "evidence": "DOCUMENTED"
+    },
+    {
+      "id": "905910",
+      "type": "IN19A013",
+      "class": null,
+      "superclass": "vnc_intrinsic",
+      "side": "L",
+      "side_field": "somaSide",
+      "region": "somaNeuromere=T1",
+      "neurotransmitter": "gaba",
+      "role": "intermediate",
+      "layer": 2,
+      "evidence": "INFERRED"
+    }
+  ],
+  "edges": [
+    {
+      "source": "10501",
+      "target": "10360",
+      "weight": 105
+    },
+    {
+      "source": "12594",
+      "target": "523769",
+      "weight": 28
+    },
+    {
+      "source": "13137",
+      "target": "10360",
+      "weight": 717
+    },
+    {
+      "source": "13538",
+      "target": "523769",
+      "weight": 741
+    },
+    {
+      "source": "15602",
+      "target": "10360",
+      "weight": 174
+    },
+    {
+      "source": "15751",
+      "target": "15602",
+      "weight": 33
+    },
+    {
+      "source": "21763",
+      "target": "13538",
+      "weight": 67
+    },
+    {
+      "source": "24966",
+      "target": "905910",
+      "weight": 28
+    },
+    {
+      "source": "524245",
+      "target": "10501",
+      "weight": 16
+    },
+    {
+      "source": "558778",
+      "target": "12594",
+      "weight": 40
+    },
+    {
+      "source": "801785",
+      "target": "905910",
+      "weight": 16
+    },
+    {
+      "source": "808535",
+      "target": "13137",
+      "weight": 13
+    },
+    {
+      "source": "812061",
+      "target": "24966",
+      "weight": 12
+    },
+    {
+      "source": "814154",
+      "target": "13538",
+      "weight": 11
+    },
+    {
+      "source": "814303",
+      "target": "524245",
+      "weight": 15
+    },
+    {
+      "source": "816127",
+      "target": "15751",
+      "weight": 13
+    },
+    {
+      "source": "816645",
+      "target": "13538",
+      "weight": 13
+    },
+    {
+      "source": "818488",
+      "target": "558778",
+      "weight": 17
+    },
+    {
+      "source": "820562",
+      "target": "21763",
+      "weight": 26
+    },
+    {
+      "source": "822195",
+      "target": "21763",
+      "weight": 25
+    },
+    {
+      "source": "845210",
+      "target": "801785",
+      "weight": 16
+    },
+    {
+      "source": "905910",
+      "target": "523769",
+      "weight": 20
+    }
+  ],
+  "summary": {
+    "min_hops": 2,
+    "reachable_targets": 2,
+    "node_count": 24,
+    "edge_count": 22,
+    "truncated": true,
+    "selection": "Union of widest shortest routes per source, ranked by minimum edge contact count, then hop count and body ID. Display bounds omit other real routes; all displayed weights are unchanged source counts."
+  },
+  "representative_routes": [
+    {
+      "neuron_ids": [
+        820562,
+        21763,
+        13538,
+        523769
+      ],
+      "hops": 3,
+      "bottleneck_contacts": 26
+    },
+    {
+      "neuron_ids": [
+        822195,
+        21763,
+        13538,
+        523769
+      ],
+      "hops": 3,
+      "bottleneck_contacts": 25
+    },
+    {
+      "neuron_ids": [
+        818488,
+        558778,
+        12594,
+        523769
+      ],
+      "hops": 3,
+      "bottleneck_contacts": 17
+    },
+    {
+      "neuron_ids": [
+        845210,
+        801785,
+        905910,
+        523769
+      ],
+      "hops": 3,
+      "bottleneck_contacts": 16
+    },
+    {
+      "neuron_ids": [
+        814303,
+        524245,
+        10501,
+        10360
+      ],
+      "hops": 3,
+      "bottleneck_contacts": 15
+    },
+    {
+      "neuron_ids": [
+        808535,
+        13137,
+        10360
+      ],
+      "hops": 2,
+      "bottleneck_contacts": 13
+    },
+    {
+      "neuron_ids": [
+        816645,
+        13538,
+        523769
+      ],
+      "hops": 2,
+      "bottleneck_contacts": 13
+    },
+    {
+      "neuron_ids": [
+        816127,
+        15751,
+        15602,
+        10360
+      ],
+      "hops": 3,
+      "bottleneck_contacts": 13
+    },
+    {
+      "neuron_ids": [
+        812061,
+        24966,
+        905910,
+        523769
+      ],
+      "hops": 3,
+      "bottleneck_contacts": 12
+    },
+    {
+      "neuron_ids": [
+        814154,
+        13538,
+        523769
+      ],
+      "hops": 2,
+      "bottleneck_contacts": 11
+    }
+  ],
+  "scientific_note": "Real MaleCNS structural connectivity. Route roles are analytical assignments; contact counts do not imply neural activity or behavioral causation. Simulated inputs and future motor decoding are ENGINEERING MAPPINGS, not connected or implemented."
+}

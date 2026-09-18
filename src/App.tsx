@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { EnvironmentCanvas } from './components/EnvironmentCanvas';
+import { PathwayExplorer } from './components/PathwayExplorer';
 import { useSimulation } from './hooks/useSimulation';
 import { isExplored } from './simulation/exploration';
 
@@ -25,6 +26,7 @@ export default function App() {
         <section className="card"><p className="eyebrow">FIELD OBSERVATIONS</p>{!survivorVisible && !hazardVisible && <p className="muted">No markers in explored space yet.</p>}{survivorVisible &&<div className="observation"><span className="marker green">＋</span><div><h3>Possible survivor <small>S-01</small></h3><p>Scenario marker revealed by exploration.</p></div></div>}{hazardVisible && <div className="observation"><span className="marker amber">△</span><div><h3>Gas hazard <small>H-01</small></h3><p>Scenario marker revealed by exploration.</p></div></div>}<p className="muted">Marker visibility only; detection is not implemented.</p></section>
         <section className="stage"><span className="eyebrow">BUILD MILESTONE 02</span><h2>One bug. Real exploration.</h2><p>A rule-based explorer senses obstacles and reveals reachable space. Neural control and swarm coordination come later.</p><span className="stage-tag">AUTONOMOUS EXPLORATION</span></section>
       </aside></div>
+      <PathwayExplorer/>
       <footer><span>Bio-inspired research demo · Not a model of a real insect brain.</span><span>LOCAL SIMULATION <span className="green">●</span></span></footer>
     </main>
   </div>;

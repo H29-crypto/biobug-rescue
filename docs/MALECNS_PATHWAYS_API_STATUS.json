@@ -1,0 +1,92 @@
+{
+  "dataset": "MaleCNS",
+  "version": "v1.0",
+  "neurons": 166606,
+  "edges": 25574615,
+  "synaptic_contacts": 124144950,
+  "loaded": true,
+  "scope": "nonempty superclass excluding any superclass containing 'tbc' (authors' counting rule); no status or type filter",
+  "load_seconds": 101.502427,
+  "memory": {
+    "csr_bytes": 307561808,
+    "neuron_arrow_bytes": 57125342,
+    "body_id_array_bytes": 1332848,
+    "process_rss_bytes": 594612224,
+    "baseline_rss_bytes": 88170496,
+    "sampled_peak_rss_bytes": 999313408,
+    "retained_array_bytes": 366019998
+  },
+  "validation": {
+    "status": "passed_with_scope_notes",
+    "checks": [
+      {
+        "name": "all_segment_presynaptic_sites",
+        "actual": 45656140,
+        "expected": 45656140,
+        "delta": 0,
+        "status": "pass",
+        "source": "Neuprint_Meta_debug.json:totalPreCount",
+        "note": ""
+      },
+      {
+        "name": "all_segment_postsynaptic_sites",
+        "actual": 311833243,
+        "expected": 311833243,
+        "delta": 0,
+        "status": "pass",
+        "source": "Neuprint_Meta_debug.json:totalPostCount",
+        "note": ""
+      },
+      {
+        "name": "full_graph_contacts_vs_segment_downstream",
+        "actual": 311833243,
+        "expected": 311833243,
+        "delta": 0,
+        "status": "pass",
+        "source": "body-stats:downstream sum",
+        "note": ""
+      },
+      {
+        "name": "csr_contacts_vs_selected_source",
+        "actual": 124144950,
+        "expected": 124144950,
+        "delta": 0,
+        "status": "pass",
+        "source": "selected source edge weight sum",
+        "note": ""
+      },
+      {
+        "name": "authors_notebook_connected_neurons",
+        "actual": 166400,
+        "expected": 166391,
+        "delta": 9,
+        "status": "reference",
+        "source": "https://github.com/flyconnectome/2025malecns/blob/3be84fa8c64fca9fdc76aeb1d5decf008398e3a9/supplemental_data/quantify-neuron-connections.ipynb",
+        "note": "Notebook uses v0.9; loaded release is v1.0. Delta is reported, not treated as an exact-version invariant."
+      },
+      {
+        "name": "authors_notebook_edges",
+        "actual": 25574615,
+        "expected": 25563426,
+        "delta": 11189,
+        "status": "reference",
+        "source": "https://github.com/flyconnectome/2025malecns/blob/3be84fa8c64fca9fdc76aeb1d5decf008398e3a9/supplemental_data/quantify-neuron-connections.ipynb",
+        "note": "Notebook uses v0.9; loaded release is v1.0. Delta is reported, not treated as an exact-version invariant."
+      },
+      {
+        "name": "authors_notebook_superclasses",
+        "actual": 21,
+        "expected": 20,
+        "delta": 1,
+        "status": "reference",
+        "source": "https://github.com/flyconnectome/2025malecns/blob/3be84fa8c64fca9fdc76aeb1d5decf008398e3a9/supplemental_data/quantify-neuron-connections.ipynb",
+        "note": "Notebook uses v0.9; loaded release is v1.0. Delta is reported, not treated as an exact-version invariant."
+      }
+    ],
+    "warnings": [
+      "The loaded graph excludes annotation records without an accepted superclass and edges with either endpoint outside that selection.",
+      "Published neuron totals depend on proofreading, superclass and connection thresholds; metadata's rounded description is not an exact validation target.",
+      "The authors' reference notebook is v0.9, not v1.0; see explicit reference deltas."
+    ]
+  }
+}
