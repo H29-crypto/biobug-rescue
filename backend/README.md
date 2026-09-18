@@ -1,6 +1,6 @@
 # MaleCNS structural-data backend
 
-This standalone backend loads the official MaleCNS v1.0 structural connectome. It does not simulate neural dynamics or control BioBug. See `../docs/MALECNS.md` for provenance, selection rules, exact source filenames, measured counts, annotation details and limitations.
+This standalone backend loads the official MaleCNS v1.0 structural connectome and provides structural pathway analysis plus a separate experimental dynamics lab. The dynamics use simulated engineering rules and do not control BioBug. See `../docs/MALECNS.md` for provenance, selection rules, exact source filenames, measured counts, annotation details and limitations; see `../docs/MALECNS_DYNAMICS.md` for the activity model.
 
 From this directory in PowerShell:
 
@@ -39,3 +39,18 @@ The full CLI compares eight sensory selections against six descending/motor sele
 API requests choose predefined annotation rules, not arbitrary IDs. Bounds are enforced: 4–80 nodes and 3–160 edges. Exports sample the union of widest shortest routes per source; they are not induced or exhaustive subgraphs. Every returned edge retains its original integer contact count. Invalid populations, roles or bounds return 422; unloaded data returns 503. Expensive exports are serialized and a maximum of 16 response variants are cached. Local CORS allows Vite at localhost/127.0.0.1 ports 5173, 5174, 4173 and 4174. Keep this development server bound to 127.0.0.1.
 
 Run the frontend independently with `npm run dev` from the project root. Expand **MaleCNS pathway explorer** below the simulation. Without the backend, the panel reports unavailable data and the existing BioBug simulation continues normally.
+
+## Experimental dynamics (Milestone 3C)
+
+With the backend running, use the Neural dynamics lab inside the frontend pathway explorer, or POST JSON:
+
+```powershell
+$body = '{"stimulus":{"left":0.8,"right":0.2,"front":0.6},"steps":10,"pulse_steps":3,"parameters":{"sign_mode":"unsigned"}}'
+Invoke-RestMethod -Method Post -ContentType 'application/json' -Body $body http://127.0.0.1:8000/connectome/simulate
+.\.venv\Scripts\python -m connectome.dynamics_experiment --report ../docs/MALECNS_DYNAMICS_EXPERIMENTS.json
+.\.venv\Scripts\python -m connectome.dynamics_experiment --hops 3 --report ../docs/MALECNS_DYNAMICS_3HOP.json
+```
+
+The API only simulates the complete two-hop ProLN→DNa02 route union, lazily extracted once after the existing full-data load. Three-hop expansion is CLI-only and capped at 5,000 nodes/100,000 edges, with explicit refusal rather than truncation. Requests run independently from zero, validate finite bounded stimulus/parameters, enforce gain < decay, cap steps at 200 and top-k at 20, and never mutate structural counts or control BioBug. POST CORS supports the existing local Vite origins. The API serializes extraction/experiments with the existing analysis lock; returned handler time excludes JSON serialization/network time.
+
+`dynamics_experiment` defaults to 20 steps, pulse_steps=3 and both unsigned and experimental predicted-sign modes for all five presets. It repeats each run and verifies exact trace/summary equality. See `../docs/MALECNS_DYNAMICS.md` for units, sparse orientation, NT assumptions, graph selection, all measured results and reproducible validation. The older structural-only descriptions above refer to Milestone 3B; these dynamics are a separate engineering layer.

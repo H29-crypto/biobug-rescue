@@ -1,3 +1,4 @@
+import { DynamicsLab } from './DynamicsLab';
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import type { PathwayResponse, Population, PopulationsResponse } from './pathways.types';
 import './pathways.css';
@@ -155,7 +156,7 @@ export function PathwayExplorer() {
   return <details className="pathways-panel" onToggle={event => setOpen(event.currentTarget.open)}>
     <summary><span><span className="eyebrow">DEVELOPMENT · STRUCTURE INSPECTION</span><strong>MaleCNS pathway explorer</strong></span><span className="pathways-summary-note">Read-only research view</span></summary>
     <div className="pathways-body">
-      <p className="pathways-intro">Inspect real MaleCNS structural connectivity. Edges show measured contact counts; this view has no neural dynamics and does not control BioBug. Its existing rule-based controller remains active.</p>
+      <p className="pathways-intro">Inspect real MaleCNS structural connectivity. Edges show measured contact counts; this structural view does not control BioBug. The separate experimental dynamics lab below is also disconnected from movement. Its existing rule-based controller remains active.</p>
       <div className="pathways-evidence-key"><span><b>DOCUMENTED</b> Function supported by dataset or publication.</span><span><b>INFERRED</b> Interpretation from annotations or connectivity.</span><span><b>ENGINEERING MAPPING</b> A proposed simulation interface.</span></div>
       <div className="pathways-controls">
         <label>Sensory candidate<select value={source} onChange={event => changePopulation('source', event.target.value)} disabled={populationState !== 'ready'}>{populations.filter(population => population.role === 'sensory').map(population => <option value={population.id} key={population.id}>{population.label} ({formatCount(population.count)})</option>)}</select></label>
@@ -193,7 +194,8 @@ export function PathwayExplorer() {
       </section>}
       {!graph && <div className="pathways-placeholder">REAL MaleCNS STRUCTURE<span>{loading ? 'Loading selected subgraph…' : 'Load a subgraph to inspect neurons and their connections.'}</span></div>}
       <div className="pathways-mapping"><strong>FUTURE MOTOR DECODER</strong><span>Potential simulation output interface</span><small>ENGINEERING MAPPING — not implemented</small></div>
-      <p className="pathways-footnote">Structural connectivity alone is not an executable or biologically accurate fly-brain simulation. No input/output mapping has been applied.</p>
+      <p className="pathways-footnote">Structural connectivity alone is not an executable or biologically accurate fly-brain simulation. No motor-output mapping has been applied.</p>
+      <DynamicsLab/>
     </div>
   </details>;
 }

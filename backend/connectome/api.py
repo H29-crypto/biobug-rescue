@@ -2,11 +2,13 @@ from __future__ import annotations
 from contextlib import asynccontextmanager
 import logging
 import os
+import time
 from functools import lru_cache
 from threading import Lock
 from pathlib import Path
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from .dynamics import DynamicsEngine, SimulationRequest, build_dynamics_graph
 from .annotations import POPULATIONS
 from .pathway_analysis import PathwayAnalyzer
 from .graph import json_value
@@ -22,6 +24,7 @@ def create_app(data_dir: Path | None = None, *, loader=load_connectome) -> FastA
         app.state.connectome = None
         app.state.load_error = None
         app.state.pathway_analyzer = None
+        app.state.dynamics_engine = None
         try:
             app.state.connectome = loader(directory)
         except Exception as error:
@@ -31,14 +34,15 @@ def create_app(data_dir: Path | None = None, *, loader=load_connectome) -> FastA
         yield
         app.state.connectome = None
         app.state.pathway_analyzer = None
+        app.state.dynamics_engine = None
         pathway_export.cache_clear()
 
     app = FastAPI(title="BioBug Rescue - MaleCNS structural data prototype", lifespan=lifespan,
-                  description="Real structural connectivity only. No biological brain simulation or neural dynamics.")
+                  description="Real structural connectivity plus explicitly experimental dynamics. No biological brain simulation or BioBug control.")
 
     app.add_middleware(CORSMiddleware,
         allow_origins=[f'http://{host}:{port}' for host in ('localhost', '127.0.0.1') for port in (5173, 5174, 4173, 4174)],
-        allow_methods=['GET'], allow_headers=[])
+        allow_methods=['GET', 'POST'], allow_headers=['Content-Type'])
     pathway_lock = Lock()
 
     def loaded():
@@ -97,6 +101,22 @@ def create_app(data_dir: Path | None = None, *, loader=load_connectome) -> FastA
                 return pathway_export(source, target, max_nodes, max_edges)
             except ValueError as error:
                 raise HTTPException(422, str(error)) from error
+
+    @app.post('/connectome/simulate')
+    def simulate(request: SimulationRequest):
+        started = time.perf_counter()
+        value = loaded()
+        with pathway_lock:
+            cold = app.state.dynamics_engine is None
+            try:
+                if cold:
+                    app.state.dynamics_engine = DynamicsEngine(build_dynamics_graph(value.graph))
+                result = app.state.dynamics_engine.simulate(request)
+            except ValueError as error:
+                raise HTTPException(422, str(error)) from error
+        result.update(dataset=value.report['dataset'], version=value.report['version'])
+        result['performance'].update(api_handler_seconds=time.perf_counter()-started, cold_graph_build=cold)
+        return result
 
     return app
 

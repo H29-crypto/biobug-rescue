@@ -1,0 +1,539 @@
+{
+  "all_responses_match_cli": true,
+  "measurements": [
+    {
+      "preset": "LEFT STIMULUS",
+      "sign_mode": "unsigned",
+      "wall_seconds": 1.3425477999844588,
+      "response_bytes": 135782,
+      "api_handler_seconds": 1.1692857999587432,
+      "cold_graph_build": true,
+      "summary": {
+        "dna02": {
+          "R": {
+            "id": "10360",
+            "peak": 0.07383367905113165,
+            "cumulative": 0.8543214962233093,
+            "final": 0.022704943132515896
+          },
+          "L": {
+            "id": "523769",
+            "peak": 0.20140739329541207,
+            "cumulative": 2.330463113878051,
+            "final": 0.061935738134811305
+          }
+        },
+        "peak_active_neurons": 171,
+        "dominant_intermediate_types": [
+          {
+            "type": "IN03A084",
+            "cumulative_activity": 7.057168808587816
+          },
+          {
+            "type": "AN06B015",
+            "cumulative_activity": 4.168077583340348
+          },
+          {
+            "type": "DNg34",
+            "cumulative_activity": 4.168077583340348
+          },
+          {
+            "type": "IN09B038",
+            "cumulative_activity": 4.168077583340346
+          },
+          {
+            "type": "AN03B094",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "IN03A080",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "IN09A010",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "IN13A060",
+            "cumulative_activity": 4.168077583340345
+          }
+        ],
+        "structural_unchanged": true
+      }
+    },
+    {
+      "preset": "RIGHT STIMULUS",
+      "sign_mode": "unsigned",
+      "wall_seconds": 0.053221400012262166,
+      "response_bytes": 136575,
+      "api_handler_seconds": 0.025890399992931634,
+      "cold_graph_build": false,
+      "summary": {
+        "dna02": {
+          "R": {
+            "id": "10360",
+            "peak": 0.18193383315993578,
+            "cumulative": 2.1051366606179696,
+            "final": 0.05594733174431546
+          },
+          "L": {
+            "id": "523769",
+            "peak": 0.05750344837177791,
+            "cumulative": 0.6653661673415441,
+            "final": 0.0176831568192696
+          }
+        },
+        "peak_active_neurons": 131,
+        "dominant_intermediate_types": [
+          {
+            "type": "AN03A008",
+            "cumulative_activity": 4.810650625528074
+          },
+          {
+            "type": "AN03B094",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "AN06A015",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "AN09B017d",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "DNg34",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "IN09B038",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "IN23B001",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "INXXX003",
+            "cumulative_activity": 4.168077583340345
+          }
+        ],
+        "structural_unchanged": true
+      }
+    },
+    {
+      "preset": "FRONT STIMULUS",
+      "sign_mode": "unsigned",
+      "wall_seconds": 0.07712069997796789,
+      "response_bytes": 138264,
+      "api_handler_seconds": 0.0533916000276804,
+      "cold_graph_build": false,
+      "summary": {
+        "dna02": {
+          "R": {
+            "id": "10360",
+            "peak": 0.14279396982187398,
+            "cumulative": 1.6468986066392697,
+            "final": 0.04481613404242361
+          },
+          "L": {
+            "id": "523769",
+            "peak": 0.14454887797114419,
+            "cumulative": 1.6671386475136725,
+            "final": 0.04536691499590464
+          }
+        },
+        "peak_active_neurons": 295,
+        "dominant_intermediate_types": [
+          {
+            "type": "IN03A084",
+            "cumulative_activity": 5.546160444453367
+          },
+          {
+            "type": "AN03A008",
+            "cumulative_activity": 4.648345597942535
+          },
+          {
+            "type": "DNg34",
+            "cumulative_activity": 4.648345597942534
+          },
+          {
+            "type": "IN09B038",
+            "cumulative_activity": 4.648345597942534
+          },
+          {
+            "type": "AN03B094",
+            "cumulative_activity": 4.648345597942533
+          },
+          {
+            "type": "AN06B015",
+            "cumulative_activity": 2.3241727989712677
+          },
+          {
+            "type": "INXXX003",
+            "cumulative_activity": 2.324172798971267
+          },
+          {
+            "type": "AN06A015",
+            "cumulative_activity": 2.3241727989712664
+          }
+        ],
+        "structural_unchanged": true
+      }
+    },
+    {
+      "preset": "SYMMETRIC STIMULUS",
+      "sign_mode": "unsigned",
+      "wall_seconds": 0.13804930000333115,
+      "response_bytes": 136739,
+      "api_handler_seconds": 0.07338020001770929,
+      "cold_graph_build": false,
+      "summary": {
+        "dna02": {
+          "R": {
+            "id": "10360",
+            "peak": 0.2557675122110674,
+            "cumulative": 2.959458156841279,
+            "final": 0.07865227487683134
+          },
+          "L": {
+            "id": "523769",
+            "peak": 0.25891084166719003,
+            "cumulative": 2.995829281219596,
+            "final": 0.07961889495408092
+          }
+        },
+        "peak_active_neurons": 295,
+        "dominant_intermediate_types": [
+          {
+            "type": "IN03A084",
+            "cumulative_activity": 9.946260033835287
+          },
+          {
+            "type": "AN03A008",
+            "cumulative_activity": 8.336155166680697
+          },
+          {
+            "type": "DNg34",
+            "cumulative_activity": 8.336155166680694
+          },
+          {
+            "type": "AN03B094",
+            "cumulative_activity": 8.33615516668069
+          },
+          {
+            "type": "IN09B038",
+            "cumulative_activity": 8.33615516668069
+          },
+          {
+            "type": "AN06B015",
+            "cumulative_activity": 4.168077583340348
+          },
+          {
+            "type": "AN06A015",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "AN09B002",
+            "cumulative_activity": 4.168077583340345
+          }
+        ],
+        "structural_unchanged": true
+      }
+    },
+    {
+      "preset": "NO STIMULUS",
+      "sign_mode": "unsigned",
+      "wall_seconds": 0.06410960003267974,
+      "response_bytes": 38354,
+      "api_handler_seconds": 0.05033120000734925,
+      "cold_graph_build": false,
+      "summary": {
+        "dna02": {
+          "R": {
+            "id": "10360",
+            "peak": 0.0,
+            "cumulative": 0.0,
+            "final": 0.0
+          },
+          "L": {
+            "id": "523769",
+            "peak": 0.0,
+            "cumulative": 0.0,
+            "final": 0.0
+          }
+        },
+        "peak_active_neurons": 0,
+        "dominant_intermediate_types": [],
+        "structural_unchanged": true
+      }
+    },
+    {
+      "preset": "LEFT STIMULUS",
+      "sign_mode": "predicted",
+      "wall_seconds": 0.045282999984920025,
+      "response_bytes": 136816,
+      "api_handler_seconds": 0.02540649997536093,
+      "cold_graph_build": false,
+      "summary": {
+        "dna02": {
+          "R": {
+            "id": "10360",
+            "peak": 0.038235775342805096,
+            "cumulative": 0.4424220114712392,
+            "final": 0.01175806374466094
+          },
+          "L": {
+            "id": "523769",
+            "peak": 0.01787570330496014,
+            "cumulative": 0.2068378250928217,
+            "final": 0.005497041894821111
+          }
+        },
+        "peak_active_neurons": 171,
+        "dominant_intermediate_types": [
+          {
+            "type": "IN03A084",
+            "cumulative_activity": 7.057168808587816
+          },
+          {
+            "type": "AN06B015",
+            "cumulative_activity": 4.168077583340348
+          },
+          {
+            "type": "DNg34",
+            "cumulative_activity": 4.168077583340348
+          },
+          {
+            "type": "AN03B094",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "IN03A080",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "IN09A010",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "IN13A060",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "IN16B045",
+            "cumulative_activity": 4.168077583340345
+          }
+        ],
+        "structural_unchanged": true
+      }
+    },
+    {
+      "preset": "RIGHT STIMULUS",
+      "sign_mode": "predicted",
+      "wall_seconds": 0.0913239000365138,
+      "response_bytes": 137421,
+      "api_handler_seconds": 0.060767200018744916,
+      "cold_graph_build": false,
+      "summary": {
+        "dna02": {
+          "R": {
+            "id": "10360",
+            "peak": 0.05502220315705611,
+            "cumulative": 0.6366559479460018,
+            "final": 0.01692013739206387
+          },
+          "L": {
+            "id": "523769",
+            "peak": 0.0,
+            "cumulative": 0.0,
+            "final": 0.0
+          }
+        },
+        "peak_active_neurons": 129,
+        "dominant_intermediate_types": [
+          {
+            "type": "AN03A008",
+            "cumulative_activity": 4.444569623184984
+          },
+          {
+            "type": "AN03B094",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "AN06A015",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "AN09B017d",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "DNg34",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "INXXX003",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "IN23B001",
+            "cumulative_activity": 4.064040713152884
+          },
+          {
+            "type": "IN09B038",
+            "cumulative_activity": 3.9849047338615673
+          }
+        ],
+        "structural_unchanged": true
+      }
+    },
+    {
+      "preset": "FRONT STIMULUS",
+      "sign_mode": "predicted",
+      "wall_seconds": 0.15433150000171736,
+      "response_bytes": 137261,
+      "api_handler_seconds": 0.11029700003564358,
+      "cold_graph_build": false,
+      "summary": {
+        "dna02": {
+          "R": {
+            "id": "10360",
+            "peak": 0.05206555301898079,
+            "cumulative": 0.6004923515175453,
+            "final": 0.016340863735368444
+          },
+          "L": {
+            "id": "523769",
+            "peak": 0.006279102040540274,
+            "cumulative": 0.07241933545521105,
+            "final": 0.001970707019812831
+          }
+        },
+        "peak_active_neurons": 295,
+        "dominant_intermediate_types": [
+          {
+            "type": "IN03A084",
+            "cumulative_activity": 5.546160444453367
+          },
+          {
+            "type": "DNg34",
+            "cumulative_activity": 4.648345597942534
+          },
+          {
+            "type": "AN03B094",
+            "cumulative_activity": 4.648345597942533
+          },
+          {
+            "type": "AN03A008",
+            "cumulative_activity": 4.3607410659220225
+          },
+          {
+            "type": "IN09B038",
+            "cumulative_activity": 4.287380664706053
+          },
+          {
+            "type": "AN06B015",
+            "cumulative_activity": 2.3241727989712677
+          },
+          {
+            "type": "INXXX003",
+            "cumulative_activity": 2.324172798971267
+          },
+          {
+            "type": "AN06A015",
+            "cumulative_activity": 2.3241727989712664
+          }
+        ],
+        "structural_unchanged": true
+      }
+    },
+    {
+      "preset": "SYMMETRIC STIMULUS",
+      "sign_mode": "predicted",
+      "wall_seconds": 0.09218660002807155,
+      "response_bytes": 136399,
+      "api_handler_seconds": 0.07152270001824945,
+      "cold_graph_build": false,
+      "summary": {
+        "dna02": {
+          "R": {
+            "id": "10360",
+            "peak": 0.0932579784998612,
+            "cumulative": 1.0790779594172408,
+            "final": 0.028678201136724805
+          },
+          "L": {
+            "id": "523769",
+            "peak": 0.01124690566297576,
+            "cumulative": 0.13013672618456076,
+            "final": 0.003458589044679625
+          }
+        },
+        "peak_active_neurons": 295,
+        "dominant_intermediate_types": [
+          {
+            "type": "IN03A084",
+            "cumulative_activity": 9.946260033835287
+          },
+          {
+            "type": "DNg34",
+            "cumulative_activity": 8.336155166680694
+          },
+          {
+            "type": "AN03B094",
+            "cumulative_activity": 8.33615516668069
+          },
+          {
+            "type": "AN03A008",
+            "cumulative_activity": 7.8203768203751265
+          },
+          {
+            "type": "IN09B038",
+            "cumulative_activity": 7.688815241154989
+          },
+          {
+            "type": "AN06B015",
+            "cumulative_activity": 4.168077583340348
+          },
+          {
+            "type": "AN06A015",
+            "cumulative_activity": 4.168077583340345
+          },
+          {
+            "type": "AN09B017d",
+            "cumulative_activity": 4.168077583340345
+          }
+        ],
+        "structural_unchanged": true
+      }
+    },
+    {
+      "preset": "NO STIMULUS",
+      "sign_mode": "predicted",
+      "wall_seconds": 0.027275500004179776,
+      "response_bytes": 39440,
+      "api_handler_seconds": 0.018359499983489513,
+      "cold_graph_build": false,
+      "summary": {
+        "dna02": {
+          "R": {
+            "id": "10360",
+            "peak": 0.0,
+            "cumulative": 0.0,
+            "final": 0.0
+          },
+          "L": {
+            "id": "523769",
+            "peak": 0.0,
+            "cumulative": 0.0,
+            "final": 0.0
+          }
+        },
+        "peak_active_neurons": 0,
+        "dominant_intermediate_types": [],
+        "structural_unchanged": true
+      }
+    }
+  ]
+}

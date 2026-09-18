@@ -99,3 +99,19 @@ For a faster focused analysis, use `python -m connectome.pathways --source front
 `docs/MALECNS_PATHWAYS.md` documents actual annotations, exact population predicates and IDs, measured 1/2/3-hop structural routes, explicit side fields, evidence levels and limitations. The JSON analysis includes all candidate IDs and results for 48 population pairs. `backend/connectome/annotations.py` provides reusable exact annotation queries; `pathway_analysis.py` uses sparse reachability and vectorized contact aggregation; `pathways.py` is the CLI. The API adds `/connectome/populations` and `/connectome/pathway-subgraph`. Graph exports retain measured contact counts and contain at most 80 nodes/160 edges (viewer defaults: 32/64). No graph weights, sensors or movement behavior are changed.
 
 DOCUMENTED refers to explicit annotations or published type-level function; INFERRED refers to functional interpretations of structural routes; ENGINEERING MAPPING refers to any future simulation input/output interface. The panel has no activity animation, neural dynamics or motor decoder.
+
+## Milestone 3C: experimental neural dynamics lab
+
+The pathway explorer now includes **Neural dynamics lab**: five manual stimulus presets, sliders, pulse duration, unsigned/transmitter-based sign modes, engineering weight transforms and an activity trace with independent DNa02-L/R readouts. The moving BioBug remains on its rule-based controller; no sensor or motor connection to this experiment exists.
+
+`backend/connectome/dynamics.py` extracts the complete bounded route union and keeps structural contacts separate from normalized log-contact simulation weights. The default graph has 295 neurons, 280 edges and 2,308 contacts, including all 266 annotated ProLN inputs. The experiment starts at zero on every request. `POST /connectome/simulate` returns compact step traces and real metadata with engineering labels. Default API/UI runs use 10 steps; the recorded comparison uses 20 steps and a three-step pulse.
+
+From `backend/`:
+
+```powershell
+.\.venv\Scripts\python -m connectome.dynamics_experiment --report ../docs/MALECNS_DYNAMICS_EXPERIMENTS.json
+# Optional offline expansion, never on each browser frame:
+.\.venv\Scripts\python -m connectome.dynamics_experiment --hops 3 --report ../docs/MALECNS_DYNAMICS_3HOP.json
+```
+
+Read `docs/MALECNS_DYNAMICS.md` for the exact equation, sign assumptions, measured preset results, performance and limitations. This is a controller research model using real MaleCNS structure with simulated neural dynamics, not a biologically accurate fly brain. Earlier milestones describe their historical scope.
