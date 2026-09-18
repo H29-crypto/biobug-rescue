@@ -1,6 +1,6 @@
 # MaleCNS structural-data backend
 
-This standalone backend loads the official MaleCNS v1.0 structural connectome and provides structural pathway analysis plus a separate experimental dynamics lab. The dynamics use simulated engineering rules and do not control BioBug. See `../docs/MALECNS.md` for provenance, selection rules, exact source filenames, measured counts, annotation details and limitations; see `../docs/MALECNS_DYNAMICS.md` for the activity model.
+This backend loads the official MaleCNS v1.0 structural connectome and provides structural pathway analysis, a manual experimental dynamics lab, and compact sensory experiments for the optional MaleCNS movement mode. Simulated activity feeds a separately labeled frontend engineering motor decoder. See `../docs/MALECNS.md` for provenance, selection rules, exact source filenames, measured counts, annotation details and limitations; see `../docs/MALECNS_DYNAMICS.md` for the activity model and `../docs/MALECNS_CONTROLLER.md` for movement integration.
 
 From this directory in PowerShell:
 
@@ -54,3 +54,9 @@ Invoke-RestMethod -Method Post -ContentType 'application/json' -Body $body http:
 The API only simulates the complete two-hop ProLN→DNa02 route union, lazily extracted once after the existing full-data load. Three-hop expansion is CLI-only and capped at 5,000 nodes/100,000 edges, with explicit refusal rather than truncation. Requests run independently from zero, validate finite bounded stimulus/parameters, enforce gain < decay, cap steps at 200 and top-k at 20, and never mutate structural counts or control BioBug. POST CORS supports the existing local Vite origins. The API serializes extraction/experiments with the existing analysis lock; returned handler time excludes JSON serialization/network time.
 
 `dynamics_experiment` defaults to 20 steps, pulse_steps=3 and both unsigned and experimental predicted-sign modes for all five presets. It repeats each run and verifies exact trace/summary equality. See `../docs/MALECNS_DYNAMICS.md` for units, sparse orientation, NT assumptions, graph selection, all measured results and reproducible validation. The older structural-only descriptions above refer to Milestone 3B; these dynamics are a separate engineering layer.
+
+## Milestone 3D: compact control experiments
+
+`POST /connectome/control` accepts `{ "left": 0.5, "front": 0.2, "right": 0 }` and returns real graph metadata, independent DNa02 peak readouts and top intermediate types from a stateless unsigned 20-step / three-step pulse experiment. It reuses the extracted graph and cached engineering sparse weights. Sensor mapping and motor semantics live in the frontend; this endpoint does not claim biological steering. Invalid inputs return 422, unavailable data 503. `GET /connectome/control-network` returns all bounded controller nodes/edges, retaining original contacts separately from engineering weights. The manual `/connectome/simulate` endpoint remains available with its experimental sign options.
+
+Use `--no-access-log` with uvicorn during the many-request comparison to keep console output manageable. From the project root, `npm run compare:controllers -- 120` drives the shared TypeScript simulator through actual HTTP. See `../docs/MALECNS_CONTROLLER.md` for the control loop and measured results. BioBug movement now uses this separate endpoint only when MaleCNS mode is explicitly selected; older milestone descriptions above are historical.

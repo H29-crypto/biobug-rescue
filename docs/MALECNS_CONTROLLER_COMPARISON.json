@@ -1,0 +1,526 @@
+{
+  "recordedAt": "2026-09-18T19:52:37.374Z",
+  "duration": 120,
+  "seeds": [
+    2026,
+    2027,
+    2028,
+    2029,
+    2030
+  ],
+  "graph": {
+    "neurons": 295,
+    "edges": 280,
+    "structural_contacts": 2308,
+    "max_hops": 2,
+    "source_neurons": 266,
+    "target_neurons": 2,
+    "sources_with_outgoing_route_edges": 146,
+    "intermediate_neurons": 27,
+    "structural_sha256": "fda9df339350f4420439a90556330275d5ac4cb127a411c3d2e3f74cc2527c6c",
+    "build_seconds": 1.43185,
+    "structural_array_bytes": 111860,
+    "selection": "Union of all directed ProLN-tactile-to-DNa02 walks of length 1..max_hops. Retain all annotated ProLN tactile inputs and both DNa02 targets, including route-isolated inputs. Not an induced graph or the small visualization sample.",
+    "nt_annotations": {
+      "predicted_nt": {
+        "octopamine": 3,
+        "acetylcholine": 241,
+        "gaba": 8,
+        "unclear": 42,
+        "glutamate": 1
+      },
+      "consensus_nt": {
+        "unclear": 5,
+        "acetylcholine": 280,
+        "glutamate": 2,
+        "gaba": 8
+      }
+    },
+    "source_laterality": {
+      "L": 151,
+      "R": 115
+    },
+    "target_laterality": {
+      "R": 1,
+      "L": 1
+    }
+  },
+  "model": "unsigned-incoming-log-20-steps-3-pulse-from-rest-v1",
+  "semantics": "5 decisions/s simulated time; world held during requests; 20 abstract updates from rest, 3-step pulse, peak readouts; real HTTP; repetitions match all non-timing metrics and final pose.",
+  "latencyNote": "Warm sequential loopback HTTP with a new connection for each request, including response validation. Average p95 is the mean of per-run p95 values, not pooled p95. Browser frame scheduling measured separately.",
+  "coldRequestMs": 1547.4249,
+  "repeatedExactly": true,
+  "runs": [
+    {
+      "seed": 2026,
+      "mode": "rule-based",
+      "metrics": {
+        "elapsed": 119.99999999999447,
+        "distance": 3429.9999999997804,
+        "turns": 45,
+        "blocked": 7,
+        "stuck": 0,
+        "coverage": 54.11203814064363,
+        "neuralDecisions": 0,
+        "backendFailures": 0,
+        "fallbacks": 0,
+        "asymmetrySum": 0,
+        "meanApiMs": 0,
+        "p95ApiMs": 0,
+        "meanAsymmetry": 0,
+        "fallbackPercent": 0
+      },
+      "finalPosition": {
+        "x": 552.3040551976773,
+        "y": 260.38034676685055
+      },
+      "finalHeading": 4.769302951544514,
+      "wallSeconds": 1.8792436000000003
+    },
+    {
+      "seed": 2026,
+      "mode": "malecns",
+      "metrics": {
+        "elapsed": 119.99999999999447,
+        "distance": 2768.2200000000776,
+        "turns": 121,
+        "blocked": 0,
+        "stuck": 0,
+        "coverage": 23.480333730631706,
+        "neuralDecisions": 600,
+        "backendFailures": 0,
+        "fallbacks": 54,
+        "asymmetrySum": 16.264192657134526,
+        "meanApiMs": 6.551641999999955,
+        "p95ApiMs": 8.786000000000058,
+        "meanAsymmetry": 0.027106987761890876,
+        "fallbackPercent": 9
+      },
+      "finalPosition": {
+        "x": 27.712592016292298,
+        "y": 42.964013013226975
+      },
+      "finalHeading": 5.066018366025363,
+      "wallSeconds": 5.7538098,
+      "graph": {
+        "neurons": 295,
+        "edges": 280,
+        "structural_contacts": 2308,
+        "max_hops": 2,
+        "source_neurons": 266,
+        "target_neurons": 2,
+        "sources_with_outgoing_route_edges": 146,
+        "intermediate_neurons": 27,
+        "structural_sha256": "fda9df339350f4420439a90556330275d5ac4cb127a411c3d2e3f74cc2527c6c",
+        "build_seconds": 1.43185,
+        "structural_array_bytes": 111860,
+        "selection": "Union of all directed ProLN-tactile-to-DNa02 walks of length 1..max_hops. Retain all annotated ProLN tactile inputs and both DNa02 targets, including route-isolated inputs. Not an induced graph or the small visualization sample.",
+        "nt_annotations": {
+          "predicted_nt": {
+            "octopamine": 3,
+            "acetylcholine": 241,
+            "gaba": 8,
+            "unclear": 42,
+            "glutamate": 1
+          },
+          "consensus_nt": {
+            "unclear": 5,
+            "acetylcholine": 280,
+            "glutamate": 2,
+            "gaba": 8
+          }
+        },
+        "source_laterality": {
+          "L": 151,
+          "R": 115
+        },
+        "target_laterality": {
+          "R": 1,
+          "L": 1
+        }
+      }
+    },
+    {
+      "seed": 2027,
+      "mode": "rule-based",
+      "metrics": {
+        "elapsed": 119.99999999999447,
+        "distance": 3825.499999999635,
+        "turns": 33,
+        "blocked": 6,
+        "stuck": 0,
+        "coverage": 44.576877234803334,
+        "neuralDecisions": 0,
+        "backendFailures": 0,
+        "fallbacks": 0,
+        "asymmetrySum": 0,
+        "meanApiMs": 0,
+        "p95ApiMs": 0,
+        "meanAsymmetry": 0,
+        "fallbackPercent": 0
+      },
+      "finalPosition": {
+        "x": 607.4715517034437,
+        "y": 98.19254180489244
+      },
+      "finalHeading": 0.37237007017443347,
+      "wallSeconds": 1.6711992999999985
+    },
+    {
+      "seed": 2027,
+      "mode": "malecns",
+      "metrics": {
+        "elapsed": 119.99999999999447,
+        "distance": 3461.5700000000124,
+        "turns": 93,
+        "blocked": 23,
+        "stuck": 0,
+        "coverage": 52.92014302741359,
+        "neuralDecisions": 600,
+        "backendFailures": 0,
+        "fallbacks": 16,
+        "asymmetrySum": 21.12502287488781,
+        "meanApiMs": 6.0162081666667415,
+        "p95ApiMs": 8.335399999999936,
+        "meanAsymmetry": 0.03520837145814635,
+        "fallbackPercent": 2.6666666666666665
+      },
+      "finalPosition": {
+        "x": 323.1259482365257,
+        "y": 101.34810708609761
+      },
+      "finalHeading": 5.092388980384685,
+      "wallSeconds": 5.201315500000001,
+      "graph": {
+        "neurons": 295,
+        "edges": 280,
+        "structural_contacts": 2308,
+        "max_hops": 2,
+        "source_neurons": 266,
+        "target_neurons": 2,
+        "sources_with_outgoing_route_edges": 146,
+        "intermediate_neurons": 27,
+        "structural_sha256": "fda9df339350f4420439a90556330275d5ac4cb127a411c3d2e3f74cc2527c6c",
+        "build_seconds": 1.43185,
+        "structural_array_bytes": 111860,
+        "selection": "Union of all directed ProLN-tactile-to-DNa02 walks of length 1..max_hops. Retain all annotated ProLN tactile inputs and both DNa02 targets, including route-isolated inputs. Not an induced graph or the small visualization sample.",
+        "nt_annotations": {
+          "predicted_nt": {
+            "octopamine": 3,
+            "acetylcholine": 241,
+            "gaba": 8,
+            "unclear": 42,
+            "glutamate": 1
+          },
+          "consensus_nt": {
+            "unclear": 5,
+            "acetylcholine": 280,
+            "glutamate": 2,
+            "gaba": 8
+          }
+        },
+        "source_laterality": {
+          "L": 151,
+          "R": 115
+        },
+        "target_laterality": {
+          "R": 1,
+          "L": 1
+        }
+      }
+    },
+    {
+      "seed": 2028,
+      "mode": "rule-based",
+      "metrics": {
+        "elapsed": 119.99999999999447,
+        "distance": 3656.799999999664,
+        "turns": 35,
+        "blocked": 4,
+        "stuck": 0,
+        "coverage": 37.902264600715135,
+        "neuralDecisions": 0,
+        "backendFailures": 0,
+        "fallbacks": 0,
+        "asymmetrySum": 0,
+        "meanApiMs": 0,
+        "p95ApiMs": 0,
+        "meanAsymmetry": 0,
+        "fallbackPercent": 0
+      },
+      "finalPosition": {
+        "x": 173.7558548554913,
+        "y": 103.44586718905464
+      },
+      "finalHeading": 2.9545913268090587,
+      "wallSeconds": 1.6757403000000013
+    },
+    {
+      "seed": 2028,
+      "mode": "malecns",
+      "metrics": {
+        "elapsed": 119.99999999999447,
+        "distance": 3390.2400000000607,
+        "turns": 98,
+        "blocked": 0,
+        "stuck": 0,
+        "coverage": 42.43146603098927,
+        "neuralDecisions": 600,
+        "backendFailures": 0,
+        "fallbacks": 16,
+        "asymmetrySum": 21.208963708582484,
+        "meanApiMs": 5.7586145000001006,
+        "p95ApiMs": 7.563099999999395,
+        "meanAsymmetry": 0.035348272847637474,
+        "fallbackPercent": 2.6666666666666665
+      },
+      "finalPosition": {
+        "x": 668.6618344695047,
+        "y": 265.11121025321046
+      },
+      "finalHeading": 2.9628330588457263,
+      "wallSeconds": 5.039306400000001,
+      "graph": {
+        "neurons": 295,
+        "edges": 280,
+        "structural_contacts": 2308,
+        "max_hops": 2,
+        "source_neurons": 266,
+        "target_neurons": 2,
+        "sources_with_outgoing_route_edges": 146,
+        "intermediate_neurons": 27,
+        "structural_sha256": "fda9df339350f4420439a90556330275d5ac4cb127a411c3d2e3f74cc2527c6c",
+        "build_seconds": 1.43185,
+        "structural_array_bytes": 111860,
+        "selection": "Union of all directed ProLN-tactile-to-DNa02 walks of length 1..max_hops. Retain all annotated ProLN tactile inputs and both DNa02 targets, including route-isolated inputs. Not an induced graph or the small visualization sample.",
+        "nt_annotations": {
+          "predicted_nt": {
+            "octopamine": 3,
+            "acetylcholine": 241,
+            "gaba": 8,
+            "unclear": 42,
+            "glutamate": 1
+          },
+          "consensus_nt": {
+            "unclear": 5,
+            "acetylcholine": 280,
+            "glutamate": 2,
+            "gaba": 8
+          }
+        },
+        "source_laterality": {
+          "L": 151,
+          "R": 115
+        },
+        "target_laterality": {
+          "R": 1,
+          "L": 1
+        }
+      }
+    },
+    {
+      "seed": 2029,
+      "mode": "rule-based",
+      "metrics": {
+        "elapsed": 119.99999999999447,
+        "distance": 2793.6999999998984,
+        "turns": 62,
+        "blocked": 3,
+        "stuck": 0,
+        "coverage": 18.831942789034564,
+        "neuralDecisions": 0,
+        "backendFailures": 0,
+        "fallbacks": 0,
+        "asymmetrySum": 0,
+        "meanApiMs": 0,
+        "p95ApiMs": 0,
+        "meanAsymmetry": 0,
+        "fallbackPercent": 0
+      },
+      "finalPosition": {
+        "x": 76.67569667215905,
+        "y": 205.94031378358008
+      },
+      "finalHeading": 5.468954646172524,
+      "wallSeconds": 1.8003983999999982
+    },
+    {
+      "seed": 2029,
+      "mode": "malecns",
+      "metrics": {
+        "elapsed": 119.99999999999447,
+        "distance": 3356.6399999999294,
+        "turns": 95,
+        "blocked": 24,
+        "stuck": 0,
+        "coverage": 24.195470798569726,
+        "neuralDecisions": 600,
+        "backendFailures": 0,
+        "fallbacks": 23,
+        "asymmetrySum": 19.66679496218407,
+        "meanApiMs": 5.397545333333195,
+        "p95ApiMs": 6.5068000000028405,
+        "meanAsymmetry": 0.032777991603640116,
+        "fallbackPercent": 3.8333333333333335
+      },
+      "finalPosition": {
+        "x": 258.5990805861101,
+        "y": 238.45855970989243
+      },
+      "finalHeading": 5.472388980384681,
+      "wallSeconds": 4.373638700000003,
+      "graph": {
+        "neurons": 295,
+        "edges": 280,
+        "structural_contacts": 2308,
+        "max_hops": 2,
+        "source_neurons": 266,
+        "target_neurons": 2,
+        "sources_with_outgoing_route_edges": 146,
+        "intermediate_neurons": 27,
+        "structural_sha256": "fda9df339350f4420439a90556330275d5ac4cb127a411c3d2e3f74cc2527c6c",
+        "build_seconds": 1.43185,
+        "structural_array_bytes": 111860,
+        "selection": "Union of all directed ProLN-tactile-to-DNa02 walks of length 1..max_hops. Retain all annotated ProLN tactile inputs and both DNa02 targets, including route-isolated inputs. Not an induced graph or the small visualization sample.",
+        "nt_annotations": {
+          "predicted_nt": {
+            "octopamine": 3,
+            "acetylcholine": 241,
+            "gaba": 8,
+            "unclear": 42,
+            "glutamate": 1
+          },
+          "consensus_nt": {
+            "unclear": 5,
+            "acetylcholine": 280,
+            "glutamate": 2,
+            "gaba": 8
+          }
+        },
+        "source_laterality": {
+          "L": 151,
+          "R": 115
+        },
+        "target_laterality": {
+          "R": 1,
+          "L": 1
+        }
+      }
+    },
+    {
+      "seed": 2030,
+      "mode": "rule-based",
+      "metrics": {
+        "elapsed": 119.99999999999447,
+        "distance": 3799.5999999996475,
+        "turns": 35,
+        "blocked": 7,
+        "stuck": 0,
+        "coverage": 46.603098927294404,
+        "neuralDecisions": 0,
+        "backendFailures": 0,
+        "fallbacks": 0,
+        "asymmetrySum": 0,
+        "meanApiMs": 0,
+        "p95ApiMs": 0,
+        "meanAsymmetry": 0,
+        "fallbackPercent": 0
+      },
+      "finalPosition": {
+        "x": 550.4156838241789,
+        "y": 365.34164407876517
+      },
+      "finalHeading": 2.6402800197331118,
+      "wallSeconds": 2.9125861000000004
+    },
+    {
+      "seed": 2030,
+      "mode": "malecns",
+      "metrics": {
+        "elapsed": 119.99999999999447,
+        "distance": 3254.9300000002277,
+        "turns": 101,
+        "blocked": 23,
+        "stuck": 0,
+        "coverage": 43.3849821215733,
+        "neuralDecisions": 600,
+        "backendFailures": 0,
+        "fallbacks": 21,
+        "asymmetrySum": 22.46181197085187,
+        "meanApiMs": 6.8303915000000535,
+        "p95ApiMs": 9.195299999999406,
+        "meanAsymmetry": 0.037436353284753116,
+        "fallbackPercent": 3.5
+      },
+      "finalPosition": {
+        "x": 701.3234038857253,
+        "y": 221.39393659281433
+      },
+      "finalHeading": 5.852388980384676,
+      "wallSeconds": 5.66704050000001,
+      "graph": {
+        "neurons": 295,
+        "edges": 280,
+        "structural_contacts": 2308,
+        "max_hops": 2,
+        "source_neurons": 266,
+        "target_neurons": 2,
+        "sources_with_outgoing_route_edges": 146,
+        "intermediate_neurons": 27,
+        "structural_sha256": "fda9df339350f4420439a90556330275d5ac4cb127a411c3d2e3f74cc2527c6c",
+        "build_seconds": 1.43185,
+        "structural_array_bytes": 111860,
+        "selection": "Union of all directed ProLN-tactile-to-DNa02 walks of length 1..max_hops. Retain all annotated ProLN tactile inputs and both DNa02 targets, including route-isolated inputs. Not an induced graph or the small visualization sample.",
+        "nt_annotations": {
+          "predicted_nt": {
+            "octopamine": 3,
+            "acetylcholine": 241,
+            "gaba": 8,
+            "unclear": 42,
+            "glutamate": 1
+          },
+          "consensus_nt": {
+            "unclear": 5,
+            "acetylcholine": 280,
+            "glutamate": 2,
+            "gaba": 8
+          }
+        },
+        "source_laterality": {
+          "L": 151,
+          "R": 115
+        },
+        "target_laterality": {
+          "R": 1,
+          "L": 1
+        }
+      }
+    }
+  ],
+  "averages": {
+    "rule-based": {
+      "coverage": 40.405244338498214,
+      "distance": 3501.1199999997248,
+      "turns": 42,
+      "blocked": 5.4,
+      "stuck": 0,
+      "neuralDecisions": 0,
+      "fallbackPercent": 0,
+      "meanApiMs": 0,
+      "p95ApiMs": 0,
+      "meanAsymmetry": 0
+    },
+    "malecns": {
+      "coverage": 37.282479141835516,
+      "distance": 3246.320000000062,
+      "turns": 101.6,
+      "blocked": 14,
+      "stuck": 0,
+      "neuralDecisions": 600,
+      "fallbackPercent": 4.333333333333333,
+      "meanApiMs": 6.11088030000001,
+      "p95ApiMs": 8.077320000000327,
+      "meanAsymmetry": 0.03357559539121359
+    }
+  }
+}

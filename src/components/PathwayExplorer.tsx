@@ -156,7 +156,7 @@ export function PathwayExplorer() {
   return <details className="pathways-panel" onToggle={event => setOpen(event.currentTarget.open)}>
     <summary><span><span className="eyebrow">DEVELOPMENT · STRUCTURE INSPECTION</span><strong>MaleCNS pathway explorer</strong></span><span className="pathways-summary-note">Read-only research view</span></summary>
     <div className="pathways-body">
-      <p className="pathways-intro">Inspect real MaleCNS structural connectivity. Edges show measured contact counts; this structural view does not control BioBug. The separate experimental dynamics lab below is also disconnected from movement. Its existing rule-based controller remains active.</p>
+      <p className="pathways-intro">Inspect real MaleCNS structural connectivity. Edges show measured contact counts. This inspection view and the manual dynamics lab below are separate from the selected mission controller. Live MaleCNS movement telemetry appears above when that mode is selected.</p>
       <div className="pathways-evidence-key"><span><b>DOCUMENTED</b> Function supported by dataset or publication.</span><span><b>INFERRED</b> Interpretation from annotations or connectivity.</span><span><b>ENGINEERING MAPPING</b> A proposed simulation interface.</span></div>
       <div className="pathways-controls">
         <label>Sensory candidate<select value={source} onChange={event => changePopulation('source', event.target.value)} disabled={populationState !== 'ready'}>{populations.filter(population => population.role === 'sensory').map(population => <option value={population.id} key={population.id}>{population.label} ({formatCount(population.count)})</option>)}</select></label>
@@ -170,7 +170,7 @@ export function PathwayExplorer() {
         {error && <div className="pathways-error" role="alert"><strong>Connectome data unavailable</strong><p>{error}</p><p>Run the MaleCNS backend at <code>{API}</code> with its dataset loaded. The disaster simulation can still run independently.</p>{populationState === 'error' && <button onClick={() => setRetry(value => value + 1)}>Retry backend connection</button>}</div>}
       </div>
       {populationState === 'ready' && <div className="pathways-populations"><PopulationEvidence population={sourcePopulation}/><PopulationEvidence population={targetPopulation}/></div>}
-      <div className="pathways-mapping"><strong>SIMULATED SENSOR INPUT</strong><span>Front / left / right obstacle signals</span><small>ENGINEERING MAPPING — not connected</small></div>
+      <div className="pathways-mapping"><strong>ENGINEERING SENSOR MAPPING</strong><span>Front / left / right obstacle signals</span><small>Inspection view · live inputs shown in controller panel</small></div>
       {graph && <section className="pathways-result" aria-label="Loaded MaleCNS subgraph">
         <div className="pathways-result-heading"><strong>REAL {graph.dataset} {datasetVersion(graph.version)} STRUCTURE</strong><span>{formatCount(graph.nodes.length)} neurons · {formatCount(graph.edges.length)} connections shown</span></div>
         <p className="pathways-stats">Shortest route: {graph.summary.min_hops === null ? 'none within the search bound' : `${graph.summary.min_hops} hop${graph.summary.min_hops === 1 ? '' : 's'}`} · Reachable target neurons: {formatCount(graph.summary.reachable_targets)} · {graph.summary.truncated ? 'Bounded sample; additional structure omitted.' : 'Within the configured search bound.'}</p>
@@ -193,8 +193,8 @@ export function PathwayExplorer() {
         <p className="pathways-scientific-note">{graph.scientific_note}</p>
       </section>}
       {!graph && <div className="pathways-placeholder">REAL MaleCNS STRUCTURE<span>{loading ? 'Loading selected subgraph…' : 'Load a subgraph to inspect neurons and their connections.'}</span></div>}
-      <div className="pathways-mapping"><strong>FUTURE MOTOR DECODER</strong><span>Potential simulation output interface</span><small>ENGINEERING MAPPING — not implemented</small></div>
-      <p className="pathways-footnote">Structural connectivity alone is not an executable or biologically accurate fly-brain simulation. No motor-output mapping has been applied.</p>
+      <div className="pathways-mapping"><strong>ENGINEERING MOTOR DECODER</strong><span>Mission control uses a separate movement decoder</span><small>This sampled structural view does not issue commands</small></div>
+      <p className="pathways-footnote">Structural connectivity alone is not an executable or biologically accurate fly-brain simulation. Movement requires the separately labeled engineering sensor mapping, simulated dynamics and motor decoder.</p>
       <DynamicsLab/>
     </div>
   </details>;

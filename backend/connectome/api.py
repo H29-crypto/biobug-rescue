@@ -9,6 +9,8 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from .dynamics import DynamicsEngine, SimulationRequest, build_dynamics_graph
+from .dynamics import Stimulus
+from .control import ControlEngine
 from .annotations import POPULATIONS
 from .pathway_analysis import PathwayAnalyzer
 from .graph import json_value
@@ -25,6 +27,7 @@ def create_app(data_dir: Path | None = None, *, loader=load_connectome) -> FastA
         app.state.load_error = None
         app.state.pathway_analyzer = None
         app.state.dynamics_engine = None
+        app.state.control_engine = None
         try:
             app.state.connectome = loader(directory)
         except Exception as error:
@@ -35,10 +38,11 @@ def create_app(data_dir: Path | None = None, *, loader=load_connectome) -> FastA
         app.state.connectome = None
         app.state.pathway_analyzer = None
         app.state.dynamics_engine = None
+        app.state.control_engine = None
         pathway_export.cache_clear()
 
     app = FastAPI(title="BioBug Rescue - MaleCNS structural data prototype", lifespan=lifespan,
-                  description="Real structural connectivity plus explicitly experimental dynamics. No biological brain simulation or BioBug control.")
+                  description="Real structural connectivity and simulated neural dynamics for an engineering BioBug controller. Not a biological brain simulation.")
 
     app.add_middleware(CORSMiddleware,
         allow_origins=[f'http://{host}:{port}' for host in ('localhost', '127.0.0.1') for port in (5173, 5174, 4173, 4174)],
@@ -116,6 +120,39 @@ def create_app(data_dir: Path | None = None, *, loader=load_connectome) -> FastA
                 raise HTTPException(422, str(error)) from error
         result.update(dataset=value.report['dataset'], version=value.report['version'])
         result['performance'].update(api_handler_seconds=time.perf_counter()-started, cold_graph_build=cold)
+        return result
+
+    def control_engine():
+        value = loaded()
+        if app.state.dynamics_engine is None:
+            app.state.dynamics_engine = DynamicsEngine(build_dynamics_graph(value.graph))
+        if app.state.control_engine is None:
+            app.state.control_engine = ControlEngine(app.state.dynamics_engine)
+        return app.state.control_engine
+
+    @app.get('/connectome/control-network')
+    def control_network():
+        value = loaded()
+        with pathway_lock:
+            engine = control_engine()
+            e = engine.engine
+            return {'dataset': value.report['dataset'], 'version': value.report['version'],
+                    'graph': engine.summary, 'nodes': [e.node(i) for i in range(len(e.records))],
+                    'edges': [{'source': str(e.records[e.rows[i]]['bodyId']),
+                               'target': str(e.records[e.cols[i]]['bodyId']),
+                               'structural_contacts': int(e.graph.structural.adjacency.data[i]),
+                               'engineering_weight': float(engine.weights.data[i])}
+                              for i in range(engine.weights.nnz)]}
+
+    @app.post('/connectome/control')
+    def control(stimulus: Stimulus):
+        value = loaded()
+        with pathway_lock:
+            try:
+                result = control_engine().evaluate(stimulus)
+            except ValueError as error:
+                raise HTTPException(422, str(error)) from error
+        result.update(dataset=value.report['dataset'], version=value.report['version'])
         return result
 
     return app

@@ -1,7 +1,8 @@
 """Experimental bounded rate dynamics; real structure is an immutable input.
 
 All weights, signs, time steps and activity values in this module are engineering
-choices. Nothing here controls BioBug or estimates biological membrane dynamics.
+choices. Motor semantics are defined separately in BioBug's engineering decoder;
+this module does not estimate biological membrane dynamics.
 """
 from __future__ import annotations
 from dataclasses import dataclass
@@ -269,4 +270,4 @@ class DynamicsEngine:
                                 'experiment_with_reporting_seconds':elapsed, 'simulation_weight_bytes':array_bytes(weights),
                                 'state_vector_bytes':activity.nbytes, 'numeric_working_arrays_bytes':array_bytes(weights)+self.rows.nbytes+activity.nbytes*5,
                                 'memory_note':'Numeric bytes exclude Python metadata/JSON and full connectome residency; CLI reports process RSS separately.'},
-                'scientific_note':'Controller research using the real MaleCNS structural connectome with simulated neural dynamics. ENGINEERING activity, weights, signs and inputs are not measured physiology. No BioBug movement integration and no inference that DNa02 activity proves turning.'}
+                'scientific_note':'Controller research using the real MaleCNS structural connectome with simulated neural dynamics. ENGINEERING activity, weights, signs and inputs are not measured physiology. This manual lab experiment does not issue BioBug movement commands. The separate mission controller requires an engineering decoder; DNa02 activity does not prove turning.'}

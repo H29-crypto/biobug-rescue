@@ -115,3 +115,11 @@ From `backend/`:
 ```
 
 Read `docs/MALECNS_DYNAMICS.md` for the exact equation, sign assumptions, measured preset results, performance and limitations. This is a controller research model using real MaleCNS structure with simulated neural dynamics, not a biologically accurate fly brain. Earlier milestones describe their historical scope.
+
+## Milestone 3D: selectable MaleCNS movement controller
+
+The mission now offers **Rule-Based** (default) and **MaleCNS**. MaleCNS maps live obstacle distances to the existing ProLN encoding, propagates unsigned simulated activity through the real 295-neuron/280-edge subgraph, and uses DNa02 peaks in a separately labeled engineering motor decoder. The original collision detector stays authoritative. Backend failure visibly pauses the mission; switching preserves pose and fog; Reset clears controller state and metrics. The manual dynamics lab remains independent.
+
+Start the backend as above, choose MaleCNS beside the map and press Start. Live telemetry separates real structure, simulated activity, sensor mapping and engineering decisions. `GET /connectome/control-network` provides full bounded graph inspection. The motion loop uses `POST /connectome/control` at five decisions per simulated second, with one request at a time and movement held while waiting.
+
+`npm run compare:controllers -- 120` runs and repeats five seeded pairs through the real backend and writes `docs/MALECNS_CONTROLLER_COMPARISON.json`. `npm test` preserves the nine original checks and adds controller checks. Read `docs/MALECNS_CONTROLLER.md` for equations, parameters, failure semantics, measured comparison results and limitations. This milestone adds no swarm, detection, training or OpenAI features. Earlier sections describe their historical milestone state.
