@@ -60,3 +60,26 @@ def test_readout_requires_structural_routes(full_graph, engine):
     assert intact['dna02']['L']['peak'] > 0
     assert absent['dna02']['L']['peak'] == absent['dna02']['R']['peak'] == 0
     assert absent['input_active'] > 0  # Input alone cannot manufacture a DNa02 readout.
+
+
+def test_swarm_batch_is_bounded_independent_and_matches_single_api(full_graph):
+    app=create_app(loader=lambda _:LoadedConnectome(full_graph,{'dataset':'MaleCNS','version':'fixture'}))
+    with TestClient(app) as client:
+        agents=[{'id':str(i),'stimulus':{'left': i/7}} for i in range(8)]
+        result=client.post('/connectome/control-batch',json={'agents':agents})
+        assert result.status_code==200
+        assert [r['id'] for r in result.json()['results']]==[a['id'] for a in agents]
+        cached=app.state.control_engine
+        for a,r in zip(agents,result.json()['results']):
+            single=client.post('/connectome/control',json=a['stimulus']).json()
+            assert single['dna02']==r['response']['dna02']
+            assert single['graph']==r['response']['graph']
+        assert app.state.control_engine is cached
+        for invalid in [[],agents+[{'id':'extra','stimulus':{}}],[agents[0],agents[0]],[{'id':'a','stimulus':{'left':2}}]]:
+            assert client.post('/connectome/control-batch',json={'agents':invalid}).status_code==422
+
+
+def test_batch_missing_dataset():
+    def fail(_): raise ValueError('offline')
+    with TestClient(create_app(loader=fail)) as client:
+        assert client.post('/connectome/control-batch',json={'agents':[{'id':'one','stimulus':{}}]}).status_code==503

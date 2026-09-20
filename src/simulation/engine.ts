@@ -5,6 +5,7 @@ import { chooseTurn, control, createControllerMemory } from './controller';
 import type { ControllerMemory } from './controller';
 import { move } from './movement';
 import { sense } from './sensors';
+import type { MotorCommand } from './controller';
 import { createDecoder, decodeMotor } from './motorDecoder';
 import type { DecoderMemory, Decision } from './motorDecoder';
 import type { NeuralResponse } from './neuralClient';
@@ -67,7 +68,11 @@ export function setRunning(sim: Simulation, running: boolean): void {
     if (sim.neural.status !== 'offline' || running) sim.neural.status = 'idle'; }
   sim.bug.state = running ? (sim.memory.turnRemaining > 0 ? 'blocked' : 'exploring') : 'stopped';
 }
-export function advance(sim: Simulation, delta: number): void {
+export interface MovementPolicy {
+  command?: (command: MotorCommand) => MotorCommand;
+  permit?: (from: BioBug['position'], to: BioBug['position']) => boolean;
+}
+export function advance(sim: Simulation, delta: number, policy: MovementPolicy = {}): void {
   if (!sim.running || !Number.isFinite(delta) || delta <= 0) return;
   // Drop excess time after background-tab suspension; never teleport on resume.
   sim.accumulator += Math.min(delta, .1);
@@ -75,13 +80,14 @@ export function advance(sim: Simulation, delta: number): void {
     // Lockstep sensory decisions: no motion on stale/unavailable results, no latency-dependent trajectory.
     if (sim.mode === 'malecns' && (neuralDue(sim) || !sim.neural.decision)) { sim.accumulator = 0; break; }
     sense(sim.environment, sim.bug);
-    const command = sim.mode === 'rule-based' ? control(sim.bug, sim.memory, FIXED_STEP) : sim.neural.decision!.command;
+    const proposed = sim.mode === 'rule-based' ? control(sim.bug, sim.memory, FIXED_STEP) : sim.neural.decision!.command;
+    const command = policy.command ? policy.command(proposed) : proposed;
     if (sim.mode === 'malecns') sim.bug.state = command.forward ? 'exploring' : 'blocked';
     const before = { ...sim.bug.position }, m = sim.metrics[sim.mode];
     const turn = Math.abs(command.angular) > .8 ? Math.sign(command.angular) : 0;
     if (turn && turn !== sim.lastTurn) m.turns++;
     sim.lastTurn = turn;
-    if (!move(sim.environment, sim.bug, command, FIXED_STEP)) {
+    if (!move(sim.environment, sim.bug, command, FIXED_STEP, policy.permit)) {
       m.blocked++;
       if (sim.mode === 'rule-based') chooseTurn(sim.bug, sim.memory);
     }

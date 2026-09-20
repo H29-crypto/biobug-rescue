@@ -10,7 +10,7 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from .dynamics import DynamicsEngine, SimulationRequest, build_dynamics_graph
 from .dynamics import Stimulus
-from .control import ControlEngine
+from .control import ControlEngine, BatchStimulus
 from .annotations import POPULATIONS
 from .pathway_analysis import PathwayAnalyzer
 from .graph import json_value
@@ -154,6 +154,21 @@ def create_app(data_dir: Path | None = None, *, loader=load_connectome) -> FastA
                 raise HTTPException(422, str(error)) from error
         result.update(dataset=value.report['dataset'], version=value.report['version'])
         return result
+
+    @app.post('/connectome/control-batch')
+    def control_batch(request: BatchStimulus):
+        value = loaded()
+        with pathway_lock:
+            try:
+                engine = control_engine()
+                results = []
+                for agent in request.agents:
+                    response = engine.evaluate(agent.stimulus)
+                    response.update(dataset=value.report['dataset'], version=value.report['version'])
+                    results.append({'id': agent.id, 'response': response})
+                return {'results': results}
+            except ValueError as error:
+                raise HTTPException(422, str(error)) from error
 
     return app
 

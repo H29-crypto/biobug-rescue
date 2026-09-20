@@ -123,3 +123,13 @@ The mission now offers **Rule-Based** (default) and **MaleCNS**. MaleCNS maps li
 Start the backend as above, choose MaleCNS beside the map and press Start. Live telemetry separates real structure, simulated activity, sensor mapping and engineering decisions. `GET /connectome/control-network` provides full bounded graph inspection. The motion loop uses `POST /connectome/control` at five decisions per simulated second, with one request at a time and movement held while waiting.
 
 `npm run compare:controllers -- 120` runs and repeats five seeded pairs through the real backend and writes `docs/MALECNS_CONTROLLER_COMPARISON.json`. `npm test` preserves the nine original checks and adds controller checks. Read `docs/MALECNS_CONTROLLER.md` for equations, parameters, failure semantics, measured comparison results and limitations. This milestone adds no swarm, detection, training or OpenAI features. Earlier sections describe their historical milestone state.
+
+## Milestone 4: swarm exploration
+
+Deploy 1, 2, 4 or 8 BioBugs (default four). Each has independent sensors and controller state, while all share explored terrain. **Coordinated frontiers** assigns distinct destinations on the known map; local obstacle avoidance and body collision checks remain authoritative. Both Rule-Based and MaleCNS apply to the whole deployment. Click an agent on the map or in the roster to select its inspector and neural telemetry. The debug rays toggle also shows its planned route.
+
+MaleCNS uses one bounded `/connectome/control-batch` request per decision boundary for the entire swarm, sharing the cached real graph without mixing activity between agents. Backend failure pauses the entire swarm visibly. Changing deployment size resets the mission; pause first. Reset clears all agent and shared state. Swarm coordination is explicitly engineering logic, not a biological claim about MaleCNS.
+
+Run `npm run compare:swarms -- 60` with the backend loaded for reproducible independent/coordinated comparisons. See `docs/SWARM_EXPLORATION.md` and `docs/SWARM_COMPARISON.json` for architecture, measurements, validation and limitations.
+
+Current roadmap: **1 environment → 2 autonomous BioBug → 3A–3D MaleCNS investigation and control → 4 swarm exploration → 5 survivor/hazard detection → 6 AI Rescue Commander → 7 demo/presentation polish**. Milestones 5–7 are not implemented yet. Earlier sections retain historical scope.

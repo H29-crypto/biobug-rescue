@@ -4,7 +4,25 @@ Same unsigned 20-step / 3-step pulse as the lab; no motor semantics live here.
 """
 import time
 import numpy as np
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 from .dynamics import DynamicsEngine, SimulationParameters, Stimulus, fingerprint
+
+
+class AgentStimulus(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    id: str = Field(min_length=1, max_length=64)
+    stimulus: Stimulus
+
+
+class BatchStimulus(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    agents: list[AgentStimulus] = Field(min_length=1, max_length=8)
+
+    @model_validator(mode='after')
+    def unique_ids(self):
+        if len({a.id for a in self.agents}) != len(self.agents):
+            raise ValueError('Agent IDs must be unique')
+        return self
 
 
 class ControlEngine:

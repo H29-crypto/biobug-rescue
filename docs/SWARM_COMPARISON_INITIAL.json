@@ -1,0 +1,1715 @@
+{
+  "recordedAt": "2026-09-19T00:52:08.641Z",
+  "duration": 60,
+  "seeds": [
+    2026,
+    2027,
+    2028
+  ],
+  "graph": {
+    "neurons": 295,
+    "edges": 280,
+    "structural_contacts": 2308,
+    "max_hops": 2,
+    "source_neurons": 266,
+    "target_neurons": 2,
+    "sources_with_outgoing_route_edges": 146,
+    "intermediate_neurons": 27,
+    "structural_sha256": "fda9df339350f4420439a90556330275d5ac4cb127a411c3d2e3f74cc2527c6c",
+    "build_seconds": 3.082579,
+    "structural_array_bytes": 111860,
+    "selection": "Union of all directed ProLN-tactile-to-DNa02 walks of length 1..max_hops. Retain all annotated ProLN tactile inputs and both DNa02 targets, including route-isolated inputs. Not an induced graph or the small visualization sample.",
+    "nt_annotations": {
+      "predicted_nt": {
+        "octopamine": 3,
+        "acetylcholine": 241,
+        "gaba": 8,
+        "unclear": 42,
+        "glutamate": 1
+      },
+      "consensus_nt": {
+        "unclear": 5,
+        "acetylcholine": 280,
+        "glutamate": 2,
+        "gaba": 8
+      }
+    },
+    "source_laterality": {
+      "L": 151,
+      "R": 115
+    },
+    "target_laterality": {
+      "R": 1,
+      "L": 1
+    }
+  },
+  "coldRequestMs": 3252.342,
+  "repeatedSeed2026Exactly": true,
+  "notes": "All runs use the same map and entry-area deployment; more agents reveal more initial cells. Coordination affects navigation only; local avoidance remains primary. Peer separation is on for independent and coordinated swarms. Real HTTP batches; fresh benchmark connections. Mean p95 values are averages of per-run percentiles, not pooled percentiles. No claim of swarm biological realism.",
+  "runs": [
+    {
+      "mode": "rule-based",
+      "seed": 2026,
+      "count": 1,
+      "coordinated": false,
+      "initialCoverage": 3.9332538736591176,
+      "coverage": 24.076281287246722,
+      "coverageGain": 20.143027413587603,
+      "distance": 1649.2000000000658,
+      "blockedAttempts": 4,
+      "peerBlocks": 0,
+      "turns": 25,
+      "stuck": 0,
+      "redundantObservationPercent": 0,
+      "neuralDecisions": 0,
+      "batchRequests": 0,
+      "batchFailures": 0,
+      "meanBatchMs": 0,
+      "p95BatchMs": 0,
+      "wallSeconds": 2.6239995,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 199.67146401913553,
+            "y": 477.0812332515448
+          },
+          "heading": 5.777167803612009
+        }
+      ],
+      "novelCells": [
+        242
+      ]
+    },
+    {
+      "mode": "rule-based",
+      "seed": 2026,
+      "count": 4,
+      "coordinated": false,
+      "initialCoverage": 5.125148986889154,
+      "coverage": 39.8092967818832,
+      "coverageGain": 34.68414779499405,
+      "distance": 6703.200000000229,
+      "blockedAttempts": 6,
+      "peerBlocks": 0,
+      "turns": 166,
+      "stuck": 0,
+      "redundantObservationPercent": 56.16797900262467,
+      "neuralDecisions": 0,
+      "batchRequests": 0,
+      "batchFailures": 0,
+      "meanBatchMs": 0,
+      "p95BatchMs": 0,
+      "wallSeconds": 8.0724425,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 205.23000320100383,
+            "y": 242.35622495630898
+          },
+          "heading": 4.304824328881526
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 95.63953193872757,
+            "y": 133.37509649638147
+          },
+          "heading": 6.166487315967597
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 280.71297471848123,
+            "y": 81.88558883243194
+          },
+          "heading": 5.80354906296947
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 81.06837977322333,
+            "y": 84.31074850693012
+          },
+          "heading": 1.824409347084945
+        }
+      ],
+      "novelCells": [
+        37,
+        100,
+        200,
+        75
+      ]
+    },
+    {
+      "mode": "rule-based",
+      "seed": 2026,
+      "count": 4,
+      "coordinated": true,
+      "initialCoverage": 5.125148986889154,
+      "coverage": 79.26102502979738,
+      "coverageGain": 74.13587604290822,
+      "distance": 5615.400000000158,
+      "blockedAttempts": 7,
+      "peerBlocks": 0,
+      "turns": 314,
+      "stuck": 3,
+      "redundantObservationPercent": 29.17997870074548,
+      "neuralDecisions": 0,
+      "batchRequests": 0,
+      "batchFailures": 0,
+      "meanBatchMs": 0,
+      "p95BatchMs": 0,
+      "wallSeconds": 8.945816500000001,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 601.1238179585804,
+            "y": 92.07437965310386
+          },
+          "heading": 2.3444490044794524
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 723.4666160308518,
+            "y": 296.28850969919944
+          },
+          "heading": 2.3626818764005293
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 202.0108509565933,
+            "y": 238.37735963059754
+          },
+          "heading": 2.8656659521026384
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 17.44062191180322,
+            "y": 131.56303420310178
+          },
+          "heading": 0.742011972105443
+        }
+      ],
+      "novelCells": [
+        315,
+        232,
+        245,
+        85
+      ]
+    },
+    {
+      "mode": "rule-based",
+      "seed": 2026,
+      "count": 8,
+      "coordinated": true,
+      "initialCoverage": 5.601907032181168,
+      "coverage": 72.58641239570917,
+      "coverageGain": 66.984505363528,
+      "distance": 8304.80000000016,
+      "blockedAttempts": 11,
+      "peerBlocks": 0,
+      "turns": 4371,
+      "stuck": 5,
+      "redundantObservationPercent": 60.53143227478937,
+      "neuralDecisions": 0,
+      "batchRequests": 0,
+      "batchFailures": 0,
+      "meanBatchMs": 0,
+      "p95BatchMs": 0,
+      "wallSeconds": 9.634151700000002,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 224.47118652690455,
+            "y": 230.97487298757872
+          },
+          "heading": 3.06638791175644
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 716.3451461563948,
+            "y": 240.97049124638463
+          },
+          "heading": 4.715506118923322
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 540.9988487227463,
+            "y": 210.0261508251293
+          },
+          "heading": 6.276504577325002
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 554.4624446053964,
+            "y": 168.1818399273489
+          },
+          "heading": 5.638603194698231
+        },
+        {
+          "id": "BioBug #5",
+          "position": {
+            "x": 23.285155792710903,
+            "y": 532.6153766610829
+          },
+          "heading": 2.98092109798106
+        },
+        {
+          "id": "BioBug #6",
+          "position": {
+            "x": 548.1035867423781,
+            "y": 247.79860646886544
+          },
+          "heading": 4.900698933305275
+        },
+        {
+          "id": "BioBug #7",
+          "position": {
+            "x": 364.7008386151335,
+            "y": 182.67766182242173
+          },
+          "heading": 6.25283878586767
+        },
+        {
+          "id": "BioBug #8",
+          "position": {
+            "x": 499.817003529589,
+            "y": 538.0292744885741
+          },
+          "heading": 0.6345351789501326
+        }
+      ],
+      "novelCells": [
+        23,
+        285,
+        85,
+        178,
+        6,
+        175,
+        4,
+        44
+      ]
+    },
+    {
+      "mode": "malecns",
+      "seed": 2026,
+      "count": 1,
+      "coordinated": false,
+      "initialCoverage": 3.9332538736591176,
+      "coverage": 16.090584028605484,
+      "coverageGain": 12.157330154946367,
+      "distance": 1662.7800000000668,
+      "blockedAttempts": 0,
+      "peerBlocks": 0,
+      "turns": 49,
+      "stuck": 0,
+      "redundantObservationPercent": 0,
+      "neuralDecisions": 300,
+      "batchRequests": 300,
+      "batchFailures": 0,
+      "meanBatchMs": 7.267185666666604,
+      "p95BatchMs": 11.725100000003295,
+      "wallSeconds": 3.2181314000000056,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 116.25460525707207,
+            "y": 364.7039959849029
+          },
+          "heading": 4.509203673205031
+        }
+      ],
+      "novelCells": [
+        136
+      ]
+    },
+    {
+      "mode": "malecns",
+      "seed": 2026,
+      "count": 4,
+      "coordinated": false,
+      "initialCoverage": 5.125148986889154,
+      "coverage": 61.62097735399284,
+      "coverageGain": 56.49582836710369,
+      "distance": 6410.985000000288,
+      "blockedAttempts": 45,
+      "peerBlocks": 0,
+      "turns": 270,
+      "stuck": 0,
+      "redundantObservationPercent": 49.31372549019608,
+      "neuralDecisions": 1200,
+      "batchRequests": 300,
+      "batchFailures": 0,
+      "meanBatchMs": 22.024796000000038,
+      "p95BatchMs": 37.524700000009034,
+      "wallSeconds": 11.849146300000001,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 165.73643098579117,
+            "y": 214.5372726917823
+          },
+          "heading": 0.74875959474406
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 448.99047402862755,
+            "y": 106.29892934570476
+          },
+          "heading": 0.3476850326920857
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 344.4783622156734,
+            "y": 153.03058747598547
+          },
+          "heading": 3.5090556470513707
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 570.4346188536366,
+            "y": 302.8847873223048
+          },
+          "heading": 1.690870339871731
+        }
+      ],
+      "novelCells": [
+        102,
+        17,
+        248,
+        320
+      ]
+    },
+    {
+      "mode": "malecns",
+      "seed": 2026,
+      "count": 4,
+      "coordinated": true,
+      "initialCoverage": 5.125148986889154,
+      "coverage": 48.152562574493444,
+      "coverageGain": 43.02741358760429,
+      "distance": 2295.7900000000286,
+      "blockedAttempts": 0,
+      "peerBlocks": 0,
+      "turns": 6239,
+      "stuck": 10,
+      "redundantObservationPercent": 29.246935201401048,
+      "neuralDecisions": 1200,
+      "batchRequests": 300,
+      "batchFailures": 0,
+      "meanBatchMs": 19.42242700000017,
+      "p95BatchMs": 25.606400000004214,
+      "wallSeconds": 10.7539703,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 113.92417095174044,
+            "y": 464.2717145670064
+          },
+          "heading": 5.858907620896515
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 91.99398620984466,
+            "y": 440.9875527632739
+          },
+          "heading": 2.6958703398717105
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 620.9211563782743,
+            "y": 468.32629905303116
+          },
+          "heading": 2.8626037508773976
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 581.1259288339875,
+            "y": 207.68263129767539
+          },
+          "heading": 1.3946399998708223
+        }
+      ],
+      "novelCells": [
+        6,
+        2,
+        157,
+        348
+      ]
+    },
+    {
+      "mode": "malecns",
+      "seed": 2026,
+      "count": 8,
+      "coordinated": true,
+      "initialCoverage": 5.601907032181168,
+      "coverage": 49.70202622169249,
+      "coverageGain": 44.100119189511325,
+      "distance": 3869.2850000000076,
+      "blockedAttempts": 22,
+      "peerBlocks": 0,
+      "turns": 10778,
+      "stuck": 10,
+      "redundantObservationPercent": 52.667423382519864,
+      "neuralDecisions": 2400,
+      "batchRequests": 300,
+      "batchFailures": 0,
+      "meanBatchMs": 56.45995033333335,
+      "p95BatchMs": 85.41300000000047,
+      "wallSeconds": 33.70025949999999,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 327.7841548414747,
+            "y": 93.284203694236
+          },
+          "heading": 3.3414961377953976
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 340.2944422105278,
+            "y": 451.30546548664944
+          },
+          "heading": 0.05762914143186926
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 527.558831478346,
+            "y": 201.2681105388115
+          },
+          "heading": 4.12614160505909
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 445.7418266107066,
+            "y": 336.6287166429568
+          },
+          "heading": 0.9409371917930649
+        },
+        {
+          "id": "BioBug #5",
+          "position": {
+            "x": 80.88636835175593,
+            "y": 500.7356787846638
+          },
+          "heading": 2.7257223137181423
+        },
+        {
+          "id": "BioBug #6",
+          "position": {
+            "x": 137.88521247694578,
+            "y": 449.3815148053641
+          },
+          "heading": 2.9185896020567235
+        },
+        {
+          "id": "BioBug #7",
+          "position": {
+            "x": 115.88752293214236,
+            "y": 481.10761353541824
+          },
+          "heading": 1.5410460511680704
+        },
+        {
+          "id": "BioBug #8",
+          "position": {
+            "x": 102.33537823195127,
+            "y": 524.4116221762416
+          },
+          "heading": 2.077178537621357
+        }
+      ],
+      "novelCells": [
+        157,
+        7,
+        216,
+        128,
+        0,
+        0,
+        3,
+        6
+      ]
+    },
+    {
+      "mode": "rule-based",
+      "seed": 2027,
+      "count": 1,
+      "coordinated": false,
+      "initialCoverage": 3.9332538736591176,
+      "coverage": 29.32061978545888,
+      "coverageGain": 25.387365911799762,
+      "distance": 2024.4000000000706,
+      "blockedAttempts": 3,
+      "peerBlocks": 0,
+      "turns": 14,
+      "stuck": 0,
+      "redundantObservationPercent": 0,
+      "neuralDecisions": 0,
+      "batchRequests": 0,
+      "batchFailures": 0,
+      "meanBatchMs": 0,
+      "p95BatchMs": 0,
+      "wallSeconds": 1.0738844000000098,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 125.52493476438303,
+            "y": 524.6439767706609
+          },
+          "heading": 5.637713884579682
+        }
+      ],
+      "novelCells": [
+        296
+      ]
+    },
+    {
+      "mode": "rule-based",
+      "seed": 2027,
+      "count": 4,
+      "coordinated": false,
+      "initialCoverage": 5.125148986889154,
+      "coverage": 35.39928486293206,
+      "coverageGain": 30.27413587604291,
+      "distance": 5612.600000000162,
+      "blockedAttempts": 16,
+      "peerBlocks": 0,
+      "turns": 150,
+      "stuck": 0,
+      "redundantObservationPercent": 50,
+      "neuralDecisions": 0,
+      "batchRequests": 0,
+      "batchFailures": 0,
+      "meanBatchMs": 0,
+      "p95BatchMs": 0,
+      "wallSeconds": 4.368819699999992,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 243.17294601409043,
+            "y": 539.6765257893408
+          },
+          "heading": 2.377179466897937
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 102.52981261052393,
+            "y": 103.09004944069349
+          },
+          "heading": 5.332162337042966
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 250.90701221106335,
+            "y": 476.2999570373416
+          },
+          "heading": 0.8516219884992804
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 353.8076155247431,
+            "y": 434.9101866029838
+          },
+          "heading": 1.6147133031491858
+        }
+      ],
+      "novelCells": [
+        39,
+        135,
+        72,
+        114
+      ]
+    },
+    {
+      "mode": "rule-based",
+      "seed": 2027,
+      "count": 4,
+      "coordinated": true,
+      "initialCoverage": 5.125148986889154,
+      "coverage": 76.8772348033373,
+      "coverageGain": 71.75208581644814,
+      "distance": 5954.900000000195,
+      "blockedAttempts": 5,
+      "peerBlocks": 0,
+      "turns": 342,
+      "stuck": 3,
+      "redundantObservationPercent": 31.382978723404253,
+      "neuralDecisions": 0,
+      "batchRequests": 0,
+      "batchFailures": 0,
+      "meanBatchMs": 0,
+      "p95BatchMs": 0,
+      "wallSeconds": 6.6273586999999825,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 620.430916599929,
+            "y": 81.90487333856031
+          },
+          "heading": 3.097539692660666
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 439.82966135065766,
+            "y": 364.66880681105437
+          },
+          "heading": 2.8790476472476954
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 545.0779411387977,
+            "y": 219.05978555239707
+          },
+          "heading": 4.959565944040303
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 15.768587789967572,
+            "y": 194.26696345167437
+          },
+          "heading": 0.6441897060591657
+        }
+      ],
+      "novelCells": [
+        264,
+        202,
+        328,
+        64
+      ]
+    },
+    {
+      "mode": "rule-based",
+      "seed": 2027,
+      "count": 8,
+      "coordinated": true,
+      "initialCoverage": 5.601907032181168,
+      "coverage": 76.16209773539929,
+      "coverageGain": 70.56019070321811,
+      "distance": 7424.900000000121,
+      "blockedAttempts": 4,
+      "peerBlocks": 0,
+      "turns": 5038,
+      "stuck": 4,
+      "redundantObservationPercent": 48.048780487804876,
+      "neuralDecisions": 0,
+      "batchRequests": 0,
+      "batchFailures": 0,
+      "meanBatchMs": 0,
+      "p95BatchMs": 0,
+      "wallSeconds": 12.674931700000016,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 355.0002584447046,
+            "y": 203.2353615557986
+          },
+          "heading": 4.136576731218721
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 215.30673263992165,
+            "y": 107.53078934391174
+          },
+          "heading": 5.797012989688389
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 221.1618941907751,
+            "y": 140.98981939852914
+          },
+          "heading": 6.164886377779396
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 548.9289863029745,
+            "y": 158.17430222976387
+          },
+          "heading": 1.3666583086793
+        },
+        {
+          "id": "BioBug #5",
+          "position": {
+            "x": 37.75619165117199,
+            "y": 14.853224171306183
+          },
+          "heading": 3.606104568498198
+        },
+        {
+          "id": "BioBug #6",
+          "position": {
+            "x": 706.4837829501867,
+            "y": 295.66661494361773
+          },
+          "heading": 2.5722028070487273
+        },
+        {
+          "id": "BioBug #7",
+          "position": {
+            "x": 181.13116012881127,
+            "y": 528.8470013697823
+          },
+          "heading": 2.1161808092328265
+        },
+        {
+          "id": "BioBug #8",
+          "position": {
+            "x": 212.29733798356762,
+            "y": 535.9830323157307
+          },
+          "heading": 0.3035931351137702
+        }
+      ],
+      "novelCells": [
+        28,
+        131,
+        88,
+        249,
+        59,
+        241,
+        6,
+        20
+      ]
+    },
+    {
+      "mode": "malecns",
+      "seed": 2027,
+      "count": 1,
+      "coordinated": false,
+      "initialCoverage": 3.9332538736591176,
+      "coverage": 35.63766388557807,
+      "coverageGain": 31.704410011918952,
+      "distance": 1636.6700000000574,
+      "blockedAttempts": 23,
+      "peerBlocks": 0,
+      "turns": 52,
+      "stuck": 0,
+      "redundantObservationPercent": 0,
+      "neuralDecisions": 300,
+      "batchRequests": 300,
+      "batchFailures": 0,
+      "meanBatchMs": 11.78548933333242,
+      "p95BatchMs": 15.488100000016857,
+      "wallSeconds": 4.952032100000011,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 689.4469968147159,
+            "y": 251.48285702664722
+          },
+          "heading": 3.9523889803846988
+        }
+      ],
+      "novelCells": [
+        353
+      ]
+    },
+    {
+      "mode": "malecns",
+      "seed": 2027,
+      "count": 4,
+      "coordinated": false,
+      "initialCoverage": 5.125148986889154,
+      "coverage": 51.13230035756854,
+      "coverageGain": 46.00715137067939,
+      "distance": 6566.315000000295,
+      "blockedAttempts": 50,
+      "peerBlocks": 0,
+      "turns": 389,
+      "stuck": 0,
+      "redundantObservationPercent": 47.42647058823529,
+      "neuralDecisions": 1200,
+      "batchRequests": 300,
+      "batchFailures": 0,
+      "meanBatchMs": 21.623162999999767,
+      "p95BatchMs": 27.875,
+      "wallSeconds": 11.093500599999999,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 211.15660504385636,
+            "y": 364.3495718166581
+          },
+          "heading": 1.432240954231057
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 95.51897136459294,
+            "y": 497.31314836724624
+          },
+          "heading": 3.115870339871714
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 639.7167819116286,
+            "y": 265.0176668990111
+          },
+          "heading": 3.3507223137180393
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 365.7479087048747,
+            "y": 128.4526479903339
+          },
+          "heading": 3.799351699358711
+        }
+      ],
+      "novelCells": [
+        17,
+        5,
+        268,
+        243
+      ]
+    },
+    {
+      "mode": "malecns",
+      "seed": 2027,
+      "count": 4,
+      "coordinated": true,
+      "initialCoverage": 5.125148986889154,
+      "coverage": 33.373063170441,
+      "coverageGain": 28.247914183551845,
+      "distance": 1756.5800000000002,
+      "blockedAttempts": 0,
+      "peerBlocks": 0,
+      "turns": 7214,
+      "stuck": 11,
+      "redundantObservationPercent": 36.651583710407245,
+      "neuralDecisions": 1200,
+      "batchRequests": 300,
+      "batchFailures": 0,
+      "meanBatchMs": 20.364054000000664,
+      "p95BatchMs": 26.544599999993807,
+      "wallSeconds": 10.7576581,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 113.92417095174044,
+            "y": 464.2717145670064
+          },
+          "heading": 4.435574287563593
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 91.99398620984466,
+            "y": 440.9875527632739
+          },
+          "heading": 2.6958703398717105
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 458.2551221015181,
+            "y": 167.38584574466327
+          },
+          "heading": 2.9405898931698555
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 145.75710561036527,
+            "y": 466.19579320171283
+          },
+          "heading": 5.076120719492167
+        }
+      ],
+      "novelCells": [
+        6,
+        2,
+        204,
+        108
+      ]
+    },
+    {
+      "mode": "malecns",
+      "seed": 2027,
+      "count": 8,
+      "coordinated": true,
+      "initialCoverage": 5.601907032181168,
+      "coverage": 48.033373063170444,
+      "coverageGain": 42.43146603098928,
+      "distance": 4812.780000000013,
+      "blockedAttempts": 545,
+      "peerBlocks": 0,
+      "turns": 7300,
+      "stuck": 6,
+      "redundantObservationPercent": 61.287223823246876,
+      "neuralDecisions": 2400,
+      "batchRequests": 300,
+      "batchFailures": 0,
+      "meanBatchMs": 33.07305299999949,
+      "p95BatchMs": 43.58400000000256,
+      "wallSeconds": 19.719005399999993,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 362.7928654823648,
+            "y": 108.1385660319209
+          },
+          "heading": 1.2424038227458531
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 365.2274608557557,
+            "y": 364.5104514903446
+          },
+          "heading": 5.961551681237502
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 586.3475169548742,
+            "y": 274.9685624061977
+          },
+          "heading": 6.122326641667588
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 185.0647568102904,
+            "y": 302.85297823417085
+          },
+          "heading": 1.631008796903
+        },
+        {
+          "id": "BioBug #5",
+          "position": {
+            "x": 379.737701576522,
+            "y": 458.0076515091182
+          },
+          "heading": 5.9378532263465225
+        },
+        {
+          "id": "BioBug #6",
+          "position": {
+            "x": 124.2808894711401,
+            "y": 481.97346865049514
+          },
+          "heading": 4.977137120434149
+        },
+        {
+          "id": "BioBug #7",
+          "position": {
+            "x": 38.482256582934205,
+            "y": 526.87527362581
+          },
+          "heading": 4.24662833009689
+        },
+        {
+          "id": "BioBug #8",
+          "position": {
+            "x": 540.1694972065217,
+            "y": 446.9535679413907
+          },
+          "heading": 5.077735345563095
+        }
+      ],
+      "novelCells": [
+        106,
+        39,
+        231,
+        111,
+        0,
+        0,
+        9,
+        5
+      ]
+    },
+    {
+      "mode": "rule-based",
+      "seed": 2028,
+      "count": 1,
+      "coordinated": false,
+      "initialCoverage": 3.9332538736591176,
+      "coverage": 31.227651966626937,
+      "coverageGain": 27.294398092967818,
+      "distance": 1971.2000000000774,
+      "blockedAttempts": 2,
+      "peerBlocks": 0,
+      "turns": 14,
+      "stuck": 0,
+      "redundantObservationPercent": 0,
+      "neuralDecisions": 0,
+      "batchRequests": 0,
+      "batchFailures": 0,
+      "meanBatchMs": 0,
+      "p95BatchMs": 0,
+      "wallSeconds": 1.1425009000000137,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 115.09927122896929,
+            "y": 376.922297636036
+          },
+          "heading": 4.284366059929649
+        }
+      ],
+      "novelCells": [
+        313
+      ]
+    },
+    {
+      "mode": "rule-based",
+      "seed": 2028,
+      "count": 4,
+      "coordinated": false,
+      "initialCoverage": 5.125148986889154,
+      "coverage": 58.87961859356376,
+      "coverageGain": 53.75446960667461,
+      "distance": 6944.700000000242,
+      "blockedAttempts": 9,
+      "peerBlocks": 0,
+      "turns": 126,
+      "stuck": 0,
+      "redundantObservationPercent": 43.735763097949885,
+      "neuralDecisions": 0,
+      "batchRequests": 0,
+      "batchFailures": 0,
+      "meanBatchMs": 0,
+      "p95BatchMs": 0,
+      "wallSeconds": 4.415426999999996,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 593.7596199036454,
+            "y": 205.23027161904773
+          },
+          "heading": 0.6916974842514598
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 460.8834887600083,
+            "y": 77.43347193659784
+          },
+          "heading": 3.1858833572215204
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 227.8000393439679,
+            "y": 176.74310943023292
+          },
+          "heading": 1.3032768468364369
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 493.0240014984825,
+            "y": 431.6237116936388
+          },
+          "heading": 3.1929001850432055
+        }
+      ],
+      "novelCells": [
+        286,
+        164,
+        107,
+        90
+      ]
+    },
+    {
+      "mode": "rule-based",
+      "seed": 2028,
+      "count": 4,
+      "coordinated": true,
+      "initialCoverage": 5.125148986889154,
+      "coverage": 57.92610250297974,
+      "coverageGain": 52.80095351609059,
+      "distance": 4485.6000000001095,
+      "blockedAttempts": 5,
+      "peerBlocks": 0,
+      "turns": 347,
+      "stuck": 7,
+      "redundantObservationPercent": 39.776951672862445,
+      "neuralDecisions": 0,
+      "batchRequests": 0,
+      "batchFailures": 0,
+      "meanBatchMs": 0,
+      "p95BatchMs": 0,
+      "wallSeconds": 4.096315500000026,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 627.9370287233637,
+            "y": 96.72155037118463
+          },
+          "heading": 3.403048470899643
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 467.3520408880444,
+            "y": 464.83002500836545
+          },
+          "heading": 5.832545913116789
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 205.48716845673584,
+            "y": 142.42353211754866
+          },
+          "heading": 0.9940980420341958
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 16.963704078350094,
+            "y": 202.74064513281613
+          },
+          "heading": 4.811155580309608
+        }
+      ],
+      "novelCells": [
+        235,
+        240,
+        68,
+        68
+      ]
+    },
+    {
+      "mode": "rule-based",
+      "seed": 2028,
+      "count": 8,
+      "coordinated": true,
+      "initialCoverage": 5.601907032181168,
+      "coverage": 87.24672228843862,
+      "coverageGain": 81.64481525625744,
+      "distance": 9305.800000000176,
+      "blockedAttempts": 6,
+      "peerBlocks": 0,
+      "turns": 3209,
+      "stuck": 2,
+      "redundantObservationPercent": 51.42667551426676,
+      "neuralDecisions": 0,
+      "batchRequests": 0,
+      "batchFailures": 0,
+      "meanBatchMs": 0,
+      "p95BatchMs": 0,
+      "wallSeconds": 8.584516800000012,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 715.383233979329,
+            "y": 309.53778258787435
+          },
+          "heading": 5.559406152867631
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 223.39785702211915,
+            "y": 120.7010662656321
+          },
+          "heading": 1.4948224187588544
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 189.5407602422409,
+            "y": 428.6142901549535
+          },
+          "heading": 3.147182453344586
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 201.31098024170635,
+            "y": 230.1163958879528
+          },
+          "heading": 2.155641512283596
+        },
+        {
+          "id": "BioBug #5",
+          "position": {
+            "x": 782.0220420281795,
+            "y": 208.87272767079187
+          },
+          "heading": 4.027573540227886
+        },
+        {
+          "id": "BioBug #6",
+          "position": {
+            "x": 696.4247227917483,
+            "y": 231.92874744985951
+          },
+          "heading": 6.084045323160122
+        },
+        {
+          "id": "BioBug #7",
+          "position": {
+            "x": 22.004275948243535,
+            "y": 18.124300342182703
+          },
+          "heading": 1.2316119743679188
+        },
+        {
+          "id": "BioBug #8",
+          "position": {
+            "x": 230.40947046583278,
+            "y": 197.66649100946327
+          },
+          "heading": 2.4122084179682
+        }
+      ],
+      "novelCells": [
+        28,
+        131,
+        110,
+        218,
+        83,
+        263,
+        65,
+        24
+      ]
+    },
+    {
+      "mode": "malecns",
+      "seed": 2028,
+      "count": 1,
+      "coordinated": false,
+      "initialCoverage": 3.9332538736591176,
+      "coverage": 16.924910607866508,
+      "coverageGain": 12.99165673420739,
+      "distance": 1708.5600000000702,
+      "blockedAttempts": 0,
+      "peerBlocks": 0,
+      "turns": 48,
+      "stuck": 0,
+      "redundantObservationPercent": 0,
+      "neuralDecisions": 300,
+      "batchRequests": 300,
+      "batchFailures": 0,
+      "meanBatchMs": 10.639891333332441,
+      "p95BatchMs": 13.602100000018254,
+      "wallSeconds": 4.412837700000003,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 253.28656597630325,
+            "y": 442.45776993686945
+          },
+          "heading": 0.3292036732050807
+        }
+      ],
+      "novelCells": [
+        144
+      ]
+    },
+    {
+      "mode": "malecns",
+      "seed": 2028,
+      "count": 4,
+      "coordinated": false,
+      "initialCoverage": 5.125148986889154,
+      "coverage": 47.55661501787843,
+      "coverageGain": 42.43146603098928,
+      "distance": 6135.4300000002895,
+      "blockedAttempts": 7,
+      "peerBlocks": 0,
+      "turns": 442,
+      "stuck": 0,
+      "redundantObservationPercent": 47.01195219123506,
+      "neuralDecisions": 1200,
+      "batchRequests": 300,
+      "batchFailures": 0,
+      "meanBatchMs": 37.05280600000163,
+      "p95BatchMs": 50.192800000018906,
+      "wallSeconds": 18.680376000000017,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 129.18133678153936,
+            "y": 360.45450422052363
+          },
+          "heading": 1.6987595947440486
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 209.06435096808792,
+            "y": 288.2751747176422
+          },
+          "heading": 4.490722313718026
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 480.8736066524442,
+            "y": 454.9197319188377
+          },
+          "heading": 6.055574287564335
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 600.0185983304444,
+            "y": 260.957736149023
+          },
+          "heading": 0.7276850326920812
+        }
+      ],
+      "novelCells": [
+        12,
+        11,
+        125,
+        341
+      ]
+    },
+    {
+      "mode": "malecns",
+      "seed": 2028,
+      "count": 4,
+      "coordinated": true,
+      "initialCoverage": 5.125148986889154,
+      "coverage": 40.76281287246722,
+      "coverageGain": 35.63766388557807,
+      "distance": 1934.2050000000104,
+      "blockedAttempts": 0,
+      "peerBlocks": 0,
+      "turns": 6310,
+      "stuck": 10,
+      "redundantObservationPercent": 32.80943025540275,
+      "neuralDecisions": 1200,
+      "batchRequests": 300,
+      "batchFailures": 0,
+      "meanBatchMs": 44.23378900000127,
+      "p95BatchMs": 62.871499999950174,
+      "wallSeconds": 23.461409799999966,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 113.92417095174044,
+            "y": 464.2717145670064
+          },
+          "heading": 5.858907620896515
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 91.99398620984466,
+            "y": 440.9875527632739
+          },
+          "heading": 2.6958703398717105
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 215.37181231672923,
+            "y": 248.1283058074509
+          },
+          "heading": 1.9077151462390045
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 661.2991950230704,
+            "y": 269.1070006196132
+          },
+          "heading": 5.907015151743849
+        }
+      ],
+      "novelCells": [
+        6,
+        2,
+        156,
+        253
+      ]
+    },
+    {
+      "mode": "malecns",
+      "seed": 2028,
+      "count": 8,
+      "coordinated": true,
+      "initialCoverage": 5.601907032181168,
+      "coverage": 45.29201430274136,
+      "coverageGain": 39.69010727056019,
+      "distance": 4820.095000000008,
+      "blockedAttempts": 22,
+      "peerBlocks": 0,
+      "turns": 7257,
+      "stuck": 6,
+      "redundantObservationPercent": 62.03796203796203,
+      "neuralDecisions": 2400,
+      "batchRequests": 300,
+      "batchFailures": 0,
+      "meanBatchMs": 39.7041876666665,
+      "p95BatchMs": 79.62129999999888,
+      "wallSeconds": 23.413860800000023,
+      "poses": [
+        {
+          "id": "BioBug #1",
+          "position": {
+            "x": 188.692856240363,
+            "y": 325.56091237191464
+          },
+          "heading": 2.3184735957243205
+        },
+        {
+          "id": "BioBug #2",
+          "position": {
+            "x": 469.82940632297704,
+            "y": 109.5151566906861
+          },
+          "heading": 5.214639643254253
+        },
+        {
+          "id": "BioBug #3",
+          "position": {
+            "x": 567.1897378707432,
+            "y": 391.06794981103036
+          },
+          "heading": 5.055392455613468
+        },
+        {
+          "id": "BioBug #4",
+          "position": {
+            "x": 581.0095533302979,
+            "y": 362.2650061877006
+          },
+          "heading": 4.513956172391589
+        },
+        {
+          "id": "BioBug #5",
+          "position": {
+            "x": 159.0928694597531,
+            "y": 310.82175962157527
+          },
+          "heading": 0.8853319464886962
+        },
+        {
+          "id": "BioBug #6",
+          "position": {
+            "x": 309.7042394852293,
+            "y": 438.7149303725108
+          },
+          "heading": 2.172657527050646
+        },
+        {
+          "id": "BioBug #7",
+          "position": {
+            "x": 141.20288509354413,
+            "y": 466.394810476442
+          },
+          "heading": 3.072121893751225
+        },
+        {
+          "id": "BioBug #8",
+          "position": {
+            "x": 99.81634449689993,
+            "y": 497.67961794758395
+          },
+          "heading": 4.4772406144386725
+        }
+      ],
+      "novelCells": [
+        4,
+        206,
+        200,
+        50,
+        0,
+        6,
+        3,
+        6
+      ]
+    }
+  ],
+  "averages": [
+    {
+      "mode": "rule-based",
+      "count": 1,
+      "coordinated": false,
+      "initialCoverage": 3.9332538736591176,
+      "coverage": 28.20818434644418,
+      "coverageGain": 24.27493047278506,
+      "distance": 1881.6000000000713,
+      "blockedAttempts": 3,
+      "peerBlocks": 0,
+      "turns": 17.666666666666668,
+      "stuck": 0,
+      "redundantObservationPercent": 0,
+      "neuralDecisions": 0,
+      "batchRequests": 0,
+      "meanBatchMs": 0,
+      "p95BatchMs": 0
+    },
+    {
+      "mode": "rule-based",
+      "count": 4,
+      "coordinated": false,
+      "initialCoverage": 5.125148986889154,
+      "coverage": 44.69606674612635,
+      "coverageGain": 39.57091775923718,
+      "distance": 6420.166666666878,
+      "blockedAttempts": 10.333333333333334,
+      "peerBlocks": 0,
+      "turns": 147.33333333333334,
+      "stuck": 0,
+      "redundantObservationPercent": 49.967914033524856,
+      "neuralDecisions": 0,
+      "batchRequests": 0,
+      "meanBatchMs": 0,
+      "p95BatchMs": 0
+    },
+    {
+      "mode": "rule-based",
+      "count": 4,
+      "coordinated": true,
+      "initialCoverage": 5.125148986889154,
+      "coverage": 71.35478744537147,
+      "coverageGain": 66.22963845848233,
+      "distance": 5351.966666666821,
+      "blockedAttempts": 5.666666666666667,
+      "peerBlocks": 0,
+      "turns": 334.3333333333333,
+      "stuck": 4.333333333333333,
+      "redundantObservationPercent": 33.44663636567072,
+      "neuralDecisions": 0,
+      "batchRequests": 0,
+      "meanBatchMs": 0,
+      "p95BatchMs": 0
+    },
+    {
+      "mode": "rule-based",
+      "count": 8,
+      "coordinated": true,
+      "initialCoverage": 5.601907032181168,
+      "coverage": 78.66507747318235,
+      "coverageGain": 73.06317044100119,
+      "distance": 8345.166666666819,
+      "blockedAttempts": 7,
+      "peerBlocks": 0,
+      "turns": 4206,
+      "stuck": 3.6666666666666665,
+      "redundantObservationPercent": 53.33562942562033,
+      "neuralDecisions": 0,
+      "batchRequests": 0,
+      "meanBatchMs": 0,
+      "p95BatchMs": 0
+    },
+    {
+      "mode": "malecns",
+      "count": 1,
+      "coordinated": false,
+      "initialCoverage": 3.9332538736591176,
+      "coverage": 22.884386174016687,
+      "coverageGain": 18.951132300357568,
+      "distance": 1669.3366666667316,
+      "blockedAttempts": 7.666666666666667,
+      "peerBlocks": 0,
+      "turns": 49.666666666666664,
+      "stuck": 0,
+      "redundantObservationPercent": 0,
+      "neuralDecisions": 300,
+      "batchRequests": 300,
+      "meanBatchMs": 9.897522111110488,
+      "p95BatchMs": 13.605100000012802
+    },
+    {
+      "mode": "malecns",
+      "count": 4,
+      "coordinated": false,
+      "initialCoverage": 5.125148986889154,
+      "coverage": 53.43663090981327,
+      "coverageGain": 48.311481922924116,
+      "distance": 6370.910000000291,
+      "blockedAttempts": 34,
+      "peerBlocks": 0,
+      "turns": 367,
+      "stuck": 0,
+      "redundantObservationPercent": 47.917382756555476,
+      "neuralDecisions": 1200,
+      "batchRequests": 300,
+      "meanBatchMs": 26.90025500000048,
+      "p95BatchMs": 38.53083333334265
+    },
+    {
+      "mode": "malecns",
+      "count": 4,
+      "coordinated": true,
+      "initialCoverage": 5.125148986889154,
+      "coverage": 40.76281287246722,
+      "coverageGain": 35.63766388557807,
+      "distance": 1995.525000000013,
+      "blockedAttempts": 0,
+      "peerBlocks": 0,
+      "turns": 6587.666666666667,
+      "stuck": 10.333333333333334,
+      "redundantObservationPercent": 32.90264972240368,
+      "neuralDecisions": 1200,
+      "batchRequests": 300,
+      "meanBatchMs": 28.00675666666737,
+      "p95BatchMs": 38.34083333331606
+    },
+    {
+      "mode": "malecns",
+      "count": 8,
+      "coordinated": true,
+      "initialCoverage": 5.601907032181168,
+      "coverage": 47.67580452920143,
+      "coverageGain": 42.07389749702026,
+      "distance": 4500.720000000009,
+      "blockedAttempts": 196.33333333333334,
+      "peerBlocks": 0,
+      "turns": 8445,
+      "stuck": 7.333333333333333,
+      "redundantObservationPercent": 58.66420308124293,
+      "neuralDecisions": 2400,
+      "batchRequests": 300,
+      "meanBatchMs": 43.07906366666645,
+      "p95BatchMs": 69.53943333333397
+    }
+  ]
+}
