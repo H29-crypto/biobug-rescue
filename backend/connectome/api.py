@@ -16,6 +16,7 @@ from .pathway_analysis import PathwayAnalyzer
 from .graph import json_value
 from .loader import load_connectome
 from .metadata import DEFAULT_DATA_DIR
+from commander.api import create_router
 
 
 def create_app(data_dir: Path | None = None, *, loader=load_connectome) -> FastAPI:
@@ -47,6 +48,7 @@ def create_app(data_dir: Path | None = None, *, loader=load_connectome) -> FastA
     app.add_middleware(CORSMiddleware,
         allow_origins=[f'http://{host}:{port}' for host in ('localhost', '127.0.0.1') for port in (5173, 5174, 4173, 4174)],
         allow_methods=['GET', 'POST'], allow_headers=['Content-Type'])
+    app.include_router(create_router())
     pathway_lock = Lock()
 
     def loaded():

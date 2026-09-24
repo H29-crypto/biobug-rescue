@@ -1,0 +1,37 @@
+{
+  "runs": [
+    {
+      "mode": "rule-based",
+      "survivors": 2,
+      "hazards": 2,
+      "coverage": 76.16209773539929,
+      "completedAt": 25.74999999999982,
+      "offlineChecks": 2,
+      "unchangedFromMilestone5": true
+    },
+    {
+      "mode": "malecns",
+      "survivors": 2,
+      "hazards": 2,
+      "coverage": 56.4958283671037,
+      "completedAt": 37.499999999999154,
+      "offlineChecks": 2,
+      "unchangedFromMilestone5": true
+    }
+  ],
+  "snapshotSizes": [
+    461,
+    1230,
+    1848,
+    1848,
+    458,
+    1107,
+    2185,
+    2511
+  ],
+  "averageSnapshotBytes": 1456,
+  "liveOpenAIRequests": 0,
+  "meanAiLatencyMs": null,
+  "p95AiLatencyMs": null,
+  "note": "No paid requests. Full real MaleCNS backend used. Snapshot samples at 0/8/30/60 seconds for each mode."
+}

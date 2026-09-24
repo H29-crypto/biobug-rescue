@@ -1,0 +1,890 @@
+[
+  {
+    "missionTime": 0,
+    "controllerMode": "rule-based",
+    "completedAt": null,
+    "swarm": {
+      "deployed": 4,
+      "active": 4,
+      "coverage": 5.13
+    },
+    "survivors": [],
+    "hazards": [],
+    "agents": [
+      {
+        "id": "BioBug #1",
+        "status": "EXPLORING",
+        "sector": "D1",
+        "controller": null
+      },
+      {
+        "id": "BioBug #2",
+        "status": "EXPLORING",
+        "sector": "D1",
+        "controller": null
+      },
+      {
+        "id": "BioBug #3",
+        "status": "EXPLORING",
+        "sector": "D1",
+        "controller": null
+      },
+      {
+        "id": "BioBug #4",
+        "status": "EXPLORING",
+        "sector": "D1",
+        "controller": null
+      }
+    ],
+    "recentEvents": []
+  },
+  {
+    "missionTime": 8,
+    "controllerMode": "rule-based",
+    "completedAt": null,
+    "swarm": {
+      "deployed": 4,
+      "active": 4,
+      "coverage": 14.66
+    },
+    "survivors": [
+      {
+        "id": "S-01",
+        "status": "confirmed",
+        "sector": "C2",
+        "confidence": 0.78,
+        "estimatedLocation": {
+          "x": 207.5,
+          "y": 307.6
+        },
+        "detectedBy": "BioBug #3",
+        "confirmedBy": [
+          "BioBug #3"
+        ],
+        "observers": [
+          "BioBug #3"
+        ],
+        "firstDetected": 6.75,
+        "latestObservation": 8,
+        "observations": 6
+      }
+    ],
+    "hazards": [
+      {
+        "id": "H-02",
+        "type": "gas",
+        "status": "high gas",
+        "sector": "C1",
+        "confidence": 0.811,
+        "severity": 0.732,
+        "detectedBy": "BioBug #3"
+      }
+    ],
+    "agents": [
+      {
+        "id": "BioBug #1",
+        "status": "EXPLORING",
+        "sector": "D1",
+        "controller": null
+      },
+      {
+        "id": "BioBug #2",
+        "status": "EXPLORING",
+        "sector": "D1",
+        "controller": null
+      },
+      {
+        "id": "BioBug #3",
+        "status": "EXPLORING",
+        "sector": "C1",
+        "controller": null
+      },
+      {
+        "id": "BioBug #4",
+        "status": "EXPLORING",
+        "sector": "D1",
+        "controller": null
+      }
+    ],
+    "recentEvents": [
+      {
+        "timestamp": 4.75,
+        "bugId": "BioBug #3",
+        "targetId": "H-02",
+        "type": "GAS HAZARD DETECTED",
+        "sector": "C1"
+      },
+      {
+        "timestamp": 6.25,
+        "bugId": "BioBug #3",
+        "targetId": "H-02",
+        "type": "HIGH GAS CONCENTRATION",
+        "sector": "C1"
+      },
+      {
+        "timestamp": 6.75,
+        "bugId": "BioBug #3",
+        "targetId": "S-01",
+        "type": "POSSIBLE LIFE SIGNAL",
+        "sector": "C2"
+      },
+      {
+        "timestamp": 7.75,
+        "bugId": "BioBug #3",
+        "targetId": "S-01",
+        "type": "SURVIVOR LOCATED",
+        "sector": "C2"
+      }
+    ]
+  },
+  {
+    "missionTime": 30,
+    "controllerMode": "rule-based",
+    "completedAt": 25.75,
+    "swarm": {
+      "deployed": 4,
+      "active": 4,
+      "coverage": 49.82
+    },
+    "survivors": [
+      {
+        "id": "S-01",
+        "status": "confirmed",
+        "sector": "C2",
+        "confidence": 0.917,
+        "estimatedLocation": {
+          "x": 206.2,
+          "y": 305.5
+        },
+        "detectedBy": "BioBug #3",
+        "confirmedBy": [
+          "BioBug #3",
+          "BioBug #2"
+        ],
+        "observers": [
+          "BioBug #3",
+          "BioBug #2"
+        ],
+        "firstDetected": 6.75,
+        "latestObservation": 18.5,
+        "observations": 32
+      },
+      {
+        "id": "S-02",
+        "status": "confirmed",
+        "sector": "A2",
+        "confidence": 0.887,
+        "estimatedLocation": {
+          "x": 348.6,
+          "y": 120.7
+        },
+        "detectedBy": "BioBug #2",
+        "confirmedBy": [
+          "BioBug #2"
+        ],
+        "observers": [
+          "BioBug #2"
+        ],
+        "firstDetected": 23.5,
+        "latestObservation": 30,
+        "observations": 27
+      }
+    ],
+    "hazards": [
+      {
+        "id": "H-02",
+        "type": "gas",
+        "status": "high gas",
+        "sector": "C1",
+        "confidence": 0.868,
+        "severity": 0.741,
+        "detectedBy": "BioBug #3"
+      },
+      {
+        "id": "H-01",
+        "type": "gas",
+        "status": "high gas",
+        "sector": "D3",
+        "confidence": 0.863,
+        "severity": 0.91,
+        "detectedBy": "BioBug #1"
+      }
+    ],
+    "agents": [
+      {
+        "id": "BioBug #1",
+        "status": "EXPLORING",
+        "sector": "C4",
+        "controller": null
+      },
+      {
+        "id": "BioBug #2",
+        "status": "EXPLORING",
+        "sector": "A2",
+        "controller": null
+      },
+      {
+        "id": "BioBug #3",
+        "status": "EXPLORING",
+        "sector": "A1",
+        "controller": null
+      },
+      {
+        "id": "BioBug #4",
+        "status": "EXPLORING",
+        "sector": "B1",
+        "controller": null
+      }
+    ],
+    "recentEvents": [
+      {
+        "timestamp": 15,
+        "bugId": "BioBug #2",
+        "targetId": "H-02",
+        "type": "HIGH GAS CONCENTRATION",
+        "sector": "C1"
+      },
+      {
+        "timestamp": 17.25,
+        "bugId": "BioBug #2",
+        "targetId": "S-01",
+        "type": "INDEPENDENT SURVIVOR CONFIRMATION",
+        "sector": "C2"
+      },
+      {
+        "timestamp": 18.5,
+        "bugId": "BioBug #1",
+        "targetId": "H-01",
+        "type": "GAS HAZARD DETECTED",
+        "sector": "D3"
+      },
+      {
+        "timestamp": 20,
+        "bugId": "BioBug #1",
+        "targetId": "H-01",
+        "type": "HIGH GAS CONCENTRATION",
+        "sector": "D3"
+      },
+      {
+        "timestamp": 23.5,
+        "bugId": "BioBug #2",
+        "targetId": "S-02",
+        "type": "POSSIBLE LIFE SIGNAL",
+        "sector": "A2"
+      },
+      {
+        "timestamp": 25.75,
+        "bugId": "BioBug #2",
+        "targetId": "S-02",
+        "type": "SURVIVOR LOCATED",
+        "sector": "A2"
+      }
+    ]
+  },
+  {
+    "missionTime": 60,
+    "controllerMode": "rule-based",
+    "completedAt": 25.75,
+    "swarm": {
+      "deployed": 4,
+      "active": 4,
+      "coverage": 76.16
+    },
+    "survivors": [
+      {
+        "id": "S-01",
+        "status": "confirmed",
+        "sector": "C2",
+        "confidence": 0.917,
+        "estimatedLocation": {
+          "x": 206.2,
+          "y": 305.5
+        },
+        "detectedBy": "BioBug #3",
+        "confirmedBy": [
+          "BioBug #3",
+          "BioBug #2"
+        ],
+        "observers": [
+          "BioBug #3",
+          "BioBug #2"
+        ],
+        "firstDetected": 6.75,
+        "latestObservation": 18.5,
+        "observations": 32
+      },
+      {
+        "id": "S-02",
+        "status": "confirmed",
+        "sector": "A2",
+        "confidence": 0.887,
+        "estimatedLocation": {
+          "x": 349.5,
+          "y": 120.1
+        },
+        "detectedBy": "BioBug #2",
+        "confirmedBy": [
+          "BioBug #2"
+        ],
+        "observers": [
+          "BioBug #2"
+        ],
+        "firstDetected": 23.5,
+        "latestObservation": 31,
+        "observations": 31
+      }
+    ],
+    "hazards": [
+      {
+        "id": "H-02",
+        "type": "gas",
+        "status": "high gas",
+        "sector": "C1",
+        "confidence": 0.868,
+        "severity": 0.741,
+        "detectedBy": "BioBug #3"
+      },
+      {
+        "id": "H-01",
+        "type": "gas",
+        "status": "high gas",
+        "sector": "D3",
+        "confidence": 0.863,
+        "severity": 0.91,
+        "detectedBy": "BioBug #1"
+      }
+    ],
+    "agents": [
+      {
+        "id": "BioBug #1",
+        "status": "EXPLORING",
+        "sector": "A3",
+        "controller": null
+      },
+      {
+        "id": "BioBug #2",
+        "status": "EXPLORING",
+        "sector": "B3",
+        "controller": null
+      },
+      {
+        "id": "BioBug #3",
+        "status": "EXPLORING",
+        "sector": "C3",
+        "controller": null
+      },
+      {
+        "id": "BioBug #4",
+        "status": "EXPLORING",
+        "sector": "B1",
+        "controller": null
+      }
+    ],
+    "recentEvents": [
+      {
+        "timestamp": 15,
+        "bugId": "BioBug #2",
+        "targetId": "H-02",
+        "type": "HIGH GAS CONCENTRATION",
+        "sector": "C1"
+      },
+      {
+        "timestamp": 17.25,
+        "bugId": "BioBug #2",
+        "targetId": "S-01",
+        "type": "INDEPENDENT SURVIVOR CONFIRMATION",
+        "sector": "C2"
+      },
+      {
+        "timestamp": 18.5,
+        "bugId": "BioBug #1",
+        "targetId": "H-01",
+        "type": "GAS HAZARD DETECTED",
+        "sector": "D3"
+      },
+      {
+        "timestamp": 20,
+        "bugId": "BioBug #1",
+        "targetId": "H-01",
+        "type": "HIGH GAS CONCENTRATION",
+        "sector": "D3"
+      },
+      {
+        "timestamp": 23.5,
+        "bugId": "BioBug #2",
+        "targetId": "S-02",
+        "type": "POSSIBLE LIFE SIGNAL",
+        "sector": "A2"
+      },
+      {
+        "timestamp": 25.75,
+        "bugId": "BioBug #2",
+        "targetId": "S-02",
+        "type": "SURVIVOR LOCATED",
+        "sector": "A2"
+      }
+    ]
+  },
+  {
+    "missionTime": 0,
+    "controllerMode": "malecns",
+    "completedAt": null,
+    "swarm": {
+      "deployed": 4,
+      "active": 4,
+      "coverage": 5.13
+    },
+    "survivors": [],
+    "hazards": [],
+    "agents": [
+      {
+        "id": "BioBug #1",
+        "status": "EXPLORING",
+        "sector": "D1",
+        "controller": null
+      },
+      {
+        "id": "BioBug #2",
+        "status": "EXPLORING",
+        "sector": "D1",
+        "controller": null
+      },
+      {
+        "id": "BioBug #3",
+        "status": "EXPLORING",
+        "sector": "D1",
+        "controller": null
+      },
+      {
+        "id": "BioBug #4",
+        "status": "EXPLORING",
+        "sector": "D1",
+        "controller": null
+      }
+    ],
+    "recentEvents": []
+  },
+  {
+    "missionTime": 8,
+    "controllerMode": "malecns",
+    "completedAt": null,
+    "swarm": {
+      "deployed": 4,
+      "active": 4,
+      "coverage": 10.13
+    },
+    "survivors": [],
+    "hazards": [],
+    "agents": [
+      {
+        "id": "BioBug #1",
+        "status": "EXPLORING",
+        "sector": "D1",
+        "controller": {
+          "status": "ready",
+          "stimulus": {
+            "left": 0.04113486399381632,
+            "front": 0,
+            "right": 0
+          },
+          "dna02L": 0.009250814201382988,
+          "dna02R": 0.003391244162048946,
+          "decoderDecision": "TURN_LEFT"
+        }
+      },
+      {
+        "id": "BioBug #2",
+        "status": "EXPLORING",
+        "sector": "D1",
+        "controller": {
+          "status": "ready",
+          "stimulus": {
+            "left": 0.12283112018236003,
+            "front": 0,
+            "right": 0
+          },
+          "dna02L": 0.02762347460600748,
+          "dna02R": 0.010126454272438575,
+          "decoderDecision": "FORWARD"
+        }
+      },
+      {
+        "id": "BioBug #3",
+        "status": "EXPLORING",
+        "sector": "D1",
+        "controller": {
+          "status": "ready",
+          "stimulus": {
+            "left": 0,
+            "front": 0,
+            "right": 0.4468616553024155
+          },
+          "dna02L": 0.028692042354831426,
+          "dna02R": 0.09077809061210419,
+          "decoderDecision": "TURN_LEFT"
+        }
+      },
+      {
+        "id": "BioBug #4",
+        "status": "EXPLORING",
+        "sector": "D2",
+        "controller": {
+          "status": "ready",
+          "stimulus": {
+            "left": 0,
+            "front": 0,
+            "right": 0.4012375718811496
+          },
+          "dna02L": 0.02576261639404403,
+          "dna02R": 0.08150974742408333,
+          "decoderDecision": "TURN_LEFT"
+        }
+      }
+    ],
+    "recentEvents": []
+  },
+  {
+    "missionTime": 30,
+    "controllerMode": "malecns",
+    "completedAt": null,
+    "swarm": {
+      "deployed": 4,
+      "active": 4,
+      "coverage": 28.13
+    },
+    "survivors": [
+      {
+        "id": "S-01",
+        "status": "confirmed",
+        "sector": "C2",
+        "confidence": 0.896,
+        "estimatedLocation": {
+          "x": 206.4,
+          "y": 305.1
+        },
+        "detectedBy": "BioBug #2",
+        "confirmedBy": [
+          "BioBug #2"
+        ],
+        "observers": [
+          "BioBug #2"
+        ],
+        "firstDetected": 18.5,
+        "latestObservation": 25.75,
+        "observations": 30
+      }
+    ],
+    "hazards": [
+      {
+        "id": "H-02",
+        "type": "gas",
+        "status": "high gas",
+        "sector": "C1",
+        "confidence": 0.875,
+        "severity": 0.936,
+        "detectedBy": "BioBug #2"
+      },
+      {
+        "id": "H-01",
+        "type": "gas",
+        "status": "high gas",
+        "sector": "D3",
+        "confidence": 0.882,
+        "severity": 0.958,
+        "detectedBy": "BioBug #4"
+      }
+    ],
+    "agents": [
+      {
+        "id": "BioBug #1",
+        "status": "EXPLORING",
+        "sector": "D1",
+        "controller": {
+          "status": "ready",
+          "stimulus": {
+            "left": 0.053758550712000336,
+            "front": 0.11369261680341318,
+            "right": 0
+          },
+          "dna02L": 0.028523893654395636,
+          "dna02R": 0.020666587372175076,
+          "decoderDecision": "FORWARD"
+        }
+      },
+      {
+        "id": "BioBug #2",
+        "status": "EXPLORING",
+        "sector": "B2",
+        "controller": {
+          "status": "ready",
+          "stimulus": {
+            "left": 0,
+            "front": 0,
+            "right": 0
+          },
+          "dna02L": 0,
+          "dna02R": 0,
+          "decoderDecision": "TURN_LEFT"
+        }
+      },
+      {
+        "id": "BioBug #3",
+        "status": "EXPLORING",
+        "sector": "D2",
+        "controller": {
+          "status": "ready",
+          "stimulus": {
+            "left": 0,
+            "front": 0.5033016359933962,
+            "right": 0
+          },
+          "dna02L": 0.07275168676388666,
+          "dna02R": 0.0718684386213408,
+          "decoderDecision": "TURN_LEFT"
+        }
+      },
+      {
+        "id": "BioBug #4",
+        "status": "EXPLORING",
+        "sector": "D3",
+        "controller": {
+          "status": "ready",
+          "stimulus": {
+            "left": 0,
+            "front": 0.18214398887906907,
+            "right": 0.7044997667582202
+          },
+          "dna02L": 0.07156315014301232,
+          "dna02R": 0.16912526689977309,
+          "decoderDecision": "TURN_LEFT"
+        }
+      }
+    ],
+    "recentEvents": [
+      {
+        "timestamp": 11.75,
+        "bugId": "BioBug #2",
+        "targetId": "H-02",
+        "type": "GAS HAZARD DETECTED",
+        "sector": "C1"
+      },
+      {
+        "timestamp": 14,
+        "bugId": "BioBug #2",
+        "targetId": "H-02",
+        "type": "HIGH GAS CONCENTRATION",
+        "sector": "C1"
+      },
+      {
+        "timestamp": 18.5,
+        "bugId": "BioBug #2",
+        "targetId": "S-01",
+        "type": "POSSIBLE LIFE SIGNAL",
+        "sector": "C2"
+      },
+      {
+        "timestamp": 19.5,
+        "bugId": "BioBug #2",
+        "targetId": "S-01",
+        "type": "SURVIVOR LOCATED",
+        "sector": "C2"
+      },
+      {
+        "timestamp": 21,
+        "bugId": "BioBug #4",
+        "targetId": "H-01",
+        "type": "GAS HAZARD DETECTED",
+        "sector": "D3"
+      },
+      {
+        "timestamp": 24.25,
+        "bugId": "BioBug #4",
+        "targetId": "H-01",
+        "type": "HIGH GAS CONCENTRATION",
+        "sector": "D3"
+      }
+    ]
+  },
+  {
+    "missionTime": 60,
+    "controllerMode": "malecns",
+    "completedAt": 37.5,
+    "swarm": {
+      "deployed": 4,
+      "active": 4,
+      "coverage": 56.5
+    },
+    "survivors": [
+      {
+        "id": "S-01",
+        "status": "confirmed",
+        "sector": "C2",
+        "confidence": 0.896,
+        "estimatedLocation": {
+          "x": 206.4,
+          "y": 305.1
+        },
+        "detectedBy": "BioBug #2",
+        "confirmedBy": [
+          "BioBug #2"
+        ],
+        "observers": [
+          "BioBug #2"
+        ],
+        "firstDetected": 18.5,
+        "latestObservation": 25.75,
+        "observations": 30
+      },
+      {
+        "id": "S-02",
+        "status": "confirmed",
+        "sector": "A2",
+        "confidence": 0.858,
+        "estimatedLocation": {
+          "x": 350.3,
+          "y": 120.4
+        },
+        "detectedBy": "BioBug #2",
+        "confirmedBy": [
+          "BioBug #2"
+        ],
+        "observers": [
+          "BioBug #2"
+        ],
+        "firstDetected": 35,
+        "latestObservation": 41.75,
+        "observations": 28
+      }
+    ],
+    "hazards": [
+      {
+        "id": "H-02",
+        "type": "gas",
+        "status": "high gas",
+        "sector": "C1",
+        "confidence": 0.875,
+        "severity": 0.936,
+        "detectedBy": "BioBug #2"
+      },
+      {
+        "id": "H-01",
+        "type": "gas",
+        "status": "high gas",
+        "sector": "D3",
+        "confidence": 0.882,
+        "severity": 0.958,
+        "detectedBy": "BioBug #4"
+      }
+    ],
+    "agents": [
+      {
+        "id": "BioBug #1",
+        "status": "EXPLORING",
+        "sector": "D2",
+        "controller": {
+          "status": "ready",
+          "stimulus": {
+            "left": 0,
+            "front": 0.09502826313455275,
+            "right": 0.014322515898812923
+          },
+          "dna02L": 0.014655847283986147,
+          "dna02R": 0.016479022598678915,
+          "decoderDecision": "FORWARD"
+        }
+      },
+      {
+        "id": "BioBug #2",
+        "status": "EXPLORING",
+        "sector": "B3",
+        "controller": {
+          "status": "ready",
+          "stimulus": {
+            "left": 0.009447797866220464,
+            "front": 0,
+            "right": 0
+          },
+          "dna02L": 0.002124714030554877,
+          "dna02R": 0.0007788962025705273,
+          "decoderDecision": "TURN_RIGHT"
+        }
+      },
+      {
+        "id": "BioBug #3",
+        "status": "EXPLORING",
+        "sector": "C3",
+        "controller": {
+          "status": "ready",
+          "stimulus": {
+            "left": 0.00006529965660514279,
+            "front": 0.5024575708899336,
+            "right": 0
+          },
+          "dna02L": 0.07264436333150825,
+          "dna02R": 0.07175329465460012,
+          "decoderDecision": "TURN_RIGHT"
+        }
+      },
+      {
+        "id": "BioBug #4",
+        "status": "EXPLORING",
+        "sector": "B4",
+        "controller": {
+          "status": "ready",
+          "stimulus": {
+            "left": 0.0343946499406757,
+            "front": 0,
+            "right": 0.45366325295069293
+          },
+          "dna02L": 0.03686376690488157,
+          "dna02R": 0.0949953737729252,
+          "decoderDecision": "TURN_LEFT"
+        }
+      }
+    ],
+    "recentEvents": [
+      {
+        "timestamp": 18.5,
+        "bugId": "BioBug #2",
+        "targetId": "S-01",
+        "type": "POSSIBLE LIFE SIGNAL",
+        "sector": "C2"
+      },
+      {
+        "timestamp": 19.5,
+        "bugId": "BioBug #2",
+        "targetId": "S-01",
+        "type": "SURVIVOR LOCATED",
+        "sector": "C2"
+      },
+      {
+        "timestamp": 21,
+        "bugId": "BioBug #4",
+        "targetId": "H-01",
+        "type": "GAS HAZARD DETECTED",
+        "sector": "D3"
+      },
+      {
+        "timestamp": 24.25,
+        "bugId": "BioBug #4",
+        "targetId": "H-01",
+        "type": "HIGH GAS CONCENTRATION",
+        "sector": "D3"
+      },
+      {
+        "timestamp": 35,
+        "bugId": "BioBug #2",
+        "targetId": "S-02",
+        "type": "POSSIBLE LIFE SIGNAL",
+        "sector": "A2"
+      },
+      {
+        "timestamp": 37.5,
+        "bugId": "BioBug #2",
+        "targetId": "S-02",
+        "type": "SURVIVOR LOCATED",
+        "sector": "A2"
+      }
+    ]
+  }
+]

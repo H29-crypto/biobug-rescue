@@ -1,3 +1,4 @@
+import { buildMissionSnapshot } from '../simulation/commanderSnapshot';
 import { useEffect, useRef, useState } from 'react';
 import type { ControllerMode } from '../simulation/engine';
 import { advanceSwarm, createSwarm, runSwarm, swarmSnapshot, switchSwarm } from '../simulation/swarm';
@@ -7,6 +8,7 @@ export function useSimulation() {
   const ref=useRef<SwarmSimulation|null>(null);
   if(!ref.current) ref.current=createSwarm();
   const [view,setView]=useState(()=>swarmSnapshot(ref.current!));
+  const missionRevision=useRef(0);
   const loop=useRef<SwarmNeuralLoop|null>(null);
   const refresh=()=>setView(swarmSnapshot(ref.current!));
   useEffect(()=>{
@@ -22,10 +24,10 @@ export function useSimulation() {
     return()=>{cancelAnimationFrame(frame);controller.dispose();};
   },[]);
   const redeploy=(count=ref.current!.agents.length,coordinated=ref.current!.coordinated)=>{
-    loop.current?.cancel();const mode=ref.current!.agents[0].simulation.mode;
+    missionRevision.current++;loop.current?.cancel();const mode=ref.current!.agents[0].simulation.mode;
     ref.current=createSwarm(count,ref.current!.seed,coordinated);switchSwarm(ref.current,mode);refresh();
   };
-  return {...view,
+  return {...view,missionRevision:missionRevision.current,commanderSnapshot:()=>buildMissionSnapshot(ref.current!),
     toggle:()=>{loop.current?.cancel();runSwarm(ref.current!,!ref.current!.running);refresh();},
     reset:()=>redeploy(),
     deploy:(count:number)=>redeploy(count),

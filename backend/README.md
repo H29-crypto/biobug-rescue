@@ -64,3 +64,7 @@ Use `--no-access-log` with uvicorn during the many-request comparison to keep co
 ## Milestone 4: bounded swarm batches
 
 `POST /connectome/control-batch` accepts `{ "agents": [{ "id": "BioBug #1", "stimulus": { "left": 0.5, "front": 0, "right": 0 } }] }`. Supply 1–8 unique nonempty IDs (up to 64 characters). Response `results` contains each ID and its independent compact `response`. One cached graph/weight matrix serves all agents; every evaluation starts from zero. No shared neural state, new biological mapping or swarm planner is implemented in Python. The frontend handles engineering coordination and stops the entire swarm on a failed batch. Existing single-agent and lab endpoints remain available. Run `npm run compare:swarms -- 60` from the project root with this backend running.
+
+## Advisory Commander
+
+`GET /commander/status` and `POST /commander/brief` are isolated in `commander/`. The latter accepts `{snapshot, question}` and returns a grounded brief or an explicit offline status. Set backend-only `OPENAI_API_KEY`; optional `OPENAI_MODEL` defaults to `gpt-4.1-mini`. No key is required for local simulation, MaleCNS control or automated tests. See [AI Rescue Commander](../docs/AI_RESCUE_COMMANDER.md) for secure PowerShell setup, schemas and measurement limitations.

@@ -1,0 +1,11 @@
+.commander-panel {border-color:#3f6878; min-width:0;}
+.commander-panel p,.commander-panel li {font-size:13px;line-height:1.65;overflow-wrap:anywhere;}
+.commander-panel h3 {font-size:13px;margin-top:18px;}
+.commander-auto {display:block;font-size:12px;line-height:1.6;margin-top:14px;}
+.commander-auto input {margin-right:8px;}
+.commander-questions {display:flex;flex-wrap:wrap;gap:6px;margin:15px 0;}
+.commander-questions button {font-size:11px;}
+.commander-panel textarea {box-sizing:border-box;width:100%;min-height:76px;background:#0c1c23;color:#deeee8;border:1px solid #42575e;border-radius:6px;padding:10px;resize:vertical;margin:8px 0;}
+.commander-panel form label {font-size:12px;}
+.system-summary {border-left:2px solid #647d87;padding:10px 12px;background:#14272b;margin-top:16px;font-size:11px;}
+.commander-panel details {margin-top:16px;font-size:12px;}

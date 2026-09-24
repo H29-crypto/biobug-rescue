@@ -1,6 +1,6 @@
 # BioBug Rescue
 
-Current build: **Milestone 5 rescue mission**. Four BioBugs detect life and gas signals, confirm survivors, and share estimated discoveries. Start with seed 2026 and Rule-Based navigation. See [the current rescue guide](docs/RESCUE_MISSION.md); the initial milestone sections below are historical.
+Current build: **Milestone 6 advisory Commander integration** (live OpenAI verification requires a backend API key). Four BioBugs detect life and gas signals, confirm survivors, and share estimated discoveries. Start with seed 2026 and Rule-Based navigation. See [the current rescue guide](docs/RESCUE_MISSION.md); the initial milestone sections below are historical.
 
 A browser-based, bio-inspired search-and-rescue simulation. This is a hackathon demonstration, not an accurate insect brain model or a real rescue system.
 
@@ -134,10 +134,16 @@ MaleCNS uses one bounded `/connectome/control-batch` request per decision bounda
 
 Run `npm run compare:swarms -- 60` with the backend loaded for reproducible independent/coordinated comparisons. See `docs/SWARM_EXPLORATION.md` and `docs/SWARM_COMPARISON.json` for architecture, measurements, validation and limitations.
 
-Current roadmap: **1 environment → 2 autonomous BioBug → 3A–3D MaleCNS investigation and control → 4 swarm exploration → 5 survivor/hazard detection → 6 AI Rescue Commander → 7 demo/presentation polish**. Milestone 5 is implemented; Milestones 6–7 remain future work. Earlier sections retain historical scope.
+Current roadmap: **1 environment → 2 autonomous BioBug → 3A–3D MaleCNS investigation and control → 4 swarm exploration → 5 survivor/hazard detection → 6 AI Rescue Commander → 7 demo/presentation polish**. Milestone 5 is implemented; Milestone 6 integration is implemented with live OpenAI verification pending configuration; Milestone 7 remains future work. Earlier sections retain historical scope.
 
 ## Milestone 5 — rescue mission
 
 Default four-agent seed 2026 now uses physical life/gas sensing, sustained confirmation, estimated shared markers, sector events, exposure telemetry and a rescue dashboard. Full-terrain inspection never reveals hidden targets. Both navigation modes remain available; MaleCNS is unchanged.
 
 See [rescue model, demo and validation](docs/RESCUE_MISSION.md) and [measured rescue experiments](docs/RESCUE_EXPERIMENT.json). Run `npm run compare:rescue -- 60` with the backend available. This is simulated engineering sensing, not demonstrated hardware. AI Rescue Commander remains a future milestone.
+
+## Milestone 6 — advisory AI Rescue Commander
+
+The Commander panel offers manual briefs, optional debounced event updates, quick questions, an eight-entry history and a deterministic offline summary. It receives a compact allowlisted snapshot and cannot control agents. The backend uses the official OpenAI SDK/Responses API with strict structured fact selection and grounded rendering. Default model: `gpt-4.1-mini`, overridden through backend `OPENAI_MODEL`. Set `OPENAI_API_KEY` only in the backend environment.
+
+See [Commander architecture, setup, validation and limitations](docs/AI_RESCUE_COMMANDER.md). Integration tests are mocked; live OpenAI verification and latency measurements require a configured key. Existing rescue/navigation behavior is preserved. No Fal.ai or presentation redesign is included.
