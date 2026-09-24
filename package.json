@@ -7,9 +7,10 @@
     "dev": "vite --host 127.0.0.1 --configLoader runner",
     "build": "tsc -b && vite build --configLoader runner",
     "preview": "vite preview --host 127.0.0.1 --configLoader runner",
-    "test": "node tests/simulation.cjs && node tests/controllers.cjs && node tests/swarm.cjs",
+    "test": "node tests/simulation.cjs && node tests/controllers.cjs && node tests/swarm.cjs && node tests/rescue.cjs",
     "compare:controllers": "node scripts/compare_controllers.cjs",
-    "compare:swarms": "node scripts/compare_swarms.cjs"
+    "compare:swarms": "node scripts/compare_swarms.cjs",
+    "compare:rescue": "node scripts/compare_rescue.cjs"
   },
   "dependencies": {
     "react": "^19.1.0",

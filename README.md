@@ -1,5 +1,7 @@
 # BioBug Rescue
 
+Current build: **Milestone 5 rescue mission**. Four BioBugs detect life and gas signals, confirm survivors, and share estimated discoveries. Start with seed 2026 and Rule-Based navigation. See [the current rescue guide](docs/RESCUE_MISSION.md); the initial milestone sections below are historical.
+
 A browser-based, bio-inspired search-and-rescue simulation. This is a hackathon demonstration, not an accurate insect brain model or a real rescue system.
 
 ## Run locally
@@ -132,4 +134,10 @@ MaleCNS uses one bounded `/connectome/control-batch` request per decision bounda
 
 Run `npm run compare:swarms -- 60` with the backend loaded for reproducible independent/coordinated comparisons. See `docs/SWARM_EXPLORATION.md` and `docs/SWARM_COMPARISON.json` for architecture, measurements, validation and limitations.
 
-Current roadmap: **1 environment → 2 autonomous BioBug → 3A–3D MaleCNS investigation and control → 4 swarm exploration → 5 survivor/hazard detection → 6 AI Rescue Commander → 7 demo/presentation polish**. Milestones 5–7 are not implemented yet. Earlier sections retain historical scope.
+Current roadmap: **1 environment → 2 autonomous BioBug → 3A–3D MaleCNS investigation and control → 4 swarm exploration → 5 survivor/hazard detection → 6 AI Rescue Commander → 7 demo/presentation polish**. Milestone 5 is implemented; Milestones 6–7 remain future work. Earlier sections retain historical scope.
+
+## Milestone 5 — rescue mission
+
+Default four-agent seed 2026 now uses physical life/gas sensing, sustained confirmation, estimated shared markers, sector events, exposure telemetry and a rescue dashboard. Full-terrain inspection never reveals hidden targets. Both navigation modes remain available; MaleCNS is unchanged.
+
+See [rescue model, demo and validation](docs/RESCUE_MISSION.md) and [measured rescue experiments](docs/RESCUE_EXPERIMENT.json). Run `npm run compare:rescue -- 60` with the backend available. This is simulated engineering sensing, not demonstrated hardware. AI Rescue Commander remains a future milestone.

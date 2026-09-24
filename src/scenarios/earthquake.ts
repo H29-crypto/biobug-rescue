@@ -21,8 +21,8 @@ export function createEarthquakeEnvironment(): Environment {
       debris('d7', 615, 398, 51, 40), debris('d8', 155, 371, 42, 36),
     ],
     exploration: { columns, rows, cellSize, explored: Array<boolean>(columns * rows).fill(false) },
-    survivors: [{ id: 'S-01', position: { x: 207, y: 305 }, status: 'undetected' }],
-    hazards: [{ id: 'H-01', position: { x: 440, y: 462 }, radius: 33, kind: 'gas', severity: 0.7, discovered: false }],
+    survivors: [{ id: 'S-01', position: { x: 207, y: 305 }, status: 'undetected' }, { id: 'S-02', position: { x: 350, y: 120 }, status: 'undetected' }],
+    hazards: [{ id: 'H-01', position: { x: 440, y: 462 }, radius: 33, kind: 'gas', severity: 0.7, discovered: false }, { id: 'H-02', position: { x: 110, y: 300 }, radius: 35, kind: 'gas', severity: 0.8, discovered: false }],
   };
 }
 

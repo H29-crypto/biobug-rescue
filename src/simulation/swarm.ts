@@ -1,3 +1,5 @@
+import { createRescueMission, sampleRescue, rescueView } from './rescue';
+import type { RescueMission } from './rescue';
 import type { BioBug, Vec2 } from '../domain/types';
 import { advance, createSimulation, FIXED_STEP, neuralDue, setRunning, snapshot, switchController } from './engine';
 import type { Simulation, ControllerMode } from './engine';
@@ -9,7 +11,7 @@ import type { Assignment } from './frontiers';
 import type { MotorCommand } from './controller';
 export interface SwarmAgent { simulation: Simulation; assignment: Assignment|null; coordination: string; novelCells: number; peerBlocks: number; separationTurn: number; separationRemaining: number }
 export interface SwarmSimulation {
-  agents: SwarmAgent[]; selected: number; running: boolean; elapsed: number; accumulator: number;
+  rescue: RescueMission; agents: SwarmAgent[]; selected: number; running: boolean; elapsed: number; accumulator: number;
   coordinated: boolean; nextPlan: number; planRound: number; ticks: number; seed: number;
   batchRequests: number; batchFailures: number; batchLatencies: number[];
 }
@@ -38,7 +40,7 @@ export function createSwarm(count=4, seed=2026, coordinated=true): SwarmSimulati
     }
     agents.push({simulation:sim,assignment:null,coordination:'Awaiting shared-map plan',novelCells:0,peerBlocks:0,separationTurn:0,separationRemaining:0});
   }
-  return {agents,selected:0,running:false,elapsed:0,accumulator:0,coordinated,nextPlan:0,planRound:0,ticks:0,seed,
+  return {rescue:createRescueMission(env),agents,selected:0,running:false,elapsed:0,accumulator:0,coordinated,nextPlan:0,planRound:0,ticks:0,seed,
     batchRequests:0,batchFailures:0,batchLatencies:[]};
 }
 export function runSwarm(s: SwarmSimulation,running:boolean) {
@@ -105,12 +107,12 @@ export function advanceSwarm(s:SwarmSimulation,delta:number) {
       }});
       a.novelCells+=env.exploration.explored.filter(Boolean).length-before;
     }
-    s.elapsed+=FIXED_STEP;s.ticks++;s.accumulator=Math.max(0,s.accumulator-FIXED_STEP);
+    s.elapsed+=FIXED_STEP;sampleRescue(s.rescue,env,s.agents.map(a=>a.simulation.bug),s.elapsed);s.ticks++;s.accumulator=Math.max(0,s.accumulator-FIXED_STEP);
   }
 }
 export function swarmSnapshot(s:SwarmSimulation) {
   const selected=snapshot(s.agents[s.selected].simulation), ordered=[...s.batchLatencies].sort((a,b)=>a-b);
-  return {...selected,running:s.running,elapsed:s.elapsed,selected:s.selected,coordinated:s.coordinated,
+  return {...selected,environment:{...selected.environment,survivors:[],hazards:[]},rescue:rescueView(s.rescue,selected.bug.id),running:s.running,elapsed:s.elapsed,selected:s.selected,coordinated:s.coordinated,
     agents:s.agents.map((a,i)=>({bug:{...a.simulation.bug,position:{...a.simulation.bug.position}},color:AGENT_COLORS[i],
       target:a.assignment?.target??null,path:a.assignment?.path.map(p=>({...p}))??[],coordination:a.coordination,
       novelCells:a.novelCells,peerBlocks:a.peerBlocks,distance:a.simulation.metrics['rule-based'].distance+a.simulation.metrics.malecns.distance,

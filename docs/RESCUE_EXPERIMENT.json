@@ -1,0 +1,566 @@
+{
+  "recordedAt": "2026-09-24T22:47:15.905Z",
+  "note": "One deliberately designed fixed map, demo seed 2026, 60 Hz physics; each configuration repeated exactly excluding wall time. Real backend used for MaleCNS. Simulation units, not physical hardware validation.",
+  "repeatedExactly": true,
+  "runs": [
+    {
+      "mode": "rule-based",
+      "count": 1,
+      "seed": 2026,
+      "duration": 60,
+      "firstLifeSignal": 5.249999999999987,
+      "firstConfirmedSurvivor": 6.249999999999983,
+      "firstHazard": 4.24999999999999,
+      "completedAt": null,
+      "survivorsConfirmed": 1,
+      "hazardsDetected": 1,
+      "coverage": 24.076281287246722,
+      "distance": 1649.2000000000658,
+      "contributors": [
+        "BioBug #1"
+      ],
+      "events": [
+        {
+          "timestamp": 4.24999999999999,
+          "bugId": "BioBug #1",
+          "targetId": "H-02",
+          "type": "GAS HAZARD DETECTED",
+          "estimatedPosition": {
+            "x": 106.4223046082431,
+            "y": 299.3991020801941
+          },
+          "sector": "C1",
+          "signal": 0.2137856753672387,
+          "confidence": 0.38288570261017163,
+          "status": "gas warning"
+        },
+        {
+          "timestamp": 5.249999999999987,
+          "bugId": "BioBug #1",
+          "targetId": "S-01",
+          "type": "POSSIBLE LIFE SIGNAL",
+          "estimatedPosition": {
+            "x": 202.65783509596375,
+            "y": 295.5712027232886
+          },
+          "sector": "C2",
+          "signal": 0.2141995710561302,
+          "confidence": 0.38300987131683906,
+          "status": "possible"
+        },
+        {
+          "timestamp": 6.249999999999983,
+          "bugId": "BioBug #1",
+          "targetId": "S-01",
+          "type": "SURVIVOR LOCATED",
+          "estimatedPosition": {
+            "x": 207.00410511470014,
+            "y": 300.76739191560193
+          },
+          "sector": "C2",
+          "signal": 0.693771841167588,
+          "confidence": 0.6773400923276982,
+          "status": "confirmed"
+        },
+        {
+          "timestamp": 51.24999999999837,
+          "bugId": "BioBug #1",
+          "targetId": "H-02",
+          "type": "HIGH GAS CONCENTRATION",
+          "estimatedPosition": {
+            "x": 110.90933699069606,
+            "y": 302.01779098774045
+          },
+          "sector": "C1",
+          "signal": 0.6692854664614267,
+          "confidence": 0.7876427892997506,
+          "status": "high gas"
+        }
+      ],
+      "localization": [
+        {
+          "id": "H-02",
+          "estimate": {
+            "x": 109.19172437214223,
+            "y": 301.69571072630123
+          },
+          "error": 1.878495237652177
+        },
+        {
+          "id": "S-01",
+          "estimate": {
+            "x": 206.74744266316696,
+            "y": 302.7572532824262
+          },
+          "error": 2.256922251114635
+        }
+      ],
+      "batchRequests": 0,
+      "batchFailures": 0,
+      "wallSeconds": 1.054026
+    },
+    {
+      "mode": "rule-based",
+      "count": 4,
+      "seed": 2026,
+      "duration": 60,
+      "firstLifeSignal": 6.749999999999981,
+      "firstConfirmedSurvivor": 7.749999999999978,
+      "firstHazard": 4.7499999999999885,
+      "completedAt": 25.74999999999982,
+      "survivorsConfirmed": 2,
+      "hazardsDetected": 2,
+      "coverage": 76.16209773539929,
+      "distance": 5241.600000000144,
+      "contributors": [
+        "BioBug #3",
+        "BioBug #2",
+        "BioBug #1"
+      ],
+      "events": [
+        {
+          "timestamp": 4.7499999999999885,
+          "bugId": "BioBug #3",
+          "targetId": "H-02",
+          "type": "GAS HAZARD DETECTED",
+          "estimatedPosition": {
+            "x": 122.1540265925645,
+            "y": 299.4711347830313
+          },
+          "sector": "C1",
+          "signal": 0.2823872447957192,
+          "confidence": 0.4034661734387157,
+          "status": "gas warning"
+        },
+        {
+          "timestamp": 6.249999999999983,
+          "bugId": "BioBug #3",
+          "targetId": "H-02",
+          "type": "HIGH GAS CONCENTRATION",
+          "estimatedPosition": {
+            "x": 109.58157624078515,
+            "y": 301.25157720106364
+          },
+          "sector": "C1",
+          "signal": 0.7318565490900248,
+          "confidence": 0.7642226663418625,
+          "status": "high gas"
+        },
+        {
+          "timestamp": 6.749999999999981,
+          "bugId": "BioBug #3",
+          "targetId": "S-01",
+          "type": "POSSIBLE LIFE SIGNAL",
+          "estimatedPosition": {
+            "x": 206.2982907981742,
+            "y": 315.9369799790251
+          },
+          "sector": "C2",
+          "signal": 0.3009750117303239,
+          "confidence": 0.4090425035190972,
+          "status": "possible"
+        },
+        {
+          "timestamp": 7.749999999999978,
+          "bugId": "BioBug #3",
+          "targetId": "S-01",
+          "type": "SURVIVOR LOCATED",
+          "estimatedPosition": {
+            "x": 207.66941567401915,
+            "y": 308.12509553306506
+          },
+          "sector": "C2",
+          "signal": 0.7835347462107659,
+          "confidence": 0.7135409901528366,
+          "status": "confirmed"
+        },
+        {
+          "timestamp": 15.000000000000325,
+          "bugId": "BioBug #2",
+          "targetId": "H-02",
+          "type": "HIGH GAS CONCENTRATION",
+          "estimatedPosition": {
+            "x": 109.29859570026848,
+            "y": 300.62421888403964
+          },
+          "sector": "C1",
+          "signal": 0.7413394470648829,
+          "confidence": 0.8650569577022346,
+          "status": "high gas"
+        },
+        {
+          "timestamp": 17.250000000000302,
+          "bugId": "BioBug #2",
+          "targetId": "S-01",
+          "type": "INDEPENDENT SURVIVOR CONFIRMATION",
+          "estimatedPosition": {
+            "x": 205.43470748942573,
+            "y": 305.182723705733
+          },
+          "sector": "C2",
+          "signal": 0.5797837296197383,
+          "confidence": 0.915852815893057,
+          "status": "confirmed"
+        },
+        {
+          "timestamp": 18.50000000000023,
+          "bugId": "BioBug #1",
+          "targetId": "H-01",
+          "type": "GAS HAZARD DETECTED",
+          "estimatedPosition": {
+            "x": 436.83862496166455,
+            "y": 469.1663124049277
+          },
+          "sector": "D3",
+          "signal": 0.26295382634254494,
+          "confidence": 0.39763614790276347,
+          "status": "gas warning"
+        },
+        {
+          "timestamp": 20.000000000000146,
+          "bugId": "BioBug #1",
+          "targetId": "H-01",
+          "type": "HIGH GAS CONCENTRATION",
+          "estimatedPosition": {
+            "x": 437.83845031631296,
+            "y": 467.45803077295056
+          },
+          "sector": "D3",
+          "signal": 0.8668208192946658,
+          "confidence": 0.811496937502563,
+          "status": "high gas"
+        },
+        {
+          "timestamp": 23.499999999999947,
+          "bugId": "BioBug #2",
+          "targetId": "S-02",
+          "type": "POSSIBLE LIFE SIGNAL",
+          "estimatedPosition": {
+            "x": 346.66968945394336,
+            "y": 121.88727273274765
+          },
+          "sector": "A2",
+          "signal": 0.2496340022939324,
+          "confidence": 0.39364020068817973,
+          "status": "possible"
+        },
+        {
+          "timestamp": 25.74999999999982,
+          "bugId": "BioBug #2",
+          "targetId": "S-02",
+          "type": "SURVIVOR LOCATED",
+          "estimatedPosition": {
+            "x": 349.86596778642235,
+            "y": 119.9530456585116
+          },
+          "sector": "A2",
+          "signal": 0.7465519462741272,
+          "confidence": 0.8188815249095477,
+          "status": "confirmed"
+        }
+      ],
+      "localization": [
+        {
+          "id": "H-02",
+          "estimate": {
+            "x": 108.89876831539267,
+            "y": 300.46089097938244
+          },
+          "error": 1.1937888079803722
+        },
+        {
+          "id": "S-01",
+          "estimate": {
+            "x": 206.1696365003065,
+            "y": 305.5250457493389
+          },
+          "error": 0.9824340082275793
+        },
+        {
+          "id": "H-01",
+          "estimate": {
+            "x": 440.71359035836673,
+            "y": 466.3648391840866
+          },
+          "error": 4.422785581790229
+        },
+        {
+          "id": "S-02",
+          "estimate": {
+            "x": 349.49692783919255,
+            "y": 120.10697665510352
+          },
+          "error": 0.5143205262446888
+        }
+      ],
+      "batchRequests": 0,
+      "batchFailures": 0,
+      "wallSeconds": 3.8251800000000005
+    },
+    {
+      "mode": "malecns",
+      "count": 1,
+      "seed": 2026,
+      "duration": 60,
+      "firstLifeSignal": 18.50000000000023,
+      "firstConfirmedSurvivor": 19.500000000000174,
+      "firstHazard": 14.750000000000313,
+      "completedAt": null,
+      "survivorsConfirmed": 1,
+      "hazardsDetected": 1,
+      "coverage": 16.090584028605484,
+      "distance": 1662.7800000000668,
+      "contributors": [
+        "BioBug #1"
+      ],
+      "events": [
+        {
+          "timestamp": 14.750000000000313,
+          "bugId": "BioBug #1",
+          "targetId": "H-02",
+          "type": "GAS HAZARD DETECTED",
+          "estimatedPosition": {
+            "x": 121.03628998977908,
+            "y": 301.71111029487065
+          },
+          "sector": "C1",
+          "signal": 0.20166322185990382,
+          "confidence": 0.37924896655797113,
+          "status": "gas warning"
+        },
+        {
+          "timestamp": 17.000000000000316,
+          "bugId": "BioBug #1",
+          "targetId": "H-02",
+          "type": "HIGH GAS CONCENTRATION",
+          "estimatedPosition": {
+            "x": 114.93437737177996,
+            "y": 301.0305427031609
+          },
+          "sector": "C1",
+          "signal": 0.8590500733799633,
+          "confidence": 0.8522051833900528,
+          "status": "high gas"
+        },
+        {
+          "timestamp": 18.50000000000023,
+          "bugId": "BioBug #1",
+          "targetId": "S-01",
+          "type": "POSSIBLE LIFE SIGNAL",
+          "estimatedPosition": {
+            "x": 207.15479995263732,
+            "y": 312.58992743559054
+          },
+          "sector": "C2",
+          "signal": 0.3195154205661964,
+          "confidence": 0.41460462616985894,
+          "status": "possible"
+        },
+        {
+          "timestamp": 19.500000000000174,
+          "bugId": "BioBug #1",
+          "targetId": "S-01",
+          "type": "SURVIVOR LOCATED",
+          "estimatedPosition": {
+            "x": 208.44974615317545,
+            "y": 307.748590672205
+          },
+          "sector": "C2",
+          "signal": 0.8003384783659593,
+          "confidence": 0.7181905140126504,
+          "status": "confirmed"
+        }
+      ],
+      "localization": [
+        {
+          "id": "H-02",
+          "estimate": {
+            "x": 111.74984163152702,
+            "y": 302.17322255910136
+          },
+          "error": 2.7901329765464964
+        },
+        {
+          "id": "S-01",
+          "estimate": {
+            "x": 209.4449871076623,
+            "y": 306.2462737531936
+          },
+          "error": 2.7442959433220997
+        }
+      ],
+      "batchRequests": 300,
+      "batchFailures": 0,
+      "wallSeconds": 3.8288652
+    },
+    {
+      "mode": "malecns",
+      "count": 4,
+      "seed": 2026,
+      "duration": 60,
+      "firstLifeSignal": 18.50000000000023,
+      "firstConfirmedSurvivor": 19.500000000000174,
+      "firstHazard": 11.750000000000163,
+      "completedAt": 37.499999999999154,
+      "survivorsConfirmed": 2,
+      "hazardsDetected": 2,
+      "coverage": 56.4958283671037,
+      "distance": 3624.4600000000164,
+      "contributors": [
+        "BioBug #2",
+        "BioBug #4"
+      ],
+      "events": [
+        {
+          "timestamp": 11.750000000000163,
+          "bugId": "BioBug #2",
+          "targetId": "H-02",
+          "type": "GAS HAZARD DETECTED",
+          "estimatedPosition": {
+            "x": 103.50179428479342,
+            "y": 297.0225299352085
+          },
+          "sector": "C1",
+          "signal": 0.2338639420964269,
+          "confidence": 0.38890918262892804,
+          "status": "gas warning"
+        },
+        {
+          "timestamp": 14.000000000000275,
+          "bugId": "BioBug #2",
+          "targetId": "H-02",
+          "type": "HIGH GAS CONCENTRATION",
+          "estimatedPosition": {
+            "x": 105.81309741730432,
+            "y": 299.13484327320805
+          },
+          "sector": "C1",
+          "signal": 0.8521945925524298,
+          "confidence": 0.8336606452371063,
+          "status": "high gas"
+        },
+        {
+          "timestamp": 18.50000000000023,
+          "bugId": "BioBug #2",
+          "targetId": "S-01",
+          "type": "POSSIBLE LIFE SIGNAL",
+          "estimatedPosition": {
+            "x": 209.46195921305562,
+            "y": 298.66535171069927
+          },
+          "sector": "C2",
+          "signal": 0.2170964344649361,
+          "confidence": 0.38387893033948084,
+          "status": "possible"
+        },
+        {
+          "timestamp": 19.500000000000174,
+          "bugId": "BioBug #2",
+          "targetId": "S-01",
+          "type": "SURVIVOR LOCATED",
+          "estimatedPosition": {
+            "x": 209.23177407194308,
+            "y": 304.12837822485704
+          },
+          "sector": "C2",
+          "signal": 0.7101010257876951,
+          "confidence": 0.6821880147045231,
+          "status": "confirmed"
+        },
+        {
+          "timestamp": 21.00000000000009,
+          "bugId": "BioBug #4",
+          "targetId": "H-01",
+          "type": "GAS HAZARD DETECTED",
+          "estimatedPosition": {
+            "x": 443.0155835719372,
+            "y": 457.6800642592283
+          },
+          "sector": "D3",
+          "signal": 0.23013442293256825,
+          "confidence": 0.38779032687977044,
+          "status": "gas warning"
+        },
+        {
+          "timestamp": 24.249999999999904,
+          "bugId": "BioBug #4",
+          "targetId": "H-01",
+          "type": "HIGH GAS CONCENTRATION",
+          "estimatedPosition": {
+            "x": 438.44846819174523,
+            "y": 458.2339748338302
+          },
+          "sector": "D3",
+          "signal": 0.7608446616924152,
+          "confidence": 0.8171608584835277,
+          "status": "high gas"
+        },
+        {
+          "timestamp": 34.9999999999993,
+          "bugId": "BioBug #2",
+          "targetId": "S-02",
+          "type": "POSSIBLE LIFE SIGNAL",
+          "estimatedPosition": {
+            "x": 364.73513022886556,
+            "y": 124.18024270325823
+          },
+          "sector": "A2",
+          "signal": 0.22357063735530236,
+          "confidence": 0.38582119120659075,
+          "status": "possible"
+        },
+        {
+          "timestamp": 37.499999999999154,
+          "bugId": "BioBug #2",
+          "targetId": "S-02",
+          "type": "SURVIVOR LOCATED",
+          "estimatedPosition": {
+            "x": 350.76848046542,
+            "y": 121.10938235633579
+          },
+          "sector": "A2",
+          "signal": 0.7155614327581652,
+          "confidence": 0.802371059232487,
+          "status": "confirmed"
+        }
+      ],
+      "localization": [
+        {
+          "id": "H-02",
+          "estimate": {
+            "x": 111.176598366895,
+            "y": 300.6530833469491
+          },
+          "error": 1.345697430718437
+        },
+        {
+          "id": "S-01",
+          "estimate": {
+            "x": 206.40530235992082,
+            "y": 305.1365862112575
+          },
+          "error": 0.6101811831099198
+        },
+        {
+          "id": "H-01",
+          "estimate": {
+            "x": 439.86153058098165,
+            "y": 460.5831094081498
+          },
+          "error": 1.423640660165627
+        },
+        {
+          "id": "S-02",
+          "estimate": {
+            "x": 350.279629518353,
+            "y": 120.37317839494075
+          },
+          "error": 0.46632047133368815
+        }
+      ],
+      "batchRequests": 300,
+      "batchFailures": 0,
+      "wallSeconds": 6.941914099999998
+    }
+  ]
+}
