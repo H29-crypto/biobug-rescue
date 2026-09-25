@@ -1,0 +1,174 @@
+[
+  {
+    "question": "Mission summary",
+    "model": "gpt-4.1-mini",
+    "missionTime": 0.0,
+    "status": "online",
+    "brief": {
+      "situationSummary": "At 0.00 simulated seconds: 0 confirmed survivors, 0 possible life signals, 0 detected gas hazards; 4/4 BioBugs active; reachable-area coverage 5.13%. 94.87% of reachable area remains unexplored. This snapshot does not identify individual unexplored sectors. Rule-Based navigation is active. Engineering obstacle avoidance and swarm coordination determine movement; AI has no control authority.",
+      "priorities": [
+        {
+          "priority": "HIGH",
+          "title": "mission",
+          "reason": "At 0.00 simulated seconds: 0 confirmed survivors, 0 possible life signals, 0 detected gas hazards; 4/4 BioBugs active; reachable-area coverage 5.13%.",
+          "sector": null
+        },
+        {
+          "priority": "MEDIUM",
+          "title": "unexplored",
+          "reason": "94.87% of reachable area remains unexplored. This snapshot does not identify individual unexplored sectors.",
+          "sector": null
+        },
+        {
+          "priority": "LOW",
+          "title": "controller",
+          "reason": "Rule-Based navigation is active. Engineering obstacle avoidance and swarm coordination determine movement; AI has no control authority.",
+          "sector": null
+        },
+        {
+          "priority": "LOW",
+          "title": "BioBug #1",
+          "reason": "BioBug #1 is EXPLORING in Sector D1.",
+          "sector": "D1"
+        }
+      ],
+      "keyFindings": [
+        "At 0.00 simulated seconds: 0 confirmed survivors, 0 possible life signals, 0 detected gas hazards; 4/4 BioBugs active; reachable-area coverage 5.13%.",
+        "94.87% of reachable area remains unexplored. This snapshot does not identify individual unexplored sectors."
+      ],
+      "answer": "At 0.00 simulated seconds: 0 confirmed survivors, 0 possible life signals, 0 detected gas hazards; 4/4 BioBugs active; reachable-area coverage 5.13%. 94.87% of reachable area remains unexplored. This snapshot does not identify individual unexplored sectors. Rule-Based navigation is active. Engineering obstacle avoidance and swarm coordination determine movement; AI has no control authority. BioBug #1 is EXPLORING in Sector D1.",
+      "uncertainties": [
+        "No detected hazard does not mean an area is safe; unexplored and unobserved hazards may remain.",
+        "Reported locations are estimates from simulated sensors, not surveyed positions.",
+        "Confidence is an engineering simulation score, not a medical survival probability."
+      ],
+      "suggestedOperatorActions": [
+        "Consider gathering additional observations of unexplored areas and uncertain signals.",
+        "Use qualified rescue-team judgment; this simulation does not determine safe entry or medical care."
+      ]
+    },
+    "metrics": {
+      "latencyMs": 4611.943099997006,
+      "meanLatencyMs": 4611.943099997006,
+      "p95LatencyMs": 4611.943099997006,
+      "successfulRequests": 1,
+      "snapshotBytes": 463,
+      "meanSnapshotBytes": 463.0,
+      "approxRequestBytes": 4496,
+      "responseBytes": 2344
+    }
+  },
+  {
+    "question": "Why was S-01 confirmed, and which BioBugs contributed?",
+    "model": "gpt-4.1-mini",
+    "missionTime": 30.0,
+    "status": "online",
+    "brief": {
+      "situationSummary": "S-01: CONFIRMED SURVIVOR in Sector C2; engineering confidence 91.7%; estimated location (206.2, 305.5). Detected by BioBug #3 at 6.75s; latest observation 18.50s. S-01 has 32 readings from BioBug #3, BioBug #2. Confirmed by BioBug #3, BioBug #2: each recorded confirmation required three consecutive life readings at or above 0.45, sampled every 0.25 seconds. 17.25s: BioBug #2 recorded INDEPENDENT SURVIVOR CONFIRMATION for S-01 in Sector C2.",
+      "priorities": [
+        {
+          "priority": "HIGH",
+          "title": "S-01:evidence",
+          "reason": "S-01 has 32 readings from BioBug #3, BioBug #2. Confirmed by BioBug #3, BioBug #2: each recorded confirmation required three consecutive life readings at or above 0.45, sampled every 0.25 seconds.",
+          "sector": "C2"
+        },
+        {
+          "priority": "HIGH",
+          "title": "S-01",
+          "reason": "S-01: CONFIRMED SURVIVOR in Sector C2; engineering confidence 91.7%; estimated location (206.2, 305.5). Detected by BioBug #3 at 6.75s; latest observation 18.50s.",
+          "sector": "C2"
+        },
+        {
+          "priority": "MEDIUM",
+          "title": "event:1",
+          "reason": "17.25s: BioBug #2 recorded INDEPENDENT SURVIVOR CONFIRMATION for S-01 in Sector C2.",
+          "sector": "C2"
+        },
+        {
+          "priority": "LOW",
+          "title": "BioBug #2",
+          "reason": "BioBug #2 is EXPLORING in Sector A2.",
+          "sector": "A2"
+        }
+      ],
+      "keyFindings": [
+        "S-01 has 32 readings from BioBug #3, BioBug #2. Confirmed by BioBug #3, BioBug #2: each recorded confirmation required three consecutive life readings at or above 0.45, sampled every 0.25 seconds.",
+        "S-01: CONFIRMED SURVIVOR in Sector C2; engineering confidence 91.7%; estimated location (206.2, 305.5). Detected by BioBug #3 at 6.75s; latest observation 18.50s."
+      ],
+      "answer": "S-01 has 32 readings from BioBug #3, BioBug #2. Confirmed by BioBug #3, BioBug #2: each recorded confirmation required three consecutive life readings at or above 0.45, sampled every 0.25 seconds. S-01: CONFIRMED SURVIVOR in Sector C2; engineering confidence 91.7%; estimated location (206.2, 305.5). Detected by BioBug #3 at 6.75s; latest observation 18.50s.",
+      "uncertainties": [
+        "No detected hazard does not mean an area is safe; unexplored and unobserved hazards may remain.",
+        "Reported locations are estimates from simulated sensors, not surveyed positions.",
+        "Confidence is an engineering simulation score, not a medical survival probability."
+      ],
+      "suggestedOperatorActions": [
+        "Consider gathering additional observations of unexplored areas and uncertain signals.",
+        "Use qualified rescue-team judgment; this simulation does not determine safe entry or medical care."
+      ]
+    },
+    "metrics": {
+      "latencyMs": 2288.5293000144884,
+      "meanLatencyMs": 3450.2362000057474,
+      "p95LatencyMs": 4611.943099997006,
+      "successfulRequests": 2,
+      "snapshotBytes": 1856,
+      "meanSnapshotBytes": 1159.5,
+      "approxRequestBytes": 8958,
+      "responseBytes": 2473
+    }
+  },
+  {
+    "question": "How is BioBug #2 controlled? Explain MaleCNS.",
+    "model": "gpt-4.1-mini",
+    "missionTime": 60.0,
+    "status": "online",
+    "brief": {
+      "situationSummary": "At 60.00 simulated seconds: 2 confirmed survivors, 0 possible life signals, 2 detected gas hazards; 4/4 BioBugs active; reachable-area coverage 56.50%. BioBug #2 is EXPLORING in Sector B3. The experimental MaleCNS-connectome-based computational controller uses real structural connectivity with simulated neural activity and engineering sensor/motor mappings. Local safety and swarm coordination can override its decoder proposal.",
+      "priorities": [
+        {
+          "priority": "HIGH",
+          "title": "BioBug #2:controller",
+          "reason": "BioBug #2: latest sampled MaleCNS telemetry (ready); stimulus left/front/right 0.009/0.000/0.000; simulated DNa02-L/R peaks 0.002125/0.000779; engineering decoder proposal TURN_RIGHT. This proposal may be overridden by local safety/coordination.",
+          "sector": "B3"
+        },
+        {
+          "priority": "MEDIUM",
+          "title": "BioBug #2",
+          "reason": "BioBug #2 is EXPLORING in Sector B3.",
+          "sector": "B3"
+        },
+        {
+          "priority": "LOW",
+          "title": "controller",
+          "reason": "The experimental MaleCNS-connectome-based computational controller uses real structural connectivity with simulated neural activity and engineering sensor/motor mappings. Local safety and swarm coordination can override its decoder proposal.",
+          "sector": null
+        }
+      ],
+      "keyFindings": [
+        "BioBug #2: latest sampled MaleCNS telemetry (ready); stimulus left/front/right 0.009/0.000/0.000; simulated DNa02-L/R peaks 0.002125/0.000779; engineering decoder proposal TURN_RIGHT. This proposal may be overridden by local safety/coordination.",
+        "BioBug #2 is EXPLORING in Sector B3.",
+        "The experimental MaleCNS-connectome-based computational controller uses real structural connectivity with simulated neural activity and engineering sensor/motor mappings. Local safety and swarm coordination can override its decoder proposal."
+      ],
+      "answer": "BioBug #2: latest sampled MaleCNS telemetry (ready); stimulus left/front/right 0.009/0.000/0.000; simulated DNa02-L/R peaks 0.002125/0.000779; engineering decoder proposal TURN_RIGHT. This proposal may be overridden by local safety/coordination. BioBug #2 is EXPLORING in Sector B3. The experimental MaleCNS-connectome-based computational controller uses real structural connectivity with simulated neural activity and engineering sensor/motor mappings. Local safety and swarm coordination can override its decoder proposal.",
+      "uncertainties": [
+        "No detected hazard does not mean an area is safe; unexplored and unobserved hazards may remain.",
+        "Reported locations are estimates from simulated sensors, not surveyed positions.",
+        "Confidence is an engineering simulation score, not a medical survival probability."
+      ],
+      "suggestedOperatorActions": [
+        "Consider gathering additional observations of unexplored areas and uncertain signals.",
+        "Use qualified rescue-team judgment; this simulation does not determine safe entry or medical care."
+      ]
+    },
+    "metrics": {
+      "latencyMs": 2162.292999913916,
+      "meanLatencyMs": 3020.9217999751368,
+      "p95LatencyMs": 4611.943099997006,
+      "successfulRequests": 3,
+      "snapshotBytes": 2528,
+      "meanSnapshotBytes": 1615.6666666666667,
+      "approxRequestBytes": 11348,
+      "responseBytes": 2786
+    }
+  }
+]

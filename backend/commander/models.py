@@ -1,5 +1,5 @@
 from typing import Annotated, Literal
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator, create_model
 
 Unit = Annotated[float, Field(ge=0, le=1, allow_inf_nan=False)]
 Time = Annotated[float, Field(ge=0, le=1e8, allow_inf_nan=False)]
@@ -98,3 +98,18 @@ class CommanderPlan(Strict):
     answer: list[str]
     uncertainties: list[Literal['unobserved','estimates','confidence','missing_answer']]
     suggestedOperatorActions: list[Literal['review_life','review_gas','continue_observation','human_review']]
+
+
+def grounded_plan_schema(facts: dict):
+    """Constrain generation itself to this snapshot's catalog, not arbitrary prose."""
+    fact_id = Literal[tuple(facts)]
+    sector_id = Literal[tuple(dict.fromkeys(f['sector'] for f in facts.values() if f['sector'] is not None))]
+    priority = create_model('GroundedPriority', __base__=Priority,
+        factId=(fact_id, ...), sector=(sector_id | None, ...))
+    return create_model('GroundedCommanderPlan', __base__=CommanderPlan,
+        situation=(Annotated[list[fact_id], Field(min_length=1, max_length=3)], ...),
+        priorities=(Annotated[list[priority], Field(max_length=4)], ...),
+        keyFindings=(Annotated[list[fact_id], Field(max_length=5)], ...),
+        answer=(Annotated[list[fact_id], Field(max_length=4)], ...),
+        uncertainties=(Annotated[list[Literal['unobserved','estimates','confidence','missing_answer']], Field(max_length=4)], ...),
+        suggestedOperatorActions=(Annotated[list[Literal['review_life','review_gas','continue_observation','human_review']], Field(max_length=4)], ...))

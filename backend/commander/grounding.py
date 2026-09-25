@@ -49,5 +49,5 @@ def render(plan:CommanderPlan, facts:dict, snapshot:MissionSnapshot):
         'priorities':[{'priority':p.priority,'title':p.factId,'reason':facts[p.factId]['text'],'sector':p.sector} for p in plan.priorities],
         'keyFindings':[facts[k]['text'] for k in plan.keyFindings],
         'answer':' '.join(facts[k]['text'] for k in plan.answer) or UNCERTAINTIES['missing_answer'],
-        'uncertainties':[UNCERTAINTIES[k] for k in dict.fromkeys([*plan.uncertainties,'unobserved','estimates','confidence'])],
+        'uncertainties':[UNCERTAINTIES[k] for k in dict.fromkeys([*[u for u in plan.uncertainties if u!='missing_answer' or not plan.answer],'unobserved','estimates','confidence'])],
         'suggestedOperatorActions':[ACTIONS[k] for k in dict.fromkeys([*plan.suggestedOperatorActions,'human_review'])]}

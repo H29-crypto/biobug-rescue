@@ -74,7 +74,7 @@ def test_success_sdk_contract_and_metrics(snapshot):
     result=asyncio.run(svc.brief(CommanderRequest(snapshot=snapshot,question='Why confirmed?')))
     assert result['status']=='online'
     kwargs=parse.call_args.kwargs
-    assert kwargs['text_format'] is CommanderPlan
+    assert issubclass(kwargs['text_format'], CommanderPlan)
     assert kwargs['store'] is False
     assert kwargs['instructions']==INSTRUCTIONS
     assert kwargs['input'][0]['role']=='user'
@@ -140,3 +140,23 @@ def test_real_sdk_uses_responses_and_strict_schema_with_mock_transport(snapshot)
     assert body['text']['format']['type']=='json_schema'
     assert body['store'] is False
     assert body['text']['format']['schema']['additionalProperties'] is False
+
+
+def test_provider_schema_constrains_fact_ids_and_array_lengths(snapshot):
+    from commander.models import grounded_plan_schema
+    schema=grounded_plan_schema(catalog(snapshot))
+    assert schema.model_validate(plan().model_dump()).answer==['S-01:evidence']
+    for refs in [['S-01 was confirmed because of readings'],['BioBug #7']]:
+        raw=plan().model_dump();raw['answer']=refs
+        with pytest.raises(ValidationError):schema.model_validate(raw)
+    raw=plan().model_dump();raw['situation']=['mission']*4
+    with pytest.raises(ValidationError):schema.model_validate(raw)
+    js=schema.model_json_schema()
+    assert js['properties']['answer']['items']['enum']==list(catalog(snapshot))
+    assert js['properties']['situation']['maxItems']==3
+
+
+def test_answer_does_not_claim_it_is_unavailable(snapshot):
+    p=plan();p.uncertainties=['missing_answer']
+    result=render(p,catalog(snapshot),snapshot)
+    assert not any('does not establish an answer' in v for v in result['uncertainties'])

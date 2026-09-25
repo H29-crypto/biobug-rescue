@@ -1,0 +1,66 @@
+[
+  {
+    "question": "Mission summary",
+    "model": "gpt-4.1-mini",
+    "missionTime": 0.0,
+    "status": "online",
+    "brief": {
+      "situationSummary": "At 0.00 simulated seconds: 0 confirmed survivors, 0 possible life signals, 0 detected gas hazards; 4/4 BioBugs active; reachable-area coverage 5.13%. BioBug #1 is EXPLORING in Sector D1. BioBug #2 is EXPLORING in Sector D1.",
+      "priorities": [
+        {
+          "priority": "HIGH",
+          "title": "mission",
+          "reason": "At 0.00 simulated seconds: 0 confirmed survivors, 0 possible life signals, 0 detected gas hazards; 4/4 BioBugs active; reachable-area coverage 5.13%.",
+          "sector": null
+        },
+        {
+          "priority": "MEDIUM",
+          "title": "BioBug #1",
+          "reason": "BioBug #1 is EXPLORING in Sector D1.",
+          "sector": "D1"
+        },
+        {
+          "priority": "MEDIUM",
+          "title": "BioBug #2",
+          "reason": "BioBug #2 is EXPLORING in Sector D1.",
+          "sector": "D1"
+        }
+      ],
+      "keyFindings": [
+        "At 0.00 simulated seconds: 0 confirmed survivors, 0 possible life signals, 0 detected gas hazards; 4/4 BioBugs active; reachable-area coverage 5.13%.",
+        "BioBug #1 is EXPLORING in Sector D1.",
+        "BioBug #2 is EXPLORING in Sector D1.",
+        "BioBug #3 is EXPLORING in Sector D1.",
+        "BioBug #4 is EXPLORING in Sector D1."
+      ],
+      "answer": "At 0.00 simulated seconds: 0 confirmed survivors, 0 possible life signals, 0 detected gas hazards; 4/4 BioBugs active; reachable-area coverage 5.13%.",
+      "uncertainties": [
+        "The supplied mission state does not establish an answer to that question.",
+        "No detected hazard does not mean an area is safe; unexplored and unobserved hazards may remain.",
+        "Reported locations are estimates from simulated sensors, not surveyed positions.",
+        "Confidence is an engineering simulation score, not a medical survival probability."
+      ],
+      "suggestedOperatorActions": [
+        "Consider gathering additional observations of unexplored areas and uncertain signals.",
+        "Use qualified rescue-team judgment; this simulation does not determine safe entry or medical care."
+      ]
+    },
+    "metrics": {
+      "latencyMs": 5343.494100030512,
+      "meanLatencyMs": 5343.494100030512,
+      "p95LatencyMs": 5343.494100030512,
+      "successfulRequests": 1,
+      "snapshotBytes": 463,
+      "meanSnapshotBytes": 463.0,
+      "approxRequestBytes": 3988,
+      "responseBytes": 1745
+    }
+  },
+  {
+    "question": "Why was S-01 confirmed, and which BioBugs contributed?",
+    "model": "gpt-4.1-mini",
+    "missionTime": 30.0,
+    "status": "offline",
+    "error": "provider_or_grounding_failure"
+  }
+]

@@ -5,7 +5,7 @@ import math
 import os
 import time
 from collections import deque
-from .models import CommanderPlan, CommanderRequest
+from .models import CommanderPlan, CommanderRequest, grounded_plan_schema
 from .grounding import catalog, render
 
 DEFAULT_MODEL = 'gpt-4.1-mini'
@@ -40,17 +40,18 @@ class CommanderService:
         if self.busy or self.clock()-self.last_request<5: return {**base,'status':'offline','error':'rate_limited'}
         self.busy=True;self.last_request=self.clock();started=self.clock()
         facts=catalog(request.snapshot)
+        response_schema=grounded_plan_schema(facts)
         snapshot=request.snapshot.model_dump(mode='json')
         payload={'snapshot':snapshot,'facts':facts,'question':request.question}
         snapshot_bytes=len(encoded(snapshot).encode())
         # Approximate JSON body size including instructions and schema, excluding HTTP headers/SDK additions.
-        request_bytes=len(encoded({'instructions':INSTRUCTIONS,'input':encoded(payload),'schema':CommanderPlan.model_json_schema()}).encode())
+        request_bytes=len(encoded({'instructions':INSTRUCTIONS,'input':encoded(payload),'schema':response_schema.model_json_schema()}).encode())
         try:
             if self.client is None:
                 from openai import AsyncOpenAI
                 self.client=AsyncOpenAI(api_key=os.environ['OPENAI_API_KEY'],timeout=20,max_retries=0)
             response=await asyncio.wait_for(self.client.responses.parse(model=base['model'],instructions=INSTRUCTIONS,
-                input=[{'role':'user','content':encoded(payload)}],text_format=CommanderPlan,store=False,max_output_tokens=1800),timeout=22)
+                input=[{'role':'user','content':encoded(payload)}],text_format=response_schema,store=False,max_output_tokens=1800),timeout=22)
             if response.status!='completed' or response.output_parsed is None: raise ValueError('Refused or incomplete')
             plan=CommanderPlan.model_validate(response.output_parsed)
             brief=render(plan,facts,request.snapshot)
