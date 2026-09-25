@@ -1,149 +1,114 @@
 # BioBug Rescue
 
-Current build: **Milestone 6 advisory Commander integration** (three live OpenAI requests verified; backend key required to run). Four BioBugs detect life and gas signals, confirm survivors, and share estimated discoveries. Start with seed 2026 and Rule-Based navigation. See [the current rescue guide](docs/RESCUE_MISSION.md); the initial milestone sections below are historical.
+Autonomous insect-scale exploration, simulated for places conventional robots struggle to reach.
 
-A browser-based, bio-inspired search-and-rescue simulation. This is a hackathon demonstration, not an accurate insect brain model or a real rescue system.
+## Problem
 
-## Run locally
+Collapsed structures and hazardous confined spaces can leave rescuers with little information about inaccessible areas. Future small robotic platforms could help gather that information before people enter.
 
-Requires Node.js 22.12+ (verified with Node.js 24).
+## Solution
 
-```sh
-npm install
-npm run dev
-```
+A browser simulation of coordinated BioBugs that explore, share a map, detect simulated life and gas signals, and present grounded mission facts to a human operator. This is a hackathon software prototype, not deployed rescue hardware.
 
-Open the local URL printed by Vite. Production validation: `npm run build`. Preview the build with `npm run preview`.
+## Demo
+
+Open the app and press **DEPLOY SWARM**. Presentation Mode defaults to four coordinated BioBugs, seed 2026, Rule-Based navigation. Discoveries appear beside the map; scorecards show coverage, confirmed survivors, hazards and simulated time. **RESET DEMO** restores this exact configuration, clears the mission and Commander history, and returns to the opening screen.
+
+Use **TECHNICAL VIEW** for the controller explanation and measured evidence. Pause before changing controllers. Full three-minute script and recovery checklist: [docs/DEMO.md](docs/DEMO.md).
 
 ## Architecture
 
-- `src/domain/types.ts`: shared, framework-independent contracts for the environment, agents, sensors, neurons, discoveries, and swarm.
-- `src/scenarios/earthquake.ts`: deterministic scenario factory; world geometry and initially unexplored terrain.
-- `src/rendering/drawEnvironment.ts`: Canvas-only drawing, independent of React. World coordinates remain stable when the screen resizes.
-- `src/components/EnvironmentCanvas.tsx`: React-to-Canvas lifecycle, responsive sizing, device pixel ratio, and cleanup.
-- `src/App.tsx`: mission interface and view state.
-- `src/simulation/`: fixed-step world updates, collision detection, obstacle sensing, rule-based steering, and exploration.
-- Future `src/controllers/`: pure neural activation updates and motor output conversion.
+```text
+Rescue environment → BioBug sensors → Navigation
+                                      ├─ Rule-Based
+                                      └─ MaleCNS structure → Simulated dynamics → Motor decoder
+                                                ↓
+BioBug swarm → Shared rescue map → AI Rescue Commander → Human operator
+```
 
-React owns controls and summarized state. The simulation owns mutable world state and a fixed timestep; Canvas renders snapshots. Rendering must never advance the simulation. Keep true environment data separate from discovered knowledge; exploration radius and wall occlusion determine what the shared exploration grid reveals. An inspection toggle is a development view and never updates discovery data.
+React + TypeScript + Vite own the interface; Canvas draws the map. `src/simulation/` owns fixed-step movement, sensing, coordination and discoveries. `backend/connectome/` loads and queries sparse structural data and runs bounded neural experiments. `backend/commander/` validates and grounds advisory AI responses. Presentation state does not change the simulation algorithms.
 
-## MVP
+## MaleCNS Integration
 
-One deterministic collapsed-building scenario, a small swarm, collision-safe movement, progressive shared fog of war, simulated survivor/hazard sensing, and coordinated exploration. Select a BioBug to inspect sensor values, sensory/interneuron/motor activity, and movement outputs. Show coverage, discoveries, and elapsed mission time. Provide pause, resume, and reset. The eventual Rescue Commander is a local rule-based summary panel; no backend, API keys, or OpenAI integration.
+**MaleCNS-connectome-based computational controller**: real MaleCNS v1.0 structural connectivity with simulated neural dynamics, engineering sensory mapping and an engineering motor decoder. This is not a biologically accurate fly-brain simulation.
 
-Success means the swarm reveals reachable space over time without crossing walls, discoveries persist and are shared, neural activity visibly responds to sensors, and reset reproduces the initial scenario.
+The recorded selected dataset contains **166,606 neurons, 25,574,615 directed connections and 124,144,950 contacts**. Selection excludes empty or `tbc` superclasses; these are not universal counts of the full CNS. The configured ProLN→DNa02 control graph contains **295 neurons, 280 edges and 2,308 contacts**. Technical View distinguishes live backend counts from recorded inspection evidence and labels simulated activity separately.
 
-## Data structures
+See [dataset provenance](docs/MALECNS.md), [pathways](docs/MALECNS_PATHWAYS.md), [dynamics](docs/MALECNS_DYNAMICS.md) and [controller](docs/MALECNS_CONTROLLER.md).
 
-All definitions are in `src/domain/types.ts`. Positions and dimensions use world units; heading uses radians; elapsed time uses seconds. A grid uses row-major index `row * columns + column`. Rectangular walls and debris will be solid obstacles.
+## AI Rescue Commander
 
-| Structure | Main fields and purpose |
+OpenAI Responses API selects facts from an allowlisted mission snapshot; the backend validates selections and renders grounded structured responses. AI never controls the swarm. Quick actions cover summaries, survivors, hazards and MaleCNS. **SYSTEM SUMMARY** remains available without OpenAI or the backend.
+
+Keys belong only in the backend environment. Requests send observed telemetry and the question, not hidden targets or connectome matrices. Prior live validation: three accepted requests, mean **3.02 s**, nearest-rank p95 **4.61 s**; this small sample is not a latency guarantee. [Integration and evidence](docs/AI_RESCUE_COMMANDER.md).
+
+## Measured Results
+
+| Experiment | Rule-Based | MaleCNS |
+| --- | ---: | ---: |
+| Historical 120 s single-agent average coverage, five seeds | 40.41% | 37.28% |
+| Seed-2026 four-agent rescue: both survivors confirmed | 25.75 s | 37.50 s |
+| Same rescue: coverage after 60 simulated seconds | 76.16% | 56.50% |
+
+The single-agent experiment predates the rescue scenario. Rescue results use one fixed designed map, coordinated agents and actual backend responses. Times are simulated time. MaleCNS is an experimental research controller, not claimed to outperform conventional navigation.
+
+Sources: [controller comparison](docs/MALECNS_CONTROLLER_COMPARISON.json), [rescue experiment](docs/RESCUE_EXPERIMENT.json). The compact presentation fixture is tested against these reports.
+
+## What Is Real vs Simulated
+
+| Category | Components |
 | --- | --- |
-| Environment | ID, name, dimensions, obstacle rectangles, exploration grid, survivors, hazards, entry point. Ground-truth scene plus initial knowledge. |
-| BioBug | ID, position, heading, radius, speed, behavior state, sensors, optional future neural controller. One live agent. |
-| Sensors | Front/left/right distances in world units and normalized obstacle signals; hazard/survivor/neural cue fields are reserved and remain zero. |
-| NeuralController | Sensory, interneuron, and motor neurons with IDs, activation and bias; directed weighted synapses; left/right motor outputs. Planned activation range 0–1; weights may be signed. |
-| Survivor | ID, position, undetected/possible/confirmed status, optional discovering bug ID. |
-| Hazard | ID, position, influence radius, gas/heat/unstable category, normalized severity, discovery flag. |
-| Swarm | Agent array, shared exploration grid, timestamped discovery records, elapsed simulation time. |
+| Real data | MaleCNS structural connectome |
+| Real software | Swarm simulation, connectome processing, neural dynamics engine, rescue sensing simulation, AI Commander |
+| Simulated | BioBug bodies, rescue environment, life/gas sensors, neural activity |
+| Future hardware | Insect-scale robotic or biohybrid platform; not demonstrated here |
 
-The unused NeuralController type is a legacy design contract. Current research uses the real MaleCNS structural connectome; no neural controller executes in the application. Future integration should make sharedExploration the canonical mission knowledge grid rather than maintain two independently mutable copies.
+## Running Locally
 
-## Original roadmap (Milestone 3 superseded by MaleCNS investigation below)
+Node.js 22.12+ and Python 3.11+ are recommended for the existing toolchain. From the project root:
 
-1. **Environment scene — implemented.** React + TypeScript + Vite; responsive Canvas; walls, debris, seeded unexplored areas, one possible survivor, one gas hazard; legend and static scenario statistics. Inspection toggle reveals geometry without changing coverage. No agents or simulation loop.
-2. **Single-agent exploration — implemented.** One BioBug with fixed-step movement, rule-based obstacle avoidance, three ray sensors, collision safety, actual occluded exploration, live inspector, Start/Pause/Reset and debug rays.
-3. **Survivor/hazard detection — not started.** Add actual entity sensing, discovery events and mission knowledge beyond simple marker visibility. Obstacle sensing and fog were moved into milestone 2 by the current scope.
-4. **Neural control.** Implement sensory-to-interneuron-to-motor activation and differential steering. Add selected-agent panel and neural visualization. Verify a changed obstacle input changes motor outputs.
-5. **Shared swarm exploration.** Add several agents, shared discoveries and frontier assignment with local separation. Compare coverage with independent agents using the same scenario and seed.
-6. **Mission demo polish.** Pause/resume/reset, live statistics, local Rescue Commander summaries, responsive presentation and repeatable end-to-end demo. Test reset, selection and long-running stability.
+```powershell
+npm install
+npm run demo
+```
 
-## Milestone 2 behavior
+Open the Vite URL (normally http://127.0.0.1:5173). Rule-Based rescue and System Summary work independently of the backend.
 
-Click Start to run, Pause to freeze, or Reset to rebuild the initial world without a page reload. Reset also clears inspection/debug toggles, the random seed, heading, clock, controller memory and fog. The deployment radius starts explored (3.9% of reachable cells). Inspect full map is a renderer-only override; mission statistics and marker counts retain actual exploration state.
-
-- `requestAnimationFrame` supplies elapsed time to a 1/60-second accumulator. Catch-up is capped at 0.1 seconds per frame to avoid jumps after tab suspension.
-- The bug has a radius of 7 world units and moves at 42 units/second. Circle/rectangle and map-boundary checks reject invalid moves. Translations are subdivided into at most radius/2 increments to prevent tunneling.
-- Front/left/right rays use exact ray/rectangle intersections at 0 and ±60 degrees, up to 85 units from the body edge. Values update after movement as well as before steering.
-- A front distance below 22 units causes an in-place turn toward the freer side. A committed turn duration prevents corner oscillation; seed 2026 controls ties, turn duration and gentle wandering. Blocked denotes obstacle-avoidance turning or a rejected movement.
-- Exploration reveals cell centers within 75 units with line of sight. The first obstacle cell can also be revealed. Coverage is the explored fraction of a four-neighbor flood-filled grid reachable by the circular body from entry. Flood fill only computes the denominator; the controller has no route planner or knowledge of the full map.
-- Survivor/hazard visibility follows the explored cell mask. Their detection fields remain undetected/false; the UI calls them visible markers, not detected entities.
-
-## Limitations
-
-The 20-unit grid approximates accessible area and fog; thin walls and corners can produce coarse visual edges, and narrow passages may be undercounted. Simple local steering can revisit rooms or stall in a small region and does not guarantee complete coverage. At very low frame rates, dropping excess catch-up time deliberately slows simulated time. Only one bug is supported in the current UI. The retained NeuralController and Swarm types are future contracts, with no neural execution, coordination, entity detection or AI services. The independent MaleCNS backend serves structural inspection only.
-
-## Validation
-
-`npm test` runs nine checks covering initial state, walls/debris/bounds, large-step collision safety, ray distances, occlusion, rotation/stopping, 30/60/144 Hz determinism, pause/reset initialization and frame-gap handling. A ten-minute simulation checks every position and sensor range; coverage grew from 3.9% to 67.1% without collisions. `npm run build` validates TypeScript and the production bundle. Browser checks verified live movement/readings, Pause, Reset and inspection without coverage changes.
-
-## Validation environment
-Production build and browser rendering were verified. The Codex Windows sandbox blocks esbuild ancestor-directory access during development dependency optimization. If this affects your dev session, run npm run build followed by npm run preview to view the verified production app locally.
-
-
-
-## MaleCNS investigation (independent backend)
-
-The next milestone now investigates the actual published MaleCNS v1.0 structural connectome. `backend/` contains a standalone Python/FastAPI loader and sparse graph query API; `docs/MALECNS.md` records sources, license, files, measured results, validation and reproduction commands. The frontend's Milestone 2 rule-based controller is unchanged. No neural dynamics or sensor-to-neuron mapping is implemented. Future work must be described as a MaleCNS-connectome-based computational controller, not a biologically accurate fly-brain simulation. The earlier milestone list is historical; the data-investigation milestone supersedes its former Milestone 3 priority.
-
-## Milestone 3B: static pathway investigation
-
-The development panel **MaleCNS pathway explorer** inspects annotation-selected populations and a bounded real subgraph. Start the backend in a second terminal, expand the panel below the simulation, then select populations and click **Load subgraph**. The BioBug still uses its existing rule-based controller, independently of this panel.
+In a second terminal, for MaleCNS and AI:
 
 ```powershell
 cd backend
-.\.venv\Scripts\python -m connectome.pathways --report ../docs/MALECNS_PATHWAYS_ANALYSIS.json --export ../docs/MALECNS_PATHWAY_SUBGRAPH.json
+python -m venv .venv
+.\.venv\Scripts\python -m pip install -r requirements.lock.txt
+.\.venv\Scripts\python -m connectome.download
+# Optional AI key: enter privately in this terminal, not in source files.
+$env:OPENAI_API_KEY = Read-Host 'OpenAI API key' -MaskInput
 .\.venv\Scripts\python -m uvicorn connectome.api:app --host 127.0.0.1 --port 8000
 ```
 
-For a faster focused analysis, use `python -m connectome.pathways --source front_leg_tactile --target DNa02 --report data/front-leg-DNa02.json`. All commands load and checksum-verify the real dataset first. Initial load can take several minutes depending on disk and memory; allow startup to finish.
+`-MaskInput` requires PowerShell 7. Existing installs can skip setup/download. The pinned source files total about 1.89 GB; backend startup may take several minutes. Wait for **MALECNS READY**. The UI cannot distinguish an unreachable server from a server still doing its blocking startup, and says so explicitly. See [backend instructions](backend/README.md).
 
-`docs/MALECNS_PATHWAYS.md` documents actual annotations, exact population predicates and IDs, measured 1/2/3-hop structural routes, explicit side fields, evidence levels and limitations. The JSON analysis includes all candidate IDs and results for 48 population pairs. `backend/connectome/annotations.py` provides reusable exact annotation queries; `pathway_analysis.py` uses sparse reachability and vectorized contact aggregation; `pathways.py` is the CLI. The API adds `/connectome/populations` and `/connectome/pathway-subgraph`. Graph exports retain measured contact counts and contain at most 80 nodes/160 edges (viewer defaults: 32/64). No graph weights, sensors or movement behavior are changed.
+Production preview: `npm run build`, then `npm run preview -- --port 5173`. Stop another server on that port first.
 
-DOCUMENTED refers to explicit annotations or published type-level function; INFERRED refers to functional interpretations of structural routes; ENGINEERING MAPPING refers to any future simulation input/output interface. The panel has no activity animation, neural dynamics or motor decoder.
-
-## Milestone 3C: experimental neural dynamics lab
-
-The pathway explorer now includes **Neural dynamics lab**: five manual stimulus presets, sliders, pulse duration, unsigned/transmitter-based sign modes, engineering weight transforms and an activity trace with independent DNa02-L/R readouts. The moving BioBug remains on its rule-based controller; no sensor or motor connection to this experiment exists.
-
-`backend/connectome/dynamics.py` extracts the complete bounded route union and keeps structural contacts separate from normalized log-contact simulation weights. The default graph has 295 neurons, 280 edges and 2,308 contacts, including all 266 annotated ProLN inputs. The experiment starts at zero on every request. `POST /connectome/simulate` returns compact step traces and real metadata with engineering labels. Default API/UI runs use 10 steps; the recorded comparison uses 20 steps and a three-step pulse.
-
-From `backend/`:
+## Tests
 
 ```powershell
-.\.venv\Scripts\python -m connectome.dynamics_experiment --report ../docs/MALECNS_DYNAMICS_EXPERIMENTS.json
-# Optional offline expansion, never on each browser frame:
-.\.venv\Scripts\python -m connectome.dynamics_experiment --hops 3 --report ../docs/MALECNS_DYNAMICS_3HOP.json
+npm test
+npm run build
+cd backend
+.\.venv\Scripts\python -m pytest -q
 ```
 
-Read `docs/MALECNS_DYNAMICS.md` for the exact equation, sign assumptions, measured preset results, performance and limitations. This is a controller research model using real MaleCNS structure with simulated neural dynamics, not a biologically accurate fly brain. Earlier milestones describe their historical scope.
+Frontend checks cover physics, controller contracts, swarm coordination, rescue evidence, Commander failure isolation and presentation defaults/reset/data provenance. Python tests cover data parsing, sparse graphs, API contracts, pathways, dynamics and Commander grounding. The optional full-data integration test is enabled with `MALECNS_INTEGRATION=1`.
 
-## Milestone 3D: selectable MaleCNS movement controller
+## Limitations
 
-The mission now offers **Rule-Based** (default) and **MaleCNS**. MaleCNS maps live obstacle distances to the existing ProLN encoding, propagates unsigned simulated activity through the real 295-neuron/280-edge subgraph, and uses DNa02 peaks in a separately labeled engineering motor decoder. The original collision detector stays authoritative. Backend failure visibly pauses the mission; switching preserves pose and fog; Reset clears controller state and metrics. The manual dynamics lab remains independent.
+One deliberately designed map; simplified sensing and localization; no hardware or clinical validation. Coverage is grid-based and exploration is not guaranteed complete. MaleCNS dynamics and sensor/motor mappings are engineering assumptions. Network delays hold neural movement; backend failure pauses it visibly. Startup blocks backend endpoints until data load completes. AI needs network access and a backend key, can fail, and remains advisory. Scenario totals are known demo objectives; target positions remain hidden until sensing.
 
-Start the backend as above, choose MaleCNS beside the map and press Start. Live telemetry separates real structure, simulated activity, sensor mapping and engineering decisions. `GET /connectome/control-network` provides full bounded graph inspection. The motion loop uses `POST /connectome/control` at five decisions per simulated second, with one request at a time and movement held while waiting.
+## Future Work
 
-`npm run compare:controllers -- 120` runs and repeats five seeded pairs through the real backend and writes `docs/MALECNS_CONTROLLER_COMPARISON.json`. `npm test` preserves the nine original checks and adds controller checks. Read `docs/MALECNS_CONTROLLER.md` for equations, parameters, failure semantics, measured comparison results and limitations. This milestone adds no swarm, detection, training or OpenAI features. Earlier sections describe their historical milestone state.
+Evaluate generalization across environments and investigate hardware feasibility in separately scoped work. No additional research, training, sensor types, hardware integration or deployment features are part of this presentation milestone.
 
-## Milestone 4: swarm exploration
+## Data / Research Attribution
 
-Deploy 1, 2, 4 or 8 BioBugs (default four). Each has independent sensors and controller state, while all share explored terrain. **Coordinated frontiers** assigns distinct destinations on the known map; local obstacle avoidance and body collision checks remain authoritative. Both Rule-Based and MaleCNS apply to the whole deployment. Click an agent on the map or in the roster to select its inspector and neural telemetry. The debug rays toggle also shows its planned route.
-
-MaleCNS uses one bounded `/connectome/control-batch` request per decision boundary for the entire swarm, sharing the cached real graph without mixing activity between agents. Backend failure pauses the entire swarm visibly. Changing deployment size resets the mission; pause first. Reset clears all agent and shared state. Swarm coordination is explicitly engineering logic, not a biological claim about MaleCNS.
-
-Run `npm run compare:swarms -- 60` with the backend loaded for reproducible independent/coordinated comparisons. See `docs/SWARM_EXPLORATION.md` and `docs/SWARM_COMPARISON.json` for architecture, measurements, validation and limitations.
-
-Current roadmap: **1 environment → 2 autonomous BioBug → 3A–3D MaleCNS investigation and control → 4 swarm exploration → 5 survivor/hazard detection → 6 AI Rescue Commander → 7 demo/presentation polish**. Milestone 5 is implemented; Milestone 6 integration is implemented with three live OpenAI requests verified; Milestone 7 remains future work. Earlier sections retain historical scope.
-
-## Milestone 5 — rescue mission
-
-Default four-agent seed 2026 now uses physical life/gas sensing, sustained confirmation, estimated shared markers, sector events, exposure telemetry and a rescue dashboard. Full-terrain inspection never reveals hidden targets. Both navigation modes remain available; MaleCNS is unchanged.
-
-See [rescue model, demo and validation](docs/RESCUE_MISSION.md) and [measured rescue experiments](docs/RESCUE_EXPERIMENT.json). Run `npm run compare:rescue -- 60` with the backend available. This is simulated engineering sensing, not demonstrated hardware. AI Rescue Commander remains a future milestone.
-
-## Milestone 6 — advisory AI Rescue Commander
-
-The Commander panel offers manual briefs, optional debounced event updates, quick questions, an eight-entry history and a deterministic offline summary. It receives a compact allowlisted snapshot and cannot control agents. The backend uses the official OpenAI SDK/Responses API with strict structured fact selection and grounded rendering. Default model: `gpt-4.1-mini`, overridden through backend `OPENAI_MODEL`. Set `OPENAI_API_KEY` only in the backend environment.
-
-See [Commander architecture, setup, validation and limitations](docs/AI_RESCUE_COMMANDER.md). Integration tests are mocked; three live OpenAI requests passed after schema tightening (mean 3.02 s; p95 4.61 s). Running live requests requires a configured backend key. Existing rescue/navigation behavior is preserved. No Fal.ai or presentation redesign is included.
+MaleCNS v1.0 from the [official Janelia project](https://male-cns.janelia.org/), released June 8, 2026; data licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Berg et al. (2026), *Sexual dimorphism in the complete Drosophila male central nervous system connectome*, Cell, [doi:10.1016/j.cell.2026.08.015](https://doi.org/10.1016/j.cell.2026.08.015). Selection, sparse conversion and engineering dynamics are our transformations. Full sources, checksums, scope and citation: [MALECNS.md](docs/MALECNS.md).

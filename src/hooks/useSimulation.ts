@@ -4,9 +4,10 @@ import type { ControllerMode } from '../simulation/engine';
 import { advanceSwarm, createSwarm, runSwarm, swarmSnapshot, switchSwarm } from '../simulation/swarm';
 import type { SwarmSimulation } from '../simulation/swarm';
 import { SwarmNeuralLoop } from '../simulation/swarmNeuralLoop';
+import { createDemo } from '../simulation/presentation';
 export function useSimulation() {
   const ref=useRef<SwarmSimulation|null>(null);
-  if(!ref.current) ref.current=createSwarm();
+  if(!ref.current) ref.current=createDemo();
   const [view,setView]=useState(()=>swarmSnapshot(ref.current!));
   const missionRevision=useRef(0);
   const loop=useRef<SwarmNeuralLoop|null>(null);
@@ -30,6 +31,7 @@ export function useSimulation() {
   return {...view,missionRevision:missionRevision.current,commanderSnapshot:()=>buildMissionSnapshot(ref.current!),
     toggle:()=>{loop.current?.cancel();runSwarm(ref.current!,!ref.current!.running);refresh();},
     reset:()=>redeploy(),
+    resetDemo:()=>{missionRevision.current++;loop.current?.cancel();ref.current=createDemo();refresh();},
     deploy:(count:number)=>redeploy(count),
     setCoordinated:(enabled:boolean)=>{const s=ref.current!;s.coordinated=enabled;s.nextPlan=s.elapsed;s.agents.forEach(a=>{a.assignment=null;a.coordination=enabled?'Awaiting shared-map plan':'Independent exploration · local controller';});refresh();},
     selectBug:(index:number)=>{if(index>=0&&index<ref.current!.agents.length){ref.current!.selected=index;refresh();}},

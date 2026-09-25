@@ -1,0 +1,61 @@
+{
+  "sources": [
+    "docs/MALECNS_API_STATUS.json",
+    "docs/MALECNS_CONTROLLER_COMPARISON.json",
+    "docs/RESCUE_EXPERIMENT.json"
+  ],
+  "dataset": {
+    "dataset": "MaleCNS",
+    "version": "v1.0",
+    "neurons": 166606,
+    "edges": 25574615,
+    "synaptic_contacts": 124144950,
+    "scope": "nonempty superclass excluding any superclass containing 'tbc' (authors' counting rule); no status or type filter"
+  },
+  "graph": {
+    "neurons": 295,
+    "edges": 280,
+    "structural_contacts": 2308,
+    "structural_sha256": "fda9df339350f4420439a90556330275d5ac4cb127a411c3d2e3f74cc2527c6c"
+  },
+  "single": {
+    "seconds": 120,
+    "seeds": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+    ],
+    "coverage": {
+      "rule-based": 40.405244338498214,
+      "malecns": 37.282479141835516
+    }
+  },
+  "rescue": [
+    {
+      "mode": "rule-based",
+      "count": 4,
+      "seed": 2026,
+      "duration": 60,
+      "completedAt": 25.74999999999982,
+      "coverage": 76.16209773539929,
+      "firstHazard": 4.7499999999999885,
+      "firstLifeSignal": 6.749999999999981,
+      "firstConfirmedSurvivor": 7.749999999999978,
+      "hazardsDetected": 2
+    },
+    {
+      "mode": "malecns",
+      "count": 4,
+      "seed": 2026,
+      "duration": 60,
+      "completedAt": 37.499999999999154,
+      "coverage": 56.4958283671037,
+      "firstHazard": 11.750000000000163,
+      "firstLifeSignal": 18.50000000000023,
+      "firstConfirmedSurvivor": 19.500000000000174,
+      "hazardsDetected": 2
+    }
+  ]
+}

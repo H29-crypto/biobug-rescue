@@ -1,41 +1,75 @@
-import { CommanderPanel } from './components/CommanderPanel';
 import { useState } from 'react';
+import { CommanderPanel } from './components/CommanderPanel';
 import { EnvironmentCanvas } from './components/EnvironmentCanvas';
 import { PathwayExplorer } from './components/PathwayExplorer';
-import { useSimulation } from './hooks/useSimulation';
 import { RescuePanel } from './components/RescuePanel';
 import { ControllerPanel } from './components/ControllerPanel';
 import { SwarmPanel } from './components/SwarmPanel';
+import { JudgeContext, MeasuredResults } from './components/JudgeContext';
+import { useSimulation } from './hooks/useSimulation';
+import { useReadiness } from './hooks/useReadiness';
+import { canSelectController, discoveryNotices } from './simulation/presentation';
+import evidence from './presentation/evidence.json';
+import './presentation.css';
 
 export default function App() {
   const simulation = useSimulation();
-  const { environment, bug, explored, running, elapsed, toggle, reset, mode, selectController } = simulation;
+  const { environment, running, elapsed, mode } = simulation;
+  const readiness = useReadiness();
+  const [technical, setTechnical] = useState(false);
   const [reveal, setReveal] = useState(false);
   const [debug, setDebug] = useState(false);
-  const [selectedDiscovery, setSelectedDiscovery] = useState<string|null>(null);
-  const resetMission = () => { reset(); setReveal(false); setDebug(false); setSelectedDiscovery(null); };
-  const missionStatus = mode === 'malecns' && simulation.neural.status === 'offline' ? 'CONNECTOME OFFLINE · paused'
-    : mode === 'malecns' && simulation.neural.status === 'waiting' ? 'Waiting for connectome · motion held'
-    : running ? 'MISSION ACTIVE' : elapsed > 0 ? 'Mission paused' : 'Ready to deploy';
-  return <div className="app">
-    <header><a className="brand" href="./"><span className="brand-icon">✳</span> BioBug<span>Rescue</span></a><div className="header-note">AUTONOMOUS SEARCH & RESCUE</div><span className="badge">SIMULATION / M06</span></header>
+  const [selectedDiscovery, setSelectedDiscovery] = useState<string | null>(null);
+  const resetDemo = () => { simulation.resetDemo(); setTechnical(false); setReveal(false); setDebug(false); setSelectedDiscovery(null); };
+  const notices = discoveryNotices(simulation.rescue.events);
+  const opening = elapsed === 0 && !running;
+  const blocked = mode === 'malecns' && readiness.state !== 'ready';
+  const status = mode === 'malecns' && simulation.neural.status === 'offline' ? 'MALECNS OFFLINE · MISSION PAUSED'
+    : mode === 'malecns' && simulation.neural.status === 'waiting' ? 'AWAITING NEURAL RESPONSE · MOTION HELD'
+    : running ? 'MISSION ACTIVE' : elapsed > 0 ? 'MISSION PAUSED' : 'READY TO DEPLOY';
+  const dataset = readiness.data ?? evidence.dataset;
+  return <div className="app judge-app">
+    <header><a className="brand" href="./"><span className="brand-icon">✳</span> BioBug<span>Rescue</span></a>
+      <nav aria-label="Display mode"><button aria-pressed={!technical} onClick={() => { setTechnical(false); setReveal(false); setDebug(false); }}>PRESENTATION MODE</button><button aria-pressed={technical} onClick={() => setTechnical(true)}>TECHNICAL VIEW</button></nav>
+      <button className="reset-demo" onClick={resetDemo}>RESET DEMO</button></header>
     <main>
-      <div className="heading"><div><p className="eyebrow">MISSION CONTROL <span>/</span> EARTHQUAKE RESPONSE</p><h1>Into the unknown.</h1><p className="subtitle">Small explorers. A clearer picture. A better chance of rescue.</p></div><div className="status"><span/> {missionStatus}</div></div>
-      <div className="mission-ticker" role="status">{simulation.rescue.completedAt!==null ? "MISSION OBJECTIVE COMPLETE" : simulation.rescue.events.at(-1)?.type ?? "COLLAPSED STRUCTURE SEARCH"}<span>{simulation.rescue.events.at(-1) ? `Sector ${simulation.rescue.events.at(-1)!.sector} / ` : ""}{simulation.rescue.confirmed} survivors located / {simulation.rescue.hazards} hazards mapped</span></div>
-      <div className="workspace"><section className="map-panel" aria-labelledby="map-title">
-        <div className="panel-heading"><div><span className="eyebrow">SECTOR 01</span><h2 id="map-title">Collapsed residential building</h2></div><span className="mono">TOP VIEW</span></div>
-        <div className="map-toolbar"><span><i className="dot"/> {reveal ? 'Inspection view · all terrain' : 'Shared exploration view'}</span><button aria-pressed={reveal} onClick={() => setReveal(v => !v)}>{reveal ? 'Restore fog of war' : 'Inspect full map'}</button></div>
-        <div className="controller-picker" role="group" aria-label="Controller"><span>Controller (all BioBugs)</span><button aria-pressed={mode === 'rule-based'} onClick={() => selectController('rule-based')}>Rule-Based</button><button aria-pressed={mode === 'malecns'} onClick={() => selectController('malecns')}>MaleCNS</button>{mode === 'malecns' && <small>Unsigned model · engineering motor decoder</small>}</div>
-        <div className="deployment-controls"><label>Deployment (resets mission)<select aria-label="BioBug count" value={simulation.agents.length} disabled={running} onChange={e => { simulation.deploy(Number(e.target.value)); setReveal(false); setSelectedDiscovery(null); }} >{[1,2,4,8].map(n => <option key={n} value={n}>{n} BioBug{n > 1 ? 's' : ''}</option>)}</select></label><label><input type="checkbox" checked={simulation.coordinated} onChange={e => simulation.setCoordinated(e.target.checked)}/>Coordinated frontiers</label></div><div className="simulation-controls"><button onClick={toggle}>{running ? 'Pause' : elapsed ? 'Resume mission' : 'DEPLOY SWARM'}</button><button onClick={resetMission}>Reset</button><button aria-pressed={debug} onClick={() => setDebug(v => !v)}>Sensor rays {debug ? 'on' : 'off'}</button><span className="mono">{elapsed.toFixed(1)} s</span></div><EnvironmentCanvas discoveries={simulation.rescue.discoveries} onDiscovery={setSelectedDiscovery} environment={environment} agents={simulation.agents} selected={simulation.selected} onSelect={simulation.selectBug} reveal={reveal} debug={debug}/>
-        <div className="legend"><span><i className="key wall"/>Wall</span><span><i className="key debris"/>Debris</span><span><i className="key fog"/>Unexplored</span><span className="green">＋ Possible survivor</span><span className="amber">△ Hazard</span></div>
-      </section><aside>
-        <section className="card"><p className="eyebrow">MISSION OVERVIEW</p><h2>Rescue mission</h2><div className="coverage"><strong>{explored.toFixed(1)}<small>%</small></strong><span>accessible area explored</span></div><div className="progress"><div style={{width: `${explored}%`}}/></div><p className="muted">Coverage counts reachable free-space cells. Inspection does not change mission knowledge.</p><dl><div><dt>Life signals</dt><dd className="green">{simulation.rescue.confirmed} confirmed / {simulation.rescue.possible} possible</dd></div><div><dt>Hazards detected</dt><dd className="amber">{simulation.rescue.hazards}</dd></div><div><dt>BioBugs deployed</dt><dd>{String(simulation.agents.length).padStart(2,'0')}</dd></div></dl></section>
-        <CommanderPanel key={simulation.missionRevision} getSnapshot={simulation.commanderSnapshot}/><section className="card inspector"><p className="eyebrow">BIOBUG INSPECTOR</p><h2>{bug.id}</h2><dl><div><dt>Status</dt><dd className="green">{bug.state}</dd></div><div><dt>Heading</dt><dd>{(bug.heading * 180 / Math.PI).toFixed(1)}°</dd></div><div><dt>Front sensor</dt><dd>{bug.sensors.frontDistance.toFixed(1)} u</dd></div><div><dt>Left sensor</dt><dd>{bug.sensors.leftDistance.toFixed(1)} u</dd></div><div><dt>Right sensor</dt><dd>{bug.sensors.rightDistance.toFixed(1)} u</dd></div><div><dt>Position (x, y)</dt><dd>{bug.position.x.toFixed(1)}, {bug.position.y.toFixed(1)}</dd></div></dl><p className="muted">Distances from body edge · range 85 u.<br/>Heading: 0° east, 90° south.</p></section>
-        <section className="card"><p className="eyebrow">SELECTED BIOBUG / RESCUE PAYLOAD</p><h2>{simulation.rescue.reading.status}</h2><dl><div><dt>Life signal</dt><dd>{simulation.rescue.reading.life.toFixed(2)}</dd></div><div><dt>Gas signal</dt><dd>{simulation.rescue.reading.gas.toFixed(2)}</dd></div><div><dt>Hazard exposure</dt><dd>{simulation.rescue.reading.exposed?'HIGH GAS':'No strong gas reading'}</dd></div></dl><p className="muted">Simulated engineering sensors / 4 readings per second. Investigating means collecting evidence while navigation continues.</p></section>
-        <section className="stage"><span className="eyebrow">BUILD MILESTONE 05</span><h2>Find signals. Share discoveries.</h2><p>Survivors require sustained strong life readings. Shared markers show estimated locations, never hidden target coordinates.</p><span className="stage-tag">SIMULATED RESCUE SENSING</span></section>
+      <div className="judge-heading"><div><p className="eyebrow">SIMULATION PROTOTYPE / EARTHQUAKE RESPONSE</p><h1>{opening ? 'BIOBUG RESCUE' : 'Every discovery matters.'}</h1><p className="subtitle">Autonomous insect-scale exploration for places conventional robots struggle to reach.</p></div><span className="status">{status}</span></div>
+      <section className="scorecard" aria-label="Mission scorecard">
+        {[
+          ['BIOBUGS', `${simulation.agents.length} / ${simulation.agents.length}`],
+          ['AREA MAPPED', `${simulation.explored.toFixed(1)}%`],
+          ['SURVIVORS', `${simulation.rescue.confirmed} / 2`],
+          ['HAZARDS', `${simulation.rescue.hazards} / 2`],
+          ['MISSION TIME', `${elapsed.toFixed(1)} s`],
+        ].map(([label, value]) => <div key={label}><span>{label}</span><strong>{value}</strong></div>)}
+      </section>
+      <div className="judge-workspace"><section className="map-panel" aria-labelledby="map-title">
+        <div className="panel-heading"><div><p className="eyebrow">COLLAPSED STRUCTURE SEARCH</p><h2 id="map-title">{opening ? `${simulation.agents.length} BioBugs Ready` : 'Shared rescue map'}</h2></div><button className="deploy-button" disabled={blocked && !running} onClick={simulation.toggle}>{running ? 'PAUSE MISSION' : elapsed ? 'RESUME MISSION' : 'DEPLOY SWARM'}</button></div>
+        <div className="mission-config"><span>{mode === 'rule-based' ? 'Rule-Based' : 'MaleCNS experimental'} · {simulation.coordinated ? 'Coordinated' : 'Independent'} · Seed 2026</span><span>Simulation prototype</span></div>
+        <EnvironmentCanvas discoveries={simulation.rescue.discoveries} onDiscovery={setSelectedDiscovery} environment={environment} agents={simulation.agents} selected={simulation.selected} onSelect={simulation.selectBug} reveal={technical && reveal} debug={technical && debug}/>
+        <div className="legend"><span><i className="key wall"/>Walls</span><span><i className="key debris"/>Debris</span><span><i className="key fog"/>Unexplored</span><span className="green">? Life signal / + Confirmed</span><span className="amber">! Gas hazard</span></div>
+      </section><aside className="judge-sidebar">
+        <section className="discovery-feed card" aria-label="Discovery notifications"><p className="eyebrow">LIVE DISCOVERIES</p><div role="status" aria-live="polite" aria-atomic="true">{notices.length ? notices.map(n => <div className={`discovery-notice ${n.kind}`} key={`${n.time}-${n.title}-${n.sector}`}><strong>{n.title}</strong><span>Sector {n.sector} <small>{n.time.toFixed(2)} s</small></span></div>) : <p>Deploy the swarm to search for life signals and gas hazards. Locations appear only after sensing.</p>}</div></section>
+        <CommanderPanel key={simulation.missionRevision} compact={!technical} getSnapshot={simulation.commanderSnapshot}/>
       </aside></div>
-      <RescuePanel rescue={simulation.rescue} selected={selectedDiscovery} onSelect={setSelectedDiscovery} elapsed={elapsed} coverage={explored} count={simulation.agents.length} running={running}/><SwarmPanel view={simulation} onSelect={simulation.selectBug}/><p className="selected-telemetry-label">Selected agent: {bug.id} · local controller telemetry</p><ControllerPanel view={simulation}/><PathwayExplorer/>
-      <footer><span>Bio-inspired research demo · Not a model of a real insect brain.</span><span>LOCAL SIMULATION <span className="green">●</span></span></footer>
+      {(blocked || simulation.neural.status === 'offline') && mode === 'malecns' && <p className="recovery" role="alert">MaleCNS is unavailable. Motion is held. Pause if needed and choose Rule-Based in Technical View, or RESET DEMO to restart the rescue presentation.</p>}
+      <p className="mission-caption">Scenario objectives: 2 survivors and 2 gas hazards. Markers are sensor estimates; totals are demo objectives, not sensed knowledge. {simulation.rescue.completedAt !== null && <strong className="green">Both survivors confirmed at {simulation.rescue.completedAt.toFixed(2)} s.</strong>}</p>
+      {technical && <section className="technical-section" aria-label="BioBug autonomy">
+        <div className="technical-title"><div><p className="eyebrow">BIOBUG AUTONOMY</p><h2>Environment sensors → Controller → Movement</h2></div><span className={`readiness ${readiness.state}`} role="status">{readiness.state === 'ready' ? 'MALECNS READY' : readiness.state === 'loading' ? 'LOADING MALECNS...' : 'MALECNS UNAVAILABLE / STILL STARTING'}</span></div>
+        <p className="muted">Backend startup may take several minutes. Readiness is checked every 5 seconds. Pause before switching controllers; switching retains mission progress. Reset Demo restores the default rescue configuration.</p>
+        <div className="technical-controls"><div role="group" aria-label="Controller">{(['rule-based', 'malecns'] as const).map(m => <button key={m} aria-pressed={mode === m} disabled={!canSelectController(m, running, readiness.state)} onClick={() => { if (canSelectController(m, running, readiness.state)) simulation.selectController(m); }}>{m === 'rule-based' ? 'RULE-BASED' : 'MALECNS'}</button>)}</div>
+          <label>BioBugs <select value={simulation.agents.length} disabled={running} onChange={e => { simulation.deploy(Number(e.target.value)); setSelectedDiscovery(null); }}>{[1, 2, 4, 8].map(n => <option key={n}>{n}</option>)}</select></label>
+          <label><input type="checkbox" disabled={running} checked={simulation.coordinated} onChange={e => simulation.setCoordinated(e.target.checked)}/> Coordination</label>
+          <button aria-pressed={reveal} onClick={() => setReveal(!reveal)}>Inspect terrain</button><button aria-pressed={debug} onClick={() => setDebug(!debug)}>Sensor rays</button>
+        </div>
+        <div className="structure-grid"><section className="card"><p className="eyebrow">REAL DATA / MALECNS {dataset.version}</p><h2>Real MaleCNS structure</h2><p>{dataset.neurons.toLocaleString('en-US')} selected neurons<br/>{dataset.edges.toLocaleString('en-US')} directed connections<br/>{dataset.synaptic_contacts.toLocaleString('en-US')} contacts</p><small>{readiness.data ? 'Live loaded backend counts' : 'Recorded dataset inspection · backend not ready'}</small></section>
+          <section className="card"><p className="eyebrow">CONTROL SUBGRAPH / REAL DATA</p><h2>ProLN → intermediates → DNa02</h2><p>{(simulation.neural.response?.graph.neurons ?? evidence.graph.neurons).toLocaleString()} neurons<br/>{(simulation.neural.response?.graph.edges ?? evidence.graph.edges).toLocaleString()} edges<br/>{(simulation.neural.response?.graph.structural_contacts ?? evidence.graph.structural_contacts).toLocaleString('en-US')} contacts</p><small>{simulation.neural.response ? 'Latest actual controller response' : 'Recorded configured control graph · no live activity yet'}</small></section></div>
+        <p className="science-note">MaleCNS-connectome-based computational controller: real structural connectivity with simulated neural dynamics. This is not a biologically accurate fly-brain simulation.</p>
+        <ControllerPanel view={simulation}/><MeasuredResults/>
+        <details className="advanced-tools"><summary>Advanced tools · agent telemetry, rescue evidence and pathway experiments</summary><SwarmPanel view={simulation} onSelect={simulation.selectBug}/><RescuePanel rescue={simulation.rescue} selected={selectedDiscovery} onSelect={setSelectedDiscovery} elapsed={elapsed} coverage={simulation.explored} count={simulation.agents.length} running={running}/><PathwayExplorer/></details>
+      </section>}
+      <JudgeContext/>
+      <footer><span>Simulation prototype · Potential applications, no current hardware deployment.</span><span>HUMAN OPERATORS MAKE RESCUE DECISIONS</span></footer>
     </main>
   </div>;
 }
