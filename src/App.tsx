@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Rescue3D from './components/Rescue3D';
 import { CommanderPanel } from './components/CommanderPanel';
 import { EnvironmentCanvas } from './components/EnvironmentCanvas';
 import { PathwayExplorer } from './components/PathwayExplorer';
@@ -17,10 +18,11 @@ export default function App() {
   const { environment, running, elapsed, mode } = simulation;
   const readiness = useReadiness();
   const [technical, setTechnical] = useState(false);
+  const [threeD, setThreeD] = useState(false);
   const [reveal, setReveal] = useState(false);
   const [debug, setDebug] = useState(false);
   const [selectedDiscovery, setSelectedDiscovery] = useState<string | null>(null);
-  const resetDemo = () => { simulation.resetDemo(); setTechnical(false); setReveal(false); setDebug(false); setSelectedDiscovery(null); };
+  const resetDemo = () => { simulation.resetDemo(); setThreeD(false); setTechnical(false); setReveal(false); setDebug(false); setSelectedDiscovery(null); };
   const notices = discoveryNotices(simulation.rescue.events);
   const opening = elapsed === 0 && !running;
   const blocked = mode === 'malecns' && readiness.state !== 'ready';
@@ -30,7 +32,7 @@ export default function App() {
   const dataset = readiness.data ?? evidence.dataset;
   return <div className="app judge-app">
     <header><a className="brand" href="./"><span className="brand-icon">✳</span> BioBug<span>Rescue</span></a>
-      <nav aria-label="Display mode"><button aria-pressed={!technical} onClick={() => { setTechnical(false); setReveal(false); setDebug(false); }}>PRESENTATION MODE</button><button aria-pressed={technical} onClick={() => setTechnical(true)}>TECHNICAL VIEW</button></nav>
+      <nav aria-label="Display mode"><button aria-pressed={!technical && !threeD} onClick={() => { setThreeD(false); setTechnical(false); setReveal(false); setDebug(false); }}>PRESENTATION MODE</button><button aria-pressed={technical} onClick={() => {setThreeD(false);setTechnical(true);}}>TECHNICAL VIEW</button><button aria-pressed={threeD} onClick={() => {setThreeD(true);setTechnical(false);setReveal(false);setDebug(false);}}>3D RESCUE VIEW</button></nav>
       <button className="reset-demo" onClick={resetDemo}>RESET DEMO</button></header>
     <main>
       <div className="judge-heading"><div><p className="eyebrow">SIMULATION PROTOTYPE / EARTHQUAKE RESPONSE</p><h1>{opening ? 'BIOBUG RESCUE' : 'Every discovery matters.'}</h1><p className="subtitle">Autonomous insect-scale exploration for places conventional robots struggle to reach.</p></div><span className="status">{status}</span></div>
@@ -46,7 +48,7 @@ export default function App() {
       <div className="judge-workspace"><section className="map-panel" aria-labelledby="map-title">
         <div className="panel-heading"><div><p className="eyebrow">COLLAPSED STRUCTURE SEARCH</p><h2 id="map-title">{opening ? `${simulation.agents.length} BioBugs Ready` : 'Shared rescue map'}</h2></div><button className="deploy-button" disabled={blocked && !running} onClick={simulation.toggle}>{running ? 'PAUSE MISSION' : elapsed ? 'RESUME MISSION' : 'DEPLOY SWARM'}</button></div>
         <div className="mission-config"><span>{mode === 'rule-based' ? 'Rule-Based' : 'MaleCNS experimental'} · {simulation.coordinated ? 'Coordinated' : 'Independent'} · Seed 2026</span><span>Simulation prototype</span></div>
-        <EnvironmentCanvas discoveries={simulation.rescue.discoveries} onDiscovery={setSelectedDiscovery} environment={environment} agents={simulation.agents} selected={simulation.selected} onSelect={simulation.selectBug} reveal={technical && reveal} debug={technical && debug}/>
+        {threeD ? <Rescue3D key={simulation.missionRevision} environment={environment} agents={simulation.agents} selected={simulation.selected} discoveries={simulation.rescue.discoveries} elapsed={elapsed} running={running} onSelect={simulation.selectBug} onDiscovery={setSelectedDiscovery} resumeDisabled={blocked && !running} onToggle={simulation.toggle} onExit={() => setThreeD(false)}/> : <EnvironmentCanvas discoveries={simulation.rescue.discoveries} onDiscovery={setSelectedDiscovery} environment={environment} agents={simulation.agents} selected={simulation.selected} onSelect={simulation.selectBug} reveal={technical && reveal} debug={technical && debug}/>}
         <div className="legend"><span><i className="key wall"/>Walls</span><span><i className="key debris"/>Debris</span><span><i className="key fog"/>Unexplored</span><span className="green">? Life signal / + Confirmed</span><span className="amber">! Gas hazard</span></div>
       </section><aside className="judge-sidebar">
         <section className="discovery-feed card" aria-label="Discovery notifications"><p className="eyebrow">LIVE DISCOVERIES</p><div role="status" aria-live="polite" aria-atomic="true">{notices.length ? notices.map(n => <div className={`discovery-notice ${n.kind}`} key={`${n.time}-${n.title}-${n.sector}`}><strong>{n.title}</strong><span>Sector {n.sector} <small>{n.time.toFixed(2)} s</small></span></div>) : <p>Deploy the swarm to search for life signals and gas hazards. Locations appear only after sensing.</p>}</div></section>

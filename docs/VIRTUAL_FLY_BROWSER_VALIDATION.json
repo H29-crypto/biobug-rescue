@@ -1,0 +1,90 @@
+{
+  "dateLocal": "2026-09-27",
+  "browser": "Codex in-app browser",
+  "target": "http://127.0.0.1:5173/",
+  "build": "Vite production preview",
+  "observedChecks": [
+    "Experience chooser displays both routes; keyboard Enter activates navigation.",
+    "Rescue starts in Presentation Mode: four coordinated Rule-Based agents, seed 2026, 5.1% coverage, zero discoveries, time zero.",
+    "Deploy Swarm changes Rescue to Mission Active; exiting unmounts the run.",
+    "Lab starts paused with independent pose (110,240), zero elapsed time and null neural measurements.",
+    "Frontal obstacle MaleCNS run shows actual nonzero sampled stimuli, DNa02 IDs/peaks and steering from the shared backend.",
+    "Manual left=1, front=right=0 stimulation predicted TURN RIGHT while paused body metrics remained exactly unchanged.",
+    "Browser paired frontal experiment matched the command-line distances, turns, moving time and coverage.",
+    "Reset restored all experiment metrics and start pose; returning to Rescue restored its original paused Presentation defaults.",
+    "Re-entering Lab restored a fresh default Rule-Based open arena.",
+    "Final production-build corridor neural run completed 30 seconds/150 responses and matched recorded CLI movement metrics.",
+    "Cancelling a paired run displayed Comparison cancelled and produced no partial result table."
+  ],
+  "interactiveFrontalPartialRun": {
+    "elapsedSimulatedSeconds": 21.88,
+    "neuralResponses": 110,
+    "meanHttpMs": 13.33,
+    "p95HttpMs": 25.7,
+    "observedCanvasPaintsPerSecond": [
+      35.9,
+      42.0
+    ],
+    "observedMeanPaintMs": [
+      0.23,
+      0.32
+    ],
+    "logKiB": 50.4
+  },
+  "finalBuildCorridorCompleted": {
+    "elapsedSimulatedSeconds": 30,
+    "distance": 1011.36,
+    "turns": 13,
+    "blocked": 0,
+    "collisionAttempts": 0,
+    "movingSeconds": 27.6,
+    "coveragePercent": 85,
+    "neuralResponses": 150,
+    "meanHttpMs": 13.54,
+    "p95HttpMs": 28.7,
+    "serializedLogKiB": 98.5
+  },
+  "finalBuildCorridorActiveSample": {
+    "elapsedSimulatedSeconds": 22.82,
+    "neuralResponses": 115,
+    "meanHttpMs": 11.24,
+    "p95HttpMs": 22.8,
+    "canvasPaintsPerSecond": 42.9,
+    "physicsStepsPerWallSecond": 59.9,
+    "meanPaintMs": 0.3,
+    "serializedLogKiB": 71.3
+  },
+  "browserFrontalComparison": {
+    "ruleDistance": 1063.3,
+    "neuralDistance": 1147.86,
+    "ruleTurns": 6,
+    "neuralTurns": 5,
+    "ruleMovingSeconds": 25.32,
+    "neuralMovingSeconds": 29.2,
+    "ruleCoverage": 16.01,
+    "neuralCoverage": 16.34,
+    "neuralMeanHttpMs": 4.7,
+    "neuralP95HttpMs": 6.3
+  },
+  "limitations": [
+    "Runtime samples are displayed rolling observations, not sustained benchmark averages.",
+    "Serialized log bytes are not browser heap; whole-browser heap and GPU allocations were not isolated.",
+    "Automation pointer clicks did not activate controls in this environment; documented keyboard activation worked and was used.",
+    "No API key or live Commander request was needed for these Lab checks."
+  ],
+  "screenshots": [
+    "work/virtual-fly-lab-preview.png",
+    "work/virtual-fly-lab-full.png"
+  ],
+  "finalBrowserConsoleErrors": [],
+  "browserCorridorComparison": {
+    "ruleDistance": 954.1,
+    "neuralDistance": 1011.36,
+    "ruleTurns": 9,
+    "neuralTurns": 13,
+    "ruleCoverage": 67.5,
+    "neuralCoverage": 85,
+    "neuralMeanHttpMs": 8.49,
+    "neuralP95HttpMs": 11.3
+  }
+}

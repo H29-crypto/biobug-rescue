@@ -12,9 +12,21 @@ A browser simulation of coordinated BioBugs that explore, share a map, detect si
 
 ## Demo
 
-Open the app and press **DEPLOY SWARM**. Presentation Mode defaults to four coordinated BioBugs, seed 2026, Rule-Based navigation. Discoveries appear beside the map; scorecards show coverage, confirmed survivors, hazards and simulated time. **RESET DEMO** restores this exact configuration, clears the mission and Commander history, and returns to the opening screen.
+Open the app, choose **ENTER RESCUE**, and press **DEPLOY SWARM**. Presentation Mode defaults to four coordinated BioBugs, seed 2026, Rule-Based navigation. Discoveries appear beside the map; scorecards show coverage, confirmed survivors, hazards and simulated time. **RESET DEMO** restores this exact configuration, clears the mission and Commander history, and returns to the opening screen.
 
 Use **TECHNICAL VIEW** for the controller explanation and measured evidence. Pause before changing controllers. Full three-minute script and recovery checklist: [docs/DEMO.md](docs/DEMO.md).
+
+## Virtual Fly Lab
+
+The opening screen now offers a second, isolated experience: **ENTER LAB** (`#virtual-fly`). One illustrated virtual fly walks in five deterministic arenas with Rule-Based or MaleCNS-derived control. Inspect live sensory/neural readouts, compare paths from identical starts, export telemetry, or pause for independent stimulation. Rescue remains at `#rescue` with its existing behavior.
+
+The lab reuses the same loaded backend and 295-neuron structural graph. Its sensory mapping, activity and movement are explicitly engineering models. Start the existing backend for MaleCNS; Rule-Based works offline. Run `npm run compare:fly -- 30` for reproducible real-backend experiments. See [Virtual Fly Lab architecture, evidence, results and limitations](docs/VIRTUAL_FLY_LAB.md).
+
+## 3D Rescue View
+
+Choose **3D RESCUE VIEW** for a game-like structural cutaway of the same live mission. It includes procedural damaged concrete, rubble, six-legged insect models, distance-driven walking animation, observed discovery beacons and a shared-map inset. **OVERHEAD** supports drag-to-orbit and scroll-to-zoom; **FOLLOW BIOBUG** tracks the selected agent. Select agents on the scene or roster. **FOCUS SCENE** enlarges the scene; Escape exits focus.
+
+This is a visual representation of the existing 2D simulation. Bodies, heights and leg animation are illustrative; no new physics, sensing, neural dynamics or hardware claims are introduced. **MISSION FOG OFF** reveals terrain only, never hidden targets. Three.js loads only when this view is opened. Unsupported or lost WebGL falls back to the live 2D map. See [3D implementation and validation](docs/3D_RESCUE_VIEW.md).
 
 ## Architecture
 

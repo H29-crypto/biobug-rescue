@@ -7,19 +7,22 @@
     "dev": "vite --host 127.0.0.1 --configLoader runner",
     "build": "tsc -b && vite build --configLoader runner",
     "preview": "vite preview --host 127.0.0.1 --configLoader runner",
-    "test": "node tests/simulation.cjs && node tests/controllers.cjs && node tests/swarm.cjs && node tests/rescue.cjs && node tests/commander.cjs && node tests/presentation.cjs",
+    "test": "node tests/simulation.cjs && node tests/controllers.cjs && node tests/swarm.cjs && node tests/rescue.cjs && node tests/commander.cjs && node tests/presentation.cjs && node tests/rescue3d.cjs && node tests/virtual_fly.cjs",
     "compare:controllers": "node scripts/compare_controllers.cjs",
     "compare:swarms": "node scripts/compare_swarms.cjs",
     "compare:rescue": "node scripts/compare_rescue.cjs",
-    "demo": "npm run dev"
+    "demo": "npm run dev",
+    "compare:fly": "node scripts/compare_virtual_fly.cjs"
   },
   "dependencies": {
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "three": "0.180.0"
   },
   "devDependencies": {
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
+    "@types/three": "0.180.0",
     "@vitejs/plugin-react": "^4.5.0",
     "typescript": "~5.8.3",
     "vite": "^6.3.5"

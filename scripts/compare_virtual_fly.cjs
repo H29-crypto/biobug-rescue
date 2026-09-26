@@ -1,0 +1,16 @@
+const fs=require('node:fs'),assert=require('node:assert/strict'),{execFileSync}=require('node:child_process');
+const load=require('./compile_virtual_fly.cjs')(),{EXPERIMENTS}=load('virtual-fly/experiments'),{compareTrial}=load('virtual-fly/trials');
+const duration=Number(process.argv[2]||30),backendPid=Number(process.argv[3]||0);
+const memory=()=>{try{return backendPid?JSON.parse(execFileSync('backend/.venv/Scripts/python.exe',['-c',`import psutil,json; p=psutil.Process(${backendPid}); print(json.dumps({'pid':p.pid,'rssBytes':p.memory_info().rss}))`],{encoding:'utf8'})):null;}catch{return null;}};
+const deterministic=r=>{const summary={...r.summary};delete summary.meanLatencyMs;delete summary.p95LatencyMs;return {summary,path:r.path,telemetry:r.telemetry};};
+(async()=>{
+  const status=await fetch('http://127.0.0.1:8000/connectome/status').then(r=>r.json());assert(status.loaded,'Real backend must be loaded');
+  const network=await fetch('http://127.0.0.1:8000/connectome/control-network').then(r=>r.json());assert(network.graph?.neurons,'Control graph unavailable');
+  const rssBefore=memory(),nodeBefore=process.memoryUsage(),started=performance.now(),runs=[];let peakNodeRss=nodeBefore.rss;
+  const sampler=setInterval(()=>{peakNodeRss=Math.max(peakNodeRss,process.memoryUsage().rss);},100);
+  try{for(const experiment of EXPERIMENTS){const c={experiment:experiment.id,seed:2026,duration,mode:'rule-based'};const first=await compareTrial(c,new AbortController().signal);const repeat=await compareTrial(c,new AbortController().signal);assert.deepEqual(first.map(deterministic),repeat.map(deterministic),`Determinism failed for ${experiment.id}`);runs.push(...first);console.log('MEASURED',experiment.id,first.map(r=>({mode:r.summary.config.mode,distance:r.summary.distance,turns:r.summary.turns,blocked:r.summary.blocked,coverage:r.summary.coverage,meanMs:r.summary.meanLatencyMs})));}}
+  finally{clearInterval(sampler);}
+  const after=await fetch('http://127.0.0.1:8000/connectome/control-network').then(r=>r.json());assert.deepEqual(network.graph.structural_sha256,after.graph.structural_sha256);
+  const report={recordedAt:new Date().toISOString(),duration,seed:2026,note:'Actual existing MaleCNS HTTP backend. Five environments, paired controllers, each pair repeated exactly except latency. 60 Hz physics, 5 neural decisions per simulated second; no prerecorded responses. 30-unit visited-cell coverage differs from Rescue coverage.',loaded:{dataset:status.dataset,version:status.version,neurons:status.neurons,edges:status.edges,synapticContacts:status.synaptic_contacts},graph:network.graph,structuralUnchanged:true,repeatedExactly:true,wallSeconds:(performance.now()-started)/1000,memory:{backendBefore:rssBefore,backendAfter:memory(),nodeRssBefore:nodeBefore.rss,nodeRssAfter:process.memoryUsage().rss,sampledNodePeakRss:peakNodeRss,note:'Process RSS snapshots include runtime/caches; not isolated allocations. The same backend PID and structural hash are used throughout.'},rendering:{measured:false,note:'CLI has no canvas; use in-browser paints/s and paint-time instrumentation.'},runs};
+  const file='docs/VIRTUAL_FLY_EXPERIMENTS.json';fs.writeFileSync(file,JSON.stringify(report,null,2)+'\n');console.log('WROTE',file,`${report.wallSeconds.toFixed(2)} wall seconds`);
+})().catch(e=>{console.error(e);process.exitCode=1;});

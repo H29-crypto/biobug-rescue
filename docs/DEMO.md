@@ -72,3 +72,7 @@ The actual event stream supplies notification sectors. Do not substitute scripte
 Run `npm test`, `npm run build`, and backend `.\.venv\Scripts\python -m pytest -q`. Presentation tests compare a complete 60-second run to the untouched simulation engine, validate defaults/reset, exclude hidden locations, check offline AI/controller gates, and compare displayed evidence with original reports.
 
 The offline backup is the working Rule-Based simulation, deterministic System Summary, and labeled recorded measurements. No fabricated screenshots, video, neural activity or AI responses are used.
+
+## Optional 3D segment
+
+After deployment, choose **3D RESCUE VIEW**. Use **FOLLOW BIOBUG**, select an insect from the roster, and **FOCUS SCENE** for a game-like close-up. Escape exits focus. Return to Presentation or Technical View to continue the same mission. The camera follows real simulation state; the insect model and building heights are illustrative. Terrain inspection does not reveal hidden survivors or hazards. If WebGL fails, the view provides the live 2D map.
