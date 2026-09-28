@@ -1,0 +1,62 @@
+{
+  "source": "Live local MaleCNS v1.0 API; actual 295-neuron structural controller",
+  "scope": "Fixed-step production simulation + production viewer observer/filters/history; browser GPU rendering verified separately. Timing fields held at zero only for deterministic result comparison.",
+  "graph_sha256": "fda9df339350f4420439a90556330275d5ac4cb127a411c3d2e3f74cc2527c6c",
+  "cases": [
+    {
+      "experiment": "open",
+      "seconds": 5,
+      "neural_updates": 25,
+      "viewer_off_on_exact": true,
+      "legacy_response_exact": true,
+      "result_sha256": "73647440e80864e64e6d08fc91ab4f597e50c04ec8e3e7375eb5ec89689dc79e"
+    },
+    {
+      "experiment": "left",
+      "seconds": 5,
+      "neural_updates": 25,
+      "viewer_off_on_exact": true,
+      "legacy_response_exact": true,
+      "result_sha256": "ba66f57ca856bf6b248728dc885f021285f5309f976d55bc0ec278a39e0baf3f"
+    },
+    {
+      "experiment": "right",
+      "seconds": 5,
+      "neural_updates": 25,
+      "viewer_off_on_exact": true,
+      "legacy_response_exact": true,
+      "result_sha256": "12a4a6c372e4c14f3ee540f96bcba16f87bbb7d0055a5f1ae7f5785c1bd37b2e"
+    },
+    {
+      "experiment": "front",
+      "seconds": 5,
+      "neural_updates": 25,
+      "viewer_off_on_exact": true,
+      "legacy_response_exact": true,
+      "result_sha256": "d4646887ea5c90e36a7b983fc3efe845cde23027527bd8d0a0765fcec4c05f54"
+    },
+    {
+      "experiment": "corridor",
+      "seconds": 5,
+      "neural_updates": 25,
+      "viewer_off_on_exact": true,
+      "legacy_response_exact": true,
+      "result_sha256": "77b8a715c5e72fc537c0fcb1c5d8d55f2b5255c62329cf078f589939c58278c1"
+    }
+  ],
+  "neural_round_trip_ms": {
+    "samples": 250,
+    "mean": 24.807864000000002,
+    "p95": 16.691399999999703
+  },
+  "evaluation_ms": {
+    "samples": 250,
+    "mean": 4.425415593199432,
+    "p95": 5.902899894863367
+  },
+  "response_bytes": {
+    "samples": 250,
+    "mean": 7018.916,
+    "p95": 10226
+  }
+}

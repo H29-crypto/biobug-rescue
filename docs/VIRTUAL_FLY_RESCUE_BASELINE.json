@@ -53,9 +53,9 @@
     "src/rendering/rescue3d/model.ts": "98e21cd42bb4e383ccdf67a9219ecbfc63e1b7461404ef809be7360fe57f6b7e",
     "src/rendering/rescue3d/scene.ts": "c2778698858862b32f04ff511d5527e1db973f742bda59faebfe4c5b0ed83772",
     "backend/connectome/annotations.py": "ba7a555c16f182f4b9e7339e12b67081bab03f36ac4ac670d55a0559c6a37ee4",
-    "backend/connectome/api.py": "50597c4ef1f789884caaf0b19ec183aba121e7d2606226571b085b1751145db5",
+    "backend/connectome/api.py": "ede1772c07a73d458a7275fe75912cf1a50fd9d42c4cbe236f4d7f11de783834",
     "backend/connectome/columnar.py": "2699d51c9cf9ba197dd5f0d0fc832cc24f877182c1fd3dcda9579950167fc13c",
-    "backend/connectome/control.py": "51e56e30cf8ff9fd47aa0f09bf80fa5d21226aac935fbdde1236145c9f3ade35",
+    "backend/connectome/control.py": "48dcd4f53a0d2cdb04350aa87a53e1b9ab7fc3738da1c4db5546d4352f9f62c1",
     "backend/connectome/download.py": "ae7a9c019c593014509df8fd134cbe79c465c956354a5c5452d35fa46c57ae50",
     "backend/connectome/dynamics.py": "32d9b0d4fe7dcf6a68051fd9ede0af8ee26e1f0bf180f232d1a511e3b7b7680d",
     "backend/connectome/dynamics_experiment.py": "1b39ce798dba8a4b792eb5d199aae3800ca56465b9f3af84ba90fce735c7e345",
@@ -90,5 +90,22 @@
     "tests/rescue3d.cjs": "d4a6dc2b73cbece1220a3ea1368ff9b0b572ca66ef0cc9665dc1ccb5d115388f",
     "tests/simulation.cjs": "0d6cd35e11170f1457a881265ce26cf388ae9e7696e914558da91ac4433aa2b1",
     "tests/swarm.cjs": "b58127b790cae6eb4207de5f381b2e8dcf1bf3a2322cee2dcc2e291f464ced28"
+  },
+  "anatomical_viewer_telemetry_amendment": {
+    "date": "2026-09-28",
+    "files": [
+      {
+        "file": "backend/connectome/api.py",
+        "previous_sha256": "50597c4ef1f789884caaf0b19ec183aba121e7d2606226571b085b1751145db5",
+        "current_sha256": "ede1772c07a73d458a7275fe75912cf1a50fd9d42c4cbe236f4d7f11de783834",
+        "reason": "Authorized opt-in per-neuron readout; default response and numerical controller unchanged. Covered by test_morphology.py equivalence tests."
+      },
+      {
+        "file": "backend/connectome/control.py",
+        "previous_sha256": "51e56e30cf8ff9fd47aa0f09bf80fa5d21226aac935fbdde1236145c9f3ade35",
+        "current_sha256": "48dcd4f53a0d2cdb04350aa87a53e1b9ab7fc3738da1c4db5546d4352f9f62c1",
+        "reason": "Authorized opt-in per-neuron readout; default response and numerical controller unchanged. Covered by test_morphology.py equivalence tests."
+      }
+    ]
   }
 }

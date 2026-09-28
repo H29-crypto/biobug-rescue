@@ -147,11 +147,11 @@ def create_app(data_dir: Path | None = None, *, loader=load_connectome) -> FastA
                               for i in range(engine.weights.nnz)]}
 
     @app.post('/connectome/control')
-    def control(stimulus: Stimulus):
+    def control(stimulus: Stimulus, include_activity: bool = False):
         value = loaded()
         with pathway_lock:
             try:
-                result = control_engine().evaluate(stimulus)
+                result = control_engine().evaluate(stimulus, include_activity=include_activity)
             except ValueError as error:
                 raise HTTPException(422, str(error)) from error
         result.update(dataset=value.report['dataset'], version=value.report['version'])

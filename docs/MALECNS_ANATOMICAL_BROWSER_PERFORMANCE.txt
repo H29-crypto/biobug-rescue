@@ -1,0 +1,5 @@
+Observed 2026-09-28, production preview, embedded Chromium, all 295 morphologies. Paused after 93 live updates, body time 18.47 s.
+Recorded sample: session 59.0 FPS / 16.94 ms, 1853 frame intervals, visible tab; last window 58.0 FPS / 17.24 ms, p95 17.10 ms, CPU submit 0.34 ms.
+Fetch + SHA verification + scene setup: 345 ms. One draw call. Geometry/activity buffer estimate 9.81 MB.
+Browser neural HTTP mean / p95: 38.26 / 68.10 ms, 93 accepted responses.
+Earlier automation interval showed approximately 1 FPS; the later visible session is reported separately, not merged or presented as universal performance.

@@ -1,0 +1,181 @@
+{
+  "dataset": "MaleCNS",
+  "version": "v1.0",
+  "loaded": true,
+  "scope": "nonempty superclass excluding any superclass containing 'tbc' (authors' counting rule); no status or type filter",
+  "neurons": 166606,
+  "connected_neurons": 166400,
+  "isolated_neurons": 206,
+  "edges": 25574615,
+  "synaptic_contacts": 124144950,
+  "superclasses": 21,
+  "source_statistics": {
+    "annotation_body_records": 211577,
+    "excluded_annotation_records": 44971,
+    "neurotransmitter_source_records": 1835518,
+    "neurons_missing_nt_record": 166,
+    "selection": "nonempty superclass excluding any superclass containing 'tbc' (authors' counting rule); no status or type filter",
+    "source_edge_rows": 151856684,
+    "source_synaptic_contacts": 311833243,
+    "selected_edge_rows": 25574615,
+    "selected_synaptic_contacts": 124144950,
+    "excluded_edge_rows": 126282069,
+    "excluded_synaptic_contacts": 187688293,
+    "duplicate_selected_pairs_coalesced": 0,
+    "body_stats": {
+      "records": 88384522,
+      "pre": 45656140,
+      "post": 311833243,
+      "downstream": 311833243
+    }
+  },
+  "voxel_size": [
+    8.0,
+    8.0,
+    8.0
+  ],
+  "voxel_units": "nanometers",
+  "source_metadata": {
+    "dataset": "male-cns",
+    "tag": "v1.0",
+    "description": "The complete MaleCNS connectome from the Janelia FlyEM Team Project,\nthe Cambridge Drosophila Connectomics Group, and Google Connectomics.\nCovers the brain and nerve cord; 167k neurons.\n\n- [Project overview](https://www.janelia.org/project-team/flyem/male-cns-connectome)\n- Companion sites:\n    - [Male CNS Connectome Site](https://janelia-flyem.github.io/male-cns)\n    - [Cell Type Explorer](https://reiserlab.github.io/celltype-explorer-drosophila-male-cns)\n    - [Base neuroglancer scene](https://neuroglancer-demo.appspot.com/#!gs://flyem-male-cns/v1.0/male-cns-v1.0.json)\n    - [Clio](https://clio.janelia.org/ws/annotate?dataset=male-cns:v1.0&tab=bodies)\n- Notes:\n    - Synapse coordinates are stored in voxel units (8nm).\n",
+    "lastDatabaseEdit": "2026-03-28 11:56:30.222612573-04:00 / 2026-04-30T12:26:48-04:00 (segment property update)",
+    "totalPreCount": 45656140,
+    "totalPostCount": 311833243
+  },
+  "sources": [
+    {
+      "role": "annotations",
+      "filename": "body-annotations-male-cns-v1.0-minconf-0.5.feather",
+      "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/connectome-data/flat-connectome/body-annotations-male-cns-v1.0-minconf-0.5.feather",
+      "generation": "1780494878811468",
+      "size_bytes": 14483314,
+      "md5_base64": "UKdxh3DFciDxYLpPQxq4ng==",
+      "sha256": "2177e246113e4cfbf1e7772ec37c6da1955ff22e8063d0b1f833101f99a9a3b2",
+      "verified": true
+    },
+    {
+      "role": "neurotransmitters",
+      "filename": "body-neurotransmitters-male-cns-v1.0.feather",
+      "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/connectome-data/flat-connectome/body-neurotransmitters-male-cns-v1.0.feather",
+      "generation": "1780894899156750",
+      "size_bytes": 43282834,
+      "md5_base64": "PYQrEv5cSe763lKNfdJKHw==",
+      "sha256": "95c9289220663abeb3409f3ad9e5a7f8a53f8093f5139d15502cd08da8879621",
+      "verified": true
+    },
+    {
+      "role": "body_stats",
+      "filename": "body-stats-male-cns-v1.0-minconf-0.5.feather",
+      "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/connectome-data/flat-connectome/body-stats-male-cns-v1.0-minconf-0.5.feather",
+      "generation": "1780494888472305",
+      "size_bytes": 778062826,
+      "md5_base64": "QEwzScKFgBSOFoFeuZ84Kg==",
+      "sha256": "ca5dc83a26382ae70c8d8f42fc09ce2dbc1af7c03f3a001a1936b5e142540647",
+      "verified": true
+    },
+    {
+      "role": "edges",
+      "filename": "connectome-weights-male-cns-v1.0-minconf-0.5.feather",
+      "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/connectome-data/flat-connectome/connectome-weights-male-cns-v1.0-minconf-0.5.feather",
+      "generation": "1780494887545976",
+      "size_bytes": 1051241946,
+      "md5_base64": "8w6dzKJc/QIb8eez2XVZng==",
+      "sha256": "e35da783d1c686b2b58b3b87cd6a403ae43bfcfba8bff28e08ef752c1a56afc1",
+      "verified": true
+    },
+    {
+      "role": "metadata",
+      "filename": "Neuprint_Meta_debug.json",
+      "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/database/neuprint-inputs/Neuprint_Meta_debug.json",
+      "generation": "1780895254976045",
+      "size_bytes": 1747811,
+      "md5_base64": "0+slZvtwFbIsxqwZ8/Qa5Q==",
+      "sha256": "9e4dc98dcb207113882880ab2f60312c1ed26d96b14bab97f85807027ad14661",
+      "verified": true
+    }
+  ],
+  "memory": {
+    "csr_bytes": 307561808,
+    "neuron_arrow_bytes": 57125342,
+    "body_id_array_bytes": 1332848,
+    "process_rss_bytes": 569606144,
+    "baseline_rss_bytes": 70279168,
+    "sampled_peak_rss_bytes": 976113664,
+    "retained_array_bytes": 366019998
+  },
+  "load_seconds": 77.903693,
+  "validation": {
+    "status": "passed_with_scope_notes",
+    "checks": [
+      {
+        "name": "all_segment_presynaptic_sites",
+        "actual": 45656140,
+        "expected": 45656140,
+        "delta": 0,
+        "status": "pass",
+        "source": "Neuprint_Meta_debug.json:totalPreCount",
+        "note": ""
+      },
+      {
+        "name": "all_segment_postsynaptic_sites",
+        "actual": 311833243,
+        "expected": 311833243,
+        "delta": 0,
+        "status": "pass",
+        "source": "Neuprint_Meta_debug.json:totalPostCount",
+        "note": ""
+      },
+      {
+        "name": "full_graph_contacts_vs_segment_downstream",
+        "actual": 311833243,
+        "expected": 311833243,
+        "delta": 0,
+        "status": "pass",
+        "source": "body-stats:downstream sum",
+        "note": ""
+      },
+      {
+        "name": "csr_contacts_vs_selected_source",
+        "actual": 124144950,
+        "expected": 124144950,
+        "delta": 0,
+        "status": "pass",
+        "source": "selected source edge weight sum",
+        "note": ""
+      },
+      {
+        "name": "authors_notebook_connected_neurons",
+        "actual": 166400,
+        "expected": 166391,
+        "delta": 9,
+        "status": "reference",
+        "source": "https://github.com/flyconnectome/2025malecns/blob/3be84fa8c64fca9fdc76aeb1d5decf008398e3a9/supplemental_data/quantify-neuron-connections.ipynb",
+        "note": "Notebook uses v0.9; loaded release is v1.0. Delta is reported, not treated as an exact-version invariant."
+      },
+      {
+        "name": "authors_notebook_edges",
+        "actual": 25574615,
+        "expected": 25563426,
+        "delta": 11189,
+        "status": "reference",
+        "source": "https://github.com/flyconnectome/2025malecns/blob/3be84fa8c64fca9fdc76aeb1d5decf008398e3a9/supplemental_data/quantify-neuron-connections.ipynb",
+        "note": "Notebook uses v0.9; loaded release is v1.0. Delta is reported, not treated as an exact-version invariant."
+      },
+      {
+        "name": "authors_notebook_superclasses",
+        "actual": 21,
+        "expected": 20,
+        "delta": 1,
+        "status": "reference",
+        "source": "https://github.com/flyconnectome/2025malecns/blob/3be84fa8c64fca9fdc76aeb1d5decf008398e3a9/supplemental_data/quantify-neuron-connections.ipynb",
+        "note": "Notebook uses v0.9; loaded release is v1.0. Delta is reported, not treated as an exact-version invariant."
+      }
+    ],
+    "warnings": [
+      "The loaded graph excludes annotation records without an accepted superclass and edges with either endpoint outside that selection.",
+      "Published neuron totals depend on proofreading, superclass and connection thresholds; metadata's rounded description is not an exact validation target.",
+      "The authors' reference notebook is v0.9, not v1.0; see explicit reference deltas."
+    ]
+  }
+}

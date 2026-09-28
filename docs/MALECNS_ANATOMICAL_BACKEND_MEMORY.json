@@ -1,0 +1,18 @@
+{
+  "method": "One process, full official dataset retained, same real controller. tracemalloc measures Python-tracked allocations, not total native/GPU memory.",
+  "load_and_controller_setup_seconds": 163.2685810001567,
+  "rss_after_load_bytes": 555405312,
+  "default": {
+    "python_retained_bytes": 8660,
+    "python_peak_bytes": 130224,
+    "compact_json_bytes": 1530,
+    "rss_bytes": 555679744
+  },
+  "with_activity": {
+    "python_retained_bytes": 33935,
+    "python_peak_bytes": 129867,
+    "compact_json_bytes": 7504,
+    "rss_bytes": 555704320
+  },
+  "additional_python_retained_bytes": 25275
+}

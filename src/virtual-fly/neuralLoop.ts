@@ -1,4 +1,5 @@
 import { requestNeural } from '../simulation/neuralClient';
+import { requestAnatomical } from './anatomicalTelemetry';
 import { mapSensors } from '../simulation/sensorMapping';
 import { acceptFlyNeural, failFlyNeural, flyNeuralDue } from './simulation';
 import type { FlySimulation } from './simulation';
@@ -6,7 +7,7 @@ export type NeuralRequest=typeof requestNeural;
 /** Per-lab request owner. No rescue state, no backend neural session, one in flight. */
 export class FlyNeuralLoop {
   private pending:AbortController|null=null;private disposed=false;
-  constructor(private request:NeuralRequest=requestNeural,private now=()=>performance.now()){}
+  constructor(private request:NeuralRequest=requestAnatomical,private now=()=>performance.now()){}
   cancel(){this.pending?.abort();}
   dispose(){this.disposed=true;this.cancel();}
   async pump(s:FlySimulation,current:()=>FlySimulation,notify:()=>void=()=>{}){
