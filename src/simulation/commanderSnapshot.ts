@@ -18,7 +18,12 @@ export function buildMissionSnapshot(s:SwarmSimulation) {
     recentEvents:s.rescue.events.slice(-6).map(e=>({timestamp:Number(e.timestamp.toFixed(2)),bugId:e.bugId,targetId:e.targetId,type:e.type,sector:e.sector})),
   };
 }
-export type MissionSnapshot=ReturnType<typeof buildMissionSnapshot>;
+export interface ThermalReport {
+  id:string;estimatedLocation:{x:number;y:number};uncertaintyRadius:number;sector:string;apparentC:number;contrastC:number;
+  observations:number;firstDetected:number;latestObservation:number;detectedBy:string;observers:string[];persistent:boolean;
+}
+export type MissionSnapshot=ReturnType<typeof buildMissionSnapshot>&{thermalFindings?:ThermalReport[]};
 export function systemSummary(s:MissionSnapshot) {
+  if(s.thermalFindings)return `${s.thermalFindings.length} unidentified heat sources; heat alone cannot confirm a person, animal or life. ${s.hazards.length} gas hazards detected. Coverage: ${s.swarm.coverage.toFixed(1)}%. Locations are uncertain; human verification is required.`;
   return `${s.survivors.filter(d=>d.status==='confirmed').length} survivors confirmed; ${s.survivors.filter(d=>d.status==='possible').length} possible life signals; ${s.hazards.length} gas hazards detected. Coverage: ${s.swarm.coverage.toFixed(1)}%. Undetected hazards may remain.`;
 }

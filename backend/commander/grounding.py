@@ -4,6 +4,7 @@ UNCERTAINTIES = {
     'unobserved': 'No detected hazard does not mean an area is safe; unexplored and unobserved hazards may remain.',
     'estimates': 'Reported locations are estimates from simulated sensors, not surveyed positions.',
     'confidence': 'Confidence is an engineering simulation score, not a medical survival probability.',
+    'thermal': 'Heat alone cannot identify a person or animal, establish life, or distinguish a warm object. Thermal locations include an engineering uncertainty radius; they require human verification.',
     'missing_answer': 'The supplied mission state does not establish an answer to that question.',
 }
 ACTIONS = {
@@ -18,6 +19,10 @@ def catalog(s: MissionSnapshot):
     def add(key, text, sector=None): facts[key]={'text':text,'sector':sector}
     confirmed=sum(d.status=='confirmed' for d in s.survivors)
     add('mission',f'At {s.missionTime:.2f} simulated seconds: {confirmed} confirmed survivors, {len(s.survivors)-confirmed} possible life signals, {len(s.hazards)} detected gas hazards; {s.swarm.active}/{s.swarm.deployed} BioBugs active; reachable-area coverage {s.swarm.coverage:.2f}%.')
+    if s.thermalFindings is not None:
+        add('mission', f'At {s.missionTime:.2f} simulated seconds: {len(s.thermalFindings)} unidentified heat sources and {len(s.hazards)} gas hazards. Heat alone confirms no survivor; identity and life remain unknown. Reachable-area coverage {s.swarm.coverage:.2f}%.')
+    for d in s.thermalFindings or []:
+        add(d.id, f'{d.id}: UNIDENTIFIED HEAT in Sector {d.sector}; apparent surface temperature {d.apparentC:.1f} C, contrast {d.contrastC:.1f} C above simulated ambient. Estimated location ({d.estimatedLocation.x:.1f}, {d.estimatedLocation.y:.1f}), uncertainty radius {d.uncertaintyRadius:.0f} world units. {d.observations} observations from {", ".join(d.observers)}; latest {d.latestObservation:.2f}s. Repetition establishes heat persistence only, not a survivor or life.', d.sector)
     add('unexplored',f'{100-s.swarm.coverage:.2f}% of reachable area remains unexplored. This snapshot does not identify individual unexplored sectors.')
     add('controller', 'The experimental MaleCNS-connectome-based computational controller uses real structural connectivity with simulated neural activity and engineering sensor/motor mappings. Local safety and swarm coordination can override its decoder proposal.' if s.controllerMode=='malecns' else 'Rule-Based navigation is active. Engineering obstacle avoidance and swarm coordination determine movement; AI has no control authority.')
     if s.completedAt is not None: add('completion',f'The survivor-location objective completed at {s.completedAt:.2f} simulated seconds. This means located in simulation, not physically rescued.')
@@ -49,5 +54,5 @@ def render(plan:CommanderPlan, facts:dict, snapshot:MissionSnapshot):
         'priorities':[{'priority':p.priority,'title':p.factId,'reason':facts[p.factId]['text'],'sector':p.sector} for p in plan.priorities],
         'keyFindings':[facts[k]['text'] for k in plan.keyFindings],
         'answer':' '.join(facts[k]['text'] for k in plan.answer) or UNCERTAINTIES['missing_answer'],
-        'uncertainties':[UNCERTAINTIES[k] for k in dict.fromkeys([*[u for u in plan.uncertainties if u!='missing_answer' or not plan.answer],'unobserved','estimates','confidence'])],
+        'uncertainties':[UNCERTAINTIES[k] for k in dict.fromkeys([*[u for u in plan.uncertainties if u!='missing_answer' or not plan.answer],'unobserved','estimates','confidence',*(['thermal'] if snapshot.thermalFindings is not None else [])])],
         'suggestedOperatorActions':[ACTIONS[k] for k in dict.fromkeys([*plan.suggestedOperatorActions,'human_review'])]}

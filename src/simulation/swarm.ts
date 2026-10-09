@@ -87,7 +87,7 @@ export function clearOfPeers(from:Vec2,to:Vec2,bug:BioBug,peers:BioBug[]):boolea
     return Math.hypot(from.x+t*dx-peer.position.x,from.y+t*dy-peer.position.y)>=bug.radius+peer.radius+.25;
   });
 }
-export function advanceSwarm(s:SwarmSimulation,delta:number) {
+export function advanceSwarm(s:SwarmSimulation,delta:number,afterStep?:()=>void) {
   if(!s.running||!Number.isFinite(delta)||delta<=0) return;
   s.accumulator+=Math.min(.1,delta);
   const env=s.agents[0].simulation.environment;
@@ -107,7 +107,7 @@ export function advanceSwarm(s:SwarmSimulation,delta:number) {
       }});
       a.novelCells+=env.exploration.explored.filter(Boolean).length-before;
     }
-    s.elapsed+=FIXED_STEP;sampleRescue(s.rescue,env,s.agents.map(a=>a.simulation.bug),s.elapsed);s.ticks++;s.accumulator=Math.max(0,s.accumulator-FIXED_STEP);
+    s.elapsed+=FIXED_STEP;sampleRescue(s.rescue,env,s.agents.map(a=>a.simulation.bug),s.elapsed);s.ticks++;s.accumulator=Math.max(0,s.accumulator-FIXED_STEP);afterStep?.();
   }
 }
 export function swarmSnapshot(s:SwarmSimulation) {

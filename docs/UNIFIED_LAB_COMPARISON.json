@@ -1,0 +1,44 @@
+{
+  "recorded_at": "2026-09-28T22:33:31.134Z",
+  "dataset": "MaleCNS v1.0",
+  "scope": "Actual local backend, production swarm scheduler and physics, real Three.js body transforms. HTTP latency fixed to zero for equality; evaluation_seconds excluded. No rendered GPU timing claims.",
+  "evaluations": 585,
+  "cases": [
+    {
+      "agents": 1,
+      "seconds": 3,
+      "ticks": 180,
+      "requests_per_run": 15,
+      "evaluations": 45,
+      "exact_mission_state_and_paths": true,
+      "exact_all_neural_activity_across_visuals": true,
+      "state_sha256": "9ed7e4f2ef29189a405b1dbcc9cf702369cde28bda38cd6d4af85e9be1ac3e4b",
+      "trajectory_sha256": "e3c7ea532e2063abd4f5a60289b4cffb6fa22197125b0b688d84359475212361",
+      "activity_sha256": "1c1b4b92159890e89e68ba4dea003776e78fba037c92a67292ef5ea91cb4a1ce"
+    },
+    {
+      "agents": 4,
+      "seconds": 3,
+      "ticks": 180,
+      "requests_per_run": 15,
+      "evaluations": 180,
+      "exact_mission_state_and_paths": true,
+      "exact_all_neural_activity_across_visuals": true,
+      "state_sha256": "1c6a2fe9f3b50be59cad9fa3ffa5c7b8f5e9594351d1238857cf60980960738f",
+      "trajectory_sha256": "ff66d36efb5dca2f44cf0e215c255905eb2312ae5a9eedbae0d01ec4f0726654",
+      "activity_sha256": "4e044f67c2a9bd2a88635cda454a41a3a0e5673a7d924db98fee09d3979cfac0"
+    },
+    {
+      "agents": 8,
+      "seconds": 3,
+      "ticks": 180,
+      "requests_per_run": 15,
+      "evaluations": 360,
+      "exact_mission_state_and_paths": true,
+      "exact_all_neural_activity_across_visuals": true,
+      "state_sha256": "8706dd0635fbd6973cab156e47f30fffd5c990fd082798d60a8b6d0e20740d62",
+      "trajectory_sha256": "64d8ac6567d30241ac88e1e4ab1ba9c33301bbf7f013ad0cc0915ee50c131843",
+      "activity_sha256": "594299d4666e459c3695d65c1303be0c8b8b2bba6268ae6d4c2da375df72e577"
+    }
+  ]
+}

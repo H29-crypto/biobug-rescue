@@ -1,8 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { createInsect } from './insect';
-import type { InsectVisual } from './insect';
-import { visualRandom, worldPose, writeExploration } from './model';
+import { ReceivedMotionPlayback, visualRandom, worldPose, writeExploration } from './model';
 import type { CameraMode, SceneEnvironment, SceneFrame } from './model';
 
 export interface RescueScene {
@@ -13,8 +12,10 @@ export interface RescueScene {
   fog:(enabled:boolean)=>void;
   dispose:()=>void;
 }
-/** This renderer owns only visual state. It cannot advance or command the simulation. */
-export function createRescueScene(host:HTMLDivElement,env:SceneEnvironment,onSelect:(index:number)=>void,onFailure:()=>void):RescueScene {
+export interface MissionVisual { group:THREE.Group; update:(distance:number,selected:boolean,frame:SceneFrame,index:number)=>void }
+export interface RescueVisualOptions { createAgent?:(color:string)=>MissionVisual; followHeight?:()=>number; compactLabels?:boolean; isPicking?:()=>boolean; onDestination?:(point:{x:number;y:number})=>void }
+/** This renderer owns only visual state. It cannot advance physics; destination callbacks carry operator input only. */
+export function createRescueScene(host:HTMLDivElement,env:SceneEnvironment,onSelect:(index:number)=>void,onFailure:()=>void,visualOptions:RescueVisualOptions={}):RescueScene {
   const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
   renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));
   renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
@@ -72,6 +73,12 @@ outgoingLight = mix(vec3(0.012, 0.024, 0.031), outgoingLight, 0.025 + 0.975 * re
   // damage stays inside it, so agents never appear to walk through added rubble.
   for(const obstacle of env.obstacles){
     const {x,y,width:w,height:d}=obstacle;
+    if(obstacle.elevation!==undefined){
+      const base=obstacle.baseAltitude??0;
+      const material=base>0?mapped(new THREE.MeshStandardMaterial({color:0xc6b694,roughness:.9,transparent:true,opacity:.45})):obstacle.kind==='wall'?wallMaterial:rubbleMaterial;
+      box(w,obstacle.elevation,d,x+w/2,base+obstacle.elevation/2,y+d/2,material);
+      continue;
+    }
     if(obstacle.kind==='wall'){
       const horizontal=w>d,length=Math.max(w,d),parts=Math.ceil(length/18);
       box(w,10,d,x+w/2,5,y+d/2,wallDark);
@@ -106,9 +113,10 @@ outgoingLight = mix(vec3(0.012, 0.024, 0.031), outgoingLight, 0.025 + 0.975 * re
   const entryLabel=label('INSERTION POINT','#aadcd5',76);entryLabel.position.set(env.entry.x,3,env.entry.y+34);scene.add(entryLabel);
   // Sector plates sit on the plinth, so they do not suggest discovered locations.
   for(let i=0;i<4;i++){const t=label(String(i+1),'#7a969e',25);t.position.set((i+.5)*env.width/4,0,-20);scene.add(t);const l=label('ABCD'[i],'#7a969e',25);l.position.set(-20,0,(i+.5)*env.height/4);scene.add(l);}
-  const agents:InsectVisual[]=[],agentLabels:THREE.Sprite[]=[];
+  const agents:MissionVisual[]=[],agentLabels:THREE.Sprite[]=[];
   const discoveries=new Map<string,{group:THREE.Group,label:THREE.Sprite,status:string}>();
   let frame:SceneFrame|null=null,mode:CameraMode='overview',disposed=false,raf=0,previous=performance.now(),followDistance=1;
+  const playback=new ReceivedMotionPlayback();
   const followTarget=new THREE.Vector3(),desiredCamera=new THREE.Vector3(),up=new THREE.Vector3(0,1,0);
   function home(){mode='overview';controls.enabled=true;const distance=Math.max(env.width/camera.aspect,env.height)*1.5;controls.target.set(env.width/2,0,env.height/2);camera.position.set(env.width/2+distance*.25,distance*.9,env.height/2+distance*.8);camera.lookAt(controls.target);controls.update();}
   const resize=()=>{const w=host.clientWidth,h=host.clientHeight;if(w<=0||h<=0)return;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h,false);};
@@ -116,12 +124,8 @@ outgoingLight = mix(vec3(0.012, 0.024, 0.031), outgoingLight, 0.025 + 0.975 * re
   function update(next:SceneFrame){
     frame=next;
     if(writeExploration(exploration,next.explored))fogTexture.needsUpdate=true;
-    while(agents.length<next.agents.length){const i=agents.length,visual=createInsect(next.agents[i].color);agents.push(visual);scene.add(visual.group);const badge=label(`BUG ${String(i+1).padStart(2,'0')}`,next.agents[i].color,37);scene.add(badge);agentLabels.push(badge);}
-    agents.forEach((visual,i)=>{
-      const agent=next.agents[i];visual.group.visible=!!agent;agentLabels[i].visible=!!agent;
-      if(!agent)return;const pose=worldPose(agent.bug);visual.group.position.set(pose.x,0,pose.z);visual.group.rotation.y=pose.yaw;visual.update(agent.distance,i===next.selected);
-      agentLabels[i].position.set(pose.x,22,pose.z);agentLabels[i].scale.set(i===next.selected?44:34,i===next.selected?11:8.5,1);
-    });
+    while(agents.length<next.agents.length){const i=agents.length,visual=(visualOptions.createAgent??createInsect)(next.agents[i].color);agents.push(visual);scene.add(visual.group);const badge=label(`BUG ${String(i+1).padStart(2,'0')}`,next.agents[i].color,37);scene.add(badge);agentLabels.push(badge);}
+    if(!next.agents.some(a=>a.motionSamples?.length))drawAgents(next);
     for(const d of next.discoveries){
       let item=discoveries.get(d.id);
       if(!item){const group=new THREE.Group(),color=d.kind==='gas'?0xffbc62:0x79e4c0;
@@ -132,22 +136,32 @@ outgoingLight = mix(vec3(0.012, 0.024, 0.031), outgoingLight, 0.025 + 0.975 * re
       }
       // Only estimates from the public discovery projection are ever rendered.
       item.group.position.set(d.estimatedPosition.x,0,d.estimatedPosition.y);
-      const text=`${d.kind==='gas'?'GAS':d.status==='confirmed'?'LIFE +':'SIGNAL ?'} / ${d.sector}`;
+      const text=`${d.kind==='gas'?'GAS':d.id.startsWith('T-')?'HEAT ?':d.status==='confirmed'?'LIFE +':'SIGNAL ?'} / ${d.sector}`;
       if(item.status!==text){const texture=item.label.material.map! as THREE.CanvasTexture;const c=texture.image as HTMLCanvasElement;const context=c.getContext('2d')!;context.clearRect(0,0,256,64);context.fillStyle='rgba(7,18,23,.9)';context.fillRect(0,0,256,64);context.fillStyle=d.kind==='gas'?'#ffca7d':'#9affe0';context.font='bold 23px monospace';context.textAlign='center';context.fillText(text,128,40);texture.needsUpdate=true;item.status=text;}
     }
     for(const [id,item] of discoveries)if(!next.discoveries.some(d=>d.id===id))item.group.visible=false;
   }
+  function drawAgents(next:SceneFrame){
+    agents.forEach((visual,i)=>{
+      const agent=next.agents[i];visual.group.visible=!!agent;agentLabels[i].visible=!!agent;
+      if(!agent)return;const pose=worldPose(agent.bug);visual.group.position.set(pose.x,(agent.altitude??3)-3,pose.z);visual.group.rotation.y=pose.yaw;visual.update(agent.distance,i===next.selected,next,i);
+      const labelScale=visualOptions.compactLabels?.45:1;
+      agentLabels[i].position.set(pose.x,(agent.altitude??3)-3+17+(agent.altitude!==undefined?5:visualOptions.followHeight?.()??5),pose.z);agentLabels[i].scale.set((i===next.selected?44:34)*labelScale,(i===next.selected?11:8.5)*labelScale,1);
+    });
+  }
   const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();let down={x:0,y:0};
   const pointerDown=(e:PointerEvent)=>{down={x:e.clientX,y:e.clientY};};
-  const pointerUp=(e:PointerEvent)=>{if(Math.hypot(e.clientX-down.x,e.clientY-down.y)>6)return;const rect=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObjects(agents.filter(a=>a.group.visible).map(a=>a.group),true);if(hits.length){let object:THREE.Object3D|null=hits[0].object;while(object){const index=agents.findIndex(a=>a.group===object);if(index>=0){onSelect(index);break;}object=object.parent;}}};
+  const pointerUp=(e:PointerEvent)=>{if(Math.hypot(e.clientX-down.x,e.clientY-down.y)>6)return;const rect=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,camera);if(visualOptions.isPicking?.()){const point=new THREE.Vector3();if(raycaster.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0,1,0),0),point))visualOptions.onDestination?.({x:point.x,y:point.z});return;}const hits=raycaster.intersectObjects(agents.filter(a=>a.group.visible).map(a=>a.group),true);if(hits.length){let object:THREE.Object3D|null=hits[0].object;while(object){const index=agents.findIndex(a=>a.group===object);if(index>=0){onSelect(index);break;}object=object.parent;}}};
   renderer.domElement.addEventListener('pointerdown',pointerDown);renderer.domElement.addEventListener('pointerup',pointerUp);
   const contextLost=(event:Event)=>{event.preventDefault();onFailure();};renderer.domElement.addEventListener('webglcontextlost',contextLost);
   function render(now:number){
     if(disposed)return;const delta=Math.min((now-previous)/1000,.1);previous=now;
-    if(mode==='follow'&&frame?.agents[frame.selected]){
-      const bug=frame.agents[frame.selected].bug;
-      followTarget.set(bug.position.x,5,bug.position.y);
-      desiredCamera.set(bug.position.x-Math.cos(bug.heading)*100*followDistance,83*followDistance,bug.position.y-Math.sin(bug.heading)*100*followDistance);
+    const displayFrame=frame?.agents.some(a=>a.motionSamples?.length)?playback.update(frame,delta):frame;if(displayFrame&&displayFrame!==frame)drawAgents(displayFrame);
+    if(visualOptions.compactLabels){discoveries.forEach(item=>{const width=mode==='follow'?25:75;item.label.scale.set(width,width/4,1);});entryLabel.visible=mode==='overview';agentLabels.forEach((label,i)=>{label.visible=!!frame?.agents[i]&&(mode==='overview'||i===frame.selected);});}
+    if(mode==='follow'&&displayFrame?.agents[displayFrame.selected]){
+      const agent=displayFrame.agents[displayFrame.selected],bug=agent.bug,altitude=(agent.altitude??3)-3;
+      followTarget.set(bug.position.x,altitude+(agent.altitude!==undefined?5:visualOptions.followHeight?.()??5),bug.position.y);
+      desiredCamera.set(bug.position.x-Math.cos(bug.heading)*100*followDistance,altitude+83*followDistance,bug.position.y-Math.sin(bug.heading)*100*followDistance);
       camera.position.lerp(desiredCamera,1-Math.exp(-delta*5));controls.target.lerp(followTarget,1-Math.exp(-delta*7));camera.up.copy(up);camera.lookAt(controls.target);
     }else controls.update();
     try { renderer.render(scene,camera); } catch { onFailure(); return; }

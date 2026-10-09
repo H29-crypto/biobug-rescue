@@ -1,0 +1,155 @@
+{
+  "recorded_at": "2026-10-03T17:37:10.052Z",
+  "graph": {
+    "neurons": 295,
+    "edges": 280,
+    "structural_contacts": 2308,
+    "max_hops": 2,
+    "source_neurons": 266,
+    "target_neurons": 2,
+    "sources_with_outgoing_route_edges": 146,
+    "intermediate_neurons": 27,
+    "structural_sha256": "fda9df339350f4420439a90556330275d5ac4cb127a411c3d2e3f74cc2527c6c",
+    "build_seconds": 6.289184,
+    "structural_array_bytes": 111860,
+    "selection": "Union of all directed ProLN-tactile-to-DNa02 walks of length 1..max_hops. Retain all annotated ProLN tactile inputs and both DNa02 targets, including route-isolated inputs. Not an induced graph or the small visualization sample.",
+    "nt_annotations": {
+      "predicted_nt": {
+        "octopamine": 3,
+        "acetylcholine": 241,
+        "gaba": 8,
+        "unclear": 42,
+        "glutamate": 1
+      },
+      "consensus_nt": {
+        "unclear": 5,
+        "acetylcholine": 280,
+        "glutamate": 2,
+        "gaba": 8
+      }
+    },
+    "source_laterality": {
+      "L": 151,
+      "R": 115
+    },
+    "target_laterality": {
+      "R": 1,
+      "L": 1
+    }
+  },
+  "verified_accepted_evaluations": 74,
+  "manifest_ids_match": true,
+  "read_only_presentation": true,
+  "cases": [
+    {
+      "scene": "controlled",
+      "experiment": "open",
+      "samples": 5,
+      "active_counts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "scene": "controlled",
+      "experiment": "left",
+      "samples": 5,
+      "active_counts": [
+        171,
+        171,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "scene": "controlled",
+      "experiment": "right",
+      "samples": 5,
+      "active_counts": [
+        131,
+        131,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "scene": "controlled",
+      "experiment": "front",
+      "samples": 5,
+      "active_counts": [
+        0,
+        295,
+        295,
+        295,
+        295
+      ]
+    },
+    {
+      "scene": "controlled",
+      "experiment": "corridor",
+      "samples": 5,
+      "active_counts": [
+        295,
+        295,
+        295,
+        295,
+        295
+      ]
+    },
+    {
+      "scene": "rescue",
+      "agents": 1,
+      "samples_per_agent": [
+        3
+      ],
+      "separate_agent_histories": true
+    },
+    {
+      "scene": "rescue",
+      "agents": 2,
+      "samples_per_agent": [
+        3,
+        3
+      ],
+      "separate_agent_histories": true
+    },
+    {
+      "scene": "rescue",
+      "agents": 4,
+      "samples_per_agent": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "separate_agent_histories": true
+    },
+    {
+      "scene": "rescue",
+      "agents": 8,
+      "samples_per_agent": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "separate_agent_histories": true
+    },
+    {
+      "scene": "supervised",
+      "samples": 4,
+      "manual_history_held": true,
+      "resumed_live": true
+    }
+  ],
+  "scope": "Real backend; production schedulers and accepted per-agent telemetry. Five controlled arenas, rescue 1/2/4/8 agents, supervised contact/manual/resume. UI rendering is checked separately."
+}

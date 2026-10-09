@@ -1,0 +1,12 @@
+const fs=require('node:fs');
+const load=require('./compile_unified_lab.cjs')();
+const {createSwarm,runSwarm,advanceSwarm}=load('simulation/swarm');
+const {createThermal,sampleThermal}=load('unified-lab/thermal');
+const {thermalMissionSnapshot}=load('unified-lab/thermalMission');
+const world=createSwarm(4),env=world.agents[0].simulation.environment;
+const thermal=createThermal(env,world.seed);
+runSwarm(world,true);
+for(let tick=0;tick<7200;tick++)advanceSwarm(world,1/60,()=>sampleThermal(thermal,env,world.agents.map(a=>a.simulation.bug),world.ticks));
+const packet=thermalMissionSnapshot(world,thermal);
+fs.writeFileSync('docs/THERMAL_MISSION_REPORT.json',JSON.stringify(packet,null,2)+'\n');
+console.log(JSON.stringify({time:packet.missionTime,heatReports:packet.thermalFindings.length,survivorReports:packet.survivors.length,completedAt:packet.completedAt}));

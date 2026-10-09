@@ -4,15 +4,17 @@ import type { RescueDiscovery } from '../simulation/rescue';
 import type { SceneAgent, CameraMode } from '../rendering/rescue3d/model';
 import { sceneEnvironment } from '../rendering/rescue3d/model';
 import type { RescueScene } from '../rendering/rescue3d/scene';
+import type { RescueVisualOptions } from '../rendering/rescue3d/scene';
 import { EnvironmentCanvas } from './EnvironmentCanvas';
 import './rescue3d.css';
 
 interface Props {
+  visualOptions?:RescueVisualOptions; picking?:boolean; onWaypoint?:(p:{x:number;y:number})=>void; spatialMission?:boolean;
   environment:Environment; agents:(SceneAgent & {path:{x:number;y:number}[]})[]; selected:number;
   discoveries:RescueDiscovery[]; elapsed:number; running:boolean;
   onSelect:(index:number)=>void; onDiscovery:(id:string)=>void; onExit:()=>void; onToggle:()=>void; resumeDisabled:boolean;
 }
-const renderFrame=(p:Props)=>({agents:p.agents,discoveries:p.discoveries,selected:p.selected,elapsed:p.elapsed,explored:p.environment.exploration.explored});
+const renderFrame=(p:Props)=>({agents:p.agents,discoveries:p.discoveries,selected:p.selected,elapsed:p.elapsed,running:p.running,explored:p.environment.exploration.explored});
 export default function Rescue3D(props:Props) {
   const host=useRef<HTMLDivElement>(null),live=useRef(props);live.current=props;
   const scene=useRef<RescueScene|null>(null);
@@ -25,7 +27,7 @@ export default function Rescue3D(props:Props) {
     void import('../rendering/rescue3d/scene').then(({createRescueScene})=>{
       if(cancelled||!host.current)return;
       try {
-        const view=createRescueScene(host.current,sceneEnvironment(live.current.environment),i=>live.current.onSelect(i),()=>setStatus('failed'));
+        const view=createRescueScene(host.current,sceneEnvironment(live.current.environment),i=>live.current.onSelect(i),()=>setStatus('failed'),live.current.visualOptions);
         scene.current=view;view.update(renderFrame(live.current));setStatus('ready');
       } catch { setStatus('failed'); }
     }).catch(()=>{if(!cancelled)setStatus('failed');});
@@ -36,9 +38,9 @@ export default function Rescue3D(props:Props) {
   useEffect(()=>{if(!wide)return;const escape=(event:KeyboardEvent)=>{if(event.key==='Escape')setWide(false);};window.addEventListener('keydown',escape);return()=>window.removeEventListener('keydown',escape);},[wide]);
   const changeCamera=(mode:CameraMode)=>{setCamera(mode);scene.current?.camera(mode);};
   const selected=props.agents[props.selected];
-  const fallback=<EnvironmentCanvas {...props} reveal={false} debug={false}/>;
+  const fallback=<EnvironmentCanvas picking={props.picking} onWaypoint={props.onWaypoint} {...props} reveal={false} debug={false}/>;
   return <div className={`rescue-3d ${wide?'scene-expanded':''}`}>
-    <div className="scene-toolbar"><div className="scene-mode-buttons" role="group" aria-label="3D camera"><button disabled={status!=='ready'} aria-pressed={camera==='overview'} onClick={()=>changeCamera('overview')}>◈ OVERHEAD</button><button disabled={status!=='ready'} aria-pressed={camera==='follow'} onClick={()=>changeCamera('follow')}>◎ FOLLOW BIOBUG</button></div><div className="scene-actions">{wide&&<button disabled={props.resumeDisabled} onClick={props.onToggle}>{props.running?'PAUSE':'RESUME / DEPLOY'}</button>}<button disabled={status!=='ready'} aria-label="Zoom in" onClick={()=>scene.current?.zoom(.8)}>＋</button><button disabled={status!=='ready'} aria-label="Zoom out" onClick={()=>scene.current?.zoom(1.25)}>−</button><button disabled={status!=='ready'} aria-pressed={fog} onClick={()=>{scene.current?.fog(!fog);setFog(!fog);}}>MISSION FOG {fog?'ON':'OFF'}</button><button aria-pressed={wide} onClick={()=>setWide(!wide)}>{wide?'EXIT FOCUS':'FOCUS SCENE'}</button></div></div>
+    <div className="scene-toolbar"><div className="scene-mode-buttons" role="group" aria-label="3D camera"><button disabled={status!=='ready'} aria-pressed={camera==='overview'} onClick={()=>changeCamera('overview')}>◈ OVERHEAD</button><button disabled={status!=='ready'} aria-pressed={camera==='follow'} onClick={()=>changeCamera('follow')}>◎ FOLLOW BIOBUG</button></div><div className="scene-actions">{wide&&<button disabled={props.resumeDisabled} onClick={props.onToggle}>{props.running?'PAUSE':'RESUME / DEPLOY'}</button>}<button disabled={status!=='ready'} aria-label="Zoom in" onClick={()=>scene.current?.zoom(.8)}>+</button><button disabled={status!=='ready'} aria-label="Zoom out" onClick={()=>scene.current?.zoom(1.25)}>−</button><button disabled={status!=='ready'} aria-pressed={fog} onClick={()=>{scene.current?.fog(!fog);setFog(!fog);}}>MISSION FOG {fog?'ON':'OFF'}</button><button aria-pressed={wide} onClick={()=>setWide(!wide)}>{wide?'EXIT FOCUS':'FOCUS SCENE'}</button></div></div>
     <div className="scene-stage">
       {status!=='failed'&&<div className="scene-canvas" ref={host}/>}
       {status==='loading'&&<div className="scene-loading" role="status"><span className="scene-loading-icon">✳</span><strong>ASSEMBLING RESCUE SCENE</strong><span>Loading the 3D renderer…</span></div>}
@@ -52,6 +54,6 @@ export default function Rescue3D(props:Props) {
     </div>
     <div className="scene-roster" role="group" aria-label="Select 3D BioBug">{props.agents.map((agent,i)=><button key={agent.bug.id} aria-pressed={props.selected===i} onClick={()=>props.onSelect(i)}><span style={{background:agent.color}}/><strong>BUG {String(i+1).padStart(2,'0')}</strong><small>{agent.bug.state}</small></button>)}</div>
     <div className="scene-telemetry"><span>SELECTED / <b>{selected.bug.id}</b></span>{(['left','front','right'] as const).map(side=><label key={side}>{side.toUpperCase()}<meter min={0} max={85} value={selected.bug.sensors[`${side}Distance`]}/><span>{selected.bug.sensors[`${side}Distance`].toFixed(0)} u</span></label>)}</div>
-    <p className="scene-disclaimer">Same mission, rendered in 3D. Insect bodies, leg motion and building heights are illustrative. Navigation remains on the original 2D plane.</p>
+    <p className="scene-disclaimer">{props.spatialMission?'Altitude and solid clearance affect navigation. Bodies are illustrative; smooth motion replays received trajectories with a short buffer; telemetry remains delayed. This is simplified motion, not insect aerodynamics.':'Same mission, rendered in 3D. Insect bodies, leg motion and building heights are illustrative. Navigation remains on the original 2D plane.'}</p>
   </div>;
 }

@@ -1,7 +1,7 @@
 /** Coordinates are world units, not browser pixels. Time is measured in seconds. */
 export interface Vec2 { x: number; y: number }
 export interface Rect extends Vec2 { width: number; height: number }
-export interface Obstacle extends Rect { id: string; kind: 'wall' | 'debris' }
+export interface Obstacle extends Rect { id: string; kind: 'wall' | 'debris'; baseAltitude?:number; elevation?:number }
 export interface Survivor { id: string; position: Vec2; status: 'undetected' | 'possible' | 'confirmed'; discoveredBy?: string }
 export interface Hazard { id: string; position: Vec2; radius: number; kind: 'gas' | 'heat' | 'unstable'; severity: number; discovered: boolean }
 export interface ExplorationGrid { columns: number; rows: number; cellSize: number; explored: boolean[] }

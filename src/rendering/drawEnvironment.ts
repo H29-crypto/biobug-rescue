@@ -9,6 +9,7 @@ export function drawEnvironment(ctx: CanvasRenderingContext2D, env: Environment,
   for (let y = 0; y <= height; y += 20) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke(); }
   for (const obstacle of env.obstacles) {
     const { x, y, width: w, height: h, kind } = obstacle;
+    if((obstacle.baseAltitude??0)>0){ctx.save();ctx.fillStyle='#59677a55';ctx.fillRect(x,y,w,h);ctx.strokeStyle='#97a6b7';ctx.setLineDash([5,5]);ctx.strokeRect(x,y,w,h);ctx.restore();continue;}
     ctx.fillStyle = kind === 'wall' ? '#6c7e82' : '#82735a';
     ctx.strokeStyle = kind === 'wall' ? '#97a6a7' : '#b6a17c';
     ctx.lineWidth = 1;

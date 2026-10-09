@@ -1,0 +1,79 @@
+{
+  "recorded_at": "2026-09-29T11:45:00.064Z",
+  "dataset": "MaleCNS v1.0",
+  "evaluations": 25,
+  "graph": {
+    "neurons": 295,
+    "edges": 280,
+    "structural_contacts": 2308,
+    "max_hops": 2,
+    "source_neurons": 266,
+    "target_neurons": 2,
+    "sources_with_outgoing_route_edges": 146,
+    "intermediate_neurons": 27,
+    "structural_sha256": "fda9df339350f4420439a90556330275d5ac4cb127a411c3d2e3f74cc2527c6c",
+    "build_seconds": 3.825215,
+    "structural_array_bytes": 111860,
+    "selection": "Union of all directed ProLN-tactile-to-DNa02 walks of length 1..max_hops. Retain all annotated ProLN tactile inputs and both DNa02 targets, including route-isolated inputs. Not an induced graph or the small visualization sample.",
+    "nt_annotations": {
+      "predicted_nt": {
+        "octopamine": 3,
+        "acetylcholine": 241,
+        "gaba": 8,
+        "unclear": 42,
+        "glutamate": 1
+      },
+      "consensus_nt": {
+        "unclear": 5,
+        "acetylcholine": 280,
+        "glutamate": 2,
+        "gaba": 8
+      }
+    },
+    "source_laterality": {
+      "L": 151,
+      "R": 115
+    },
+    "target_laterality": {
+      "R": 1,
+      "L": 1
+    }
+  },
+  "identical_repeated_contact_trials": true,
+  "operator_suspends_neural_requests": true,
+  "resume_produces_new_sample": true,
+  "trial_simulated_seconds": 2.2,
+  "contact_probes": [
+    {
+      "stimulus": {
+        "left": 0,
+        "front": 0,
+        "right": 0
+      },
+      "left": 0,
+      "right": 0,
+      "active": 0
+    },
+    {
+      "stimulus": {
+        "left": 0,
+        "front": 1,
+        "right": 0
+      },
+      "left": 0.14454887797114419,
+      "right": 0.14279396982187398,
+      "active": 295
+    },
+    {
+      "stimulus": {
+        "left": 1,
+        "front": 0,
+        "right": 0
+      },
+      "left": 0.20140739329541207,
+      "right": 0.07383367905113165,
+      "active": 171
+    }
+  ],
+  "note": "Body input mapping and kinematics are engineering models. Probe comparisons measure this computational circuit, not biological validation."
+}

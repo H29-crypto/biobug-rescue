@@ -14,26 +14,26 @@
     "src/components/ControllerPanel.tsx": "e2f6dbe8b9877fce2e52adbecc6aea8604f5b402ff6ef03b93b64299297ac82e",
     "src/components/dynamics.css": "a6dacf4b02d7219ec69e24f82f7aa47a3c03ff75644e637a81a6c0b0566adb0c",
     "src/components/DynamicsLab.tsx": "cd2d97f70213842ea82387aba9cdd7eb9c966694f393c1c2f64d7eff9572b820",
-    "src/components/EnvironmentCanvas.tsx": "f87ddff8094ee27d8374313bf25482bdd989993cea6f427682b1f722938bfa07",
+    "src/components/EnvironmentCanvas.tsx": "f0a01f50659a96d09ce494c99233ac4de61e5a9861e6d53ab0eb84d956447b7a",
     "src/components/JudgeContext.tsx": "8db1d2fb74f6c520fea435896c2a2368e2de8f976a14636c6b6c11d1cc4a392a",
     "src/components/PathwayExplorer.tsx": "bf0508b0209b94a423de0e8f505e164a199328689fac4dadbdae26d0942d9553",
     "src/components/pathways.css": "cf595a6551bd235a3cb8131aff2341f65f810fcebd3fb155277846cce6bf9e59",
     "src/components/pathways.types.ts": "d09f618f99beb0a3f5180cfa6547d8c9c3eb925e75e830c7023d026525e9f866",
     "src/components/rescue.css": "f04f9eb38d67f3401bf70549dfc594673c6d6a8534dc2588018a1a3e3951b802",
     "src/components/rescue3d.css": "285779243a381cc406c6f46a98a3c39cea39ecc759e60385f3f8aa7d6923738a",
-    "src/components/Rescue3D.tsx": "947afa66e9148c78b29f04f7a731819cb2ca6c85e7fdfc5581990e0ee5b350a7",
+    "src/components/Rescue3D.tsx": "fc6051a9c9306c1ebdaa631392ed4c954f24926be2e562c27df2195d05972584",
     "src/components/RescuePanel.tsx": "22ce2234ed408987ea1d5b8bac84e664234228d641bc5d877935c0d261565115",
     "src/components/swarm.css": "2a04b93ee3c7623abaeb8e44b24a11126d58ee1108d4b7757d03fb308a49746a",
     "src/components/SwarmPanel.tsx": "636b9e646e951653eb5880173cc883ba96254728b2b0dfc3199cdfb4d98f3ed4",
-    "src/domain/types.ts": "3e55a022050c1e0328ff36b5f7156bdf3bb125a2792780091dc4e9cb773ab828",
+    "src/domain/types.ts": "609fd47d1d5af1e1d3759459572a511d6b11d01abadd3fa5a1b571121425fd37",
     "src/hooks/useReadiness.ts": "a141832b2cc5cd9211c8d59af22486e9be3bad4eaff45843cc4bfff531c2a4c0",
     "src/hooks/useSimulation.ts": "e17df877a8ac6e7b54d06e274c5bc96c901fa94d638da5516afa3d310c2d99dc",
     "src/rendering/drawBioBug.ts": "5e81dc2c0d4d942b994968bc103406c1f084b5158177c4c8aa7cf57d371f8530",
-    "src/rendering/drawEnvironment.ts": "e741013fac90d83e2e58d356aabfe53ba0afb02940a713af5dde4efb85116255",
+    "src/rendering/drawEnvironment.ts": "afe85a6ca609ddbb0a838e8d917d342abf37eb179a3ae653063e2fd4acd4fcb4",
     "src/scenarios/earthquake.ts": "365c6a1becde39faaaceec297fcf11380a44ddd04d4a653cb9e5c9b8352c6f7a",
     "src/simulation/collision.ts": "945a999da023423fede9869689c145e222afbe463e1ee18df9ba395af89f6007",
     "src/simulation/commanderClient.ts": "7f18d3c5e63e1fc4f4731c5cbce2e73036ad896584f35a700c3ce36111aaf297",
-    "src/simulation/commanderSnapshot.ts": "62d31d425f2f28e18687cdd72c34a86a121e944bbc80606ae1f822d2f409d76e",
+    "src/simulation/commanderSnapshot.ts": "b581101130d5a79f4758c19d6b5face5dff20b6e7bc951813eb110b4d09596d3",
     "src/simulation/controller.ts": "6fbeb7907013e440b55c2232e44d8921b40d3b482be61572e3096c2aaf3298ea",
     "src/simulation/engine.ts": "93f661032f9b9447ffa76e66639d6328d446e8694178513876dbda3ebc9c360e",
     "src/simulation/exploration.ts": "4277c944008a708615a52d3501ba898db461f10f6a5da1930c407b5c76251329",
@@ -47,13 +47,13 @@
     "src/simulation/rescue.ts": "270605d89969aae326b6428aea9103d37a902449d9177ff7158df97e1687780d",
     "src/simulation/sensorMapping.ts": "5cd3b81548fcdf62b0336e79476c79d56cc3f99b293f6681275d3cabc60f1224",
     "src/simulation/sensors.ts": "ac76046e6ed4b1c6fd0ae8b366f1e7b6cf8197bf0634fecaf455b2e275a77d30",
-    "src/simulation/swarm.ts": "5510836ac24d7d11e5f9af74ffc62dd27417e5d332512b6ac209973846d7b30e",
+    "src/simulation/swarm.ts": "eb1748a99858c9f0625044bc6e55296784cdcce92d378623bee202d56e3699bd",
     "src/simulation/swarmNeuralLoop.ts": "334f18b181a46225414b5c7a5e32185724d6c8aca0cec37abf45a4e4761ceb6b",
     "src/rendering/rescue3d/insect.ts": "c535ed1c42dd4fec638c120c2a71a81bfe9586ce493218da6fe54c594412afec",
-    "src/rendering/rescue3d/model.ts": "98e21cd42bb4e383ccdf67a9219ecbfc63e1b7461404ef809be7360fe57f6b7e",
-    "src/rendering/rescue3d/scene.ts": "c2778698858862b32f04ff511d5527e1db973f742bda59faebfe4c5b0ed83772",
+    "src/rendering/rescue3d/model.ts": "3dbe68f14651078eb3227b58d89ecfb7e39a6fbf9ef8f2a61590757406ccba53",
+    "src/rendering/rescue3d/scene.ts": "70729585ea7df83c69c4da0491bf61618a6494fd182c648677c20c69b7432f2b",
     "backend/connectome/annotations.py": "ba7a555c16f182f4b9e7339e12b67081bab03f36ac4ac670d55a0559c6a37ee4",
-    "backend/connectome/api.py": "ede1772c07a73d458a7275fe75912cf1a50fd9d42c4cbe236f4d7f11de783834",
+    "backend/connectome/api.py": "b4f5cebc61d5c2dae5dc0a4a97865f4f72abe9a024d9b05ad0db69be833b96ae",
     "backend/connectome/columnar.py": "2699d51c9cf9ba197dd5f0d0fc832cc24f877182c1fd3dcda9579950167fc13c",
     "backend/connectome/control.py": "48dcd4f53a0d2cdb04350aa87a53e1b9ab7fc3738da1c4db5546d4352f9f62c1",
     "backend/connectome/download.py": "ae7a9c019c593014509df8fd134cbe79c465c956354a5c5452d35fa46c57ae50",
@@ -70,8 +70,8 @@
     "backend/connectome/validation.py": "ee0fcdcd1fc41614e3cad0197c68ab35a019c3a95e75d44e5a1afa26fdc24ebc",
     "backend/connectome/__init__.py": "513de94d2eecd4c12e89960409f9dad6f8cff91de2cc1b6ef246df014981459c",
     "backend/commander/api.py": "006551d3db1d3048501f698a313b297d49d67d8ff80dec73fab4bb66e729aeaa",
-    "backend/commander/grounding.py": "2b8a419a31822f39434f04d56e78c76ca0f754bd7f16a9ddf910cbfd01adfb77",
-    "backend/commander/models.py": "158a8ca1023458b3eef5312c549f2dcea5ee66619541acd99f76318a050c59cc",
+    "backend/commander/grounding.py": "453e8cd8d6bad08cbb7bc86417617f5bf9f6048ffda304bcfee7b7dff0c59a9e",
+    "backend/commander/models.py": "522a09c6f2495c41becf1970364c343e9d8145bb5c2d68f07d7f30cfc5dcdde8",
     "backend/commander/service.py": "39a34e38b4efc2743f43d830821fffa9b64f8007cddcef166c2315aa4ab5ca19",
     "backend/commander/__init__.py": "d44cbb5a5d99bb4a2b649bc5c8386b630df6f8a1f8ad410cd3ccc611d1ec69cd",
     "backend/tests/conftest.py": "7d4d6df193e8b1f0a09f7e7c3e7106cd69c5f787ecd505d6ce883b360bb766a1",
@@ -107,5 +107,110 @@
         "reason": "Authorized opt-in per-neuron readout; default response and numerical controller unchanged. Covered by test_morphology.py equivalence tests."
       }
     ]
+  },
+  "unified_lab_migration": {
+    "date": "2026-09-29",
+    "reason": "User requested combining rescue swarm with Virtual Fly Lab. Additive shared rendering contracts, routing and optional batch activity only. Core dynamics, movement, sensing and detection remain frozen. Prior hashes retained here for audit.",
+    "changes": [
+      {
+        "file": "src/components/Rescue3D.tsx",
+        "previous_sha256": "947afa66e9148c78b29f04f7a731819cb2ca6c85e7fdfc5581990e0ee5b350a7",
+        "updated_sha256": "d931f1b9d2273968202c0dacd7e4d6c1c9b2a45a5e120f7209bb613a865b412c"
+      },
+      {
+        "file": "src/rendering/rescue3d/scene.ts",
+        "previous_sha256": "c2778698858862b32f04ff511d5527e1db973f742bda59faebfe4c5b0ed83772",
+        "updated_sha256": "7dc9024ec338d5cdac6a7162df7b57fe788ee98e2243cf87a62c50b9d7fbf39f"
+      },
+      {
+        "file": "backend/connectome/api.py",
+        "previous_sha256": "ede1772c07a73d458a7275fe75912cf1a50fd9d42c4cbe236f4d7f11de783834",
+        "updated_sha256": "b4f5cebc61d5c2dae5dc0a4a97865f4f72abe9a024d9b05ad0db69be833b96ae"
+      }
+    ]
+  },
+  "thermal_migration": {
+    "date": "2026-10-03",
+    "reason": "Authorized simulated thermal sensing in unified rescue lab. Add optional per-physics-step observation callback, heat marker labels, and observation-only thermal Commander schema/grounding. Existing legacy behavior remains covered by regression tests; neural dynamics and motor control unchanged.",
+    "changes": [
+      {
+        "file": "src/simulation/swarm.ts",
+        "previous_sha256": "5510836ac24d7d11e5f9af74ffc62dd27417e5d332512b6ac209973846d7b30e",
+        "updated_sha256": "eb1748a99858c9f0625044bc6e55296784cdcce92d378623bee202d56e3699bd"
+      },
+      {
+        "file": "src/simulation/commanderSnapshot.ts",
+        "previous_sha256": "62d31d425f2f28e18687cdd72c34a86a121e944bbc80606ae1f822d2f409d76e",
+        "updated_sha256": "b581101130d5a79f4758c19d6b5face5dff20b6e7bc951813eb110b4d09596d3"
+      },
+      {
+        "file": "src/components/EnvironmentCanvas.tsx",
+        "previous_sha256": "f87ddff8094ee27d8374313bf25482bdd989993cea6f427682b1f722938bfa07",
+        "updated_sha256": "836b027b9cbafdcff55f0bd6135f41a75ecd5fa12fb73bddcd02e54bb8fff87c"
+      },
+      {
+        "file": "src/rendering/rescue3d/scene.ts",
+        "previous_sha256": "7dc9024ec338d5cdac6a7162df7b57fe788ee98e2243cf87a62c50b9d7fbf39f",
+        "updated_sha256": "7f820b670c6c8568da9d8c8234b3c63ea6cb7be8069d9dc5878013659b3eb8b6"
+      },
+      {
+        "file": "backend/commander/models.py",
+        "previous_sha256": "158a8ca1023458b3eef5312c549f2dcea5ee66619541acd99f76318a050c59cc",
+        "updated_sha256": "522a09c6f2495c41becf1970364c343e9d8145bb5c2d68f07d7f30cfc5dcdde8"
+      },
+      {
+        "file": "backend/commander/grounding.py",
+        "previous_sha256": "2b8a419a31822f39434f04d56e78c76ca0f754bd7f16a9ddf910cbfd01adfb77",
+        "updated_sha256": "453e8cd8d6bad08cbb7bc86417617f5bf9f6048ffda304bcfee7b7dff0c59a9e"
+      }
+    ]
+  },
+  "rescue_operations_migration": {
+    "date": "2026-10-03",
+    "authorization": "User requested priorities 1, 2, 3, 5 and 6, including physical altitude navigation and rescue operator controls. Optional renderer/canvas contracts preserve legacy paths. Controllers and neural dynamics unchanged.",
+    "changes": {
+      "src/domain/types.ts": {
+        "before": "3e55a022050c1e0328ff36b5f7156bdf3bb125a2792780091dc4e9cb773ab828",
+        "after": "609fd47d1d5af1e1d3759459572a511d6b11d01abadd3fa5a1b571121425fd37"
+      },
+      "src/components/EnvironmentCanvas.tsx": {
+        "before": "836b027b9cbafdcff55f0bd6135f41a75ecd5fa12fb73bddcd02e54bb8fff87c",
+        "after": "f0a01f50659a96d09ce494c99233ac4de61e5a9861e6d53ab0eb84d956447b7a"
+      },
+      "src/components/Rescue3D.tsx": {
+        "before": "d931f1b9d2273968202c0dacd7e4d6c1c9b2a45a5e120f7209bb613a865b412c",
+        "after": "f9b5ab2fc51daa881f1313d7e15bbf455b020662aa4bef4ca4dde3be140d17ed"
+      },
+      "src/rendering/drawEnvironment.ts": {
+        "before": "e741013fac90d83e2e58d356aabfe53ba0afb02940a713af5dde4efb85116255",
+        "after": "afe85a6ca609ddbb0a838e8d917d342abf37eb179a3ae653063e2fd4acd4fcb4"
+      },
+      "src/rendering/rescue3d/model.ts": {
+        "before": "98e21cd42bb4e383ccdf67a9219ecbfc63e1b7461404ef809be7360fe57f6b7e",
+        "after": "b3d441cd41f110d84159e5524cd599dd9e06009218d0a21de2141e443bd6dc6e"
+      },
+      "src/rendering/rescue3d/scene.ts": {
+        "before": "7f820b670c6c8568da9d8c8234b3c63ea6cb7be8069d9dc5878013659b3eb8b6",
+        "after": "2ebc03ca589b7f95ee340a3848ae23275f4ff5cf0648df0c3899da9a89b35337"
+      }
+    }
+  },
+  "rescue_motion_playback_migration": {
+    "date": "2026-10-04",
+    "reason": "User reported choppy insect motion after radio-limited pose rendering. Buffered playback replays received 60 Hz poses without altering physics, radio observations or neural samples. Legacy frames bypass it.",
+    "changes": {
+      "src/rendering/rescue3d/model.ts": {
+        "before": "b3d441cd41f110d84159e5524cd599dd9e06009218d0a21de2141e443bd6dc6e",
+        "after": "3dbe68f14651078eb3227b58d89ecfb7e39a6fbf9ef8f2a61590757406ccba53"
+      },
+      "src/rendering/rescue3d/scene.ts": {
+        "before": "2ebc03ca589b7f95ee340a3848ae23275f4ff5cf0648df0c3899da9a89b35337",
+        "after": "70729585ea7df83c69c4da0491bf61618a6494fd182c648677c20c69b7432f2b"
+      },
+      "src/components/Rescue3D.tsx": {
+        "before": "f9b5ab2fc51daa881f1313d7e15bbf455b020662aa4bef4ca4dde3be140d17ed",
+        "after": "fc6051a9c9306c1ebdaa631392ed4c954f24926be2e562c27df2195d05972584"
+      }
+    }
   }
 }

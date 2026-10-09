@@ -1,0 +1,183 @@
+{
+  "missionTime": 120,
+  "controllerMode": "rule-based",
+  "completedAt": null,
+  "swarm": {
+    "deployed": 4,
+    "active": 4,
+    "coverage": 87.84
+  },
+  "survivors": [],
+  "hazards": [
+    {
+      "id": "H-02",
+      "type": "gas",
+      "status": "high gas",
+      "sector": "C1",
+      "confidence": 0.904,
+      "severity": 0.856,
+      "detectedBy": "BioBug #3"
+    },
+    {
+      "id": "H-01",
+      "type": "gas",
+      "status": "high gas",
+      "sector": "D3",
+      "confidence": 0.863,
+      "severity": 0.91,
+      "detectedBy": "BioBug #1"
+    }
+  ],
+  "agents": [
+    {
+      "id": "BioBug #1",
+      "status": "EXPLORING",
+      "sector": "A3",
+      "controller": null
+    },
+    {
+      "id": "BioBug #2",
+      "status": "EXPLORING",
+      "sector": "D4",
+      "controller": null
+    },
+    {
+      "id": "BioBug #3",
+      "status": "EXPLORING",
+      "sector": "D1",
+      "controller": null
+    },
+    {
+      "id": "BioBug #4",
+      "status": "EXPLORING",
+      "sector": "A1",
+      "controller": null
+    }
+  ],
+  "recentEvents": [
+    {
+      "timestamp": 18.5,
+      "bugId": "BioBug #1",
+      "targetId": "H-01",
+      "type": "GAS HAZARD DETECTED",
+      "sector": "D3"
+    },
+    {
+      "timestamp": 20,
+      "bugId": "BioBug #1",
+      "targetId": "H-01",
+      "type": "HIGH GAS CONCENTRATION",
+      "sector": "D3"
+    },
+    {
+      "timestamp": 22.5,
+      "bugId": "BioBug #2",
+      "targetId": "T-003",
+      "type": "UNIDENTIFIED HEAT DETECTED",
+      "sector": "A2"
+    },
+    {
+      "timestamp": 23,
+      "bugId": "BioBug #2",
+      "targetId": "T-003",
+      "type": "REPEATED HEAT OBSERVATIONS — IDENTITY UNKNOWN",
+      "sector": "A2"
+    },
+    {
+      "timestamp": 26,
+      "bugId": "BioBug #2",
+      "targetId": "T-004",
+      "type": "UNIDENTIFIED HEAT DETECTED",
+      "sector": "B3"
+    },
+    {
+      "timestamp": 33.5,
+      "bugId": "BioBug #2",
+      "targetId": "T-004",
+      "type": "REPEATED HEAT OBSERVATIONS — IDENTITY UNKNOWN",
+      "sector": "B3"
+    }
+  ],
+  "thermalFindings": [
+    {
+      "id": "T-001",
+      "estimatedLocation": {
+        "x": 189.90297327042154,
+        "y": 452.85056966588274
+      },
+      "uncertaintyRadius": 35,
+      "sector": "D1",
+      "apparentC": 32.2,
+      "contrastC": 10.200000000000003,
+      "observations": 37,
+      "firstDetected": 0.25,
+      "latestObservation": 102,
+      "detectedBy": "BioBug #4",
+      "observers": [
+        "BioBug #4",
+        "BioBug #3",
+        "BioBug #1",
+        "BioBug #2"
+      ],
+      "persistent": true
+    },
+    {
+      "id": "T-002",
+      "estimatedLocation": {
+        "x": 205.61997333699088,
+        "y": 314.7595990019879
+      },
+      "uncertaintyRadius": 31,
+      "sector": "C2",
+      "apparentC": 32.2,
+      "contrastC": 10.200000000000003,
+      "observations": 27,
+      "firstDetected": 6.25,
+      "latestObservation": 84,
+      "detectedBy": "BioBug #3",
+      "observers": [
+        "BioBug #3",
+        "BioBug #2"
+      ],
+      "persistent": true
+    },
+    {
+      "id": "T-003",
+      "estimatedLocation": {
+        "x": 352.8210009480395,
+        "y": 123.88679523818939
+      },
+      "uncertaintyRadius": 36,
+      "sector": "A2",
+      "apparentC": 31.8,
+      "contrastC": 9.8,
+      "observations": 23,
+      "firstDetected": 22.5,
+      "latestObservation": 75.75,
+      "detectedBy": "BioBug #2",
+      "observers": [
+        "BioBug #2"
+      ],
+      "persistent": true
+    },
+    {
+      "id": "T-004",
+      "estimatedLocation": {
+        "x": 415.9000604010756,
+        "y": 176.98713495102675
+      },
+      "uncertaintyRadius": 25,
+      "sector": "B3",
+      "apparentC": 35.8,
+      "contrastC": 13.799999999999997,
+      "observations": 25,
+      "firstDetected": 26,
+      "latestObservation": 75,
+      "detectedBy": "BioBug #2",
+      "observers": [
+        "BioBug #2"
+      ],
+      "persistent": true
+    }
+  ]
+}

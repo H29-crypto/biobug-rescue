@@ -30,6 +30,19 @@ class Hazard(Strict):
     confidence: Unit
     severity: Unit
     detectedBy: BugId
+class ThermalFinding(Strict):
+    id: Annotated[str, Field(pattern=r'^T-\d{3}$')]
+    estimatedLocation: Location
+    uncertaintyRadius: Annotated[float, Field(ge=1, le=500, allow_inf_nan=False)]
+    sector: Sector
+    apparentC: Annotated[float, Field(ge=-50, le=150, allow_inf_nan=False)]
+    contrastC: Annotated[float, Field(ge=0, le=200, allow_inf_nan=False)]
+    observations: Annotated[int, Field(ge=1, le=10000000)]
+    firstDetected: Time
+    latestObservation: Time
+    detectedBy: BugId
+    observers: Annotated[list[BugId], Field(min_length=1, max_length=8)]
+    persistent: bool
 class Stimulus(Strict):
     left: Unit
     front: Unit
@@ -52,8 +65,8 @@ class Swarm(Strict):
 class Event(Strict):
     timestamp: Time
     bugId: BugId
-    targetId: Annotated[str, Field(pattern=r'^[SH]-\d{2}$')]
-    type: Literal['POSSIBLE LIFE SIGNAL','GAS HAZARD DETECTED','SURVIVOR LOCATED','INDEPENDENT SURVIVOR CONFIRMATION','HIGH GAS CONCENTRATION']
+    targetId: Annotated[str, Field(pattern=r'^(?:[SH]-\d{2}|T-\d{3})$')]
+    type: Literal['POSSIBLE LIFE SIGNAL','GAS HAZARD DETECTED','SURVIVOR LOCATED','INDEPENDENT SURVIVOR CONFIRMATION','HIGH GAS CONCENTRATION','UNIDENTIFIED HEAT DETECTED','REPEATED HEAT OBSERVATIONS — IDENTITY UNKNOWN']
     sector: Sector
 class MissionSnapshot(Strict):
     missionTime: Time
@@ -64,14 +77,22 @@ class MissionSnapshot(Strict):
     hazards: Annotated[list[Hazard], Field(max_length=16)]
     agents: Annotated[list[Agent], Field(min_length=1, max_length=8)]
     recentEvents: Annotated[list[Event], Field(max_length=6)]
+    thermalFindings: Annotated[list[ThermalFinding], Field(max_length=16)] | None = None
 
     @model_validator(mode='after')
     def consistent(self):
         ids={a.id for a in self.agents}
-        targets={d.id for d in [*self.survivors,*self.hazards]}
+        targets={d.id for d in [*self.survivors,*self.hazards,*(self.thermalFindings or [])]}
         if len(ids)!=len(self.agents) or len(ids)!=self.swarm.deployed or self.swarm.active>self.swarm.deployed:
             raise ValueError('Inconsistent swarm')
-        if len(targets)!=len(self.survivors)+len(self.hazards): raise ValueError('Duplicate target')
+        if len(targets)!=len(self.survivors)+len(self.hazards)+len(self.thermalFindings or []): raise ValueError('Duplicate target')
+        if self.thermalFindings is not None and (self.survivors or self.completedAt is not None):
+            raise ValueError('Thermal mode cannot confirm survivors or completion')
+        for d in self.thermalFindings or []:
+            if not {d.detectedBy,*d.observers}<=ids or d.detectedBy not in d.observers or len(set(d.observers))!=len(d.observers): raise ValueError('Unknown or duplicate thermal observer')
+            if not d.firstDetected<=d.latestObservation<=self.missionTime: raise ValueError('Thermal observation time')
+        for e in self.recentEvents:
+            if e.targetId.startswith('T-') != e.type.startswith(('UNIDENTIFIED HEAT','REPEATED HEAT')): raise ValueError('Thermal event type mismatch')
         for d in self.survivors:
             if not {d.detectedBy,*d.confirmedBy,*d.observers}<=ids: raise ValueError('Unknown observer')
             if (d.status=='confirmed')!=bool(d.confirmedBy): raise ValueError('Confirmation mismatch')

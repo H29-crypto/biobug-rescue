@@ -158,14 +158,14 @@ def create_app(data_dir: Path | None = None, *, loader=load_connectome) -> FastA
         return result
 
     @app.post('/connectome/control-batch')
-    def control_batch(request: BatchStimulus):
+    def control_batch(request: BatchStimulus, include_activity: bool = False):
         value = loaded()
         with pathway_lock:
             try:
                 engine = control_engine()
                 results = []
                 for agent in request.agents:
-                    response = engine.evaluate(agent.stimulus)
+                    response = engine.evaluate(agent.stimulus, include_activity=include_activity)
                     response.update(dataset=value.report['dataset'], version=value.report['version'])
                     results.append({'id': agent.id, 'response': response})
                 return {'results': results}
