@@ -25,8 +25,8 @@ export function AnatomicalPanel({sim,history,sourceLabel='Active experiment',neu
   const current=useRef({values,filter,activeOnly:showActiveOnly,selected});current.current={values,filter,activeOnly:showActiveOnly,selected};
   useEffect(()=>{const abort=new AbortController();let cancelled=false;const start=performance.now();
     async function load(){try{
-      const response=await fetch('/malecns/manifest.json',{signal:abort.signal});if(!response.ok)throw Error('Official morphology assets are missing. Run scripts/acquire_morphology.py.');
-      const m=validateManifest(await response.json());const bytes=await fetch('/malecns/skeletons.bin',{signal:abort.signal});if(!bytes.ok)throw Error('Skeleton geometry unavailable');
+      const response=await fetch(`${import.meta.env.BASE_URL}malecns/manifest.json`,{signal:abort.signal});if(!response.ok)throw Error('Official morphology assets are missing. Run scripts/acquire_morphology.py.');
+      const m=validateManifest(await response.json());const bytes=await fetch(`${import.meta.env.BASE_URL}malecns/skeletons.bin`,{signal:abort.signal});if(!bytes.ok)throw Error('Skeleton geometry unavailable');
       const buffer=await bytes.arrayBuffer();if(buffer.byteLength!==m.binary.bytes)throw Error('Skeleton geometry size mismatch');
       const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',buffer)),b=>b.toString(16).padStart(2,'0')).join('');
       if(digest!==m.binary.sha256)throw Error('Skeleton geometry checksum mismatch');

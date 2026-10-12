@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1 --configLoader runner",
-    "build": "tsc -b && vite build --configLoader runner",
-    "preview": "vite preview --host 127.0.0.1 --configLoader runner",
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 127.0.0.1",
     "test": "node tests/simulation.cjs && node tests/controllers.cjs && node tests/swarm.cjs && node tests/rescue.cjs && node tests/commander.cjs && node tests/presentation.cjs && node tests/rescue3d.cjs && node tests/virtual_fly.cjs && node tests/anatomical.cjs && node tests/embodiment.cjs && node tests/unified_lab.cjs && node tests/supervised_lab.cjs && node tests/anatomy_presentation.cjs && node tests/mission_ui.cjs && node tests/thermal.cjs && node tests/rescue_operations.cjs && node tests/rescue_motion.cjs && node tests/research.cjs",
     "test:research": "node tests/research.cjs",
     "benchmark:research": "node scripts/benchmark_research.cjs",
