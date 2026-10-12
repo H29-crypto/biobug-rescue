@@ -278,3 +278,109 @@ body.academic .judge-app .legend .key.fog {
   background: var(--field-bg);
   border: 1px solid var(--field-border-strong);
 }
+
+/* Apply the field theme to every panel in the supervised insect arena. */
+body.academic .supervised-lab {
+  color: var(--field-text);
+  --fly-bg: var(--field-bg);
+  --fly-surface: var(--field-surface);
+  --fly-surface-raised: var(--field-surface-raised);
+  --fly-border: var(--field-border);
+  --fly-text: var(--field-text);
+  --fly-muted: var(--field-muted);
+}
+body.academic .supervised-lab :is(h1,h2,h3,h4,strong,b,summary) { color: var(--field-text); }
+body.academic .supervised-lab :is(p,small,label,dt,dd,li,figcaption) { color: var(--field-muted); }
+body.academic .supervised-lab :is(.fly-card,.anatomy-panel,.steering-pad,.supervised-status,
+  .anatomy-evidence,.anatomy-readouts button,.anatomy-decision,.anatomy-inspection) {
+  background: var(--field-surface);
+  border-color: var(--field-border);
+  color: var(--field-text);
+  box-shadow: none;
+}
+body.academic .supervised-lab .fly-card {
+  border: 1px solid var(--field-border);
+  border-radius: 8px;
+}
+body.academic .supervised-lab .supervised-status {
+  background: var(--field-surface-raised);
+  color: var(--field-green);
+  border-radius: 8px;
+}
+body.academic .supervised-lab .supervised-row :is(label,small) { color: var(--field-muted); }
+body.academic .supervised-lab .supervised-row select,
+body.academic .supervised-lab input,
+body.academic .supervised-lab select,
+body.academic .supervised-lab textarea {
+  background: var(--field-surface-raised);
+  color: var(--field-text);
+  border-color: var(--field-border-strong);
+  color-scheme: dark;
+}
+body.academic .supervised-lab button {
+  background: var(--field-surface-raised);
+  color: var(--field-text);
+  border-color: var(--field-border-strong);
+}
+body.academic .supervised-lab button:hover:not(:disabled) {
+  background: var(--field-surface-soft);
+  color: var(--field-text);
+  border-color: var(--field-cyan);
+}
+body.academic .supervised-lab button.fly-primary,
+body.academic .supervised-lab button[aria-pressed=true] {
+  background: var(--field-cyan);
+  border-color: var(--field-cyan);
+  color: #082027;
+}
+body.academic .supervised-lab button:disabled { color: var(--field-muted); opacity: .58; }
+body.academic .supervised-lab .supervised-stage {
+  background: #0e141b;
+  border-block: 1px solid var(--field-border);
+}
+body.academic .supervised-lab .supervised-map { border-color: var(--field-border-strong); }
+body.academic .supervised-lab .steering-pad { background: var(--field-surface-raised); }
+body.academic .supervised-lab .steering-pad:focus-within {
+  outline-color: var(--field-cyan);
+}
+body.academic .supervised-lab .backpack-data :is(dt,dd) { color: var(--field-muted); }
+body.academic .supervised-lab .backpack-data dd { color: var(--field-text); }
+body.academic .supervised-lab .link-good,
+body.academic .supervised-lab .anatomy-live { color: var(--field-green); }
+body.academic .supervised-lab .link-lost { color: #ff9b86; }
+body.academic .supervised-lab .contact-meter { color: var(--field-muted); }
+body.academic .supervised-lab .contact-meter meter { accent-color: var(--field-cyan); }
+body.academic .supervised-lab .anatomy-heading { border-color: var(--field-border); }
+body.academic .supervised-lab .anatomy-stage {
+  background: #0e141b;
+  border-color: var(--field-border);
+}
+body.academic .supervised-lab .anatomy-stage-note,
+body.academic .supervised-lab .anatomy-help { color: var(--field-muted); }
+body.academic .supervised-lab .anatomy-camera button,
+body.academic .supervised-lab .anatomy-readouts button {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border-strong);
+  color: var(--field-text);
+}
+body.academic .supervised-lab .anatomy-readouts strong { color: var(--field-amber); }
+body.academic .supervised-lab .anatomy-decision,
+body.academic .supervised-lab .anatomy-decision span { color: var(--field-muted); }
+body.academic .supervised-lab .anatomy-decision strong { color: var(--field-green); }
+body.academic .supervised-lab .anatomy-legend span:first-child { color: var(--field-green); }
+body.academic .supervised-lab .anatomy-legend span:nth-child(2) { color: #9fc5ff; }
+body.academic .supervised-lab .anatomy-legend span:last-child { color: var(--field-amber); }
+body.academic .supervised-lab .anatomy-inspection { border-color: var(--field-border); }
+body.academic .supervised-lab .anatomy-select,
+body.academic .supervised-lab .anatomy-select select { color: var(--field-muted); }
+body.academic .supervised-lab .anatomy-evidence { color: var(--field-muted); }
+body.academic .supervised-lab .anatomy-evidence b { color: var(--field-text); }
+body.academic .supervised-lab .anatomy-panel details {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .supervised-lab .anatomy-panel details summary { color: var(--field-text); }
+body.academic .supervised-lab .supervised-events { color: var(--field-muted); }
+body.academic .supervised-lab .supervised-events time { color: var(--field-cyan); }
+body.academic .supervised-lab .fly-premise { color: var(--field-muted); }
