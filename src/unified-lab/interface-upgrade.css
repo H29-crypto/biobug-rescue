@@ -222,6 +222,60 @@ body.academic .mission-app .scene-roster button[aria-pressed="true"] {
 }
 body.academic .mission-app .scene-stage { background: var(--mx-map-bg); }
 
+/* Restore the mission palette inside nested research widgets as well. The
+   surrounding site's paper theme otherwise gives these sections white cards
+   and low-contrast green text. */
+body.academic .mission-app .rescue-3d,
+body.academic .mission-app .scene-hud,
+body.academic .mission-app .scene-minimap,
+body.academic .mission-app .scene-bottom-hud {
+  border-color: var(--mx-border);
+  background: var(--mx-surface-1);
+  color: var(--mx-text);
+}
+body.academic .mission-app .scene-compass,
+body.academic .mission-app .scene-disclaimer,
+body.academic .mission-app .scene-hud small,
+body.academic .mission-app .scene-hud-divider,
+body.academic .mission-app .scene-minimap span,
+body.academic .mission-app .scene-bottom-hud span,
+body.academic .mission-app .scene-bottom-hud small {
+  color: var(--mx-text-muted);
+}
+body.academic .mission-app .scene-live-dot { background: var(--mx-success); }
+
+body.academic .mission-app .swarm-panel,
+body.academic .mission-app .controller-panel {
+  border: 1px solid var(--mx-border);
+  border-radius: 8px;
+  background: var(--mx-surface-1);
+  color: var(--mx-text);
+}
+body.academic .mission-app .swarm-panel :is(h2, strong, b),
+body.academic .mission-app .controller-panel :is(summary, th, td) {
+  color: var(--mx-text);
+}
+body.academic .mission-app .swarm-panel :is(p, span, small),
+body.academic .mission-app .controller-panel :is(p, small) {
+  color: var(--mx-text-muted);
+}
+body.academic .mission-app .swarm-panel .agent-card {
+  border-color: var(--mx-border-strong);
+  background: var(--mx-surface-2);
+  color: var(--mx-text);
+}
+body.academic .mission-app .swarm-panel .agent-card[aria-pressed="true"] {
+  border-color: var(--mx-success);
+  background: color-mix(in srgb, var(--mx-success) 12%, var(--mx-surface-2));
+}
+body.academic .mission-app .swarm-panel .agent-card :is(span, small) { color: var(--mx-text-muted); }
+body.academic .mission-app .swarm-panel .agent-card strong { color: var(--mx-text); }
+body.academic .mission-app .swarm-panel .agent-card[aria-pressed="true"] strong { color: var(--mx-success); }
+body.academic .mission-app .swarm-panel .swarm-totals b { color: var(--mx-success); }
+body.academic .mission-app .controller-panel .metrics-details summary { color: var(--mx-text); }
+body.academic .mission-app .controller-panel .metrics-scroll { color: var(--mx-text-muted); }
+body.academic .mission-app .controller-panel :is(th, td) { border-color: var(--mx-border); }
+
 @media (max-width: 1000px) {
   .mission-app .mission-workspace { grid-template-columns: 1fr; }
 }
