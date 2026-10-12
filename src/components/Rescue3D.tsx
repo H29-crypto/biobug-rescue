@@ -20,7 +20,7 @@ export default function Rescue3D(props:Props) {
   const scene=useRef<RescueScene|null>(null);
   const [status,setStatus]=useState<'loading'|'ready'|'failed'>('loading');
   const [camera,setCamera]=useState<CameraMode>('overview');
-  const [fog,setFog]=useState(true),[wide,setWide]=useState(false);
+  const [fog,setFog]=useState(false),[wide,setWide]=useState(false);
   useEffect(()=>{
     let cancelled=false;
     if(status==='failed')return;
