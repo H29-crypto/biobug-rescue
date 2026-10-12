@@ -21,7 +21,8 @@ for (const scenario of scenarios) for (const seed of seeds) for (const planner o
 const sourceFiles = ['src/domain/types.ts', 'src/scenarios/earthquake.ts', 'src/scenarios/research.ts',
   ...fs.readdirSync('src/simulation').filter(f => f.endsWith('.ts')).sort().map(f => `src/simulation/${f}`),
   'scripts/benchmark_research.cjs'];
-const sha256 = Object.fromEntries(sourceFiles.map(file => [file, crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
+// Hash canonical text so the frozen evidence is reproducible across LF/CRLF checkouts.
+const sha256 = Object.fromEntries(sourceFiles.map(file => [file, crypto.createHash('sha256').update(fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n')).digest('hex')]));
 const report = {
   schema: EXPERIMENT_VERSION, generatedAt: new Date().toISOString(),
   sourceBaseCommit: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
@@ -43,3 +44,4 @@ if (args.includes('--publish')) {
   fs.writeFileSync('docs/RESEARCH_BENCHMARK.csv', researchResultsCsv(runs));
 }
 console.log(JSON.stringify(report.summaries, null, 2));
+

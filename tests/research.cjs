@@ -147,7 +147,7 @@ test('Recorded study has all 30 runs, verifiable source fingerprints and reprodu
   assert.equal(report.runs.length, 30);
   for (const summary of report.summaries) assert.deepEqual(summarizePairs(report.runs, summary.scenario), summary);
   for (const [file, expected] of Object.entries(report.sourceSha256)) {
-    assert.equal(crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex'), expected,
+    assert.equal(crypto.createHash('sha256').update(fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n')).digest('hex'), expected,
       `${file}: implementation changed; regenerate the research evidence with npm run benchmark:research -- --publish`);
   }
   const recorded = report.runs.find(r => r.planner === 'information' && r.config.scenario === 'residential' && r.config.seed === 2026);
@@ -173,3 +173,4 @@ test('Worker pause/resume, invalid requests and restart never publish a partial 
 });
 for (const [name, fn] of tests) { fn(); console.log('PASS', name); }
 console.log(`${tests.length} research checks passed`);
+
