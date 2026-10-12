@@ -614,3 +614,23 @@ body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab .dyna
   border-color: var(--field-border);
   color: var(--field-faint);
 }
+
+
+/* Replace legacy high-priority paper colors in the dynamics action and
+   mission annotations so they retain contrast under the dark field theme. */
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab .dynamics-run {
+  background: var(--field-cyan) !important;
+  color: #082027 !important;
+  border-color: var(--field-cyan) !important;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab .dynamics-run:disabled {
+  background: var(--field-surface-raised) !important;
+  color: var(--field-faint) !important;
+  border-color: var(--field-border) !important;
+}
+body.academic .mission-app .mission-context {
+  color: var(--field-muted) !important;
+}
+body.academic .mission-app .mission-selected b {
+  color: var(--field-green) !important;
+}
