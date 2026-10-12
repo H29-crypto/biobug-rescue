@@ -165,6 +165,63 @@
 .mission-app .mission-neurons,
 .mission-app .mission-assistant { box-shadow: 0 10px 34px #0002; }
 
+/* The research site's paper theme is global. Keep the rescue lab's controls
+   and title legible when that theme is active around the mission experience. */
+body.academic .field-header {
+  background: var(--mx-surface-1);
+  border-color: var(--mx-border);
+  color: var(--mx-text);
+}
+body.academic .field-brand { color: var(--mx-text); }
+body.academic .field-brand svg { stroke: var(--mx-explore); }
+body.academic .field-header nav a { color: var(--mx-text-muted); }
+body.academic .field-header nav a:hover,
+body.academic .field-header nav a[aria-current="page"] { color: var(--mx-text); }
+body.academic .field-header nav a[aria-current="page"]::after { background: var(--mx-explore); }
+
+body.academic .mission-app { color-scheme: dark; }
+body.academic .mission-app .mission-title {
+  background: var(--mx-bg);
+  border: 0;
+  color: var(--mx-text);
+}
+body.academic .mission-app .mission-title h1 { color: var(--mx-text); }
+body.academic .mission-app .mission-title p:not(.fly-kicker) { color: var(--mx-text-muted); }
+body.academic .mission-app .mission-title .fly-kicker { color: var(--mx-explore); }
+body.academic .mission-app select {
+  color: var(--mx-text);
+  background: var(--mx-surface-2);
+  border-color: var(--mx-border-strong);
+  color-scheme: dark;
+}
+body.academic .mission-app select option { color: var(--mx-text); background: var(--mx-surface-2); }
+
+body.academic .mission-app .scene-toolbar,
+body.academic .mission-app .scene-roster,
+body.academic .mission-app .scene-telemetry {
+  background: var(--mx-surface-1);
+  border-color: var(--mx-border);
+  color: var(--mx-text-muted);
+}
+body.academic .mission-app .scene-toolbar button,
+body.academic .mission-app .scene-roster button {
+  background: var(--mx-surface-2);
+  border-color: var(--mx-border-strong);
+  color: var(--mx-text);
+}
+body.academic .mission-app .scene-toolbar button:hover:not(:disabled),
+body.academic .mission-app .scene-roster button:hover:not(:disabled) {
+  border-color: var(--mx-explore);
+  background: var(--mx-surface-3);
+}
+body.academic .mission-app .scene-toolbar button[aria-pressed="true"],
+body.academic .mission-app .scene-roster button[aria-pressed="true"] {
+  border-color: var(--mx-explore);
+  background: var(--mx-explore-soft);
+  color: var(--mx-explore);
+}
+body.academic .mission-app .scene-stage { background: var(--mx-map-bg); }
+
 @media (max-width: 1000px) {
   .mission-app .mission-workspace { grid-template-columns: 1fr; }
 }
