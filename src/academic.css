@@ -200,3 +200,17 @@ body.academic .research-footer { border-color: var(--field-border); color: var(-
   body.academic .research-hero { grid-template-columns: 1fr; gap: 25px; padding: 36px 0; }
   body.academic .research-workbench { padding: 16px; }
 }
+
+/* Raise specificity over the legacy green rescue button states. */
+body.academic .judge-app .deploy-button,
+body.academic .judge-app button[aria-pressed=true] {
+  background: var(--field-cyan);
+  border-color: var(--field-cyan);
+  color: #082027;
+}
+body.academic .judge-app .deploy-button:hover,
+body.academic .judge-app button[aria-pressed=true]:hover {
+  background: #8deafa;
+  border-color: #8deafa;
+  color: #082027;
+}
