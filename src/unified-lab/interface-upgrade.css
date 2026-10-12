@@ -1,0 +1,178 @@
+/* Adapt the attached active-mission design system to the current unified lab. */
+.unified-lab.mission-app {
+  --mx-shell-offset: 0px;
+  min-height: 100vh;
+  background: var(--mx-bg);
+  color: var(--mx-text);
+}
+
+.mission-app .lab-scenarios {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  gap: 18px;
+  padding: 12px clamp(16px, 2.3vw, 34px);
+  border-bottom-color: var(--mx-border);
+  background: color-mix(in srgb, var(--mx-surface-1) 94%, transparent);
+  backdrop-filter: blur(14px);
+}
+.mission-app .lab-scenarios strong { color: var(--mx-text); letter-spacing: 1.3px; }
+.mission-app .lab-scenarios span,
+.mission-app .lab-scenarios small { color: var(--mx-text-muted); }
+.mission-app .lab-scenarios button {
+  min-height: 36px;
+  padding: 8px 12px;
+  border-color: var(--mx-border-strong);
+  border-radius: 5px;
+  background: var(--mx-surface-2);
+  color: var(--mx-text-muted);
+  transition: background-color .16s ease, border-color .16s ease, color .16s ease;
+}
+.mission-app .lab-scenarios button:hover { border-color: var(--mx-explore); color: var(--mx-text); }
+.mission-app .lab-scenarios button[aria-pressed="true"] {
+  border-color: var(--mx-explore);
+  background: var(--mx-explore-soft);
+  color: var(--mx-explore);
+}
+.mission-app .lab-scenarios > small { width: auto; margin-left: auto; text-align: right; }
+
+.mission-app .rescue-lab.mission-simple {
+  width: min(100%, 1800px);
+  max-width: none;
+  min-height: calc(100vh - 62px);
+  padding: clamp(20px, 2.4vw, 36px) clamp(16px, 2.5vw, 38px) 54px;
+  color: var(--mx-text);
+}
+.mission-app .mission-title { align-items: flex-start; }
+.mission-app .mission-title h1 { color: var(--mx-text); font-weight: 580; letter-spacing: -1.2px; }
+.mission-app .mission-title p { color: var(--mx-text-muted); }
+.mission-app .mission-title .fly-kicker,
+.mission-app .fly-kicker { color: var(--mx-explore); }
+.mission-app .mission-state {
+  border-color: var(--mx-border-strong);
+  background: var(--mx-surface-2);
+  color: var(--mx-text);
+  font: 600 10px/1.2 var(--mx-font-mono);
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.mission-app .mission-brief {
+  gap: 0;
+  margin: 18px 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--mx-border);
+  border-radius: 8px;
+  background: var(--mx-surface-1);
+}
+.mission-app .mission-brief > div { padding: 16px 20px; }
+.mission-app .mission-brief > div + div { border-left: 1px solid var(--mx-border); }
+.mission-app .mission-brief b { color: var(--mx-text); font: 600 11px/1.4 var(--mx-font-mono); letter-spacing: .35px; }
+.mission-app .mission-brief p { color: var(--mx-text-muted); font-size: 12px; }
+
+.mission-app .mission-commandbar { gap: 8px; margin: 15px 0; }
+.mission-app .mission-commandbar > span { color: var(--mx-text-muted); font-size: 11px; }
+.mission-app .mission-commandbar small { color: var(--mx-text-faint); }
+.mission-app .mission-commandbar button,
+.mission-app .mission-simple button {
+  border: 1px solid var(--mx-border-strong);
+  border-radius: 5px;
+  background: var(--mx-surface-2);
+  color: var(--mx-text);
+  font: 600 10px/1.25 var(--mx-font-mono);
+  letter-spacing: .15px;
+}
+.mission-app .mission-commandbar .fly-primary,
+.mission-app .mission-simple button.fly-primary {
+  border-color: var(--mx-explore);
+  background: var(--mx-explore);
+  color: #082027;
+}
+.mission-app .mission-simple button:hover:not(:disabled) { border-color: var(--mx-explore); filter: brightness(1.08); }
+.mission-app .mission-simple :is(button, summary, select, input):focus-visible {
+  outline: 2px solid var(--mx-explore);
+  outline-offset: 3px;
+}
+
+.mission-app .mission-settings,
+.mission-app .mission-neurons,
+.mission-app .mission-assistant,
+.mission-app .mission-explanation {
+  border-color: var(--mx-border);
+  border-radius: 8px;
+  background: var(--mx-surface-1);
+  color: var(--mx-text);
+}
+.mission-app .mission-settings summary,
+.mission-app .mission-section-heading h2,
+.mission-app .mission-explanation h2 { color: var(--mx-text); }
+.mission-app .mission-settings summary > span { color: var(--mx-text-muted); }
+.mission-app .mission-settings p,
+.mission-app .mission-context { color: var(--mx-text-muted) !important; }
+.mission-app .mission-settings .fly-config select,
+.mission-app .mission-selected select {
+  border-color: var(--mx-border-strong);
+  background: var(--mx-surface-2);
+  color: var(--mx-text);
+}
+
+.mission-app .lab-score {
+  overflow: hidden;
+  border-color: var(--mx-border);
+  border-radius: 8px;
+  background: var(--mx-surface-1);
+}
+.mission-app .lab-score > div { border-color: var(--mx-border); }
+.mission-app .lab-score span { color: var(--mx-text-muted); }
+.mission-app .lab-score strong { color: var(--mx-text); font-variant-numeric: tabular-nums; }
+.mission-app .mission-context { font-size: 11px !important; }
+.mission-app .mission-workspace { grid-template-columns: minmax(0, 1fr) minmax(300px, 360px); gap: 14px; }
+.mission-app .mx-canvas { display: block; max-width: 100%; height: auto; }
+.mission-app .lab-mission.fly-card,
+.mission-app .mission-desk {
+  border-color: var(--mx-border);
+  border-radius: 8px;
+  background: var(--mx-surface-1);
+}
+.mission-app .lab-mission-heading { border-bottom: 1px solid var(--mx-border); }
+.mission-app .lab-mission-heading h2,
+.mission-app .mission-desk h2,
+.mission-app .mission-desk h3 { color: var(--mx-text); }
+.mission-app .lab-mission-heading > span { color: var(--mx-explore); font: 600 10px var(--mx-font-mono); }
+.mission-app .mission-desk p { color: var(--mx-text-muted); }
+.mission-app .mission-selected,
+.mission-app .mission-controls,
+.mission-app .mission-decisions,
+.mission-app .mission-finding-detail { border-color: var(--mx-border); }
+.mission-app .mission-selected label,
+.mission-app .mission-selected b { color: var(--mx-text); }
+.mission-app .mission-finding-list button { border-color: var(--mx-border-strong); background: var(--mx-surface-2); }
+.mission-app .mission-finding-list button[aria-pressed="true"] { border-color: var(--mx-explore); background: var(--mx-explore-soft); }
+.mission-app .mission-finding-list strong,
+.mission-app .mission-finding-detail dd { color: var(--mx-text); }
+.mission-app .lab-discoveries {
+  border-top: 1px solid var(--mx-border);
+  background: var(--mx-surface-2);
+  color: var(--mx-text-muted);
+}
+.mission-app .mission-explanation h3 { color: var(--mx-text); }
+.mission-app .mission-explanation p { color: var(--mx-text-muted); }
+.mission-app .mission-explanation > .mission-context { border-color: var(--mx-border); }
+.mission-app .thermal-sensor { border-color: #6b5638; background: #24231e; }
+.mission-app .mission-log li { border-color: var(--mx-border); color: var(--mx-text-muted); }
+.mission-app .mission-log time { color: var(--mx-explore); }
+.mission-app .mx-cmd { margin-top: 18px; }
+.mission-app .mission-neurons,
+.mission-app .mission-assistant { box-shadow: 0 10px 34px #0002; }
+
+@media (max-width: 1000px) {
+  .mission-app .mission-workspace { grid-template-columns: 1fr; }
+}
+@media (max-width: 650px) {
+  .mission-app .lab-scenarios { position: static; align-items: flex-start; }
+  .mission-app .lab-scenarios > div:nth-child(2) { margin: 0; }
+  .mission-app .lab-scenarios > small { width: 100%; margin: 0; text-align: left; }
+  .mission-app .mission-brief { grid-template-columns: 1fr; }
+  .mission-app .mission-brief > div + div { border-top: 1px solid var(--mx-border); border-left: 0; }
+}
+

@@ -1,0 +1,167 @@
+/*
+ * BioBug Rescue · Mission design tokens + dark theme base
+ * Presentation layer only. Everything is scoped under .mission-app so the
+ * home, research and virtual-lab pages keep their existing look.
+ * Source of truth: active-mission mockup + design spec sheet.
+ */
+
+.mission-app {
+  /* ---- Surfaces ---------------------------------------------------- */
+  --mx-bg:            #0b0f14;  /* app background */
+  --mx-surface-1:     #121821;  /* sidebars, top bar, bottom strip */
+  --mx-surface-2:     #18202b;  /* cards, inputs */
+  --mx-surface-3:     #212b38;  /* hover, raised */
+  --mx-map-bg:        #0e141b;  /* canvas backdrop */
+  --mx-border:        #263241;
+  --mx-border-strong: #364557;
+
+  /* ---- Text (contrast vs --mx-surface-1) ----------------------------- */
+  --mx-text:          #e6edf3;  /* 14.9:1 */
+  --mx-text-muted:    #9aa7b4;  /*  7.0:1 */
+  --mx-text-faint:    #6b7888;  /*  4.1:1, large/meta text only */
+
+  /* ---- Semantic accents (always paired with an icon + label) ------- */
+  --mx-explore:       #22d3ee;  /* cyan  · exploration, trails, coverage */
+  --mx-explore-soft:  rgba(34, 211, 238, 0.14);
+  --mx-uncertain:     #f5b83d;  /* amber · uncertain / unverified signal */
+  --mx-uncertain-soft:rgba(245, 184, 61, 0.14);
+  --mx-hazard:        #f05252;  /* red   · gas hazard */
+  --mx-hazard-soft:   rgba(240, 82, 82, 0.14);
+  --mx-confirmed:     #34d399;  /* green · confirmed simulated survivor */
+  --mx-confirmed-soft:rgba(52, 211, 153, 0.14);
+  --mx-sim:           #a78bfa;  /* purple · "Simulation" badge */
+  --mx-sim-soft:      rgba(167, 139, 250, 0.16);
+  --mx-focus:         #7dd3fc;  /* keyboard focus ring */
+
+  /* ---- Map palette (read by the canvas renderer via getComputedStyle) */
+  --mx-map-wall:      #4a5a6c;
+  --mx-map-floor:     #16202a;
+  --mx-map-explored:  #1a2c36;
+  --mx-map-fog:       rgba(8, 11, 15, 0.82);
+  --mx-map-blocked:   #f5b83d;
+
+  /* ---- Typography -------------------------------------------------- */
+  --mx-font-ui:   "Inter", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mx-font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --mx-fs-xs:   11px;  /* overline labels, uppercase + 0.08em tracking */
+  --mx-fs-sm:   12px;  /* meta, timestamps */
+  --mx-fs-base: 14px;  /* body */
+  --mx-fs-md:   16px;  /* panel titles */
+  --mx-fs-lg:   20px;  /* top-bar metrics */
+  --mx-fs-xl:   28px;  /* hero numbers */
+  --mx-lh-tight: 1.25;
+  --mx-lh-body:  1.5;
+  --mx-fw-regular: 400;
+  --mx-fw-medium:  500;
+  --mx-fw-semi:    600;
+
+  /* ---- Spacing: 4px base ------------------------------------------- */
+  --mx-space-1: 4px;
+  --mx-space-2: 8px;
+  --mx-space-3: 12px;
+  --mx-space-4: 16px;
+  --mx-space-5: 20px;
+  --mx-space-6: 24px;
+  --mx-space-8: 32px;
+  --mx-space-10: 40px;
+
+  /* ---- Radii, elevation, motion ------------------------------------ */
+  --mx-radius-sm: 4px;
+  --mx-radius-md: 8px;
+  --mx-radius-lg: 12px;
+  --mx-radius-pill: 999px;
+  --mx-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --mx-shadow-2: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --mx-ease: cubic-bezier(0.2, 0, 0, 1);
+  --mx-dur: 150ms;
+
+  /* ---- Layout ------------------------------------------------------ */
+  --mx-topbar-h: 64px;
+  --mx-sidebar-w: 320px;
+  --mx-bottom-h: 132px;
+
+  /* ---- Base -------------------------------------------------------- */
+  color-scheme: dark;
+  background: var(--mx-bg);
+  color: var(--mx-text);
+  font-family: var(--mx-font-ui);
+  font-size: var(--mx-fs-base);
+  line-height: var(--mx-lh-body);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+.mission-app *, .mission-app *::before, .mission-app *::after { box-sizing: border-box; }
+
+/* ---- Utility primitives used by the mission layout ----------------- */
+.mission-app .mx-mono     { font-family: var(--mx-font-mono); }
+.mission-app .mx-overline { font-size: var(--mx-fs-xs); font-weight: var(--mx-fw-semi); letter-spacing: 0.08em; text-transform: uppercase; color: var(--mx-text-muted); }
+.mission-app .mx-muted    { color: var(--mx-text-muted); }
+
+.mission-app .mx-panel {
+  background: var(--mx-surface-1);
+  border: 1px solid var(--mx-border);
+  border-radius: var(--mx-radius-lg);
+  padding: var(--mx-space-5);
+}
+.mission-app .mx-card {
+  background: var(--mx-surface-2);
+  border: 1px solid var(--mx-border);
+  border-radius: var(--mx-radius-md);
+  padding: var(--mx-space-4);
+  transition: border-color var(--mx-dur) var(--mx-ease), background var(--mx-dur) var(--mx-ease);
+}
+.mission-app .mx-card:hover { background: var(--mx-surface-3); border-color: var(--mx-border-strong); }
+.mission-app .mx-card[aria-selected="true"],
+.mission-app .mx-card.is-selected { border-color: var(--mx-explore); box-shadow: inset 3px 0 0 var(--mx-explore); }
+
+/* Buttons */
+.mission-app .mx-btn {
+  display: inline-flex; align-items: center; gap: var(--mx-space-2);
+  height: 36px; padding: 0 var(--mx-space-4);
+  border-radius: var(--mx-radius-md);
+  border: 1px solid var(--mx-border-strong);
+  background: var(--mx-surface-2); color: var(--mx-text);
+  font: var(--mx-fw-medium) var(--mx-fs-base)/1 var(--mx-font-ui);
+  cursor: pointer;
+  transition: background var(--mx-dur) var(--mx-ease), border-color var(--mx-dur) var(--mx-ease);
+}
+.mission-app .mx-btn:hover:not(:disabled) { background: var(--mx-surface-3); }
+.mission-app .mx-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.mission-app .mx-btn--primary { background: var(--mx-explore); border-color: var(--mx-explore); color: #04212a; font-weight: var(--mx-fw-semi); }
+.mission-app .mx-btn--primary:hover:not(:disabled) { background: #5fe0f3; }
+.mission-app .mx-btn--danger  { color: var(--mx-hazard); border-color: rgba(240, 82, 82, 0.5); }
+
+/* Inputs */
+.mission-app select, .mission-app input[type="number"], .mission-app input[type="text"] {
+  height: 36px; width: 100%;
+  padding: 0 var(--mx-space-3);
+  background: var(--mx-surface-2); color: var(--mx-text);
+  border: 1px solid var(--mx-border-strong); border-radius: var(--mx-radius-md);
+  font: inherit;
+}
+.mission-app select:disabled, .mission-app input:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* Status chips: colour + icon + label, never colour alone */
+.mission-app .mx-chip {
+  display: inline-flex; align-items: center; gap: var(--mx-space-1);
+  height: 22px; padding: 0 var(--mx-space-2);
+  border-radius: var(--mx-radius-pill);
+  font-size: var(--mx-fs-xs); font-weight: var(--mx-fw-semi); letter-spacing: 0.04em;
+  border: 1px solid currentColor;
+}
+.mission-app .mx-chip--explore   { color: var(--mx-explore);   background: var(--mx-explore-soft); }
+.mission-app .mx-chip--uncertain { color: var(--mx-uncertain); background: var(--mx-uncertain-soft); }
+.mission-app .mx-chip--hazard    { color: var(--mx-hazard);    background: var(--mx-hazard-soft); }
+.mission-app .mx-chip--confirmed { color: var(--mx-confirmed); background: var(--mx-confirmed-soft); }
+.mission-app .mx-chip--sim       { color: var(--mx-sim);       background: var(--mx-sim-soft); }
+
+/* Focus + motion accessibility */
+.mission-app :focus-visible { outline: 2px solid var(--mx-focus); outline-offset: 2px; border-radius: var(--mx-radius-sm); }
+.mission-app ::-webkit-scrollbar { width: 10px; height: 10px; }
+.mission-app ::-webkit-scrollbar-thumb { background: var(--mx-border-strong); border-radius: var(--mx-radius-pill); border: 2px solid var(--mx-surface-1); }
+@media (prefers-reduced-motion: reduce) {
+  .mission-app *, .mission-app *::before, .mission-app *::after { transition: none !important; animation: none !important; }
+}
+
