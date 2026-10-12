@@ -384,3 +384,194 @@ body.academic .supervised-lab .anatomy-panel details summary { color: var(--fiel
 body.academic .supervised-lab .supervised-events { color: var(--field-muted); }
 body.academic .supervised-lab .supervised-events time { color: var(--field-cyan); }
 body.academic .supervised-lab .fly-premise { color: var(--field-muted); }
+
+
+/* Controlled Fly Experiments: carry the shared field palette through every
+   card, nested readout, anatomy panel, metric, and experiment control. */
+body.academic .mission-app main.fly-lab:not(.supervised-lab) {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-card,.fly-metrics,.fly-limitations) {
+  background: var(--field-surface);
+  border-color: var(--field-border);
+  color: var(--field-text);
+  box-shadow: none;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-title h1,.fly-card h2,.fly-card h3,.fly-metrics strong,.fly-readouts strong,.fly-motor strong) {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-kicker,.fly-premise,.fly-card p,.fly-card small,.fly-card label,.fly-card dt,.fly-card dd,.fly-metrics span,.fly-controls label,.fly-controls>span,.fly-run-status,.fly-arrow,.fly-limitations p) {
+  color: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-title h1 span,.fly-readiness,.fly-run-status,.fly-evidence.real,.fly-architecture) {
+  color: var(--field-green);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-readiness {
+  border-color: var(--field-border-strong);
+  background: var(--field-surface-raised);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card button {
+  background: var(--field-surface-raised);
+  color: var(--field-text);
+  border-color: var(--field-border-strong);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card button:hover:not(:disabled) {
+  background: var(--field-surface-soft);
+  color: var(--field-text);
+  border-color: var(--field-cyan);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-card button[aria-pressed=true],.fly-card button.fly-primary) {
+  background: var(--field-cyan);
+  color: #082027;
+  border-color: var(--field-cyan);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card button:disabled {
+  background: var(--field-surface-raised);
+  color: var(--field-faint);
+  border-color: var(--field-border);
+  opacity: .7;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-card input,.fly-card select,.fly-card textarea) {
+  background: var(--field-surface-raised);
+  color: var(--field-text);
+  border-color: var(--field-border-strong);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card :is(input,select,textarea):focus-visible {
+  outline: 2px solid var(--field-cyan);
+  outline-offset: 2px;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-controls,.fly-signal,.fly-inspection,.anatomy-inspection) {
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-readouts>div,.fly-motor,.fly-stimulation-result,.fly-card details,.fly-limitations>div) {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-readouts span,.fly-readouts strong,.fly-motor strong,.fly-signal label>span,.fly-signal b) {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-readouts>div:last-child strong,
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-limitations h2 {
+  color: var(--field-amber);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-metrics {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-metrics>div,
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card dl>div,
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-comparison :is(td,th) {
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-metrics strong {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card dd,
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-comparison td {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-comparison th {
+  color: var(--field-cyan);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card summary {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-evidence-grid>div,.fly-error) {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-error {
+  color: #ff9b86;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-evidence {
+  border-color: var(--field-border-strong);
+  background: var(--field-surface-raised);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-evidence.engineering,.fly-evidence.documented,.fly-evidence.inferred) {
+  color: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-arena-heading {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-arena-heading h2 {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-controls {
+  background: var(--field-surface);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-neural-trace text {
+  fill: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-panel {
+  background: var(--field-surface);
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-heading {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-heading h2 {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-live {
+  color: var(--field-green);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-stage {
+  background: #0e141b;
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.anatomy-stage-note,.anatomy-help,.anatomy-select) {
+  color: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-camera button,
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-readouts button {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border-strong);
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-readouts strong {
+  color: var(--field-amber);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-decision {
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-decision span {
+  color: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-decision strong {
+  color: var(--field-green);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-legend span:first-child {
+  color: var(--field-green);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-legend span:nth-child(2) {
+  color: #9fc5ff;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-legend span:last-child {
+  color: var(--field-amber);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-evidence {
+  background: var(--field-surface-raised);
+  color: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-evidence b {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-panel details {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-panel details summary {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-limitations h2,
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card h2 {
+  letter-spacing: normal;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(button,a,summary):focus-visible {
+  outline: 2px solid var(--field-cyan);
+  outline-offset: 3px;
+}
