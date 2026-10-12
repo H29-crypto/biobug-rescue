@@ -273,3 +273,8 @@ body.academic .judge-app .judge-context details > :not(summary) { color: var(--f
 body.academic .judge-app .judge-context details a { color: var(--field-cyan); }
 body.academic .judge-app .mission-caption,
 body.academic .judge-app > main > footer { color: var(--field-muted); }
+
+body.academic .judge-app .legend .key.fog {
+  background: var(--field-bg);
+  border: 1px solid var(--field-border-strong);
+}
