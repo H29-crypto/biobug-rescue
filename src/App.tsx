@@ -18,11 +18,11 @@ export default function App() {
   const { environment, running, elapsed, mode } = simulation;
   const readiness = useReadiness();
   const [technical, setTechnical] = useState(false);
-  const [threeD, setThreeD] = useState(false);
+  const [threeD, setThreeD] = useState(true);
   const [reveal, setReveal] = useState(false);
   const [debug, setDebug] = useState(false);
   const [selectedDiscovery, setSelectedDiscovery] = useState<string | null>(null);
-  const resetDemo = () => { simulation.resetDemo(); setThreeD(false); setTechnical(false); setReveal(false); setDebug(false); setSelectedDiscovery(null); };
+  const resetDemo = () => { simulation.resetDemo(); setThreeD(true); setTechnical(false); setReveal(false); setDebug(false); setSelectedDiscovery(null); };
   const notices = discoveryNotices(simulation.rescue.events);
   const opening = elapsed === 0 && !running;
   const blocked = mode === 'malecns' && readiness.state !== 'ready';
