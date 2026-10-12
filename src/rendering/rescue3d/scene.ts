@@ -33,7 +33,7 @@ export function createRescueScene(host:HTMLDivElement,env:SceneEnvironment,onSel
   const exploration=new Uint8Array(env.exploration.columns*env.exploration.rows*4);writeExploration(exploration,env.exploration.explored);
   const fogTexture=new THREE.DataTexture(exploration,env.exploration.columns,env.exploration.rows,THREE.RGBAFormat);
   fogTexture.minFilter=THREE.NearestFilter;fogTexture.magFilter=THREE.NearestFilter;fogTexture.needsUpdate=true;
-  const fogEnabled={value:1};
+  const fogEnabled={value:0};
   function mapped(material:THREE.MeshStandardMaterial) {
     material.onBeforeCompile=shader=>{
       shader.uniforms.rescueFog={value:fogTexture};shader.uniforms.rescueFogEnabled=fogEnabled;
@@ -118,7 +118,7 @@ outgoingLight = mix(vec3(0.012, 0.024, 0.031), outgoingLight, 0.025 + 0.975 * re
   let frame:SceneFrame|null=null,mode:CameraMode='overview',disposed=false,raf=0,previous=performance.now(),followDistance=1;
   const playback=new ReceivedMotionPlayback();
   const followTarget=new THREE.Vector3(),desiredCamera=new THREE.Vector3(),up=new THREE.Vector3(0,1,0);
-  function home(){mode='overview';controls.enabled=true;const distance=Math.max(env.width/camera.aspect,env.height)*1.5;controls.target.set(env.width/2,0,env.height/2);camera.position.set(env.width/2+distance*.25,distance*.9,env.height/2+distance*.8);camera.lookAt(controls.target);controls.update();}
+  function home(){mode='overview';controls.enabled=true;const distance=Math.max(env.width/camera.aspect,env.height)*.77;controls.target.set(env.width/2,0,env.height/2);camera.position.set(env.width/2+distance*.25,distance*.9,env.height/2+distance*.8);camera.lookAt(controls.target);controls.update();}
   const resize=()=>{const w=host.clientWidth,h=host.clientHeight;if(w<=0||h<=0)return;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h,false);};
   const observer=new ResizeObserver(resize);observer.observe(host);resize();home();
   function update(next:SceneFrame){
