@@ -1,10 +1,10 @@
 {
   "schema": "frontier-study-v1",
-  "generatedAt": "2026-10-12T10:43:04.342Z",
+  "generatedAt": "2026-10-12T10:52:38.435Z",
   "sourceBaseCommit": "2bf4aa5968a55ae1e249eb52cc7db1f97f829ae8",
   "sourceSha256": {
-    "src/domain/types.ts": "348bc7ab4ee1b5cc4446db9b0db484997ff5f682a7fa61165d19144a60d68447",
-    "src/scenarios/earthquake.ts": "32fa7407d878eda8dc72d56fd36829ce90254b6f68efb1dfbec492fa19aff09b",
+    "src/domain/types.ts": "a7d646e7779b88e74aaa90ab89ee1d9d1ca240ac97d86d3bd19fe61d60baf278",
+    "src/scenarios/earthquake.ts": "0c0b1de577e94efb4e26e74cb85627bd76aa5523a6868c6e21dd72b22e44c0d1",
     "src/scenarios/research.ts": "787b2f300ff3da529a74f364a8f3a3dc1af05cad2405f03de324ac0e189b07be",
     "src/simulation/collision.ts": "38b7a86579db4d594ab9159c365d9a92eba8540a1386e285622cbb0382832295",
     "src/simulation/commanderClient.ts": "0f935214f9fc421afb89ac8715270722cc2625e5f7f5815be7e07f404abb2abc",
@@ -26,7 +26,7 @@
     "src/simulation/sensors.ts": "0cf341b7adbe96a5324ce107a983bfee6ef1e0992f1eb5fd896af4b75556a91c",
     "src/simulation/swarm.ts": "e3231f2acd4c4e33fbab84a533177277188d146e001cbfb958bdb63394c148a1",
     "src/simulation/swarmNeuralLoop.ts": "334f18b181a46225414b5c7a5e32185724d6c8aca0cec37abf45a4e4761ceb6b",
-    "scripts/benchmark_research.cjs": "ec262d7adfe02b07f10f442fe3a4ede1702d6d63cd1e9b6a3f8f0d4c581dc60f"
+    "scripts/benchmark_research.cjs": "d68cc14327a1e5bb3e8c103280afaab699f430dcc21666e51f19b39df325dfc0"
   },
   "runtime": "v24.16.0",
   "protocol": {
@@ -690,4 +690,3 @@
     }
   ]
 }
-
