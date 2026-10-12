@@ -214,3 +214,62 @@ body.academic .judge-app button[aria-pressed=true]:hover {
   border-color: #8deafa;
   color: #082027;
 }
+
+/* Rescue route controls and explainer disclosures use the same field surfaces. */
+body.academic .judge-app > header {
+  background: var(--field-surface);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .judge-app > header nav button,
+body.academic .judge-app > header .reset-demo {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border-strong);
+  color: var(--field-muted);
+}
+body.academic .judge-app > header nav button:hover:not(:disabled),
+body.academic .judge-app > header .reset-demo:hover:not(:disabled) {
+  background: var(--field-surface-soft);
+  color: var(--field-text);
+  border-color: var(--field-cyan);
+}
+body.academic .judge-app > header nav button[aria-pressed=true] {
+  background: var(--field-cyan);
+  color: #082027;
+  border-color: var(--field-cyan);
+}
+body.academic .judge-app > header nav button:disabled {
+  background: var(--field-surface-raised);
+  color: var(--field-muted);
+  opacity: .7;
+}
+body.academic .judge-app .status {
+  background: var(--field-surface-raised);
+  border: 1px solid var(--field-border-strong);
+  color: var(--field-green);
+}
+body.academic .judge-app .status span {
+  background: var(--field-green);
+}
+body.academic .judge-app .judge-context details {
+  margin: 0;
+  border: 1px solid var(--field-border);
+  border-radius: 7px;
+  background: var(--field-surface);
+  color: var(--field-text);
+}
+body.academic .judge-app .judge-context details + details { margin-top: 10px; }
+body.academic .judge-app .judge-context details summary {
+  padding: 16px 18px;
+  background: var(--field-surface);
+  color: var(--field-text);
+}
+body.academic .judge-app .judge-context details[open] summary {
+  border-bottom: 1px solid var(--field-border);
+}
+body.academic .judge-app .judge-context details :is(p,li,small,span) { color: var(--field-muted); }
+body.academic .judge-app .judge-context details :is(strong,b,h3) { color: var(--field-text); }
+body.academic .judge-app .judge-context details > :not(summary) { color: var(--field-muted); }
+body.academic .judge-app .judge-context details a { color: var(--field-cyan); }
+body.academic .judge-app .mission-caption,
+body.academic .judge-app > main > footer { color: var(--field-muted); }
