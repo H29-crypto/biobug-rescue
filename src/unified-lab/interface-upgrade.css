@@ -168,16 +168,16 @@
 /* The research site's paper theme is global. Keep the rescue lab's controls
    and title legible when that theme is active around the mission experience. */
 body.academic .field-header {
-  background: var(--mx-surface-1);
-  border-color: var(--mx-border);
-  color: var(--mx-text);
+  background: #121821;
+  border-color: #263241;
+  color: #e6edf3;
 }
-body.academic .field-brand { color: var(--mx-text); }
-body.academic .field-brand svg { stroke: var(--mx-explore); }
-body.academic .field-header nav a { color: var(--mx-text-muted); }
+body.academic .field-brand { color: #e6edf3; }
+body.academic .field-brand svg { stroke: #22d3ee; }
+body.academic .field-header nav a { color: #9aa7b4; }
 body.academic .field-header nav a:hover,
-body.academic .field-header nav a[aria-current="page"] { color: var(--mx-text); }
-body.academic .field-header nav a[aria-current="page"]::after { background: var(--mx-explore); }
+body.academic .field-header nav a[aria-current="page"] { color: #e6edf3; }
+body.academic .field-header nav a[aria-current="page"]::after { background: #22d3ee; }
 
 body.academic .mission-app { color-scheme: dark; }
 body.academic .mission-app .mission-title {
