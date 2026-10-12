@@ -16,7 +16,7 @@ export interface MissionCommand {kind:'waypoint'|'manual'|'explore'|'operator'|'
 export interface OperatorAgent {
   authority:Authority;resume:Authority;goal:Vec2|null;route:Vec2[];task:string;findingId:string|null;taskStarted:number;scanRemaining:number;scanStarted:number;
   altitude:number;targetAltitude:number;phase:FlightPhase;speed:number;angular:number;manual:MotorCommand;lease:number;
-  battery:number;connected:boolean;lowBattery:boolean;commandEpoch:number;commands:{due:number;epoch:number;command:MissionCommand}[];
+  battery:number;connected:boolean;lowBattery:boolean;mobilityDecision:string;commandEpoch:number;commands:{due:number;epoch:number;command:MissionCommand}[];
   motionTrace:MotionSample[];actuations:{due:number;command:MotorCommand}[];desired:MotorCommand;localHeat:ThermalState;
   packet:RadioPacket|null;pendingPackets:RadioPacket[];nextPacket:number;seenHeat:Map<string,number>;explanation:DecisionExplanation|null;
 }
@@ -26,7 +26,7 @@ export const BACKPACK={commandDelay:.35,actuationDelay:.12,packetInterval:.5,pac
 export interface HeatMessage {association:string;finding:ThermalFinding}
 export interface RadioPacket {
   time:number;due:number;position:Vec2;heading:number;altitude:number;phase:FlightPhase;state:'exploring'|'blocked'|'investigating'|'stopped';
-  battery:number;authority:Authority;task:string;explored:boolean[];heat:HeatMessage[];reading:ThermalReading;gas:RescueDiscovery[];explanation:DecisionExplanation|null;
+  battery:number;authority:Authority;task:string;mobilityDecision:string;explored:boolean[];heat:HeatMessage[];reading:ThermalReading;gas:RescueDiscovery[];explanation:DecisionExplanation|null;
   motionSamples:MotionSample[];sensors:Sensors;gasSignal:number;route:Vec2[];distance:number;coordination:string;ownCoverage:number;peerBlocks:number;novelCells:number;neuralStatus:'idle'|'waiting'|'ready'|'offline';investigations:Investigation[];activity:{graph:string;ids:string[];time:number;sequence:number;values:number[];proposal:string}|null;
 }
 export interface Investigation {id:string;findingId:string;agentId:string;started:number;finished:number|null;status:'queued'|'en route'|'scanning'|'observed again'|'no new observation'|'blocked'|'cancelled';target:Vec2;message:string}

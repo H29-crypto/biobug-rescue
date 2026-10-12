@@ -1,10 +1,10 @@
 import type {DecisionExplanation,Investigation} from './operations';
-interface Operation {authority:string;task:string;altitude:number;phase:string;battery:number;connected:boolean;age:number;pending:number;explanation:DecisionExplanation|null;investigations:Investigation[]}
+interface Operation {authority:string;task:string;mobilityDecision:string;altitude:number;phase:string;battery:number;connected:boolean;age:number;pending:number;explanation:DecisionExplanation|null;investigations:Investigation[]}
 interface Props {operation:Operation;running:boolean;picking:boolean;onPick:()=>void;command:(kind:'operator'|'explore'|'flight'|'land')=>void;steer:(forward:number,angular:number)=>void;link:(connected:boolean)=>void}
 export function MissionControls({operation:o,running,picking,onPick,command,steer,link}:Props){
  const available=o.connected&&o.battery>0,manual=available&&o.authority==='operator'&&running;
  return <section className="mission-controls" aria-label="Selected insect controls">
-  <h3>Guide this insect</h3><p><b>{o.authority.toUpperCase()}</b> · {o.phase} · altitude {o.altitude.toFixed(1)} u</p>
+  <h3>Guide this insect</h3><p><b>{o.authority.toUpperCase()}</b> · {o.phase} · altitude {o.altitude.toFixed(1)} u</p><p className="mission-context"><b>Mobility choice:</b> {o.mobilityDecision}</p>
   <p>{o.task}</p><p className="mission-radio" role="status">{o.connected?'Radio connected':'RADIO LOST — last received position'} · packet age {o.age.toFixed(1)} s<br/>Backpack battery {o.battery.toFixed(1)}% <meter min={0} max={100} low={15} value={o.battery}/></p>
   {o.battery<=15&&<p role="alert">Battery reserve: move to clear floor and land. This models electronics, not insect energy.</p>}
   <div className="lab-actions"><button disabled={!available} aria-pressed={picking} onClick={onPick}>{picking?'Cancel destination':'Choose map destination'}</button><button disabled={!available} onClick={()=>command('operator')}>Take operator control</button><button disabled={!available} onClick={()=>command('explore')}>Resume autonomy</button></div>

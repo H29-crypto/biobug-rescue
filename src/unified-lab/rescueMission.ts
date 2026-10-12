@@ -30,7 +30,7 @@ export function createRescueLab(count=4,seed=2026,coordinated=true):RescueMissio
   const shared={...env,exploration:{...env.exploration,explored:[...env.exploration.explored]}};
   const ops:OperatorAgent[]=world.agents.map(a=>{a.simulation.environment={...env,exploration:{...env.exploration,explored:[...env.exploration.explored]}};
     return {authority:'explore',resume:'explore',goal:null,route:[],task:'Exploring revealed frontiers',findingId:null,taskStarted:0,scanRemaining:0,scanStarted:0,
-      altitude:SPACE.ground,targetAltitude:SPACE.ground,phase:'grounded',speed:0,angular:0,manual:emptyCommand(),lease:0,battery:100,connected:true,lowBattery:false,commandEpoch:0,
+      altitude:SPACE.ground,targetAltitude:SPACE.ground,phase:'grounded',speed:0,angular:0,manual:emptyCommand(),lease:0,battery:100,connected:true,lowBattery:false,mobilityDecision:'Auto mobility: walking; no low debris requires flight.',commandEpoch:0,
       commands:[],motionTrace:[],actuations:[],desired:emptyCommand(),localHeat:createThermal(env,seed),packet:null,pendingPackets:[],nextPacket:0,seenHeat:new Map(),explanation:null};});
   // Life targets are never used by this mission; only independent thermal observations and gas sensing.
   world.rescue=createRescueMission({...env,survivors:[]});
@@ -59,11 +59,11 @@ function applyCommand(s:RescueMissionState,i:number,c:MissionCommand){
   if(c.kind==='manual'){if(o.authority!=='operator')return;o.manual={forward:clamp(c.forward!, -1,1)*sim.bug.speed,angular:clamp(c.angular!,-1,1)*1.9};o.lease=BACKPACK.manualLease;return;}
   if(c.kind==='flight'){
     if(!travel3D(env,sim.bug.position,o.altitude,sim.bug.position,SPACE.cruise,sim.bug.radius)){missionLog(s,i,'Takeoff rejected: insufficient vertical clearance.');return;}
-    o.targetAltitude=SPACE.cruise;o.phase='taking off';o.route=[];o.actuations=[];missionLog(s,i,'Takeoff accepted. Horizontal movement waits for cruise altitude.');return;
+    o.targetAltitude=SPACE.cruise;o.phase='taking off';o.route=[];o.actuations=[];o.mobilityDecision='Operator requested flight; horizontal movement waits for cruise altitude.';missionLog(s,i,'Takeoff accepted. Horizontal movement waits for cruise altitude.');return;
   }
   if(c.kind==='land'){
     if(!travel3D(env,sim.bug.position,o.altitude,sim.bug.position,SPACE.ground,sim.bug.radius)){missionLog(s,i,'Landing rejected: debris or a slab blocks the descent. Move to clear floor first.');return;}
-    o.targetAltitude=SPACE.ground;o.phase='landing';o.route=[];o.actuations=[];missionLog(s,i,'Landing accepted over clear floor.');return;
+    o.targetAltitude=SPACE.ground;o.phase='landing';o.route=[];o.actuations=[];o.mobilityDecision='Operator requested landing over a clear floor.';missionLog(s,i,'Landing accepted over clear floor.');return;
   }
   if(c.kind==='waypoint'||c.kind==='investigate'){
     if(!c.target)return;const route=knownRoute(env,sim.bug.position,c.target,o.altitude,sim.bug.radius);
@@ -113,13 +113,29 @@ function navigation(s:RescueMissionState,i:number,proposed:MotorCommand):{comman
   if(s.world.coordinated&&path?.length&&bug.sensors.frontDistance>=22&&Math.abs(proposed.angular)<=.8){const e=angle(Math.atan2(path[0].y-bug.position.y,path[0].x-bug.position.x)-bug.heading);return {command:{forward:Math.abs(e)>.8?0:proposed.forward,angular:clamp(e*2,-1.5,1.5)},reason:'Shared-map frontier guidance'};}
   return {command:proposed,reason:a.simulation.mode==='malecns'?'MaleCNS proposal + engineering decoder':'Rule-based obstacle response'};
 }
+/** Each autonomous insect chooses its own mode from local obstacle sensing and collision-safe geometry. */
+function chooseAutonomousMobility(s:RescueMissionState,i:number,proposed:MotorCommand){
+  const o=s.ops[i],bug=s.world.agents[i].simulation.bug,env=s.world.agents[i].simulation.environment;
+  if(o.authority==='operator'||o.authority==='hold'||o.battery<=0||o.phase==='taking off'||o.phase==='landing')return;
+  const ahead=(distance:number)=>({x:bug.position.x+Math.cos(bug.heading)*distance,y:bug.position.y+Math.sin(bug.heading)*distance});
+  if(o.phase==='grounded'&&proposed.forward>2&&bug.sensors.frontDistance<48){
+    const groundBlocked=!travel3D(env,bug.position,SPACE.ground,ahead(58),SPACE.ground,bug.radius);
+    const takeoffClear=travel3D(env,bug.position,SPACE.ground,bug.position,SPACE.cruise,bug.radius);
+    const flightClear=travel3D(env,bug.position,SPACE.cruise,ahead(58),SPACE.cruise,bug.radius);
+    if(groundBlocked&&takeoffClear&&flightClear){o.targetAltitude=SPACE.cruise;o.phase='taking off';o.route=[];o.actuations=[];o.mobilityDecision='Auto mobility chose flight: the forward sensor sees low debris, the ground path is blocked, and cruise clearance is open.';}
+  }else if(o.phase==='flying'){
+    const groundCorridorClear=travel3D(env,bug.position,SPACE.ground,ahead(58),SPACE.ground,bug.radius);
+    const landingColumnClear=travel3D(env,bug.position,o.altitude,bug.position,SPACE.ground,bug.radius);
+    if(groundCorridorClear&&landingColumnClear){o.targetAltitude=SPACE.ground;o.phase='landing';o.route=[];o.actuations=[];o.mobilityDecision='Auto mobility chose walking: the ground corridor and landing column are clear.';}
+  }
+}
 function recordMotion(s:RescueMissionState,i:number){const sim=s.world.agents[i].simulation,o=s.ops[i],bug=sim.bug;
   o.motionTrace.push({time:s.world.elapsed,x:bug.position.x,y:bug.position.y,heading:bug.heading,altitude:o.altitude,distance:sim.metrics['rule-based'].distance+sim.metrics.malecns.distance,state:bug.state,motion:o.phase==='grounded'?'walk':'flight'});
   if(o.motionTrace.length>64)o.motionTrace.shift();
 }
 function capture(s:RescueMissionState,i:number){const o=s.ops[i],sim=s.world.agents[i].simulation;
   if(!o.connected||o.battery<=0)return;
-  const p:RadioPacket={time:s.world.elapsed,due:s.world.elapsed+BACKPACK.packetDelay,position:{...sim.bug.position},heading:sim.bug.heading,altitude:o.altitude,phase:o.phase,state:sim.bug.state,battery:o.battery,authority:o.authority,task:o.task,explored:[...sim.environment.exploration.explored],
+  const p:RadioPacket={time:s.world.elapsed,due:s.world.elapsed+BACKPACK.packetDelay,position:{...sim.bug.position},heading:sim.bug.heading,altitude:o.altitude,phase:o.phase,state:sim.bug.state,battery:o.battery,authority:o.authority,task:o.task,mobilityDecision:o.mobilityDecision,explored:[...sim.environment.exploration.explored],
     heat:[...o.localHeat.associations].map(([association,id])=>({association,finding:structuredClone(o.localHeat.findings.find(f=>f.id===id)!)})),reading:{...(o.localHeat.readings[sim.bug.id]??{signal:0,apparentC:null,contrastC:0,visibleSpots:0})},
     gas:s.world.rescue.discoveries.filter(d=>d.kind==='gas'&&d.observers.includes(sim.bug.id)).map(d=>({...structuredClone(d),observers:[sim.bug.id],confirmedBy:d.confirmedBy.includes(sim.bug.id)?[sim.bug.id]:[]})),explanation:o.explanation?structuredClone(o.explanation):null,
     motionSamples:o.motionTrace.map(p=>({...p})),route:o.route.map(v=>({...v})),distance:sim.metrics['rule-based'].distance+sim.metrics.malecns.distance,coordination:s.world.agents[i].coordination,ownCoverage:coverage(sim.environment,sim.accessible),peerBlocks:s.world.agents[i].peerBlocks,novelCells:s.world.agents[i].novelCells,neuralStatus:sim.neural.status,investigations:s.investigations.filter(t=>t.agentId===sim.bug.id).map(t=>structuredClone(t)),sensors:{...sim.bug.sensors},gasSignal:s.world.rescue.readings[sim.bug.id]?.gas??0,activity:null};
@@ -166,6 +182,7 @@ export function advanceMission(s:RescueMissionState,delta:number){const w=s.worl
       const before={...bug.position},zBefore=o.altitude;
       bug.speed=o.phase==='grounded'?SPACE.walkingSpeed:SPACE.flightSpeed;sense(sliceAt(env,o.altitude),bug);const inputDistances={left:bug.sensors.leftDistance,front:bug.sensors.frontDistance,right:bug.sensors.rightDistance};
       const proposed=o.battery<=0||o.authority==='operator'||o.authority==='hold'?emptyCommand():sim.mode==='rule-based'?control(bug,sim.memory,FIXED_STEP):{...sim.neural.decision!.command};
+      chooseAutonomousMobility(s,i,proposed);
       const chosen=navigation(s,i,proposed);
       const close=w.agents.map((other,j)=>({other,j,d:distance(bug.position,other.simulation.bug.position),bearing:angle(Math.atan2(other.simulation.bug.position.y-bug.position.y,other.simulation.bug.position.x-bug.position.x)-bug.heading)})).find(p=>p.j!==i&&p.d<29&&Math.abs(s.ops[p.j].altitude-o.altitude)<7&&Math.abs(p.bearing)<Math.PI*.6);
       if(close&&o.authority!=='operator'&&o.authority!=='hold'&&o.phase!=='taking off'&&o.phase!=='landing'){chosen.command={forward:0,angular:close.bearing>=0?-1.9:1.9};chosen.reason='Peer separation overrides navigation';}
@@ -206,7 +223,7 @@ export function rescueLabView(s:RescueMissionState){const base=swarmSnapshot(s.w
   const sharedEnvironment={...base.environment,obstacles:s.environment.obstacles,exploration:{...s.environment.exploration,explored:[...s.environment.exploration.explored]}};
   return {...base,bug:agents[selected].bug,environment:sharedEnvironment,agents,thermal:heat,explored:coverage(sharedEnvironment,s.world.agents[0].simulation.accessible),
     rescue:{...base.rescue,discoveries:[...thermalMarkers(heat.findings),...s.gas.discoveries.map(d=>structuredClone(d))],events:heat.events,completedAt:null,confirmed:0,possible:0,hazards:s.gas.discoveries.length,reading:{life:0,gas:packet?.gasSignal??0,exposed:(packet?.gasSignal??0)>=.65,status:'EXPLORING' as const}},
-    operation:{authority:packet?.authority??o.authority,task:packet?.task??o.task,altitude:packet?.altitude??SPACE.ground,phase:packet?.phase??'grounded',battery:packet?.battery??100,connected:o.connected&&s.world.elapsed-(packet?.time??0)<=BACKPACK.heartbeatTimeout,packetTime:packet?.time??0,age:s.world.elapsed-(packet?.time??0),pending:o.commands.length,explanation:source,investigations:[...s.receivedInvestigations.values()].map(t=>structuredClone(t)),events:s.events.map(e=>({...e}))},
+    operation:{authority:packet?.authority??o.authority,task:packet?.task??o.task,mobilityDecision:packet?.mobilityDecision??o.mobilityDecision,altitude:packet?.altitude??SPACE.ground,phase:packet?.phase??'grounded',battery:packet?.battery??100,connected:o.connected&&s.world.elapsed-(packet?.time??0)<=BACKPACK.heartbeatTimeout,packetTime:packet?.time??0,age:s.world.elapsed-(packet?.time??0),pending:o.commands.length,explanation:source,investigations:[...s.receivedInvestigations.values()].map(t=>structuredClone(t)),events:s.events.map(e=>({...e}))},
   };
 }
 export function rescueLabSnapshot(s:RescueMissionState){
