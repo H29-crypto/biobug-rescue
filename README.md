@@ -2,6 +2,18 @@
 
 Autonomous insect-scale exploration, simulated for places conventional robots struggle to reach.
 
+[Live demo](https://h29-crypto.github.io/biobug-rescue/) · [Research study](docs/RESEARCH_STUDY.md) · [Türkçe demo script](docs/HACKATHON_PITCH_TR.md)
+
+![Academic interface](docs/ACADEMIC_HOME.png)
+
+## New comparative study
+
+Open **Research & evidence** (`#research`) to compare nearest-frontier and information-gain exploration on identical generated terrain, replay observed maps, inspect agent decisions, and export CSV/JSON. It runs in a browser worker without a backend or API key.
+
+The recorded exploratory suite has **30 runs: 3 environments × 5 seeds × 2 policies**, four agents and 60 simulated seconds. Mean final coverage increases from **66.99% to 74.07%**, a **7.08 percentage-point difference** (95% seed-block bootstrap interval: 6.02–8.40). Both policies fail to complete the narrow-passage missions. These are synthetic software results, not physical rescue success or a guarantee across settings.
+
+The implementation, five arXiv/PubMed sources, assumptions, raw results and reproduction commands are documented in [RESEARCH_STUDY.md](docs/RESEARCH_STUDY.md). Run `npm run benchmark:research` to repeat the frozen suite. The historical rescue/ MaleCNS measurements below are separate experiments.
+
 ## Problem
 
 Collapsed structures and hazardous confined spaces can leave rescuers with little information about inaccessible areas. Future small robotic platforms could help gather that information before people enter.
@@ -12,13 +24,13 @@ A browser simulation of coordinated BioBugs that explore, share a map, detect si
 
 ## Demo
 
-Open the app, choose **ENTER RESCUE**, and press **DEPLOY SWARM**. Presentation Mode defaults to four coordinated BioBugs, seed 2026, Rule-Based navigation. Discoveries appear beside the map; scorecards show coverage, confirmed survivors, hazards and simulated time. **RESET DEMO** restores this exact configuration, clears the mission and Commander history, and returns to the opening screen.
+Open the app, choose **Explore the simulation**, and press **DEPLOY SWARM**. Presentation Mode defaults to four coordinated BioBugs, seed 2026, Rule-Based navigation. Discoveries appear beside the map; scorecards show coverage, confirmed survivors, hazards and simulated time. **RESET DEMO** restores this exact configuration, clears the mission and Commander history, and returns to the opening screen.
 
 Use **TECHNICAL VIEW** for the controller explanation and measured evidence. Pause before changing controllers. Full three-minute script and recovery checklist: [docs/DEMO.md](docs/DEMO.md).
 
 ## Virtual Fly Lab
 
-The opening screen now offers a second, isolated experience: **ENTER LAB** (`#virtual-fly`). One illustrated virtual fly walks in five deterministic arenas with Rule-Based or MaleCNS-derived control. Inspect live sensory/neural readouts, compare paths from identical starts, export telemetry, or pause for independent stimulation. Rescue remains at `#rescue` with its existing behavior.
+The **Virtual lab** navigation opens the integrated mission and experiment workspace (`#virtual-lab`). The experiment view is also available directly at `#virtual-fly`. One illustrated virtual fly walks in five deterministic arenas with Rule-Based or MaleCNS-derived control. Inspect live sensory/neural readouts, compare paths from identical starts, export telemetry, or pause for independent stimulation. Rescue remains at `#rescue` with its existing behavior.
 
 The lab reuses the same loaded backend and 295-neuron structural graph. Its sensory mapping, activity and movement are explicitly engineering models. Start the existing backend for MaleCNS; Rule-Based works offline. Run `npm run compare:fly -- 30` for reproducible real-backend experiments. See [Virtual Fly Lab architecture, evidence, results and limitations](docs/VIRTUAL_FLY_LAB.md).
 
@@ -77,10 +89,10 @@ Sources: [controller comparison](docs/MALECNS_CONTROLLER_COMPARISON.json), [resc
 
 ## Running Locally
 
-Node.js 22.12+ and Python 3.11+ are recommended for the existing toolchain. From the project root:
+Node.js 22.12+ is recommended. The pinned backend environment was validated on Python 3.14; use that version for the lockfile. From the project root:
 
 ```powershell
-npm install
+npm ci
 npm run demo
 ```
 
@@ -98,6 +110,8 @@ $env:OPENAI_API_KEY = Read-Host 'OpenAI API key' -MaskInput
 .\.venv\Scripts\python -m uvicorn connectome.api:app --host 127.0.0.1 --port 8000
 ```
 
+On macOS/Linux, use `.venv/bin/python` instead of `.\venv\Scripts\python`; configure any optional API key privately in the backend environment. Never put keys in frontend files.
+
 `-MaskInput` requires PowerShell 7. Existing installs can skip setup/download. The pinned source files total about 1.89 GB; backend startup may take several minutes. Wait for **MALECNS READY**. The UI cannot distinguish an unreachable server from a server still doing its blocking startup, and says so explicitly. See [backend instructions](backend/README.md).
 
 Production preview: `npm run build`, then `npm run preview -- --port 5173`. Stop another server on that port first.
@@ -111,15 +125,15 @@ cd backend
 .\.venv\Scripts\python -m pytest -q
 ```
 
-Frontend checks cover physics, controller contracts, swarm coordination, rescue evidence, Commander failure isolation and presentation defaults/reset/data provenance. Python tests cover data parsing, sparse graphs, API contracts, pathways, dynamics and Commander grounding. The optional full-data integration test is enabled with `MALECNS_INTEGRATION=1`.
+Frontend checks cover physics, controller contracts, swarm coordination, rescue evidence, Commander failure isolation and presentation defaults/reset/data provenance. Python tests cover data parsing, sparse graphs, API contracts, pathways, dynamics and Commander grounding. The two optional full-data/raw-morphology integration tests require acquired datasets and `MALECNS_INTEGRATION=1`; shipped geometry integrity is always checked. [Validation details](docs/VALIDATION.md).
 
 ## Limitations
 
-One deliberately designed map; simplified sensing and localization; no hardware or clinical validation. Coverage is grid-based and exploration is not guaranteed complete. MaleCNS dynamics and sensor/motor mappings are engineering assumptions. Network delays hold neural movement; backend failure pauses it visibly. Startup blocks backend endpoints until data load completes. AI needs network access and a backend key, can fail, and remains advisory. Scenario totals are known demo objectives; target positions remain hidden until sensing.
+The legacy presentation uses one designed map; the new research suite uses three synthetic families and five seed blocks. Both have simplified sensing and localization; no hardware or clinical validation. Coverage is grid-based and exploration is not guaranteed complete. MaleCNS dynamics and sensor/motor mappings are engineering assumptions. Network delays hold neural movement; backend failure pauses it visibly. Startup blocks backend endpoints until data load completes. AI needs network access and a backend key, can fail, and remains advisory. Scenario totals are known demo objectives; target positions remain hidden until sensing.
 
 ## Future Work
 
-Evaluate generalization across environments and investigate hardware feasibility in separately scoped work. No additional research, training, sensor types, hardware integration or deployment features are part of this presentation milestone.
+Evaluate held-out map families, more seeds, localization drift, delayed map sharing and planner ablations under a separately frozen protocol. Investigate hardware feasibility in separately scoped work. These are proposed experiments, not completed validation.
 
 ## Data / Research Attribution
 

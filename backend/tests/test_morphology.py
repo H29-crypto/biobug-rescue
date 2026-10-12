@@ -52,7 +52,7 @@ def test_activity_api_is_opt_in_and_evaluates_once(full_graph,monkeypatch):
         assert plain['dna02']==rich['dna02']
 
 
-def test_acquired_manifest_binary_and_sources_match():
+def test_shipped_manifest_and_binary_match():
     root=Path(__file__).resolve().parents[2]
     path=root/'public/malecns/manifest.json'
     if not path.exists():pytest.skip('Run scripts/acquire_morphology.py for real asset validation')
@@ -62,6 +62,23 @@ def test_acquired_manifest_binary_and_sources_match():
     assert hashlib.sha256(binary).hexdigest()==m['binary']['sha256']
     rendered=np.frombuffer(binary,dtype='<f4').reshape(-1,2,3)
     assert len(rendered)==m['segment_count']
+    assert np.isfinite(rendered).all()
+    for row in m['neurons']:
+        assert row['available']
+        assert 0 <= row['segment_offset'] < len(rendered)
+        assert row['segment_offset'] + row['segment_count'] <= len(rendered)
+
+
+@pytest.mark.integration
+def test_acquired_raw_sources_match_shipped_geometry():
+    import os
+    import hashlib
+    if os.getenv('MALECNS_INTEGRATION') != '1':
+        pytest.skip('Set MALECNS_INTEGRATION=1 after acquiring raw morphology sources')
+    root=Path(__file__).resolve().parents[2]
+    path=root/'public/malecns/manifest.json'
+    m=json.loads(path.read_text())
+    rendered=np.frombuffer((path.parent/'skeletons.bin').read_bytes(),dtype='<f4').reshape(-1,2,3)
     for row in m['neurons']:
         assert row['available']
         raw=(root/row['swc_path']).read_bytes()

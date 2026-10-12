@@ -5,7 +5,7 @@ import type {MorphologyManifest,PopulationFilter} from './anatomyModel';
 export interface AnatomyPerformance {fps:number;frameMs:number;p95FrameMs:number;renderSubmitMs:number;geometryBytes:number;renderedNeurons:number;renderedNodes:number;renderedSegments:number;drawCalls:number;sessionFps:number;sessionFrameMs:number;frames:number;visibility:string}
 export function createAnatomyScene(host:HTMLDivElement,manifest:MorphologyManifest,positions:Float32Array,onSelect:(id:string)=>void,onPerformance:(p:AnatomyPerformance)=>void,onFailure:()=>void){
   const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});
-  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0x07141e);
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0xf7f7f1);
   renderer.domElement.setAttribute('aria-label','Real MaleCNS skeletons. Drag to rotate; right-drag to pan; scroll to zoom.');
   renderer.domElement.setAttribute('role','img');host.appendChild(renderer.domElement);
   const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.1,10000);
@@ -22,8 +22,8 @@ export function createAnatomyScene(host:HTMLDivElement,manifest:MorphologyManife
     vertexShader:`attribute float neuronIndex; uniform sampler2D activity; uniform float count; varying vec4 tone;
     void main(){vec4 t=texture2D(activity,vec2((neuronIndex+0.5)/count,0.5));
       float strength=log(1.0+10000.0*t.r)/log(10001.0);
-      vec3 base=t.a<0.5?vec3(0.32,0.88,0.77):(t.a<1.5?vec3(0.66,0.55,1.0):vec3(1.0,0.72,0.32));
-      tone=vec4(mix(base,vec3(1.0),t.b*0.7)*(0.38+0.62*strength),t.g*(t.b>0.5?1.0:0.16+0.84*strength));
+      vec3 base=t.a<0.5?vec3(0.2,0.47,0.34):(t.a<1.5?vec3(0.43,0.32,0.62):vec3(0.63,0.43,0.16));
+      tone=vec4(mix(base,vec3(0.1,0.2,0.1),t.b*0.7)*(0.38+0.62*strength),t.g*(t.b>0.5?1.0:0.16+0.84*strength));
       gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
     fragmentShader:`varying vec4 tone; void main(){if(tone.a<0.001)discard;gl_FragColor=tone;}`});
   const lines=new THREE.LineSegments(geometry,material);scene.add(lines);

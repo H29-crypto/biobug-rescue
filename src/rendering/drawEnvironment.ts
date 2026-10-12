@@ -3,15 +3,15 @@ import type { Environment } from '../domain/types';
 export function drawEnvironment(ctx: CanvasRenderingContext2D, env: Environment, reveal: boolean) {
   const { width, height, exploration } = env;
   ctx.clearRect(0, 0, width, height);
-  ctx.fillStyle = '#152328'; ctx.fillRect(0, 0, width, height);
-  ctx.strokeStyle = '#203138'; ctx.lineWidth = 0.6;
+  ctx.fillStyle = '#f8f7f0'; ctx.fillRect(0, 0, width, height);
+  ctx.strokeStyle = '#deddd1'; ctx.lineWidth = 0.6;
   for (let x = 0; x <= width; x += 20) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke(); }
   for (let y = 0; y <= height; y += 20) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke(); }
   for (const obstacle of env.obstacles) {
     const { x, y, width: w, height: h, kind } = obstacle;
     if((obstacle.baseAltitude??0)>0){ctx.save();ctx.fillStyle='#59677a55';ctx.fillRect(x,y,w,h);ctx.strokeStyle='#97a6b7';ctx.setLineDash([5,5]);ctx.strokeRect(x,y,w,h);ctx.restore();continue;}
-    ctx.fillStyle = kind === 'wall' ? '#6c7e82' : '#82735a';
-    ctx.strokeStyle = kind === 'wall' ? '#97a6a7' : '#b6a17c';
+    ctx.fillStyle = kind === 'wall' ? '#b7ae96' : '#cab895';
+    ctx.strokeStyle = kind === 'wall' ? '#958b71' : '#a28a60';
     ctx.lineWidth = 1;
     ctx.fillRect(x, y, w, h); ctx.strokeRect(x + 0.5, y + 0.5, w - 1, h - 1);
     if (kind === 'debris') {
@@ -19,16 +19,16 @@ export function drawEnvironment(ctx: CanvasRenderingContext2D, env: Environment,
     }
   }
   if (!reveal) {
-    ctx.fillStyle = '#0b131b';
+    ctx.fillStyle = '#eae8dd';
     exploration.explored.forEach((known, i) => {
       if (!known) ctx.fillRect(i % exploration.columns * exploration.cellSize, Math.floor(i / exploration.columns) * exploration.cellSize, exploration.cellSize, exploration.cellSize);
     });
   }
   const visible = (x: number, y: number) => reveal || exploration.explored[Math.floor(y / exploration.cellSize) * exploration.columns + Math.floor(x / exploration.cellSize)];
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  ctx.strokeStyle = '#79c8e8'; ctx.lineWidth = 2; ctx.strokeRect(env.entry.x - 12, env.entry.y - 12, 24, 24);
-  ctx.fillStyle = '#96d9f1'; ctx.font = '10px monospace'; ctx.fillText('ENTRY', env.entry.x, env.entry.y + 29);
-  if (!reveal && !visible(588, 220)) { ctx.fillStyle = '#596875'; ctx.font = '12px monospace'; ctx.fillText('UNEXPLORED', 588, 220); }
+  ctx.strokeStyle = '#9f7b4b'; ctx.lineWidth = 2; ctx.strokeRect(env.entry.x - 12, env.entry.y - 12, 24, 24);
+  ctx.fillStyle = '#8b673e'; ctx.font = '10px monospace'; ctx.fillText('ENTRY', env.entry.x, env.entry.y + 29);
+  if (!reveal && !visible(588, 220)) { ctx.fillStyle = '#969583'; ctx.font = '12px monospace'; ctx.fillText('UNEXPLORED', 588, 220); }
 }
 
 

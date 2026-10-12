@@ -1,0 +1,692 @@
+{
+  "schema": "frontier-study-v1",
+  "generatedAt": "2026-10-12T08:09:17.705Z",
+  "sourceBaseCommit": "d841b869aa48ad07ac40af51affc71530554b896",
+  "sourceSha256": {
+    "src/domain/types.ts": "348bc7ab4ee1b5cc4446db9b0db484997ff5f682a7fa61165d19144a60d68447",
+    "src/scenarios/earthquake.ts": "32fa7407d878eda8dc72d56fd36829ce90254b6f68efb1dfbec492fa19aff09b",
+    "src/scenarios/research.ts": "787b2f300ff3da529a74f364a8f3a3dc1af05cad2405f03de324ac0e189b07be",
+    "src/simulation/collision.ts": "38b7a86579db4d594ab9159c365d9a92eba8540a1386e285622cbb0382832295",
+    "src/simulation/commanderClient.ts": "0f935214f9fc421afb89ac8715270722cc2625e5f7f5815be7e07f404abb2abc",
+    "src/simulation/commanderSnapshot.ts": "e31df263119aea083ffabf262c6298e0fca9969fc7602dca434e41dd3fceecf8",
+    "src/simulation/controller.ts": "1af0b7aa82a325c27932aa589ca2ee00b2464eebc4fdc83fcf6d28cb4b1b01e5",
+    "src/simulation/engine.ts": "53630231468583c8b21b09e448ea3126379b3d10d86db9a9351a8cafbd8c2c9d",
+    "src/simulation/exploration.ts": "a9490fe795f9447ad83eb29f7770221b36365caf2c55f3d5fd61432729979f9a",
+    "src/simulation/frontiers.ts": "28e0134e347ee66b968757ae900527b7894c86639624db369778904e3dc87617",
+    "src/simulation/informationPlanner.ts": "f35f1adfc7bc7a00c5ce856c8cdea760271eec4988253dc531427d9f7cbbb2a9",
+    "src/simulation/metrics.ts": "c7b7c4e5ce9683b61fd05efaa7675e08c8766619b1163b1d0d7dfdc03908d989",
+    "src/simulation/motorDecoder.ts": "26e7f2708700a732018bfe7407cd83e00276b5c1220d4c45a6e8d62c493b4737",
+    "src/simulation/movement.ts": "038a8064aa882c660c9dae7f97f278e355716d5b4f5ca9a91cb664bb9b3805cc",
+    "src/simulation/neuralClient.ts": "59d10cdfb51bab4ffd46df7b6ac6063c5270957df372d8354287fa06d577fb1f",
+    "src/simulation/neuralLoop.ts": "b782eb6a64261939138f4804f0d9fa7dbb7dced8914434b022708b661b4587f8",
+    "src/simulation/presentation.ts": "018b6c08bae6c6069dc5b912ddbd8a19d092947376668e3675354b628e2aa940",
+    "src/simulation/rescue.ts": "270605d89969aae326b6428aea9103d37a902449d9177ff7158df97e1687780d",
+    "src/simulation/researchExperiment.ts": "063db407856afb8ec0402c328f8e1e7d6d5c0eae6413b592bf8b82e7ef83eed0",
+    "src/simulation/sensorMapping.ts": "5cd3b81548fcdf62b0336e79476c79d56cc3f99b293f6681275d3cabc60f1224",
+    "src/simulation/sensors.ts": "0cf341b7adbe96a5324ce107a983bfee6ef1e0992f1eb5fd896af4b75556a91c",
+    "src/simulation/swarm.ts": "e3231f2acd4c4e33fbab84a533177277188d146e001cbfb958bdb63394c148a1",
+    "src/simulation/swarmNeuralLoop.ts": "334f18b181a46225414b5c7a5e32185724d6c8aca0cec37abf45a4e4761ceb6b",
+    "scripts/benchmark_research.cjs": "7a1bc9f850d88d6daa3543aef26aa6558e2ed5d312bdc8f7ecbc5e79785c1795"
+  },
+  "runtime": "v26.7.0",
+  "protocol": {
+    "scenarios": [
+      "residential",
+      "warehouse",
+      "corridors"
+    ],
+    "seeds": [
+      17,
+      42,
+      101,
+      2026,
+      9001
+    ],
+    "duration": 60,
+    "count": 4,
+    "fixedStepHz": 60,
+    "observationIntervalSeconds": 1,
+    "controller": "rule-based",
+    "comparison": "nearest frontier versus marginal-information frontier",
+    "scenarioVersion": "research-maps-v1",
+    "bootstrapResamples": 4000,
+    "bootstrapSeed": 2026,
+    "interval": "95% percentile bootstrap of paired coverage differences; seed-block resampling for pooled result",
+    "failurePolicy": "Keep every run; unfinished completion time is null, never excluded or imputed.",
+    "studyType": "Exploratory synthetic benchmark, not a held-out or hardware validation study."
+  },
+  "summaries": [
+    {
+      "scenario": "residential",
+      "pairs": 5,
+      "baselineCoverage": 84.82741846272403,
+      "informationCoverage": 95.6112205939626,
+      "deltaCoverage": 10.783802131238563,
+      "deltaAuc": 13.679508255925407,
+      "bootstrap95": [
+        3.727884256842427,
+        18.464613526570055
+      ],
+      "baselineCompletions": 2,
+      "informationCompletions": 5,
+      "improvedPairs": 5
+    },
+    {
+      "scenario": "warehouse",
+      "pairs": 5,
+      "baselineCoverage": 93.11014178421337,
+      "informationCoverage": 99.84175808983994,
+      "deltaCoverage": 6.731616305626568,
+      "deltaAuc": 15.769327785690063,
+      "bootstrap95": [
+        3.338243456327035,
+        10.147299194277252
+      ],
+      "baselineCompletions": 4,
+      "informationCompletions": 5,
+      "improvedPairs": 5
+    },
+    {
+      "scenario": "corridors",
+      "pairs": 5,
+      "baselineCoverage": 23.032632609186653,
+      "informationCoverage": 26.765557163531117,
+      "deltaCoverage": 3.7329245543444607,
+      "deltaAuc": 3.7895453937077077,
+      "bootstrap95": [
+        1.1577424023154834,
+        7.756874095513746
+      ],
+      "baselineCompletions": 0,
+      "informationCompletions": 0,
+      "improvedPairs": 5
+    },
+    {
+      "scenario": "all",
+      "pairs": 15,
+      "baselineCoverage": 66.99006428537467,
+      "informationCoverage": 74.07284528244455,
+      "deltaCoverage": 7.082780997069864,
+      "deltaAuc": 11.07946047844106,
+      "bootstrap95": [
+        6.017557997155751,
+        8.401646248784143
+      ],
+      "baselineCompletions": 6,
+      "informationCompletions": 10,
+      "improvedPairs": 15
+    }
+  ],
+  "runs": [
+    {
+      "planner": "nearest",
+      "config": {
+        "scenario": "residential",
+        "seed": 17,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 77.60416666666666,
+      "coverageAuc": 43.04108796296297,
+      "confirmed": 2,
+      "hazards": 2,
+      "completedAt": 22,
+      "firstSignalAt": 6.499999999999982,
+      "distance": 4573.800000000114,
+      "peerBlocks": 0,
+      "overlap": 0.389344262295082,
+      "trajectoryDigest": "8b47e4ac"
+    },
+    {
+      "planner": "information",
+      "config": {
+        "scenario": "residential",
+        "seed": 17,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 91.84027777777779,
+      "coverageAuc": 59.001736111111114,
+      "confirmed": 2,
+      "hazards": 2,
+      "completedAt": 12,
+      "firstSignalAt": 6.249999999999983,
+      "distance": 5502.700000000123,
+      "peerBlocks": 0,
+      "overlap": 0.42500000000000004,
+      "trajectoryDigest": "10d99037"
+    },
+    {
+      "planner": "nearest",
+      "config": {
+        "scenario": "residential",
+        "seed": 42,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 74.78260869565217,
+      "coverageAuc": 51.46231884057968,
+      "confirmed": 1,
+      "hazards": 0,
+      "completedAt": null,
+      "firstSignalAt": 19.500000000000174,
+      "distance": 3594.500000000068,
+      "peerBlocks": 0,
+      "overlap": 0.33744221879815095,
+      "trajectoryDigest": "6e3430a0"
+    },
+    {
+      "planner": "information",
+      "config": {
+        "scenario": "residential",
+        "seed": 42,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 100,
+      "coverageAuc": 63.74202898550724,
+      "confirmed": 2,
+      "hazards": 2,
+      "completedAt": 31,
+      "firstSignalAt": 11.250000000000139,
+      "distance": 6280.400000000189,
+      "peerBlocks": 0,
+      "overlap": 0.3797195253505933,
+      "trajectoryDigest": "3ed5e813"
+    },
+    {
+      "planner": "nearest",
+      "config": {
+        "scenario": "residential",
+        "seed": 101,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 98.08695652173913,
+      "coverageAuc": 51.12608695652173,
+      "confirmed": 2,
+      "hazards": 2,
+      "completedAt": 56.5,
+      "firstSignalAt": 24.49999999999989,
+      "distance": 4718.70000000011,
+      "peerBlocks": 0,
+      "overlap": 0.33880422039859315,
+      "trajectoryDigest": "53c3da1d"
+    },
+    {
+      "planner": "information",
+      "config": {
+        "scenario": "residential",
+        "seed": 101,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 99.82608695652175,
+      "coverageAuc": 65.67101449275364,
+      "confirmed": 2,
+      "hazards": 2,
+      "completedAt": 37.25,
+      "firstSignalAt": 21.50000000000006,
+      "distance": 5524.400000000144,
+      "peerBlocks": 0,
+      "overlap": 0.4070247933884298,
+      "trajectoryDigest": "fc297047"
+    },
+    {
+      "planner": "nearest",
+      "config": {
+        "scenario": "residential",
+        "seed": 2026,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 80.44596912521442,
+      "coverageAuc": 45.27301315037164,
+      "confirmed": 1,
+      "hazards": 2,
+      "completedAt": null,
+      "firstSignalAt": 25.249999999999847,
+      "distance": 4239.200000000082,
+      "peerBlocks": 0,
+      "overlap": 0.37962962962962965,
+      "trajectoryDigest": "9d201260"
+    },
+    {
+      "planner": "information",
+      "config": {
+        "scenario": "residential",
+        "seed": 2026,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 90.73756432246999,
+      "coverageAuc": 62.517152658662106,
+      "confirmed": 2,
+      "hazards": 1,
+      "completedAt": 25.75,
+      "firstSignalAt": 17.750000000000274,
+      "distance": 4320.4000000001015,
+      "peerBlocks": 0,
+      "overlap": 0.3891454965357968,
+      "trajectoryDigest": "859897ae"
+    },
+    {
+      "planner": "nearest",
+      "config": {
+        "scenario": "residential",
+        "seed": 9001,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 93.21739130434783,
+      "coverageAuc": 56.18550724637682,
+      "confirmed": 1,
+      "hazards": 2,
+      "completedAt": null,
+      "firstSignalAt": 43.24999999999883,
+      "distance": 4499.6000000001295,
+      "peerBlocks": 0,
+      "overlap": 0.30569948186528495,
+      "trajectoryDigest": "efdd553f"
+    },
+    {
+      "planner": "information",
+      "config": {
+        "scenario": "residential",
+        "seed": 9001,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 95.65217391304348,
+      "coverageAuc": 64.55362318840577,
+      "confirmed": 2,
+      "hazards": 2,
+      "completedAt": 21,
+      "firstSignalAt": 19.75000000000016,
+      "distance": 6699.000000000205,
+      "peerBlocks": 0,
+      "overlap": 0.5327102803738317,
+      "trajectoryDigest": "6784b527"
+    },
+    {
+      "planner": "nearest",
+      "config": {
+        "scenario": "warehouse",
+        "seed": 17,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 96.34340222575517,
+      "coverageAuc": 57.20058293587706,
+      "confirmed": 1,
+      "hazards": 2,
+      "completedAt": null,
+      "firstSignalAt": 12.000000000000176,
+      "distance": 5203.100000000119,
+      "peerBlocks": 0,
+      "overlap": 0.4490909090909091,
+      "trajectoryDigest": "7288f23f"
+    },
+    {
+      "planner": "information",
+      "config": {
+        "scenario": "warehouse",
+        "seed": 17,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 99.36406995230524,
+      "coverageAuc": 69.97615262321143,
+      "confirmed": 2,
+      "hazards": 2,
+      "completedAt": 38.5,
+      "firstSignalAt": 17.250000000000302,
+      "distance": 4902.80000000009,
+      "peerBlocks": 0,
+      "overlap": 0.41259398496240607,
+      "trajectoryDigest": "55607b09"
+    },
+    {
+      "planner": "nearest",
+      "config": {
+        "scenario": "warehouse",
+        "seed": 42,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 97.66718506998446,
+      "coverageAuc": 63.619751166407454,
+      "confirmed": 2,
+      "hazards": 2,
+      "completedAt": 14.5,
+      "firstSignalAt": 7.24999999999998,
+      "distance": 4543.00000000009,
+      "peerBlocks": 0,
+      "overlap": 0.37262737262737267,
+      "trajectoryDigest": "61036b3c"
+    },
+    {
+      "planner": "information",
+      "config": {
+        "scenario": "warehouse",
+        "seed": 42,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 100,
+      "coverageAuc": 71.44634525660965,
+      "confirmed": 2,
+      "hazards": 2,
+      "completedAt": 14.5,
+      "firstSignalAt": 7.24999999999998,
+      "distance": 5647.600000000133,
+      "peerBlocks": 0,
+      "overlap": 0.5023219814241486,
+      "trajectoryDigest": "079c12ed"
+    },
+    {
+      "planner": "nearest",
+      "config": {
+        "scenario": "warehouse",
+        "seed": 101,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 87.15170278637771,
+      "coverageAuc": 51.39705882352942,
+      "confirmed": 2,
+      "hazards": 1,
+      "completedAt": 48.25,
+      "firstSignalAt": 41.74999999999891,
+      "distance": 4146.100000000083,
+      "peerBlocks": 0,
+      "overlap": 0.3681257014590348,
+      "trajectoryDigest": "094d7ca9"
+    },
+    {
+      "planner": "information",
+      "config": {
+        "scenario": "warehouse",
+        "seed": 101,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 100,
+      "coverageAuc": 75.74561403508773,
+      "confirmed": 2,
+      "hazards": 2,
+      "completedAt": 25,
+      "firstSignalAt": 17.000000000000316,
+      "distance": 5569.900000000119,
+      "peerBlocks": 0,
+      "overlap": 0.4440619621342513,
+      "trajectoryDigest": "86da52cd"
+    },
+    {
+      "planner": "nearest",
+      "config": {
+        "scenario": "warehouse",
+        "seed": 2026,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 94.01574803149606,
+      "coverageAuc": 60.58005249343831,
+      "confirmed": 2,
+      "hazards": 2,
+      "completedAt": 34.25,
+      "firstSignalAt": 22.500000000000004,
+      "distance": 4697.000000000096,
+      "peerBlocks": 0,
+      "overlap": 0.3682539682539683,
+      "trajectoryDigest": "1ef30816"
+    },
+    {
+      "planner": "information",
+      "config": {
+        "scenario": "warehouse",
+        "seed": 2026,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 100,
+      "coverageAuc": 76.29921259842523,
+      "confirmed": 2,
+      "hazards": 2,
+      "completedAt": 26.75,
+      "firstSignalAt": 11.250000000000139,
+      "distance": 5752.600000000155,
+      "peerBlocks": 0,
+      "overlap": 0.4803600654664485,
+      "trajectoryDigest": "d7ae0c7a"
+    },
+    {
+      "planner": "nearest",
+      "config": {
+        "scenario": "warehouse",
+        "seed": 9001,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 90.37267080745342,
+      "coverageAuc": 54.42417184265011,
+      "confirmed": 2,
+      "hazards": 2,
+      "completedAt": 42,
+      "firstSignalAt": 35.749999999999254,
+      "distance": 4633.300000000103,
+      "peerBlocks": 0,
+      "overlap": 0.37284482758620685,
+      "trajectoryDigest": "4bbcafbc"
+    },
+    {
+      "planner": "information",
+      "config": {
+        "scenario": "warehouse",
+        "seed": 9001,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 99.84472049689441,
+      "coverageAuc": 72.60093167701864,
+      "confirmed": 2,
+      "hazards": 2,
+      "completedAt": 34.5,
+      "firstSignalAt": 26.499999999999776,
+      "distance": 6175.400000000177,
+      "peerBlocks": 0,
+      "overlap": 0.5136157337367625,
+      "trajectoryDigest": "c87fa586"
+    },
+    {
+      "planner": "nearest",
+      "config": {
+        "scenario": "corridors",
+        "seed": 17,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 23.589001447178003,
+      "coverageAuc": 20.824891461649774,
+      "confirmed": 0,
+      "hazards": 1,
+      "completedAt": null,
+      "firstSignalAt": null,
+      "distance": 1007.9999999999991,
+      "peerBlocks": 0,
+      "overlap": 0.47756410256410253,
+      "trajectoryDigest": "aaaa8b50"
+    },
+    {
+      "planner": "information",
+      "config": {
+        "scenario": "corridors",
+        "seed": 17,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 25.904486251808972,
+      "coverageAuc": 23.65412445730825,
+      "confirmed": 0,
+      "hazards": 1,
+      "completedAt": null,
+      "firstSignalAt": null,
+      "distance": 1404.8999999999928,
+      "peerBlocks": 0,
+      "overlap": 0.5655339805825244,
+      "trajectoryDigest": "95683f4d"
+    },
+    {
+      "planner": "nearest",
+      "config": {
+        "scenario": "corridors",
+        "seed": 42,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 24.02315484804631,
+      "coverageAuc": 20.9466956102267,
+      "confirmed": 0,
+      "hazards": 1,
+      "completedAt": null,
+      "firstSignalAt": null,
+      "distance": 1213.099999999999,
+      "peerBlocks": 0,
+      "overlap": 0.532394366197183,
+      "trajectoryDigest": "5049e73a"
+    },
+    {
+      "planner": "information",
+      "config": {
+        "scenario": "corridors",
+        "seed": 42,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 24.312590448625183,
+      "coverageAuc": 22.63506994693679,
+      "confirmed": 0,
+      "hazards": 1,
+      "completedAt": null,
+      "firstSignalAt": null,
+      "distance": 1773.100000000019,
+      "peerBlocks": 0,
+      "overlap": 0.4580645161290322,
+      "trajectoryDigest": "f6faf018"
+    },
+    {
+      "planner": "nearest",
+      "config": {
+        "scenario": "corridors",
+        "seed": 101,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 22.865412445730826,
+      "coverageAuc": 20.196575012059807,
+      "confirmed": 0,
+      "hazards": 0,
+      "completedAt": null,
+      "firstSignalAt": null,
+      "distance": 1043.6999999999991,
+      "peerBlocks": 0,
+      "overlap": 0.5093167701863355,
+      "trajectoryDigest": "3f7a4825"
+    },
+    {
+      "planner": "information",
+      "config": {
+        "scenario": "corridors",
+        "seed": 101,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 24.60202604920405,
+      "coverageAuc": 22.791847563917035,
+      "confirmed": 0,
+      "hazards": 0,
+      "completedAt": null,
+      "firstSignalAt": null,
+      "distance": 1033.1999999999964,
+      "peerBlocks": 0,
+      "overlap": 0.48328267477203646,
+      "trajectoryDigest": "79444d66"
+    },
+    {
+      "planner": "nearest",
+      "config": {
+        "scenario": "corridors",
+        "seed": 2026,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 22.254335260115607,
+      "coverageAuc": 20.061416184971083,
+      "confirmed": 0,
+      "hazards": 0,
+      "completedAt": null,
+      "firstSignalAt": null,
+      "distance": 977.8999999999972,
+      "peerBlocks": 0,
+      "overlap": 0.5157232704402516,
+      "trajectoryDigest": "b66220ec"
+    },
+    {
+      "planner": "information",
+      "config": {
+        "scenario": "corridors",
+        "seed": 2026,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 25,
+      "coverageAuc": 23.01541425818883,
+      "confirmed": 0,
+      "hazards": 0,
+      "completedAt": null,
+      "firstSignalAt": null,
+      "distance": 1749.2999999999909,
+      "peerBlocks": 0,
+      "overlap": 0.5597964376590331,
+      "trajectoryDigest": "a11dff3a"
+    },
+    {
+      "planner": "nearest",
+      "config": {
+        "scenario": "corridors",
+        "seed": 9001,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 22.431259044862518,
+      "coverageAuc": 19.864930053063194,
+      "confirmed": 1,
+      "hazards": 0,
+      "completedAt": null,
+      "firstSignalAt": 12.000000000000176,
+      "distance": 835.7999999999989,
+      "peerBlocks": 0,
+      "overlap": 0.46366782006920415,
+      "trajectoryDigest": "6ce7bd3c"
+    },
+    {
+      "planner": "information",
+      "config": {
+        "scenario": "corridors",
+        "seed": 9001,
+        "duration": 60,
+        "count": 4
+      },
+      "coverage": 34.00868306801736,
+      "coverageAuc": 28.745779064158192,
+      "confirmed": 1,
+      "hazards": 1,
+      "completedAt": null,
+      "firstSignalAt": 6.749999999999981,
+      "distance": 1884.3999999999987,
+      "peerBlocks": 0,
+      "overlap": 0.5262096774193548,
+      "trajectoryDigest": "eb875c3c"
+    }
+  ]
+}

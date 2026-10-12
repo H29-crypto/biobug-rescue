@@ -1,6 +1,6 @@
 import { createRescueMission, sampleRescue, rescueView } from './rescue';
 import type { RescueMission } from './rescue';
-import type { BioBug, Vec2 } from '../domain/types';
+import type { BioBug, Environment, Vec2 } from '../domain/types';
 import { advance, createSimulation, FIXED_STEP, neuralDue, setRunning, snapshot, switchController } from './engine';
 import type { Simulation, ControllerMode } from './engine';
 import { isPositionValid } from './collision';
@@ -9,16 +9,18 @@ import { coverage, revealExploration } from './exploration';
 import { assignFrontiers } from './frontiers';
 import type { Assignment } from './frontiers';
 import type { MotorCommand } from './controller';
+import { assignInformationFrontiers } from './informationPlanner';
+export type PlannerMode = 'nearest' | 'information';
 export interface SwarmAgent { simulation: Simulation; assignment: Assignment|null; coordination: string; novelCells: number; peerBlocks: number; separationTurn: number; separationRemaining: number }
 export interface SwarmSimulation {
   rescue: RescueMission; agents: SwarmAgent[]; selected: number; running: boolean; elapsed: number; accumulator: number;
-  coordinated: boolean; nextPlan: number; planRound: number; ticks: number; seed: number;
+  coordinated: boolean; planner: PlannerMode; nextPlan: number; planRound: number; ticks: number; seed: number;
   batchRequests: number; batchFailures: number; batchLatencies: number[];
 }
 export const AGENT_COLORS = ['#58dfba','#f6c970','#82baff','#e9a0ce','#c4b0ff','#ff9982','#c5de7c','#98dae5'];
-export function createSwarm(count=4, seed=2026, coordinated=true): SwarmSimulation {
+export function createSwarm(count=4, seed=2026, coordinated=true, options: { environment?: Environment; planner?: PlannerMode } = {}): SwarmSimulation {
   if(!Number.isInteger(count)||count<1||count>8) throw new Error('Deployment must contain 1–8 BioBugs');
-  const first=createSimulation(seed), env=first.environment;
+  const first=createSimulation(seed, options.environment), env=first.environment;
   const agents: SwarmAgent[]=[];
   // Compact, collision-checked deployment beside the entry; never spawn on unknown distant terrain.
   const candidates: Vec2[]=[];
@@ -27,7 +29,7 @@ export function createSwarm(count=4, seed=2026, coordinated=true): SwarmSimulati
     candidates.push({x:env.entry.x+x*22,y:env.entry.y+y*22});
   }
   for(let i=0;i<count;i++) {
-    const sim=i===0?first:createSimulation(seed+i*1013);
+    const sim=i===0?first:createSimulation(seed+i*1013, options.environment);
     const position=candidates.find(p=>isPositionValid(env,p,sim.bug.radius) && agents.every(a=>Math.hypot(p.x-a.simulation.bug.position.x,p.y-a.simulation.bug.position.y)>=22));
     if(!position) throw new Error('No safe deployment position');
     sim.environment=env;sim.bug.id=`BioBug #${i+1}`;sim.bug.position={...position};
@@ -40,7 +42,7 @@ export function createSwarm(count=4, seed=2026, coordinated=true): SwarmSimulati
     }
     agents.push({simulation:sim,assignment:null,coordination:'Awaiting shared-map plan',novelCells:0,peerBlocks:0,separationTurn:0,separationRemaining:0});
   }
-  return {rescue:createRescueMission(env),agents,selected:0,running:false,elapsed:0,accumulator:0,coordinated,nextPlan:0,planRound:0,ticks:0,seed,
+  return {rescue:createRescueMission(env),agents,selected:0,running:false,elapsed:0,accumulator:0,coordinated,planner:options.planner??'nearest',nextPlan:0,planRound:0,ticks:0,seed,
     batchRequests:0,batchFailures:0,batchLatencies:[]};
 }
 export function runSwarm(s: SwarmSimulation,running:boolean) {
@@ -94,7 +96,8 @@ export function advanceSwarm(s:SwarmSimulation,delta:number,afterStep?:()=>void)
   while(s.accumulator+1e-10>=FIXED_STEP) {
     if(s.agents.some(a=>neuralDue(a.simulation)||(a.simulation.mode==='malecns'&&!a.simulation.neural.decision))) {s.accumulator=0;break;}
     if(s.coordinated&&s.agents.length>1&&s.elapsed+1e-9>=s.nextPlan) {
-      const plans=assignFrontiers(env,s.agents.map(a=>a.simulation.bug.position),7,s.planRound++%s.agents.length);
+      const plan = s.planner === 'information' ? assignInformationFrontiers : assignFrontiers;
+      const plans=plan(env,s.agents.map(a=>a.simulation.bug.position),7,s.planRound++%s.agents.length);
       s.agents.forEach((a,i)=>a.assignment=plans[i]);s.nextPlan=s.elapsed+2;
     }
     // Rotate physical update/novel-cell credit priority deterministically each step.

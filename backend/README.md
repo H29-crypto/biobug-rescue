@@ -2,6 +2,8 @@
 
 This backend loads the official MaleCNS v1.0 structural connectome and provides structural pathway analysis, a manual experimental dynamics lab, and compact sensory experiments for the optional MaleCNS movement mode. Simulated activity feeds a separately labeled frontend engineering motor decoder. See `../docs/MALECNS.md` for provenance, selection rules, exact source filenames, measured counts, annotation details and limitations; see `../docs/MALECNS_DYNAMICS.md` for the activity model and `../docs/MALECNS_CONTROLLER.md` for movement integration.
 
+Use Python 3.14 for the checked-in lockfile (clean-environment validation on 12 October 2026). The lock includes the OpenAI SDK and both its HTTP transport and the API-test transport. No API key is needed for tests.
+
 From this directory in PowerShell:
 
 ```powershell
@@ -22,7 +24,7 @@ Invoke-RestMethod http://127.0.0.1:8000/connectome/status
 Invoke-RestMethod http://127.0.0.1:8000/connectome/neurons/10001
 ```
 
-Fast fixture tests: `.\.venv\Scripts\python -m pytest -q`. Add `$env:MALECNS_INTEGRATION='1'` to include the full downloaded-data test. Data, Python environments and caches are ignored by Git. `sources.json` pins official generations and checksums; `requirements.lock.txt` records the installed environment. The frontend needs neither this server nor any API changes to run.
+Fast fixture tests: `.\.venv\Scripts\python -m pytest -q`. Add `$env:MALECNS_INTEGRATION='1'` to include the full downloaded-data and acquired raw-morphology tests. The shipped morphology binary is validated in ordinary tests. Data, Python environments and caches are ignored by Git. `sources.json` pins official generations and checksums; `requirements.lock.txt` records the installed environment. The frontend needs neither this server nor any API changes to run.
 
 ## Static pathway analysis and development viewer
 

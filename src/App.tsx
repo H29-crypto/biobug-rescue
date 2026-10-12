@@ -52,7 +52,7 @@ export default function App() {
         <div className="legend"><span><i className="key wall"/>Walls</span><span><i className="key debris"/>Debris</span><span><i className="key fog"/>Unexplored</span><span className="green">? Life signal / + Confirmed</span><span className="amber">! Gas hazard</span></div>
       </section><aside className="judge-sidebar">
         <section className="discovery-feed card" aria-label="Discovery notifications"><p className="eyebrow">LIVE DISCOVERIES</p><div role="status" aria-live="polite" aria-atomic="true">{notices.length ? notices.map(n => <div className={`discovery-notice ${n.kind}`} key={`${n.time}-${n.title}-${n.sector}`}><strong>{n.title}</strong><span>Sector {n.sector} <small>{n.time.toFixed(2)} s</small></span></div>) : <p>Deploy the swarm to search for life signals and gas hazards. Locations appear only after sensing.</p>}</div></section>
-        <CommanderPanel key={simulation.missionRevision} compact={!technical} getSnapshot={simulation.commanderSnapshot}/>
+        <details className="mission-summary-disclosure"><summary>Mission assistant <span>Observed findings & summary</span></summary><CommanderPanel key={simulation.missionRevision} compact={!technical} getSnapshot={simulation.commanderSnapshot}/></details>
       </aside></div>
       {(blocked || simulation.neural.status === 'offline') && mode === 'malecns' && <p className="recovery" role="alert">MaleCNS is unavailable. Motion is held. Pause if needed and choose Rule-Based in Technical View, or RESET DEMO to restart the rescue presentation.</p>}
       <p className="mission-caption">Scenario objectives: 2 survivors and 2 gas hazards. Markers are sensor estimates; totals are demo objectives, not sensed knowledge. {simulation.rescue.completedAt !== null && <strong className="green">Both survivors confirmed at {simulation.rescue.completedAt.toFixed(2)} s.</strong>}</p>
@@ -70,6 +70,7 @@ export default function App() {
         <ControllerPanel view={simulation}/><MeasuredResults/>
         <details className="advanced-tools"><summary>Advanced tools · agent telemetry, rescue evidence and pathway experiments</summary><SwarmPanel view={simulation} onSelect={simulation.selectBug}/><RescuePanel rescue={simulation.rescue} selected={selectedDiscovery} onSelect={setSelectedDiscovery} elapsed={elapsed} coverage={simulation.explored} count={simulation.agents.length} running={running}/><PathwayExplorer/></details>
       </section>}
+      <a className="mission-research-link" href="#research">RESEARCH & EVIDENCE ↗ <span>Compare exploration strategies across three environments. Inspect sources and reproduce every run.</span></a>
       <JudgeContext/>
       <footer><span>Simulation prototype · Potential applications, no current hardware deployment.</span><span>HUMAN OPERATORS MAKE RESCUE DECISIONS</span></footer>
     </main>

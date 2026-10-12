@@ -23,7 +23,7 @@ export function createRescueScene(host:HTMLDivElement,env:SceneEnvironment,onSel
   renderer.domElement.setAttribute('aria-label','Interactive 3D rescue scene. Drag to orbit and scroll to zoom. Select a BioBug using the buttons below.');
   renderer.domElement.setAttribute('role','img');
   host.appendChild(renderer.domElement);
-  const scene=new THREE.Scene();scene.background=new THREE.Color('#0b1319');scene.fog=new THREE.FogExp2('#0b1319',.00048);
+  const scene=new THREE.Scene();scene.background=new THREE.Color('#f2f1eb');scene.fog=new THREE.FogExp2('#f2f1eb',.00048);
   const camera=new THREE.PerspectiveCamera(43,1,1,3200);
   const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.09;controls.maxPolarAngle=Math.PI*.46;controls.minDistance=45;controls.maxDistance=2000;controls.enablePan=true;
   const hemisphere=new THREE.HemisphereLight(0xc4e4ed,0x555141,2.7);scene.add(hemisphere);

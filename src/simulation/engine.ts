@@ -21,8 +21,7 @@ export interface Simulation {
   lastTurn: number; stationaryTime: number; stationaryDistance: number;
 }
 export const FIXED_STEP = 1 / 60;
-export function createSimulation(seed = 2026): Simulation {
-  const environment = createEarthquakeEnvironment();
+export function createSimulation(seed = 2026, environment: Environment = createEarthquakeEnvironment()): Simulation {
   const bug: BioBug = { id: 'BioBug #1', position: { ...environment.entry }, heading: Math.PI * 1.5, radius: 7, speed: 42, state: 'stopped',
     sensors: { obstacleLeft: 0, obstacleFront: 0, obstacleRight: 0, frontDistance: 0, leftDistance: 0, rightDistance: 0, hazard: 0, survivorCue: 0, unexploredDirection: 0 } };
   sense(environment, bug); revealExploration(environment, bug.position);

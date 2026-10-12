@@ -11,10 +11,10 @@ export function drawBioBug(ctx: CanvasRenderingContext2D, bug: BioBug, debug: bo
     }
   }
   ctx.save(); ctx.rotate(bug.heading);
-  ctx.strokeStyle = '#b8f7e3'; ctx.lineWidth = 1.5;
+  ctx.strokeStyle = '#49664a'; ctx.lineWidth = 1.5;
   for (const x of [-4, 0, 4]) { ctx.beginPath(); ctx.moveTo(x - 3, -11); ctx.lineTo(x, 0); ctx.lineTo(x - 3, 11); ctx.stroke(); }
   ctx.fillStyle = color; ctx.beginPath(); ctx.ellipse(0, 0, 9, 6, 0, 0, Math.PI * 2); ctx.fill();
-  ctx.fillStyle = '#fff4cc'; ctx.beginPath(); ctx.moveTo(15, 0); ctx.lineTo(8, -4); ctx.lineTo(8, 4); ctx.closePath(); ctx.fill(); ctx.restore();
+  ctx.fillStyle = '#365b43'; ctx.beginPath(); ctx.moveTo(15, 0); ctx.lineTo(8, -4); ctx.lineTo(8, 4); ctx.closePath(); ctx.fill(); ctx.restore();
   ctx.font = 'bold 11px monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  ctx.fillStyle = '#081418dd'; ctx.fillRect(-39, 17, 78, 17); ctx.fillStyle = '#a7ffe1'; ctx.fillText(bug.id, 0, 26); ctx.restore();
+  ctx.fillStyle = '#ffffffe8'; ctx.fillRect(-39, 17, 78, 17); ctx.fillStyle = '#35533c'; ctx.fillText(bug.id, 0, 26); ctx.restore();
 }

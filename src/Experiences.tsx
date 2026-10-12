@@ -1,11 +1,38 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import App from './App';
+import { FieldAtlas } from './components/FieldAtlas';
 import './experiences.css';
-const UnifiedLab=lazy(()=>import('./unified-lab/UnifiedLab'));
-function selectedExperience(){return location.hash==='#rescue'?'rescue':location.hash==='#virtual-fly'?'experiment':location.hash==='#virtual-lab'?'lab':'home';}
-export default function Experiences(){
-  const [experience,setExperience]=useState(selectedExperience);
-  useEffect(()=>{const change=()=>setExperience(selectedExperience());window.addEventListener('hashchange',change);return()=>window.removeEventListener('hashchange',change);},[]);
-  if(experience!=='home')return <><div className="experience-return"><a href="#">← CHOOSE EXPERIENCE</a><span>Leaving closes the active run. Re-entry starts fresh.</span></div>{experience==='rescue'?<App/>:<Suspense fallback={<div className="experience-loading">Loading Virtual Fly Lab…</div>}><UnifiedLab key={experience} initial={experience==='experiment'?'experiment':'rescue'}/></Suspense>}</>;
-  return <main className="experience-home"><p className="experience-wordmark">✳ BIOBUG</p><p className="experience-kicker">BIOBUG / MISSION & RESEARCH</p><h1>Choose your perspective.</h1><p className="experience-intro">Run a rescue demonstration or enter the unified lab to connect swarm missions with individual neural activity.</p><div className="experience-choices"><section><span className="experience-number">01 / MISSION</span><div className="experience-symbol">⌖</div><h2>BioBug Rescue</h2><p>Search-and-rescue swarm simulation. Explore, share discoveries and brief a human operator.</p><a href="#rescue">ENTER RESCUE <span>↗</span></a><small>Presentation · Technical · 3D Rescue View</small></section><section><span className="experience-number">02 / UNIFIED LAB</span><div className="experience-symbol">⌬</div><h2>Virtual BioBug Lab</h2><p>Detailed fruit flies in a collapsed building. Explore with a swarm, detect life and hazards, and inspect each agent’s neural activity.</p><a href="#virtual-lab">ENTER LAB <span>↗</span></a><small>3D rescue missions · Selected-agent neurons · Controlled fly experiments</small></section></div><p className="experience-footnote">Real structural connectivity. Simulated bodies and neural dynamics. No physical hardware deployment or biological fidelity claim.</p></main>;
+
+const UnifiedLab = lazy(() => import('./unified-lab/UnifiedLab'));
+const ResearchLab = lazy(() => import('./research/ResearchLab'));
+function selectedExperience() {
+  return location.hash === '#research' ? 'research' : location.hash === '#rescue' ? 'rescue'
+    : location.hash === '#virtual-fly' ? 'experiment' : location.hash === '#virtual-lab' ? 'lab' : 'home';
+}
+export default function Experiences() {
+  const [experience, setExperience] = useState(selectedExperience);
+  useEffect(() => {
+    const change = () => { setExperience(selectedExperience()); window.scrollTo(0, 0); };
+    window.addEventListener('hashchange', change);
+    return () => window.removeEventListener('hashchange', change);
+  }, []);
+  return <div className="field-shell">
+    <a className="skip-link" href="#main-content" onClick={event => { event.preventDefault(); document.getElementById('main-content')?.focus(); document.getElementById('main-content')?.scrollIntoView(); }}>Skip to content</a>
+    <header className="field-header">
+      <a href="#" className="field-brand" aria-label="BioBug home"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 7V33M14 14L6 9M14 20H4M14 26L6 32M26 14L34 9M26 20H36M26 26L34 32"/><ellipse cx="20" cy="21" rx="7" ry="12"/><circle cx="20" cy="6" r="3"/></svg><span>BioBug<small>EXPLORATION RESEARCH</small></span></a>
+      <nav aria-label="Main navigation"><a href="#rescue" aria-current={experience === 'rescue' ? 'page' : undefined}>Rescue</a><a href="#virtual-lab" aria-current={['lab', 'experiment'].includes(experience) ? 'page' : undefined}>Virtual lab</a><a href="#research" aria-current={experience === 'research' ? 'page' : undefined}>Research & evidence</a></nav>
+      <span className="field-edition">FIELD NOTES <span>№ 001 / 2026</span></span>
+    </header>
+    <div id="main-content" tabIndex={-1}>
+      {experience === 'home' ? <main className="field-home">
+        <section className="field-intro"><div className="field-intro-copy"><p className="field-kicker">BIOLOGY INSPIRES. EVIDENCE GUIDES.</p><h1>Exploring the<br/>unreachable.</h1><p className="field-deck">Small autonomous explorers.<br/>A shared view of what lies beyond.</p><p className="field-description">A research platform for insect-inspired rescue. Explore an unknown structure, inspect neural activity, and test the decisions that guide a swarm.</p><div className="field-actions"><a className="field-primary" href="#rescue">Explore the simulation <span>↗</span></a><a href="#research">Read the evidence <span>→</span></a></div></div>
+          <figure className="field-atlas"><FieldAtlas/><figcaption><span>FIG. 01 — A SHARED FIELD OF VIEW</span><span>Measured simulation · 4 agents · 60 s</span></figcaption></figure></section>
+        <section className="field-index" aria-label="Explore the project"><a href="#rescue"><span className="field-index-number">01</span><div><h2>A mission to understand.</h2><p>Deploy a swarm. Follow the discoveries.</p><span>Rescue simulation ↗</span></div></a><a href="#virtual-lab"><span className="field-index-number">02</span><div><h2>A circuit to explore.</h2><p>Real connectivity. Simulated activity.</p><span>Virtual laboratory ↗</span></div></a><a href="#research"><span className="field-index-number">03</span><div><h2>A result to reproduce.</h2><p>Three environments. Thirty recorded trials.</p><span>Methods & evidence ↗</span></div></a></section>
+        <section className="field-principle"><p className="field-kicker">THE RESEARCH QUESTION</p><h2>How can a small team<br/>reveal more of an unknown space?</h2><div><p>We connect biological structure with explicit engineering models, then compare exploration strategies under the same conditions.</p><p>Open methods, visible assumptions, and results you can run again.</p><a href="#research">Explore the comparative study →</a></div></section>
+        <footer className="field-home-footer"><span>BioBug / Independent research prototype</span><span>Simulated bodies and sensing. No physical rescue deployment.</span><a href="https://github.com/H29-crypto/biobug-rescue" target="_blank" rel="noreferrer">Source code ↗</a></footer>
+      </main> : experience === 'rescue' ? <App/> : <Suspense fallback={<div className="experience-loading">Opening the laboratory…</div>}>
+        {experience === 'research' ? <ResearchLab/> : <UnifiedLab key={experience} initial={experience === 'experiment' ? 'experiment' : 'rescue'}/>}
+      </Suspense>}
+    </div>
+  </div>;
 }
