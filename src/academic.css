@@ -575,3 +575,42 @@ body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(button,a,summar
   outline: 2px solid var(--field-cyan);
   outline-offset: 3px;
 }
+
+
+/* Neural dynamics is an experiment panel in the same lab, so it shares the
+   field surfaces and legible engineering labels as well. */
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab {
+  background: var(--field-surface);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab :is(.dynamics-boundaries>div,.dynamics-result,.dynamics-output,.dynamics-summary) {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab :is(.dynamics-heading,.dynamics-boundaries,.dynamics-presets,.dynamics-controls,.dynamics-sliders,.dynamics-settings,.dynamics-check) {
+  color: var(--field-text);
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab :is(.dynamics-heading p,.dynamics-boundaries p,.dynamics-lab label,.dynamics-muted) {
+  color: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab :is(.dynamics-heading span,.dynamics-boundaries b) {
+  color: var(--field-amber);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab .dynamics-run {
+  background: var(--field-cyan);
+  border-color: var(--field-cyan);
+  color: #082027;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab .dynamics-run:hover:not(:disabled) {
+  background: #8deafa;
+  border-color: #8deafa;
+  color: #082027;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab .dynamics-run:disabled {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+  color: var(--field-faint);
+}
