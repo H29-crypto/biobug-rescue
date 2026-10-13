@@ -1,10 +1,25 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { Component, lazy, Suspense, useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 import App from './App';
 import { FieldAtlas } from './components/FieldAtlas';
 import './experiences.css';
 
 const UnifiedLab = lazy(() => import('./unified-lab/UnifiedLab'));
 const ResearchLab = lazy(() => import('./research/ResearchLab'));
+class ExperienceLoadBoundary extends Component<{children:ReactNode},{failed:boolean}> {
+  state={failed:false};
+  static getDerivedStateFromError() { return {failed:true}; }
+  componentDidCatch(error:Error) { console.error('Unable to load this experience.',error); }
+  render() {
+    if(!this.state.failed)return this.props.children;
+    return <section className="experience-error" role="alert" aria-labelledby="experience-error-title">
+      <p className="field-kicker">THIS SECTION DID NOT LOAD</p>
+      <h1 id="experience-error-title">The experience could not open.</h1>
+      <p>A page asset may be out of date or temporarily unavailable. Reload to try again, or continue to another section.</p>
+      <div><button className="field-primary" onClick={()=>window.location.reload()}>Reload this page</button><a href="#rescue">Open Rescue</a><a href="#research">Open Research &amp; Evidence</a></div>
+    </section>;
+  }
+}
 function selectedExperience() {
   return location.hash === '#research' ? 'research' : location.hash === '#rescue' ? 'rescue'
     : location.hash === '#virtual-fly' ? 'experiment' : location.hash === '#virtual-lab' ? 'lab' : 'home';
