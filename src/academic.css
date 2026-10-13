@@ -994,3 +994,7 @@ body.academic .technical-section .agent-card[aria-pressed=true] :is(strong,span,
 body.academic .judge-app .brand > span:not(.brand-icon) {
   color: var(--field-text) !important;
 }
+
+body.academic .technical-section .pathways-panel > summary::before {
+  color: var(--field-cyan);
+}
