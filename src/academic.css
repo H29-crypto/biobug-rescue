@@ -14,3 +14,623 @@ body.academic{background:#fff;color:var(--ink);font-family:'Helvetica Neue',Aria
 .academic .research-page .research-primary{background:#355b45;color:#fff;border-color:#355b45}.academic .research-page .research-primary:hover{background:#264933}
 
 .academic .scene-bottom-hud{text-shadow:none}.academic .mission-desk-disclosure{border-top:1px solid var(--line);padding:13px 0}.academic .mission-desk-disclosure>summary{cursor:pointer;font-size:12px;color:#425e3f}.academic .mission-explanation>summary{cursor:pointer;font:24px Georgia,serif;color:#3c5a3d}.academic .mission-explanation[open]>summary{margin-bottom:22px}
+
+
+/* BioBug field theme: one accessible dark surface across Rescue, Virtual Lab,
+   and Research & Evidence. Keep layout and simulation behavior independent. */
+:root {
+  color-scheme: dark;
+  --ink: #e6edf3;
+  --muted: #9aa7b4;
+  --line: #263241;
+  --paper: #0b0f14;
+  --accent: #22d3ee;
+  --forest: #58dfba;
+  --field-bg: #0b0f14;
+  --field-surface: #121821;
+  --field-surface-raised: #18202b;
+  --field-surface-soft: #202b38;
+  --field-text: #e6edf3;
+  --field-muted: #9aa7b4;
+  --field-faint: #748293;
+  --field-border: #263241;
+  --field-border-strong: #364557;
+  --field-cyan: #22d3ee;
+  --field-green: #58dfba;
+  --field-amber: #f6c970;
+}
+body.academic {
+  color-scheme: dark;
+  background: var(--field-bg);
+  color: var(--field-text);
+}
+body.academic :is(h1,h2,h3,h4,strong,b,summary,th) { color: var(--field-text); }
+body.academic :is(p,small,figcaption,label,td,dd,dt) { color: var(--field-muted); }
+body.academic a { color: var(--field-cyan); }
+body.academic a:hover { color: #8deafa; }
+body.academic .field-header {
+  background: rgba(18,24,33,.96);
+  border-color: var(--field-border);
+  color: var(--field-text);
+  backdrop-filter: blur(14px);
+}
+body.academic .field-brand,
+body.academic .field-header nav a { color: var(--field-text); }
+body.academic .field-brand svg { stroke: var(--field-cyan); }
+body.academic .field-header nav a { color: var(--field-muted); }
+body.academic .field-header nav a:hover,
+body.academic .field-header nav a[aria-current=page] { color: var(--field-text); }
+body.academic .field-header nav a[aria-current=page]:after { background: var(--field-cyan); }
+body.academic .field-brand small,
+body.academic .field-edition,
+body.academic .field-edition span { color: var(--field-muted); }
+
+body.academic :is(button,input,select,textarea) {
+  color: var(--field-text);
+  background-color: var(--field-surface-raised);
+  border-color: var(--field-border-strong);
+  border-radius: 5px;
+  color-scheme: dark;
+}
+body.academic button:hover:not(:disabled) { background-color: var(--field-surface-soft); }
+body.academic button:disabled { opacity: .5; }
+body.academic :is(button,a,summary,input,select,textarea):focus-visible {
+  outline: 2px solid var(--field-cyan);
+  outline-offset: 3px;
+}
+body.academic button[aria-pressed=true] {
+  background: rgba(34,211,238,.14);
+  border-color: var(--field-cyan);
+  color: var(--field-cyan);
+}
+body.academic .green { color: var(--field-green); }
+body.academic .amber { color: var(--field-amber); }
+body.academic .eyebrow,
+body.academic .research-eyebrow,
+body.academic .field-kicker { color: var(--field-cyan); }
+
+body.academic :is(.scorecard,.map-panel,.card,.technical-section,.structure-grid>.card,
+  .judge-context,.research-workbench,.research-map-card,.research-study-stamp,
+  .research-literature article,.research-run-results,.research-note,.research-method,
+  .research-analysis,.research-replay,.rescue-3d,.scene-hud,.scene-minimap,.scene-bottom-hud) {
+  background: var(--field-surface);
+  border-color: var(--field-border);
+  color: var(--field-text);
+  box-shadow: none;
+}
+body.academic :is(.scorecard,.research-workbench,.research-map-card,.research-study-stamp,
+  .research-literature article,.research-run-results,.research-note,.research-method,
+  .research-analysis,.research-replay,.technical-section,.judge-context) {
+  border-radius: 8px;
+}
+body.academic .scorecard>div { border-color: var(--field-border); }
+body.academic .scorecard span { color: var(--field-muted); }
+body.academic .scorecard strong { color: var(--field-text); }
+body.academic .panel-heading { color: var(--field-text); }
+body.academic .mission-config {
+  color: var(--field-muted);
+  background: var(--field-surface-raised);
+  border-block-color: var(--field-border);
+}
+body.academic .deploy-button,
+body.academic .research-page .research-primary {
+  background: var(--field-cyan);
+  border-color: var(--field-cyan);
+  color: #082027;
+}
+body.academic .deploy-button:hover,
+body.academic .research-page .research-primary:hover { background: #8deafa; }
+body.academic .discovery-feed p,
+body.academic .mission-caption { color: var(--field-muted); }
+body.academic .discovery-notice,
+body.academic .discovery-notice.gas {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border-strong);
+  color: var(--field-text);
+}
+body.academic .discovery-notice.gas { border-left-color: var(--field-amber); }
+body.academic .discovery-notice small,
+body.academic .commander-panel :is(p,small,span,li) { color: var(--field-muted); }
+body.academic .commander-panel :is(.system-summary,.commander-brief,.commander-questions) {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .mission-research-link { color: var(--field-cyan); border-color: var(--field-border); }
+body.academic .mission-research-link span { color: var(--field-muted); }
+body.academic .judge-context :is(.truth-grid,.architecture,.architecture-branches) {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .judge-context :is(p,li,small) { color: var(--field-muted); }
+body.academic .scene-disclaimer { color: var(--field-muted); }
+body.academic .scene-hud,
+body.academic .scene-minimap,
+body.academic .scene-bottom-hud { color: var(--field-text); }
+body.academic .scene-compass,
+body.academic .scene-hud small,
+body.academic .scene-bottom-hud :is(span,small) { color: var(--field-muted); }
+
+body.academic .research-page {
+  color: var(--field-text);
+  --research-muted: var(--field-muted);
+}
+body.academic .research-hero h1,
+body.academic .research-section-heading h2 { color: var(--field-text); }
+body.academic .research-hero h1 em,
+body.academic .research-eyebrow { color: var(--field-cyan); }
+body.academic .research-study-stamp strong { color: var(--field-green); }
+body.academic .research-study-stamp p,
+body.academic .research-study-stamp small { color: var(--field-muted); }
+body.academic .research-status,
+body.academic .research-source-tag { border-color: var(--field-border-strong); }
+body.academic .research-status.running,
+body.academic .research-status.done { color: var(--field-green); }
+body.academic .research-controls label { color: var(--field-muted); }
+body.academic .research-controls :is(input,select) {
+  color: var(--field-text);
+  background: var(--field-surface-raised);
+  border-color: var(--field-border-strong);
+}
+body.academic .research-map-heading,
+body.academic .research-map-footer,
+body.academic .research-replay,
+body.academic .research-table-wrap { border-color: var(--field-border); }
+body.academic .research-map-footer,
+body.academic .research-context,
+body.academic .research-note { color: var(--field-muted); }
+body.academic .research-chart :is(path,line) { stroke: var(--field-border-strong); }
+body.academic .research-chart text { fill: var(--field-muted); }
+body.academic .research-chart polyline { stroke: var(--field-cyan); }
+body.academic .research-page table { color: var(--field-text); }
+body.academic .research-page :is(th,td) { border-color: var(--field-border); }
+body.academic .research-page th { color: var(--field-text); }
+body.academic .research-page td { color: var(--field-muted); }
+body.academic .research-page details { border-color: var(--field-border); }
+body.academic .research-page details summary { color: var(--field-text); }
+body.academic .research-page .research-source-grid article { background: var(--field-surface-raised); border-color: var(--field-border); }
+body.academic .research-page .research-source-tag { color: var(--field-cyan); background: rgba(34,211,238,.08); }
+body.academic .research-footer { border-color: var(--field-border); color: var(--field-muted); }
+
+@media (max-width: 700px) {
+  body.academic .field-header { min-height: 82px; height: auto; padding: 14px 5%; gap: 12px; flex-wrap: wrap; }
+  body.academic .field-header nav { order: 3; width: 100%; justify-content: space-between; gap: 14px; }
+  body.academic .field-edition { margin-left: auto; }
+  body.academic .research-hero { grid-template-columns: 1fr; gap: 25px; padding: 36px 0; }
+  body.academic .research-workbench { padding: 16px; }
+}
+
+/* Raise specificity over the legacy green rescue button states. */
+body.academic .judge-app .deploy-button,
+body.academic .judge-app button[aria-pressed=true] {
+  background: var(--field-cyan);
+  border-color: var(--field-cyan);
+  color: #082027;
+}
+body.academic .judge-app .deploy-button:hover,
+body.academic .judge-app button[aria-pressed=true]:hover {
+  background: #8deafa;
+  border-color: #8deafa;
+  color: #082027;
+}
+
+/* Rescue route controls and explainer disclosures use the same field surfaces. */
+body.academic .judge-app > header {
+  background: var(--field-surface);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .judge-app > header nav button,
+body.academic .judge-app > header .reset-demo {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border-strong);
+  color: var(--field-muted);
+}
+body.academic .judge-app > header nav button:hover:not(:disabled),
+body.academic .judge-app > header .reset-demo:hover:not(:disabled) {
+  background: var(--field-surface-soft);
+  color: var(--field-text);
+  border-color: var(--field-cyan);
+}
+body.academic .judge-app > header nav button[aria-pressed=true] {
+  background: var(--field-cyan);
+  color: #082027;
+  border-color: var(--field-cyan);
+}
+body.academic .judge-app > header nav button:disabled {
+  background: var(--field-surface-raised);
+  color: var(--field-muted);
+  opacity: .7;
+}
+body.academic .judge-app .status {
+  background: var(--field-surface-raised);
+  border: 1px solid var(--field-border-strong);
+  color: var(--field-green);
+}
+body.academic .judge-app .status span {
+  background: var(--field-green);
+}
+body.academic .judge-app .judge-context details {
+  margin: 0;
+  border: 1px solid var(--field-border);
+  border-radius: 7px;
+  background: var(--field-surface);
+  color: var(--field-text);
+}
+body.academic .judge-app .judge-context details + details { margin-top: 10px; }
+body.academic .judge-app .judge-context details summary {
+  padding: 16px 18px;
+  background: var(--field-surface);
+  color: var(--field-text);
+}
+body.academic .judge-app .judge-context details[open] summary {
+  border-bottom: 1px solid var(--field-border);
+}
+body.academic .judge-app .judge-context details :is(p,li,small,span) { color: var(--field-muted); }
+body.academic .judge-app .judge-context details :is(strong,b,h3) { color: var(--field-text); }
+body.academic .judge-app .judge-context details > :not(summary) { color: var(--field-muted); }
+body.academic .judge-app .judge-context details a { color: var(--field-cyan); }
+body.academic .judge-app .mission-caption,
+body.academic .judge-app > main > footer { color: var(--field-muted); }
+
+body.academic .judge-app .legend .key.fog {
+  background: var(--field-bg);
+  border: 1px solid var(--field-border-strong);
+}
+
+/* Apply the field theme to every panel in the supervised insect arena. */
+body.academic .supervised-lab {
+  color: var(--field-text);
+  --fly-bg: var(--field-bg);
+  --fly-surface: var(--field-surface);
+  --fly-surface-raised: var(--field-surface-raised);
+  --fly-border: var(--field-border);
+  --fly-text: var(--field-text);
+  --fly-muted: var(--field-muted);
+}
+body.academic .supervised-lab :is(h1,h2,h3,h4,strong,b,summary) { color: var(--field-text); }
+body.academic .supervised-lab :is(p,small,label,dt,dd,li,figcaption) { color: var(--field-muted); }
+body.academic .supervised-lab :is(.fly-card,.anatomy-panel,.steering-pad,.supervised-status,
+  .anatomy-evidence,.anatomy-readouts button,.anatomy-decision,.anatomy-inspection) {
+  background: var(--field-surface);
+  border-color: var(--field-border);
+  color: var(--field-text);
+  box-shadow: none;
+}
+body.academic .supervised-lab .fly-card {
+  border: 1px solid var(--field-border);
+  border-radius: 8px;
+}
+body.academic .supervised-lab .supervised-status {
+  background: var(--field-surface-raised);
+  color: var(--field-green);
+  border-radius: 8px;
+}
+body.academic .supervised-lab .supervised-row :is(label,small) { color: var(--field-muted); }
+body.academic .supervised-lab .supervised-row select,
+body.academic .supervised-lab input,
+body.academic .supervised-lab select,
+body.academic .supervised-lab textarea {
+  background: var(--field-surface-raised);
+  color: var(--field-text);
+  border-color: var(--field-border-strong);
+  color-scheme: dark;
+}
+body.academic .supervised-lab button {
+  background: var(--field-surface-raised);
+  color: var(--field-text);
+  border-color: var(--field-border-strong);
+}
+body.academic .supervised-lab button:hover:not(:disabled) {
+  background: var(--field-surface-soft);
+  color: var(--field-text);
+  border-color: var(--field-cyan);
+}
+body.academic .supervised-lab button.fly-primary,
+body.academic .supervised-lab button[aria-pressed=true] {
+  background: var(--field-cyan);
+  border-color: var(--field-cyan);
+  color: #082027;
+}
+body.academic .supervised-lab button:disabled { color: var(--field-muted); opacity: .58; }
+body.academic .supervised-lab .supervised-stage {
+  background: #0e141b;
+  border-block: 1px solid var(--field-border);
+}
+body.academic .supervised-lab .supervised-map { border-color: var(--field-border-strong); }
+body.academic .supervised-lab .steering-pad { background: var(--field-surface-raised); }
+body.academic .supervised-lab .steering-pad:focus-within {
+  outline-color: var(--field-cyan);
+}
+body.academic .supervised-lab .backpack-data :is(dt,dd) { color: var(--field-muted); }
+body.academic .supervised-lab .backpack-data dd { color: var(--field-text); }
+body.academic .supervised-lab .link-good,
+body.academic .supervised-lab .anatomy-live { color: var(--field-green); }
+body.academic .supervised-lab .link-lost { color: #ff9b86; }
+body.academic .supervised-lab .contact-meter { color: var(--field-muted); }
+body.academic .supervised-lab .contact-meter meter { accent-color: var(--field-cyan); }
+body.academic .supervised-lab .anatomy-heading { border-color: var(--field-border); }
+body.academic .supervised-lab .anatomy-stage {
+  background: #0e141b;
+  border-color: var(--field-border);
+}
+body.academic .supervised-lab .anatomy-stage-note,
+body.academic .supervised-lab .anatomy-help { color: var(--field-muted); }
+body.academic .supervised-lab .anatomy-camera button,
+body.academic .supervised-lab .anatomy-readouts button {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border-strong);
+  color: var(--field-text);
+}
+body.academic .supervised-lab .anatomy-readouts strong { color: var(--field-amber); }
+body.academic .supervised-lab .anatomy-decision,
+body.academic .supervised-lab .anatomy-decision span { color: var(--field-muted); }
+body.academic .supervised-lab .anatomy-decision strong { color: var(--field-green); }
+body.academic .supervised-lab .anatomy-legend span:first-child { color: var(--field-green); }
+body.academic .supervised-lab .anatomy-legend span:nth-child(2) { color: #9fc5ff; }
+body.academic .supervised-lab .anatomy-legend span:last-child { color: var(--field-amber); }
+body.academic .supervised-lab .anatomy-inspection { border-color: var(--field-border); }
+body.academic .supervised-lab .anatomy-select,
+body.academic .supervised-lab .anatomy-select select { color: var(--field-muted); }
+body.academic .supervised-lab .anatomy-evidence { color: var(--field-muted); }
+body.academic .supervised-lab .anatomy-evidence b { color: var(--field-text); }
+body.academic .supervised-lab .anatomy-panel details {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .supervised-lab .anatomy-panel details summary { color: var(--field-text); }
+body.academic .supervised-lab .supervised-events { color: var(--field-muted); }
+body.academic .supervised-lab .supervised-events time { color: var(--field-cyan); }
+body.academic .supervised-lab .fly-premise { color: var(--field-muted); }
+
+
+/* Controlled Fly Experiments: carry the shared field palette through every
+   card, nested readout, anatomy panel, metric, and experiment control. */
+body.academic .mission-app main.fly-lab:not(.supervised-lab) {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-card,.fly-metrics,.fly-limitations) {
+  background: var(--field-surface);
+  border-color: var(--field-border);
+  color: var(--field-text);
+  box-shadow: none;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-title h1,.fly-card h2,.fly-card h3,.fly-metrics strong,.fly-readouts strong,.fly-motor strong) {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-kicker,.fly-premise,.fly-card p,.fly-card small,.fly-card label,.fly-card dt,.fly-card dd,.fly-metrics span,.fly-controls label,.fly-controls>span,.fly-run-status,.fly-arrow,.fly-limitations p) {
+  color: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-title h1 span,.fly-readiness,.fly-run-status,.fly-evidence.real,.fly-architecture) {
+  color: var(--field-green);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-readiness {
+  border-color: var(--field-border-strong);
+  background: var(--field-surface-raised);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card button {
+  background: var(--field-surface-raised);
+  color: var(--field-text);
+  border-color: var(--field-border-strong);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card button:hover:not(:disabled) {
+  background: var(--field-surface-soft);
+  color: var(--field-text);
+  border-color: var(--field-cyan);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-card button[aria-pressed=true],.fly-card button.fly-primary) {
+  background: var(--field-cyan);
+  color: #082027;
+  border-color: var(--field-cyan);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card button:disabled {
+  background: var(--field-surface-raised);
+  color: var(--field-faint);
+  border-color: var(--field-border);
+  opacity: .7;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-card input,.fly-card select,.fly-card textarea) {
+  background: var(--field-surface-raised);
+  color: var(--field-text);
+  border-color: var(--field-border-strong);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card :is(input,select,textarea):focus-visible {
+  outline: 2px solid var(--field-cyan);
+  outline-offset: 2px;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-controls,.fly-signal,.fly-inspection,.anatomy-inspection) {
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-readouts>div,.fly-motor,.fly-stimulation-result,.fly-card details,.fly-limitations>div) {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-readouts span,.fly-readouts strong,.fly-motor strong,.fly-signal label>span,.fly-signal b) {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-readouts>div:last-child strong,
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-limitations h2 {
+  color: var(--field-amber);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-metrics {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-metrics>div,
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card dl>div,
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-comparison :is(td,th) {
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-metrics strong {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card dd,
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-comparison td {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-comparison th {
+  color: var(--field-cyan);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card summary {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-evidence-grid>div,.fly-error) {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-error {
+  color: #ff9b86;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-evidence {
+  border-color: var(--field-border-strong);
+  background: var(--field-surface-raised);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.fly-evidence.engineering,.fly-evidence.documented,.fly-evidence.inferred) {
+  color: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-arena-heading {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-arena-heading h2 {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-controls {
+  background: var(--field-surface);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-neural-trace text {
+  fill: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-panel {
+  background: var(--field-surface);
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-heading {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-heading h2 {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-live {
+  color: var(--field-green);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-stage {
+  background: #0e141b;
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(.anatomy-stage-note,.anatomy-help,.anatomy-select) {
+  color: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-camera button,
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-readouts button {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border-strong);
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-readouts strong {
+  color: var(--field-amber);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-decision {
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-decision span {
+  color: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-decision strong {
+  color: var(--field-green);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-legend span:first-child {
+  color: var(--field-green);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-legend span:nth-child(2) {
+  color: #9fc5ff;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-legend span:last-child {
+  color: var(--field-amber);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-evidence {
+  background: var(--field-surface-raised);
+  color: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-evidence b {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-panel details {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .anatomy-panel details summary {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-limitations h2,
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card h2 {
+  letter-spacing: normal;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(button,a,summary):focus-visible {
+  outline: 2px solid var(--field-cyan);
+  outline-offset: 3px;
+}
+
+
+/* Neural dynamics is an experiment panel in the same lab, so it shares the
+   field surfaces and legible engineering labels as well. */
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab {
+  background: var(--field-surface);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab :is(.dynamics-boundaries>div,.dynamics-result,.dynamics-output,.dynamics-summary) {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab :is(.dynamics-heading,.dynamics-boundaries,.dynamics-presets,.dynamics-controls,.dynamics-sliders,.dynamics-settings,.dynamics-check) {
+  color: var(--field-text);
+  border-color: var(--field-border);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab :is(.dynamics-heading p,.dynamics-boundaries p,.dynamics-lab label,.dynamics-muted) {
+  color: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab :is(.dynamics-heading span,.dynamics-boundaries b) {
+  color: var(--field-amber);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab .dynamics-run {
+  background: var(--field-cyan);
+  border-color: var(--field-cyan);
+  color: #082027;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab .dynamics-run:hover:not(:disabled) {
+  background: #8deafa;
+  border-color: #8deafa;
+  color: #082027;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab .dynamics-run:disabled {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+  color: var(--field-faint);
+}
+
+
+/* Replace legacy high-priority paper colors in the dynamics action and
+   mission annotations so they retain contrast under the dark field theme. */
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab .dynamics-run {
+  background: var(--field-cyan) !important;
+  color: #082027 !important;
+  border-color: var(--field-cyan) !important;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .dynamics-lab .dynamics-run:disabled {
+  background: var(--field-surface-raised) !important;
+  color: var(--field-faint) !important;
+  border-color: var(--field-border) !important;
+}
+body.academic .mission-app .mission-context {
+  color: var(--field-muted) !important;
+}
+body.academic .mission-app .mission-selected b {
+  color: var(--field-green) !important;
+}
