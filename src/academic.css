@@ -1158,3 +1158,7 @@ body.academic .research-page .research-run-results>strong {
 body.academic .research-page details summary {
   color: var(--field-text);
 }
+
+body.academic .research-page small {
+  color: var(--field-muted);
+}
