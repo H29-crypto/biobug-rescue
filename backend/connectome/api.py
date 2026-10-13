@@ -46,7 +46,7 @@ def create_app(data_dir: Path | None = None, *, loader=load_connectome) -> FastA
                   description="Real structural connectivity and simulated neural dynamics for an engineering BioBug controller. Not a biological brain simulation.")
 
     app.add_middleware(CORSMiddleware,
-        allow_origins=[f'http://{host}:{port}' for host in ('localhost', '127.0.0.1') for port in (5173, 5174, 4173, 4174)],
+        allow_origins=['https://h29-crypto.github.io', *[f'http://{host}:{port}' for host in ('localhost', '127.0.0.1') for port in (5173, 5174, 4173, 4174)]],
         allow_methods=['GET', 'POST'], allow_headers=['Content-Type'])
     app.include_router(create_router())
     pathway_lock = Lock()
