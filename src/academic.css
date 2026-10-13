@@ -681,3 +681,307 @@ body.academic .field-index-number {
 body.academic .field-index > a:hover h2 {
   color: var(--field-cyan);
 }
+
+
+/* Finish the shared dark treatment for legacy technical panels. */
+body.academic .technical-section {
+  color: var(--field-text);
+}
+body.academic .technical-section :is(
+  .controller-panel, .advanced-tools, .swarm-panel, .metrics-details,
+  .pathways-panel, .dynamics-lab
+) {
+  background: var(--field-surface);
+  color: var(--field-text);
+  border-color: var(--field-border);
+  box-shadow: none;
+}
+body.academic .technical-section :is(
+  .controller-panel, .advanced-tools, .swarm-panel, .pathways-panel, .dynamics-lab
+) :is(h2,h3,h4,strong,b,summary,th) {
+  color: var(--field-text);
+}
+body.academic .technical-section :is(
+  .controller-panel, .advanced-tools, .swarm-panel, .pathways-panel, .dynamics-lab
+) :is(p,small,label,td,dd,dt,li,span,code,output) {
+  color: var(--field-muted);
+}
+body.academic .technical-section .controller-panel :is(.eyebrow,.controller-title .badge) {
+  color: var(--field-cyan);
+}
+body.academic .technical-section .controller-panel :is(.control-flow>div,.controller-error) {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+}
+body.academic .technical-section .controller-panel .controller-error {
+  color: var(--field-amber);
+}
+body.academic .technical-section .controller-picker button[aria-pressed=true] {
+  background: var(--field-cyan);
+  border-color: var(--field-cyan);
+  color: #082027;
+}
+body.academic .technical-section .metrics-details summary {
+  color: var(--field-text);
+}
+body.academic .technical-section .metrics-scroll table {
+  background: var(--field-surface);
+  color: var(--field-text);
+}
+body.academic .technical-section .metrics-scroll :is(th,td) {
+  background: var(--field-surface);
+  color: var(--field-text);
+  border-color: var(--field-border);
+}
+body.academic .technical-section .swarm-totals b,
+body.academic .technical-section .selected-telemetry-label {
+  color: var(--field-green);
+}
+body.academic .technical-section .agent-card {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border-strong);
+  color: var(--field-text);
+}
+body.academic .technical-section .agent-card[aria-pressed=true] {
+  background: var(--field-cyan);
+  border-color: var(--field-cyan);
+  color: #082027;
+}
+body.academic .technical-section .agent-card[aria-pressed=true] :is(strong,span,small) {
+  color: #082027;
+  opacity: 1;
+}
+body.academic .technical-section .agent-card small {
+  opacity: 1;
+  color: var(--field-muted);
+}
+body.academic .technical-section .advanced-tools > summary {
+  background: var(--field-surface-raised);
+  color: var(--field-text);
+}
+body.academic .technical-section .pathways-panel > summary {
+  background: var(--field-surface-raised);
+  color: var(--field-text);
+}
+body.academic .technical-section .pathways-panel :is(
+  .pathways-population-evidence,.pathways-mapping,.pathways-placeholder,
+  .pathways-result-heading,.pathways-inspector,.pathways-scientific-note
+) {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .technical-section .pathways-panel :is(
+  .pathways-evidence-key,.pathways-result,.pathways-inspection,.pathways-contacts
+) {
+  border-color: var(--field-border);
+}
+body.academic .technical-section .pathways-panel :is(
+  .pathways-intro,.pathways-stats,.pathways-scientific-note,.pathways-inspector p
+) {
+  color: var(--field-muted);
+}
+body.academic .technical-section .pathways-panel :is(
+  .pathways-summary-note,.pathways-evidence,.pathways-controls label,
+  .pathways-message,.pathways-selection,.pathways-inspector h3,
+  .pathways-contacts th,.pathways-contacts button,.pathways-sources a
+) {
+  color: var(--field-cyan);
+}
+body.academic .technical-section .pathways-panel .pathways-evidence.inferred {
+  color: var(--field-amber);
+  border-color: var(--field-border-strong);
+}
+body.academic .technical-section .pathways-panel :is(select,input) {
+  background: var(--field-surface);
+  border-color: var(--field-border-strong);
+  color: var(--field-text);
+}
+body.academic .technical-section .pathways-graph-scroll {
+  background: var(--field-surface);
+}
+body.academic .technical-section .pathways-layer {
+  fill: var(--field-muted);
+}
+body.academic .technical-section .pathways-edge path {
+  stroke: #718398;
+}
+body.academic .technical-section .pathways-edge.selected path {
+  stroke: var(--field-cyan);
+}
+body.academic .technical-section .pathways-edge text {
+  fill: var(--field-text);
+  stroke: var(--field-surface);
+}
+body.academic .technical-section .pathways-node rect,
+body.academic .technical-section .pathways-node.sensory rect {
+  fill: var(--field-cyan);
+  stroke: #8deafa;
+}
+body.academic .technical-section .pathways-node.downstream rect {
+  fill: var(--field-amber);
+  stroke: #ffe0a0;
+}
+body.academic .technical-section .pathways-node text,
+body.academic .technical-section .pathways-node .pathways-node-id {
+  fill: #082027;
+}
+body.academic .technical-section .dynamics-lab {
+  background: var(--field-surface);
+  color: var(--field-text);
+}
+body.academic .technical-section .dynamics-lab :is(
+  .dynamics-boundaries>div,.dynamics-controls,.dynamics-flow>div,
+  .dynamics-readouts>div,.dynamics-real-summary,.dynamics-error,
+  .dynamics-science,.dynamics-chart
+) {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+}
+body.academic .technical-section .dynamics-lab :is(
+  .dynamics-boundaries>div+div,.dynamics-readouts .right
+) {
+  background: var(--field-surface-soft);
+  border-color: var(--field-border-strong);
+}
+body.academic .technical-section .dynamics-lab :is(
+  .dynamics-heading h2,.dynamics-controls legend,.dynamics-sliders output,
+  .dynamics-readouts h3,.dynamics-readouts strong,.dynamics-readouts small,
+  .dynamics-readouts p,.dynamics-flow b,.dynamics-flow strong,
+  .dynamics-detail summary,.dynamics-table th
+) {
+  color: var(--field-text);
+}
+body.academic .technical-section .dynamics-lab :is(
+  .dynamics-heading>span,.dynamics-boundaries b,.dynamics-flow small,
+  .dynamics-flow>span,.dynamics-playback span,.dynamics-detail code
+) {
+  color: var(--field-amber);
+}
+body.academic .technical-section .dynamics-lab :is(
+  input,select
+) {
+  background: var(--field-surface);
+  border-color: var(--field-border-strong);
+  color: var(--field-text);
+}
+body.academic .technical-section .dynamics-lab input[type=range] {
+  accent-color: var(--field-cyan);
+}
+body.academic .technical-section .dynamics-lab .dynamics-run {
+  background: var(--field-surface-soft) !important;
+  color: var(--field-text) !important;
+  border-color: var(--field-border-strong) !important;
+}
+body.academic .technical-section .dynamics-lab .dynamics-run:disabled,
+body.academic .technical-section :is(button:disabled,select:disabled) {
+  opacity: 1;
+  color: var(--field-muted);
+}
+body.academic .technical-section .dynamics-chart text {
+  fill: var(--field-muted);
+}
+body.academic .technical-section .dynamics-table :is(th,td) {
+  color: var(--field-text);
+  border-color: var(--field-border);
+}
+body.academic .technical-section .dynamics-detail {
+  border-color: var(--field-border);
+}
+body.academic .technical-section .dynamics-error,
+body.academic .technical-section .dynamics-science {
+  color: var(--field-amber);
+}
+body.academic .technical-section .readiness.unavailable,
+body.academic .technical-section .science-note {
+  color: var(--field-amber);
+}
+body.academic .judge-app :is(.mission-summary-disclosure>summary,.mission-desk-disclosure>summary,.mission-explanation>summary,.mission-assistant summary) {
+  color: var(--field-text) !important;
+}
+body.academic .judge-app :is(.mission-summary-disclosure,.mission-desk-disclosure,.mission-explanation) {
+  border-color: var(--field-border);
+}
+body.academic .judge-app :is(.mission-context,.mission-desk-disclosure span) {
+  color: var(--field-muted) !important;
+}
+body.academic .judge-app :is(.thermal-sensor,.thermal-temperature,.science-note) {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+  color: var(--field-amber);
+}
+
+/* The 3D map stays sand-colored; its controls and status cards use the dark UI. */
+body.academic .judge-app :is(.scene-toolbar,.scene-roster,.scene-telemetry) {
+  background: var(--field-surface);
+  color: var(--field-text);
+  border-color: var(--field-border);
+}
+body.academic .judge-app .scene-toolbar button,
+body.academic .judge-app .scene-roster button {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border-strong);
+  color: var(--field-text);
+}
+body.academic .judge-app .scene-toolbar button[aria-pressed=true],
+body.academic .judge-app .scene-roster button[aria-pressed=true] {
+  background: var(--field-cyan);
+  border-color: var(--field-cyan);
+  color: #082027;
+}
+body.academic .judge-app .scene-roster button[aria-pressed=true] :is(strong,small) {
+  color: #082027;
+  opacity: 1;
+}
+body.academic .judge-app .scene-roster button small {
+  color: var(--field-muted);
+  opacity: 1;
+}
+body.academic .judge-app :is(.scene-hud,.scene-bottom-hud,.scene-minimap,.scene-fallback>div,.scene-compass) {
+  background: rgba(18,24,33,.95);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .judge-app :is(.scene-hud small,.scene-bottom-hud small,.scene-telemetry,.scene-disclaimer) {
+  color: var(--field-muted);
+}
+body.academic .judge-app .scene-bottom-hud :is(strong,span) {
+  color: var(--field-text);
+}
+body.academic .judge-app .scene-minimap>span,
+body.academic .judge-app .scene-loading {
+  color: var(--field-cyan);
+}
+body.academic .judge-app .scene-compass {
+  color: var(--field-muted);
+}
+body.academic .experience-loading {
+  color: var(--field-text);
+}
+body.academic .experience-error {
+  max-width: 760px;
+  margin: 64px auto;
+  padding: clamp(24px,5vw,48px);
+  border: 1px solid var(--field-border);
+  background: var(--field-surface);
+  color: var(--field-text);
+}
+body.academic .experience-error h1 {
+  margin: 0 0 16px;
+  color: var(--field-text);
+  font: 400 clamp(30px,5vw,48px)/1.15 Georgia,serif;
+}
+body.academic .experience-error p:not(.field-kicker) {
+  max-width: 560px;
+  color: var(--field-muted);
+}
+body.academic .experience-error>div {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+body.academic .experience-error a {
+  color: var(--field-cyan);
+}
