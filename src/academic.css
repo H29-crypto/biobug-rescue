@@ -1101,3 +1101,14 @@ body.academic .mission-app main.fly-lab:not(.supervised-lab) .embodiment-toolbar
 body.academic .mission-app main.fly-lab:not(.supervised-lab) .embodiment-caption b {
   color: #13221a;
 }
+
+/* Supervised Arena uses a separate anatomy header outside the main fly card. */
+body.academic .supervised-lab .fly-title h1 span {
+  color: var(--field-cyan);
+}
+body.academic .supervised-lab .anatomy-heading {
+  background: var(--field-surface-raised);
+}
+body.academic .supervised-lab .anatomy-heading h2 {
+  color: var(--field-text);
+}
