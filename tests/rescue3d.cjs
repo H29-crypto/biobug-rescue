@@ -12,12 +12,12 @@ test('Insect gait has six articulated legs, freezes at unchanged distance and al
 test('Decorative random stream is deterministic and isolated from mission state',()=>{const a=visualRandom(42),b=visualRandom(42);for(let i=0;i<100;i++)assert.equal(a(),b());const s=createSwarm(),before=JSON.stringify(s);for(let i=0;i<200;i++)a();assert.equal(JSON.stringify(s),before);});
 // Exercise the real scene graph, transforms and lifecycle with only the GPU/DOM
 // adapter stubbed. This is not a substitute for a WebGL/browser visual check.
-let capturedScene,draw,renderer,resizeCallback;let disposedGeometry=0,disposedMaterial=0;
+let capturedScene,draw,renderer,resizeCallback,cameraInstance;let disposedGeometry=0,disposedMaterial=0;
 const ctx={fillRect(){},beginPath(){},moveTo(){},lineTo(){},stroke(){},fillText(){},clearRect(){}};
 function canvas(){return {width:0,height:0,getContext:()=>ctx,setAttribute(){},addEventListener(){},removeEventListener(){},remove(){},getBoundingClientRect:()=>({left:0,top:0,width:960,height:640})};}
 global.document={createElement:()=>canvas()};global.window={devicePixelRatio:1};global.ResizeObserver=class{constructor(fn){resizeCallback=fn;}observe(){}disconnect(){this.disconnected=true;}};global.requestAnimationFrame=fn=>{draw=fn;return 1;};global.cancelAnimationFrame=()=>{};
 class FakeRenderer{constructor(){renderer=this;this.domElement=canvas();this.shadowMap={};}setPixelRatio(){}setSize(){}render(s){capturedScene=s;}dispose(){this.disposed=true;}forceContextLoss(){this.contextReleased=true;}}
-class FakeControls{constructor(camera){this.target=new THREE.Vector3();this.camera=camera;}update(){}dispose(){}}
+class FakeControls{constructor(camera){cameraInstance=camera;this.target=new THREE.Vector3();this.camera=camera;}update(){}dispose(){}}
 const Module=require('node:module');const sceneModule=new Module(path.join(output,'scene.js'),module);sceneModule.filename=path.join(output,'scene.js');sceneModule.paths=module.paths;sceneModule.require=id=>id==='three'?{...THREE,WebGLRenderer:FakeRenderer}:id.includes('OrbitControls')?{OrbitControls:FakeControls}:require(path.resolve(output,id));sceneModule._compile(fs.readFileSync(sceneModule.filename,'utf8'),sceneModule.filename);
 const host={clientWidth:960,clientHeight:640,appendChild(){}};
 test('Actual scene reads real snapshots without altering a 30-second mission or exposing targets',()=>{
@@ -40,6 +40,6 @@ test('Scene creates only observed estimate markers, handles camera changes and d
   const groups=capturedScene.children.filter(x=>x.type==='Group');assert.equal(groups.length,4+view.rescue.discoveries.length);
   for(const d of view.rescue.discoveries)assert(groups.some(g=>g.position.x===d.estimatedPosition.x&&g.position.z===d.estimatedPosition.y));
   capturedScene.traverse(o=>{if(o.geometry)o.geometry.addEventListener('dispose',()=>disposedGeometry++);if(o.material&&!Array.isArray(o.material))o.material.addEventListener('dispose',()=>disposedMaterial++);});
-  scene.camera('follow');scene.zoom(.8);draw(performance.now()+100);scene.fog(false);scene.camera('overview');scene.home();resizeCallback();scene.dispose();assert(disposedGeometry>0);assert(disposedMaterial>0);assert(renderer.disposed);
+  scene.camera('overview');const overviewPosition=cameraInstance.position.clone();scene.orbit(1,0);assert(cameraInstance.position.distanceTo(overviewPosition)>.1,'overview orbit button moves camera');scene.camera('follow');draw(performance.now()+100);const followPosition=cameraInstance.position.clone();scene.orbit(1,0);draw(performance.now()+200);assert(cameraInstance.position.distanceTo(followPosition)>.1,'follow orbit button moves camera');scene.zoom(.8);scene.fog(false);scene.camera('overview');scene.home();resizeCallback();scene.dispose();assert(disposedGeometry>0);assert(disposedMaterial>0);assert(renderer.disposed);
 });
 for(const [name,fn]of tests){fn();console.log('PASS',name);}console.log(`${tests.length} 3D checks passed`);
