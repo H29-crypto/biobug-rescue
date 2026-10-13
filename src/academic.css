@@ -1002,3 +1002,75 @@ body.academic .technical-section .pathways-panel > summary::before {
 body.academic .judge-app .scene-hud-divider {
   color: var(--field-muted);
 }
+
+/* The integrated Virtual Lab embeds the same rescue widgets outside judge-app. */
+body.academic .mission-app :is(
+  .mission-summary-disclosure>summary,.mission-desk-disclosure>summary,
+  .mission-explanation>summary,.mission-assistant summary,.dynamics-detail summary
+) {
+  color: var(--field-text) !important;
+}
+body.academic .mission-app :is(
+  .mission-summary-disclosure,.mission-desk-disclosure,.mission-explanation
+) {
+  border-color: var(--field-border);
+}
+body.academic .mission-app :is(.mission-context,.mission-desk-disclosure span) {
+  color: var(--field-muted) !important;
+}
+body.academic .mission-app :is(.thermal-sensor,.thermal-temperature,.science-note) {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border);
+  color: var(--field-amber);
+}
+body.academic .mission-app .mission-empty span[aria-hidden=true] {
+  color: var(--field-cyan);
+}
+body.academic .mission-app :is(.scene-toolbar,.scene-roster,.scene-telemetry) {
+  background: var(--field-surface);
+  color: var(--field-text);
+  border-color: var(--field-border);
+}
+body.academic .mission-app .scene-toolbar button,
+body.academic .mission-app .scene-roster button {
+  background: var(--field-surface-raised);
+  border-color: var(--field-border-strong);
+  color: var(--field-text);
+}
+body.academic .mission-app .scene-toolbar button[aria-pressed=true],
+body.academic .mission-app .scene-roster button[aria-pressed=true] {
+  background: var(--field-cyan);
+  border-color: var(--field-cyan);
+  color: #082027;
+}
+body.academic .mission-app .scene-roster button[aria-pressed=true] :is(strong,small) {
+  color: #082027 !important;
+  opacity: 1;
+}
+body.academic .mission-app .scene-roster button small {
+  color: var(--field-muted);
+  opacity: 1;
+}
+body.academic .mission-app :is(
+  .scene-hud,.scene-bottom-hud,.scene-minimap,.scene-fallback>div,.scene-compass
+) {
+  background: rgba(18,24,33,.95);
+  border-color: var(--field-border);
+  color: var(--field-text);
+}
+body.academic .mission-app :is(
+  .scene-hud small,.scene-bottom-hud small,.scene-telemetry,.scene-disclaimer
+) {
+  color: var(--field-muted);
+}
+body.academic .mission-app .scene-bottom-hud :is(strong,span) {
+  color: var(--field-text);
+}
+body.academic .mission-app .scene-minimap>span,
+body.academic .mission-app .scene-loading,
+body.academic .mission-app .scene-hud-divider {
+  color: var(--field-cyan);
+}
+body.academic .mission-app .pathways-panel > summary::before {
+  color: var(--field-cyan);
+}
