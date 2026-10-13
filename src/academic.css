@@ -1112,3 +1112,49 @@ body.academic .supervised-lab .anatomy-heading {
 body.academic .supervised-lab .anatomy-heading h2 {
   color: var(--field-text);
 }
+
+/* ResearchLab's lazy stylesheet loads after the shared theme, so keep the
+   study copy, labels and status colors explicit at the page boundary. */
+body.academic .research-page :is(p,dd,details,.research-decision,.research-context,.research-note) {
+  color: var(--field-muted);
+}
+body.academic .research-page :is(strong,b) {
+  color: var(--field-text);
+}
+body.academic .research-page :is(dt,.research-source-tag) {
+  color: var(--field-amber);
+}
+body.academic .research-page :is(
+  .research-study-stamp>span,.research-study-stamp p,.research-study-stamp small,
+  .research-map-heading span,.research-roster span,.research-map-footer,
+  .research-replay label,.research-context,.research-note
+) {
+  color: var(--field-muted);
+}
+body.academic .research-page .research-status.ready,
+body.academic .research-page .research-status.running,
+body.academic .research-page .research-status.done {
+  color: var(--field-green);
+}
+body.academic .research-page .research-map-heading :is(span,b) {
+  color: var(--field-cyan);
+}
+body.academic .research-page .research-map-card.information .research-map-heading :is(span,b) {
+  color: var(--field-green);
+}
+body.academic .research-page .research-decision {
+  color: var(--field-muted);
+}
+body.academic .research-page .research-source-grid dd {
+  color: var(--field-muted);
+}
+body.academic .research-page .research-source-grid summary {
+  color: var(--field-cyan);
+}
+body.academic .research-page .research-replay strong,
+body.academic .research-page .research-run-results>strong {
+  color: var(--field-text);
+}
+body.academic .research-page details summary {
+  color: var(--field-text);
+}
