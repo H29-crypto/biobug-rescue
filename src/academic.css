@@ -985,3 +985,12 @@ body.academic .experience-error>div {
 body.academic .experience-error a {
   color: var(--field-cyan);
 }
+
+/* Inline agent identity colors give way to readable ink on the selected card. */
+body.academic .technical-section .agent-card[aria-pressed=true] :is(strong,span,small) {
+  color: #082027 !important;
+  opacity: 1;
+}
+body.academic .judge-app .brand > span:not(.brand-icon) {
+  color: var(--field-text) !important;
+}
