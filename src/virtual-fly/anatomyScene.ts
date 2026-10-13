@@ -5,7 +5,9 @@ import type {MorphologyManifest,PopulationFilter} from './anatomyModel';
 export interface AnatomyPerformance {fps:number;frameMs:number;p95FrameMs:number;renderSubmitMs:number;geometryBytes:number;renderedNeurons:number;renderedNodes:number;renderedSegments:number;drawCalls:number;sessionFps:number;sessionFrameMs:number;frames:number;visibility:string}
 export function createAnatomyScene(host:HTMLDivElement,manifest:MorphologyManifest,positions:Float32Array,onSelect:(id:string)=>void,onPerformance:(p:AnatomyPerformance)=>void,onFailure:()=>void){
   const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});
-  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0xf7f7f1);
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
+  const fieldBackground=getComputedStyle(host).getPropertyValue('--field-bg').trim();
+  const darkTheme=fieldBackground!=='';renderer.setClearColor(fieldBackground||'#f7f7f1');
   renderer.domElement.setAttribute('aria-label','Real MaleCNS skeletons. Drag to rotate; right-drag to pan; scroll to zoom.');
   renderer.domElement.setAttribute('role','img');host.appendChild(renderer.domElement);
   const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.1,10000);
@@ -18,12 +20,17 @@ export function createAnatomyScene(host:HTMLDivElement,manifest:MorphologyManife
   const texels=new Float32Array(manifest.neurons.length*4);
   const texture=new THREE.DataTexture(texels,manifest.neurons.length,1,THREE.RGBAFormat,THREE.FloatType);
   texture.minFilter=texture.magFilter=THREE.NearestFilter;texture.needsUpdate=true;
-  const material=new THREE.ShaderMaterial({transparent:true,depthWrite:false,uniforms:{activity:{value:texture},count:{value:manifest.neurons.length}},
-    vertexShader:`attribute float neuronIndex; uniform sampler2D activity; uniform float count; varying vec4 tone;
+  const material=new THREE.ShaderMaterial({transparent:true,depthWrite:false,uniforms:{activity:{value:texture},count:{value:manifest.neurons.length},darkTheme:{value:darkTheme?1:0}},
+    vertexShader:`attribute float neuronIndex; uniform sampler2D activity; uniform float count; uniform float darkTheme; varying vec4 tone;
     void main(){vec4 t=texture2D(activity,vec2((neuronIndex+0.5)/count,0.5));
       float strength=log(1.0+10000.0*t.r)/log(10001.0);
-      vec3 base=t.a<0.5?vec3(0.2,0.47,0.34):(t.a<1.5?vec3(0.43,0.32,0.62):vec3(0.63,0.43,0.16));
-      tone=vec4(mix(base,vec3(0.1,0.2,0.1),t.b*0.7)*(0.38+0.62*strength),t.g*(t.b>0.5?1.0:0.16+0.84*strength));
+      vec3 lightBase=t.a<0.5?vec3(0.2,0.47,0.34):(t.a<1.5?vec3(0.43,0.32,0.62):vec3(0.63,0.43,0.16));
+      vec3 darkBase=t.a<0.5?vec3(0.22,0.83,0.72):(t.a<1.5?vec3(0.66,0.59,0.98):vec3(1.0,0.72,0.33));
+      vec3 base=mix(lightBase,darkBase,darkTheme);
+      vec3 selectedColor=mix(vec3(0.1,0.2,0.1),vec3(0.95,0.98,1.0),darkTheme);
+      float visibility=mix(0.38+0.62*strength,0.66+0.34*strength,darkTheme);
+      float alpha=mix(t.b>0.5?1.0:0.16+0.84*strength,t.b>0.5?1.0:0.5+0.5*strength,darkTheme);
+      tone=vec4(mix(base,selectedColor,t.b*0.7)*visibility,t.g*alpha);
       gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
     fragmentShader:`varying vec4 tone; void main(){if(tone.a<0.001)discard;gl_FragColor=tone;}`});
   const lines=new THREE.LineSegments(geometry,material);scene.add(lines);
