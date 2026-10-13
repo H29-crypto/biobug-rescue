@@ -149,6 +149,11 @@ def test_api_stateless_bounded_serialization_and_cors(full_graph):
         assert client.post('/connectome/simulate',json={'steps':300}).status_code==422
         preflight=client.options('/connectome/simulate',headers={'Origin':'http://127.0.0.1:5173','Access-Control-Request-Method':'POST','Access-Control-Request-Headers':'content-type'})
         assert preflight.status_code==200
+        hosted=client.options('/connectome/control',headers={'Origin':'https://h29-crypto.github.io','Access-Control-Request-Method':'POST','Access-Control-Request-Headers':'content-type'})
+        assert hosted.status_code==200
+        assert hosted.headers['access-control-allow-origin']=='https://h29-crypto.github.io'
+        rejected=client.options('/connectome/control',headers={'Origin':'https://example.com','Access-Control-Request-Method':'POST','Access-Control-Request-Headers':'content-type'})
+        assert rejected.status_code==400
 
 def test_api_missing_data():
     def fail(_): raise ValueError('missing real data')
