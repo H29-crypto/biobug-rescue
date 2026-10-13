@@ -634,3 +634,24 @@ body.academic .mission-app .mission-context {
 body.academic .mission-app .mission-selected b {
   color: var(--field-green) !important;
 }
+
+
+/* Keep the legacy research table readable in the shared dark field theme. */
+body.academic .research-page caption {
+  background: var(--field-surface-raised);
+  color: var(--field-text);
+}
+body.academic .research-page thead {
+  background: var(--field-surface-soft);
+  color: var(--field-text);
+}
+body.academic .research-page tbody tr:last-child {
+  background: var(--field-surface-raised);
+}
+body.academic .research-page td small {
+  color: var(--field-muted);
+}
+body.academic .research-method code {
+  background: var(--field-surface-raised);
+  color: var(--field-text);
+}
