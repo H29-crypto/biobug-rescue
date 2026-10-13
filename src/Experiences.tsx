@@ -45,9 +45,9 @@ export default function Experiences() {
         <section className="field-index" aria-label="Explore the project"><a href="#rescue"><span className="field-index-number">01</span><div><h2>A mission to understand.</h2><p>Deploy a swarm. Follow the discoveries.</p><span>Rescue simulation ↗</span></div></a><a href="#virtual-lab"><span className="field-index-number">02</span><div><h2>A circuit to explore.</h2><p>Real connectivity. Simulated activity.</p><span>Virtual laboratory ↗</span></div></a><a href="#research"><span className="field-index-number">03</span><div><h2>A result to reproduce.</h2><p>Three environments. Thirty recorded trials.</p><span>Methods & evidence ↗</span></div></a></section>
         <section className="field-principle"><p className="field-kicker">THE RESEARCH QUESTION</p><h2>How can a small team<br/>reveal more of an unknown space?</h2><div><p>We connect biological structure with explicit engineering models, then compare exploration strategies under the same conditions.</p><p>Open methods, visible assumptions, and results you can run again.</p><a href="#research">Explore the comparative study →</a></div></section>
         <footer className="field-home-footer"><span>BioBug / Independent research prototype</span><span>Simulated bodies and sensing. No physical rescue deployment.</span><a href="https://github.com/H29-crypto/biobug-rescue" target="_blank" rel="noreferrer">Source code ↗</a></footer>
-      </main> : experience === 'rescue' ? <App/> : <Suspense fallback={<div className="experience-loading">Opening the laboratory…</div>}>
+      </main> : experience === 'rescue' ? <App/> : <ExperienceLoadBoundary key={experience}><Suspense fallback={<div className="experience-loading" role="status">Opening the laboratory…</div>}>
         {experience === 'research' ? <ResearchLab/> : <UnifiedLab key={experience} initial={experience === 'experiment' ? 'experiment' : 'rescue'}/>}
-      </Suspense>}
+      </Suspense></ExperienceLoadBoundary>}
     </div>
   </div>;
 }
