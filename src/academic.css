@@ -998,3 +998,7 @@ body.academic .judge-app .brand > span:not(.brand-icon) {
 body.academic .technical-section .pathways-panel > summary::before {
   color: var(--field-cyan);
 }
+
+body.academic .judge-app .scene-hud-divider {
+  color: var(--field-muted);
+}
