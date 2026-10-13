@@ -655,3 +655,29 @@ body.academic .research-method code {
   background: var(--field-surface-raised);
   color: var(--field-text);
 }
+
+
+/* Restore readable contrast for the dark field landing page. */
+body.academic .field-intro h1,
+body.academic .field-principle h2 {
+  color: var(--field-text);
+}
+body.academic .field-deck,
+body.academic .field-description,
+body.academic .field-index p,
+body.academic .field-principle p,
+body.academic .field-home-footer {
+  color: var(--field-muted);
+}
+body.academic .field-actions a:not(.field-primary),
+body.academic .field-index div > span,
+body.academic .field-principle a,
+body.academic .field-home-footer a {
+  color: var(--field-cyan);
+}
+body.academic .field-index-number {
+  color: var(--field-amber);
+}
+body.academic .field-index > a:hover h2 {
+  color: var(--field-cyan);
+}
