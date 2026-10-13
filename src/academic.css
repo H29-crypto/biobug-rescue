@@ -1074,3 +1074,30 @@ body.academic .mission-app .scene-hud-divider {
 body.academic .mission-app .pathways-panel > summary::before {
   color: var(--field-cyan);
 }
+
+/* Close the remaining color gaps in the controlled-experiment controls. */
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-title p:last-child {
+  color: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-map-legend {
+  color: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) :is(
+  .dynamics-controls legend,.dynamics-sliders output
+) {
+  color: var(--field-text);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .fly-card button:disabled {
+  color: var(--field-muted);
+  opacity: 1;
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .embodiment-toolbar label {
+  color: var(--field-muted);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .embodiment-toolbar>span {
+  color: var(--field-cyan);
+  border-color: var(--field-border-strong);
+}
+body.academic .mission-app main.fly-lab:not(.supervised-lab) .embodiment-caption b {
+  color: #13221a;
+}
